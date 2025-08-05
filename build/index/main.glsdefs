@@ -1,0 +1,224 @@
+\glsdefs@newdocentry{latex}%
+{%
+name={latex},%
+sort={latex},%
+type={main},%
+first={latex},%
+firstplural={latexs},%
+text={latex},%
+plural={latexs},%
+description={Is a mark up language specially suited for scientific documents},%
+descriptionplural={Is a mark up language specially suited for scientific documents},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{scRNA-seq}%
+{%
+name={scRNA-seq},%
+sort={scRNA-seq},%
+type={main},%
+first={scRNA-seq},%
+firstplural={scRNA-seqs},%
+text={scRNA-seq},%
+plural={scRNA-seqs},%
+description={Single-Cell RNA-Sequencing: Method to measure the RNA content of a cell},%
+descriptionplural={Single-Cell RNA-Sequencing: Method to measure the RNA content of a cell},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{RNA}%
+{%
+name={\acronymfont {\glsentryshort {RNA}}},%
+sort={RNA},%
+type={acronym},%
+first={RNA},%
+firstplural={RNAs},%
+text={RNA},%
+plural={RNAs},%
+description={RiboNucléique Acide},%
+descriptionplural={RiboNucléique Acide},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={RiboNucléique Acide},%
+longplural={RiboNucléique Acides},%
+short={RNA},%
+shortplural={RNAs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{GRN}%
+{%
+name={\acronymfont {\glsentryshort {GRN}}},%
+sort={GRN},%
+type={acronym},%
+first={GRN},%
+firstplural={GRNs},%
+text={GRN},%
+plural={GRNs},%
+description={Gene Regulatory Network},%
+descriptionplural={Gene Regulatory Network},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Gene Regulatory Network},%
+longplural={Gene Regulatory Networks},%
+short={GRN},%
+shortplural={GRNs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{GNN}%
+{%
+name={\acronymfont {\glsentryshort {GNN}}},%
+sort={GNN},%
+type={acronym},%
+first={GNN},%
+firstplural={GNNs},%
+text={GNN},%
+plural={GNNs},%
+description={Graph Neural Network},%
+descriptionplural={Graph Neural Network},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Graph Neural Network},%
+longplural={Graph Neural Networks},%
+short={GNN},%
+shortplural={GNNs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{TF}%
+{%
+name={\acronymfont {\glsentryshort {TF}}},%
+sort={TF},%
+type={acronym},%
+first={TF},%
+firstplural={TFs},%
+text={TF},%
+plural={TFs},%
+description={Transcription Factor},%
+descriptionplural={Transcription Factor},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Transcription Factor},%
+longplural={Transcription Factors},%
+short={TF},%
+shortplural={TFs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{RBP}%
+{%
+name={\acronymfont {\glsentryshort {RBP}}},%
+sort={RBP},%
+type={acronym},%
+first={RBP},%
+firstplural={RBPs},%
+text={RBP},%
+plural={RBPs},%
+description={RNA Binding Protein},%
+descriptionplural={RNA Binding Protein},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={RNA Binding Protein},%
+longplural={RNA Binding Proteins},%
+short={RBP},%
+shortplural={RBPs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{AIVC}%
+{%
+name={\acronymfont {\glsentryshort {AIVC}}},%
+sort={AIVC},%
+type={acronym},%
+first={AIVC},%
+firstplural={AIVCs},%
+text={AIVC},%
+plural={AIVCs},%
+description={Artificial Intelligence for a Virtual Cell},%
+descriptionplural={Artificial Intelligence for a Virtual Cell},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Artificial Intelligence for a Virtual Cell},%
+longplural={Artificial Intelligence for a Virtual Cells},%
+short={AIVC},%
+shortplural={AIVCs},%
+counter={page},%
+parent={},%
+%
+}%
+

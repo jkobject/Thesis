@@ -1,0 +1,331 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MODELE DE MANUSCRIT DE THESE 
+% DE L'UNIVERSITE PARIS CITE
+% OFFICIEL
+
+% LaTeX Template
+% Version overleaf (14/10/2023) 
+% Format BOOK
+% Par Aleksandra SAVINA, PhD
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%----------------------------------------------------------------------------------------
+%	PREAMBULE // PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+\documentclass[a4paper,12pt,twoside,french]{book}
+[a4paper,12pt,twoside]
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\input{./math_commands.tex}
+%	MARGIN SETTINGS
+\usepackage[a4paper,left=3cm,right=2.5cm,top=3cm,bottom=3cm, twoside]{geometry}
+
+\usepackage{xcolor}
+\usepackage{stmaryrd}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{libertine}
+\usepackage[noamssymbols]{newtxmath}    % Times New Roman math font without conflicting symbols
+
+
+% \usepackage{cite} % Commented out - incompatible with biblatex
+\usepackage[
+    %backend=biber, 
+    natbib=true,
+    style=numeric,
+    sorting=none
+]{biblatex} %Imports biblatex package
+
+\addbibresource{biblio.bib} %Import the bibliography file
+\usepackage{hyperref} % for references (\ref, \label), url
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=black,      
+    urlcolor=black,
+    citecolor=black,
+    pdfpagemode=FullScreen,
+    }
+
+% Pandoc-specific configurations
+\usepackage{fancyvrb}
+\usepackage{upquote}
+\usepackage{textcomp}
+\usepackage{lineno}
+\usepackage{fancyhdr}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{textcomp}
+\usepackage{capt-of}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{booktabs} % for professional tables
+\usepackage{url}
+\usepackage{svg}
+
+\usepackage{graphicx} % to include images
+%\usepackage[pdftex]{graphicx}
+\graphicspath{ {figures/} }
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{array, multirow, tabularx}
+\usepackage{longtable}
+\usepackage{apalike}
+\usepackage{minitoc}
+\usepackage{tikz}
+\pagestyle{fancy}
+\usepackage[strict]{changepage}
+\usepackage{siunitx}
+\selectlanguage{french}%
+
+\usepackage{enumitem}
+\usepackage{epigraph}
+%\usetikzlibrary{shadows.blur}
+\usepackage{lscape}
+\usepackage{titletoc}
+\usepackage{mdframed}
+
+\usepackage{tabu}
+\usepackage{pdfpages}
+
+\usepackage{arydshln}
+%\usepackage[nonumberlist]{glossaries}
+\usepackage{calc}
+\usepackage[]{titlesec} 
+\definecolor{linkColor}{HTML}{32a852}
+%\usepackage[colorlinks=true,citecolor=linkColor,linkcolor=black]{hyperref}
+
+\addto\captionsfrench{%
+  \renewcommand{\listfigurename}{Liste des figures}%
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{sectsty}
+%\sectionfont{\color{CentraleRed}}  % sets colour of sections
+%\subsectionfont{\color{uclablue}}  % sets colour of subsections, ou gray, teal 
+\definecolor{darkseagreen}{rgb}{0.56, 0.74, 0.56}
+\usepackage{lipsum}
+
+\title{}
+\author{Jérémie Kalfon}
+\date{May 2025}
+
+
+%----------------------------------------------------------------------------------------
+%	HEADERS AND FOOTERS
+%----------------------------------------------------------------------------------------
+
+%\fancyhead[RO]{\scshape \leftmark}
+%\fancyhead[L]{\scshape \righttmark}
+\fancyhead{} % clear all header fields
+\fancyfoot{} % clear all footer fields
+%\fancyhead[LE,RO]{\slshape \rightmark}
+\fancyfoot[C]{--~\thepage~--}
+
+\usepackage{emptypage}
+
+%\leftmark : adds name and number of the current top-level structure (for example, Chapter for reports and books classes; Section for articles ) in uppercase letters.
+% \rightmark : adds name and number of the current next to top-level structure (Section for reports and books; Subsection for articles) in uppercase letters.
+
+%%%%%%Glossaire
+%\usepackage{glossaries}
+\usepackage[acronym,xindy,toc]{glossaries} % nomain, if you define glossaries in a file, and you use \include{INP-00-glossary}
+%[nomain,acronym,xindy,toc]
+\makeglossaries
+
+\usepackage[xindy]{imakeidx}
+\makeindex
+%\input{auxilliaires/glossaire}
+
+% Define tightlist command (used by pandoc)
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%----------------------------------------------------------------------------------------
+%	DOCUMENT
+%----------------------------------------------------------------------------------------
+\begin{document}
+
+%\maketitle
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+	\begin{titlepage}
+		\begin{center}
+			\begin{tabular}{c@{\hskip 7cm}c@{\hskip 1cm}}
+				\includegraphics[height=2.5cm]{figures/titre/UParisCitelogo.jpg} &
+				%si autre logo : \includegraphics[height=2.3cm]{figures/titre/logo_ic_2021.jpg}
+			\end{tabular}
+		\end{center}
+	
+		\begin{center}
+		
+\vspace*{.03\textheight}
+\textsc{\LARGE Université Paris Cité}\\[0.2cm] % Univ name
+		\large École doctorale EDITE - ED130\\
+		  Institut Pasteur, Machine Learning for Integrative Genomics (ML4IG) \\ 
+			ENS ULM, Department of Applied Mathematics, Centre Science des Données (CSD) \\
+        %Équipe de recherche\\
+  
+  			\vfill
+ 
+	 		\rule{\textwidth}{0.8pt} \\ % Horizontal line
+	 		\vspace{10pt}
+	 		 { \LARGE \bfseries Transformers on single-cell RNA-sequencing data as large cell models }
+	 		 \vspace{10pt}
+	 		 \rule{\textwidth}{0.8pt} \\ % Horizontal line
+		\end{center}
+		
+		\vfill
+		% Author and supervisor	
+		\begin{center}
+			Par \textsc{\Large Jérémie KALFON}\\[1cm] 
+			Thèse de doctorat d'\textsc{\large Intelligence Artificielle}\\[1.2cm]
+			Dirigée par \textsc{\large Laura CANTINI}\\[0.2cm]
+            Et par \textsc{\large Gabriel Peyré} \\[0.2cm] 
+			Présentée et soutenue publiquement le 15 Décembre 2025 %renseigner la date et choisir le type de soutenance
+		\end{center}
+		
+		\vspace{1cm}
+Devant un jury composé de : %(indiquer le jury complet) 		
+		\begin{center}
+			\begin{tabular}{l@{\hskip 1cm}l@{\hskip 1cm}l}
+				\textsc{AAAA CANTINI, HDR} & CNRS, France  & Rapporteur \\
+				\textsc{Prénom NOM, DR}  & Université de Ville &Rapportrice \\
+				\textsc{Prénom NOM, CR-HDR}  & Université Paris Cité &Examinatrice\\
+                \textsc{Prénom NOM, DR}  & Université de Y &Examinateur\\
+				\textsc{Prénom NOM, MCF}  &Université Paris Cité  &Examinatrice \\
+				\textsc{Prénom NOM, PU-PH}  &Université Paris Cité &Membre invité \\
+				\textsc{Prénom NOM, PhD}  &Entreprise X &Membre invité \\
+				\textsc{Laura CANTINI, HDR}  &CNRS &Directrice de thèse \\
+                    \textsc{Gabriel Peyré, HDR}  &CNRS &Directeur de thèse \\
+			\end{tabular}\\[1cm]
+		\end{center}
+
+	\newpage %page de garde vide
+	\thispagestyle{empty} %page de garde vide
+	\end{titlepage}
+
+%\renewcommand{\chaptermark}[1]{\markboth{\textsc{#1}}{}}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+
+
+\frontmatter % numérote les pages en chiffres romains jusqu'a la commande mainmatter
+
+%----------------------------------------------------------------------------------------
+%	RESUME ET ABSTRACT PAGE
+%----------------------------------------------------------------------------------------
+\input{auxilliaires/resume} %résumé en francais
+
+%----------------------------------------------------------------------------------------
+%	QUOTATION PAGE ou DEDICACE
+%----------------------------------------------------------------------------------------
+\clearpage
+\vspace*{0.2\textheight}
+
+\begin{quote}
+	Essentially, all models are wrong, \\ but some are useful\end{quote} \bigbreak
+
+\hfill 
+George E. P. Box - 1976
+
+%----------------------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------------------
+%	ACKNOWLEDGEMENTS
+%----------------------------------------------------------------------------------------
+\input{auxilliaires/remerciements}
+
+
+%----------------------------------------------------------------------------------------
+%	LIST OF CONTENTS/FIGURES/TABLES PAGES
+%----------------------------------------------------------------------------------------
+%\setcounter{secnumdepth}{3} % organisational level that receives a numbers
+%\setcounter{tocdepth}{3}
+\tableofcontents % Prints the main table of contents
+\listoffigures % Prints the list of figures
+\addcontentsline{toc}{chapter}{Liste des figures}
+\listoftables % Prints the list of tables
+\addcontentsline{toc}{chapter}{Liste des tableaux}
+
+
+%----------------------------------------------------------------------------------------
+%	Liste des abréviations-
+%----------------------------------------------------------------------------------------
+\input{auxilliaires/abreviations}
+
+
+% --------------------------------------------------------------
+%                         Début du corps
+% --------------------------------------------------------------
+
+\mainmatter
+\setlength{\parskip}{.7em}
+
+%\titlespacing*{\section}{0pt}{.9em}{.8em}
+\renewcommand{\baselinestretch}{1.1}
+
+\fancyhead[RO]{\leftmark}
+\fancyhead[LE]{\textsc{\chaptername~\thechapter}}
+
+%\chapter*{Introduction}
+\fancyhead{} % clear all header fields
+\fancyhead[OL]{\textsc{Preamble}}
+\input{chapters/intro.tex} %partie introduction ou avant-propos
+
+\fancyhead{} % clear all header fields
+
+\fancyhead[RO]{\leftmark}
+\fancyhead[LE]{\textsc{\chaptername~\thechapter}}
+
+% Convert Markdown to LaTeX and include
+\immediate\write18{pandoc chapters/objectifs.md -f markdown -t latex --template=templates/chapter-template.tex --variable title="Objectifs de la thèse" -o chapters/objectifs.tex}
+\input{chapters/objectifs}
+
+\input{chapters/scprint}
+\input{chapters/scprint_methods}
+\input{chapters/xpressor}
+\input{chapters/scprint2}
+%\input{chapters/scprint2_methods}
+
+%\part*{Discussion et conclusion générale}
+\fancyhead{} % clear all header fields
+\fancyhead[OL]{\textsc{Discussions and perspectives}}
+\input{chapters/discussion.tex}
+
+\fancyhead{} % clear all header fields
+\fancyhead[OL]{\textsc{Conclusion}}
+\input{chapters/conclusion.tex}
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+%\printbibliography %Prints bibliography
+\fancyhead{} % clear all header fields
+\fancyhead[OL]{\textsc{Bibliography}}
+\printbibliography[
+heading=bibintoc,
+title={Bibliography}]
+
+%----------------------------------------------------------------------------------------
+\fancyhead{} % clear all header fields
+\fancyhead[OL]{\textsc{Appendices}}
+\input{appendix.tex}
+
+
+\end{document}

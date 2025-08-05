@@ -1,0 +1,313 @@
+\chapter*{Objectifs de la thèse}
+\addcontentsline{toc}{chapter}{Objectifs de la thèse}
+
+\section{Objectifs de la thèse}\label{objectifs-de-la-thuxe8se}
+
+L'objectif central de travail a été de développer de nouvelles méthodes
+d'apprentissage automatique pour l'analyse de données génomiques, en se
+concentrant sur l'intégration de différentes sources de données
+biologiques et l'amélioration de l'interprétabilité des modèles.
+
+Partant de l'hypothèse que l'analyse intégrative de données
+multi-omiques peut révéler des interactions biologiques complexes, nous
+avons formulé les objectifs suivants :
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\{Objectiv\} A main mistake during one's Ph.D.~is to not see the time
+passing by. My goal for this Ph.D.~is to be as product-first as I was at
+Whitelab. Delivering results quickly \& improving until it is
+publishable.
+
+This mistake, thinking ``Well I have 3 years\ldots'' is what makes
+people go overboard, finish stressed, and unprepared for what is next.
+Thus I plan for doing mine in 2 years. And I will prepare everything
+around this idea. I will also start to think about what is next ASAP.
+
+To do that best, one needs to take the chance of the Ph.D.~to make
+connections with other labs (industry or academic) on my end I am
+thinking for example at Broad, the Theis lab, the Yosef lab, Valence
+labs, \ldots{}
+
+Moreover, a good advice I have been given is to know what you want to do
+and what you don't want to do. Know what you are here for. Learn to say
+no. And I learned to say no in the last 4 years. My goal is to work on
+large models \& large datasets, mostly transcriptomics. But also making
+sure to always go back to first principles and biology.
+
+I also know I want to make something useful, make something that can be
+a stepping stone for others. Something that has an impact on the
+community. I know that to do that you have to go the extra mile in terms
+of dev with and be honest with yourself about any shortcomings.
+
+Finally, I have been very lucky to often become addicted to my work. I
+like working hard and I like challenges. But for this to happen, I need
+to keep enjoying what I am doing. I also wish to have no regrets about
+this decision. Thus my final goal is to enjoy it, as much as I can!
+
+RecapPermalink Thus my motto for this Ph.D.~will be:
+
+do it in 2 years and be prepared make as many connections as I can
+maximize impact on the community: make something useful enjoy it as much
+as possible
+
+\subsection{Initial Thesis Proposal: Deep learning approaches as
+predictors of the cell's regulatory
+networks}\label{initial-thesis-proposal-deep-learning-approaches-as-predictors-of-the-cells-regulatory-networks}
+
+\subsubsection{Summary}\label{summary}
+
+Single-cell transcriptomics (scRNA-seq) has revolutionized biology and
+medicine by unrevealing the diversity of the cells constituting human
+tissues. However, the complex task of inferring gene regulatory networks
+has not yet profited from this revolution and tools have not been
+predictive enough to reach any usability. Knowing such a network for
+each cell type is expected to provide a more comprehensive view of the
+cell's states and explain some of the different cellular phenotypes and
+responses of the cells.
+
+The aim of this Ph.D.~project is to develop novel approaches using deep
+learning and specifically novel graph neural network approaches on large
+scRNAseq datasets, to assess their predictability in high-quality
+benchmarks and package them as an open-source Python library.
+
+The methods developed during this project will be applied in
+collaboration with wet-lab biologists, in order to derive new biological
+knowledge from their in-house data.
+
+This PhD project will impact both computational fields and biomedical
+fields, by developing rigorous methods that can reliably maximize the
+information extracted from complex multimodal datasets. In particular,
+applications of the tool will contribute to personalized medicine.
+
+\subsubsection{Background and
+objectives}\label{background-and-objectives}
+
+Single-cell omics. Single-cell RNA sequencing (scRNA-seq) has
+revolutionized biology and medicine by unrevealing the diversity of the
+cells constituting human tissues. The possibility to assess cellular
+heterogeneity at a previously inaccessible resolution has profoundly
+impacted our understanding of development, of the immune system
+functioning, and of many diseases.
+
+Gene regulatory network prediction. The task of inferring gene
+regulatory networks is complex and only informs part of the overall gene
+regulation. The regulation of a gene's expression is linked to promoters
+\& enhancers, both distal and proximal, bound by transcription factors
+(TFs). But many other components can have an effect on the
+transcriptome: co-factors, histone \& RNApol2 binders, as well as RNA
+binding proteins (RBPs), non-coding RNAs binding at the DNA and RNA
+level, gene localization, and genomic mutations changing the processing
+and degradation speed of RNA, can also have an impact.
+
+Moreover, it is known that TFs have combinatorial, competitive, and
+compensating effects on gene expression. Whereby one can readily replace
+another and two TFs combined can have a different effect than the sum of
+their part.
+
+Existing methods. Gene Regulatory Networks (GRN)s have often been
+constrained to TF-gene relationships. Typically from co-Expression
+networks, derived from the gene expression correlation across many
+RNAseq measurements. Other methods only use this as a base for TF-gene
+relationships, then epigenetic sequencing methods like ChIP-seq \&
+ATAC-seq, help refine these coarse models by knowing the putative
+binding of TFs to proximal regulatory elements of such genes.
+
+However, these methods are all giving measurements averaged over many
+different cells. They also do not inform on the direct relationship
+between a TF and a gene. for that, other methods have been developed and
+are low throughput and rarely used.
+
+With scRNA-seq becoming so widespread, we have seen the rise of
+databases recouping tens of millions of measurements across a wide range
+of contexts. This led to the development of easy-to-use tools and
+pipelines to interrogate this data size. Foundation models are promising
+to learn from and correct batch effects across these millions of
+measurements. The knowledge within their weights could be used for many
+downstream tasks. However, they are still poorly trained. Have
+transformer layers that are not suited for the RNAseq modality and make
+-often false- predictions that are hard to interpret.
+
+Graph Neural Networks (GNN)s: are a class of deep learning models
+designed to operate on graph-structured data. They are specifically
+tailored to handle and process data that can be represented as graphs,
+where the elements (nodes or vertices) in the graph are connected by
+edges.
+
+Traditional neural networks are primarily designed for processing
+grid-like data such as images or sequential data such as text. However,
+GNNs extend this capability to graph-structured data by incorporating
+graph-related operations and architectures.
+
+The key idea behind GNNs is to learn node representations by aggregating
+and combining information from their neighboring nodes in the graph. In
+other words, GNNs allow each node to gather information from its direct
+neighbors and use that information to update its own representation.
+This neighborhood aggregation process is typically repeated iteratively
+for multiple layers to capture increasingly complex patterns and
+dependencies in the graph.
+
+Objectives. We wish to improve GRN predictions from scRNAseq data. Our
+approach is by:
+
+\begin{itemize}
+\tightlist
+\item
+  Using larger neural network models that scale linearly with the
+  dataset size, taking advantage of the 10Ms of data points now becoming
+  available.
+\item
+  Using novel GNN layers that could reduce the ``search space'' of the
+  model by constraining the set of possible topologies it is learning.
+\item
+  Better pretraining and fine-tuning these models to the predictive task
+  they have to perform and the constraints of the system they are
+  predicting.
+\item
+  Formulating better layers that correspond to the sparse interactions
+  between genes and our current knowledge about their functions.
+\item
+  Creating formal and rational benchmarks that best capture the ability
+  of a GRN methodology.
+\item
+  Assessing predictions and any usefulness or lack of it by having
+  biologist test hypotheses using the model.
+\end{itemize}
+
+Impact of the project. This Ph.D.~project will thereby contribute to
+methodological breakthroughs by providing new tools and methods to use
+neural networks on unstructured data, like scRNAseq. And to improve on
+the state of the art in GRNs prediction from scRNAseq.
+
+The proposed methodologies will impact computational (bioinformatics,
+machine learning) and biomedical fields. Fields that would be facing
+similar challenges that could be solved by GNN layers, as well as other
+fields taking advantage of scRNAseq profiles, such as environmental
+research, industrial biotechnology, and biofuel studies.
+
+The impact of our methods will be further enhanced by open-source
+distribution. Concerning the expected applications of our methods, GRN
+inference per cell type is expected to impact the clinic in the context
+of precision medicine.
+
+\subsubsection{Detailed description of the
+project}\label{detailed-description-of-the-project}
+
+This project is organized into three Work Packages (WP)s, WP1 and WP2
+will be devoted to the formulation, implementation, and testing of the
+methods while WP3 will be devoted to delivering usable tools and
+experimental results through their application in collaboration with
+wet-lab biologists.
+
+\paragraph{WP1: Review of current tools and creation of a set of
+benchmarks}\label{wp1-review-of-current-tools-and-creation-of-a-set-of-benchmarks}
+
+The first step is to review the fundamental question of what are GRNs.
+What are their limitations and what kind of inferences we can do? From
+that and the review of the existing benchmarking methods, we will define
+what exactly comprises the task of GRN inference and what we consider
+good benchmarks for it.
+
+For example, a GRN should allow us to predict gene knockout effects from
+experiments such as perturb-seq{[}{]} on both high{[}{]} and low-time
+resolution measures. It should allow us to predict cell differentiation
+trajectories{[}{]}. overall, considering the likely complexity of the
+GRNs, the goal is also one of interpretability for the community.
+
+A good benchmark should thus review all of these requirements from
+existing methods.
+
+\paragraph{WP2: GNN model/layers to better predict TF-gene
+relationships}\label{wp2-gnn-modellayers-to-better-predict-tf-gene-relationships}
+
+We posit that the best model is one that can scale linearly to the data
+size of scRNAseq samples. One that can learn in an unsupervised way,
+across datasets. Based on architectures such as the variational
+auto-encoder models for scRNAseq{[}{]} and the more recent transformer
+models{[}{]} seem well suited. However, although great similarities
+exist between GNNs and transformers{[}{]}, GNNs have proven abilities
+through their equivariances and transformers currently lack good,
+meaningful positional encoding for unstructured data like scRNAseq.
+Improvement in either to tailor them to the problem at hand would yield
+significant improvement that could extend to other applications of
+neural networks.
+
+Moreover, the tool could be pre-trained or reuse models pre-trained on
+large scRNAseq databases like CellxGene{[}{]} to take advantage of all
+the data accumulated in the community. It might also help decrease the
+model's bias toward various batch effects and mislabeling. We will then
+assess the abilities of this method of inference and of the addition of
+GNN layers jointly and separately to understand how each is improving
+performances. Finally getting something such as a scaling law for large
+unsupervised models on scRNAseq would be a major breakthrough.
+
+\paragraph{WP3: Collaboration to test the model's prediction on novel
+data}\label{wp3-collaboration-to-test-the-models-prediction-on-novel-data}
+
+Collaborative projects are the workhorse of interdisciplinary science
+and became even more impactful through the last decade. During this
+Ph.D.~project, the goal is also to collaborate with biologists to assess
+the model prediction. Moreover, collaboration on specific biological
+questions would help assess the usefulness of our tool and possibly
+improve it or help define new avenues of research. The Cantini group and
+the Ph.D.~students have contacts with experimentalists at Institut
+Pasteur, but also at Dana Farber Cancer Insitute, Broad Institute.
+
+Additionally, if time allows, collaborations could be envisioned with
+computational labs. It is possible that, like other ML problems, the
+best performance on the task of GRN inference will be achieved in the
+future through large generalist pre-trained models also called
+``foundation'' models. Such models are being designed in some labs and
+will need specific re-design, fine-tuning, and assessment. Taking
+advantage of previously gained expertise on this task. The Ph.D.~end on
+a joint project over such a foundation model.
+
+\subsection{Objectif 1: assessment and review of existing
+methods}\label{objectif-1-assessment-and-review-of-existing-methods}
+
+Le premier objectif a donc consisté à analyser les méthodes existantes
+pour inférer les GRN à partir de données multi-omics, les modèles de
+fondation existants pour inférer les GRN à partir de données
+multi-omics, ainsi que les benchmarks existants pour évaluer les
+performances de ces méthodes.
+
+\begin{itemize}
+\tightlist
+\item
+  issues
+\item
+  donc obj 2
+\end{itemize}
+
+\subsection{Objectif 2: novel model and
+benchmark}\label{objectif-2-novel-model-and-benchmark}
+
+De part ces problématiques, nous avons produit un nouveau modele basé
+sur \ldots{}
+
+Nous avons également produit un nouveau benchmark pour évaluer les
+performances de ce nouveau modèle.
+
+\begin{itemize}
+\tightlist
+\item
+  issues
+\item
+  donc obj 3 et 4
+\end{itemize}
+
+\subsection{Objectif 3: novel architecture and approaches for training
+multi modal, multi scale
+models}\label{objectif-3-novel-architecture-and-approaches-for-training-multi-modal-multi-scale-models}
+
+Analysant certains des problèmes rencontrés, nous avons proposés des
+approches innovantes sur l'architecture meme des modèles de
+transformers.
+
+\subsection{Objectif 4: General improvements demonstrating novel
+applications for large
+models}\label{objectif-4-general-improvements-demonstrating-novel-applications-for-large-models}
+
+Ces améliorations ainsi que beaucoup d'autres nous ont permis de
+travailler plus en profondeur sur des capacités nouvelles de ces modèles
+et leur possibilités de scale à des données plus riches et importantes. 
