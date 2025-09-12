@@ -104,7 +104,7 @@ Nowadays we use next-generation sequencing (NGS) technologies, which allow for m
 
 Large scale sequencing efforts such as the 1 million genomes project, the Human Genome Project, and the 1000 Genomes Project have provided valuable insights into human genetic variation and disease susceptibility. Genetic sequencing now allows to define the genetic basis of many diseases, identify which drug might work on specific patients, and define follow ups for high risks patients. It is driving more and more clinical decisions and is becoming a standard part of patient care.
 
-But sequencing also allowed many new applications, such as the study of gene expression by sequencing instead the mRNAs in tissues, a process known as RNA sequencing (RNA-seq). The sequencing of DNA state such as methylation, open chromatin, chromatin immunoprecipitation which all give a view of how the genome is being rate at a point in time. From DNA and its mutation, to its state in different context and how they lead to changes in RNAs and their state we start to have a hollistic view of the different cellular mechanisms.
+But sequencing also allowed many new applications, such as the study of gene expression by sequencing instead the mRNAs in tissues, a process known as RNA sequencing (RNA-seq). The sequencing of DNA state such as methylation (BS-seq), open chromatin (ATAC-seq), chromatin immunoprecipitation (ChIP-seq) which all give a view of how the genome is being read at a point in time. From DNA and its mutation, to its state in different context and how they lead to changes in RNAs and their state we start to have a hollistic view of the different cellular mechanisms.
 
 However, these methods are only giving us a view of the average state of the tissue, and not of the individual cells.
 
@@ -146,10 +146,46 @@ Furthermore, thanks to  GPUs allowing large parallel matrix operations and advan
 To understand this we need to understand the loss landscape, imagine a 3D landscape where the height of the landscape is the loss value and the two other "surface" dimensions are the model's parameters. The goal of the model is to find the lowest point in this landscape, which corresponds to the best parameters for the model. However, this landscape is often very complex, with many local minima and saddle regions, the model wanders blindly and is only able to sense its direct surroundings, if it falls in a local minimum, it should get stuck.
 In very high dimensions however, when the model has millions of parameters, and SGD makes the loss landscape a bit different every time, the model becomes able to escape these local minima and saddle points.
 
-Theory of Emergence as simplest solution in high parameters regime.
+Behind these unexpected behavior is the unsettling theory of emergence. Or how small objects can combine and interact in ways that would be unexpected and difficult to predict based on their individual properties. These theories behind sand dunes, snowflakes but also ant colonies and life itself, might bridge to how large neural networks are able to achieve such complex behaviors.
 
-While reaching real virtual cell model is still out of reach, 
+While LLMs are everywhere nowadays, reaching real virtual cell model is still out of reach. We are now switching from small machine learning models trained per datasets to larger neural architectures trained across the entirety of the available data. These models are called foundation models. By definition they should learn the general patterns in the data and be able to generalize to new datasets and tasks, common to single cell biology with a similar if not better performance than state-of-the-art small models.
 
-we are at the point of going from simple architectures trained per datasets to larger architectures trained across the entirety of the data available. called foundation models
+These foundation models are still in their infancy. We would want to understand how they work, if they can be useful to current research and how we might improve on their training, architecture and generalization capabilities.
 
-while these models are still at the early stage we would want to understand how they work, if they can be useful to current research and how we might improve on their training, architecture and generalization capabilities.
+losses, fine-tuning, perturbation, embeddings, sequencing depth, reads, alignment
+
+\subsection{Current single cell foundation models}
+
+The first practical example of a single cell foundation model could have been scBERT, released in 2021, however it was only used and benchmarked on cell type classification and pretrained on 1 million single cells. The first real foundational model, geneformer, got released a year later. There, the author displayed the model's ability to perform various single-cell tasks, such as cell type classification, gene regulatory network inference, and perturbation prediction. Geneformer was trained on a much larger dataset of 33 million single-cells.
+
+However Geneformer, like scBERT, was really a complete reuse of the BERT model architecture. Furthermore while showcasing interesting behaviors it did not perform classifcal benchmarks on such domains and comparison to state of the art methods. 
+
+A year after geneformer, in 2023 a few additional foundation models got released, from scGPT, which showcased a take on the GPT architecture and presented various losses for fine-tuning the model. It was the first example of fine-tuning in single cell and a more in depth benchmark of the model across 4 different abilities, cell type prediction, gene network inference, perturbation prediction and batch correction. 
+
+At the same time, Universal Cell Embedding showed how one could train these models across multiple species and perform good quality cross-species embeddings. It also showed a new kind of loss function to generate embeddings of the cells, vectors that represent the cell according to the model.
+
+Finally scFoundation, showcased a truly novel architecture, built specifically for single-cell data and a truly novel training method based on the noise to sequencing depth relationship of single cell data in particular.
+
+\subsection{Current single cell tasks}
+
+While these models could be very performant, reliable and reproducible benchmarks that align with real use-case from the user's perspectives remain scarce. In single cell RNA-seq data, a typical pipeline is as follow:
+
+1. It all start with preprocessing the raw sequencing data: detecting / imputing the cell index, aligning the sequencing reads with a reference genome's gene locations, detecting lo quality cells, reads, doublet events, cell death events and more. These choices will impact the output dataset as biases. 
+
+2. the data might be normalized to correct for sequencing depth and other gene-level biases, clusters of cells would be defined based on their expression profile similarity. Finally differential-expression analysis is performed, whereby clusters of cells are compared to each other to identify genes that are differentially expressed between them. This might be done also after the different other steps.
+
+2.bis The dataset might be aligned to a reference atlas in cases where this exist. This is done by using batch-correction methods, often built around nearest neighbor mapping, matrix factorization or Neural Networks called Variational Auto-Encoders.
+
+3. cluster-level and dataset-level labels might be infered such as cell-type, tissue, disease, age... These often come from prior knowledge, and manual annotation based on differential expression features, some automated tools or based on the alignment to other prelabelled datasets. Thanks to these correlation between gene expression and these labels might be defined and guide further research. 
+
+4. In the case where specific clusters contain low amount of cells, denoising or zero imputation methods can be used but they haven't shown usefulness in practice since they are based on using cluster level information which is itself already used for most other tasks.
+
+5. In the case where users would have access to similar tissue dataset of another modality like sc-ATAC-seq, sc-BS-seq, or protein measurements, imaging data and more. Such multimodal alignment methods exist, often re-using prior knowledge and paired datasets where these two modalities are measured in the same cells. Thanks to these aligment one can define more complex relationship between how DNA readings and related DNA mutations impact the expression of genes, and how these impact the downstream expression of proteins. Bridging the map between the genotype (DNA) and the phenotype (cell features, patient diseases, etc).
+
+6. If the dataset was measured in a non-static context, one can infer "cellular trajectories" meaning how cells seems to go from one state to another based on single measurements of many cells, such as in differentiation or during perturbations. Many tools exist for such trajectory inference but it is an open question often require specific RNA-sequencing methods.
+
+7. If the dataset contains spatial information, meaning how cells were positionned in a tissue, one can infer "cell-cell interactions" meaning how cells influence each other based on their proximity and expression profiles. This often requires specialized imaging techniques where a cell morphology is also assessed. Cell-cell interaction is 
+
+8. If the dataset includes perturbation experiments, one can predict how cells respond to specific perturbations, such as drug treatments or genetic modifications. This can help identify key regulatory pathways and potential therapeutic targets.
+
+6. gene regulatory network inference

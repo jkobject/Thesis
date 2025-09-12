@@ -1,3 +1,4 @@
+% !TEX root = main.tex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % MODELE DE MANUSCRIT DE THESE 
 % DE L'UNIVERSITE PARIS CITE
@@ -85,7 +86,7 @@
 \pagestyle{fancy}
 \usepackage[strict]{changepage}
 \usepackage{siunitx}
-\selectlanguage{french}%
+\selectlanguage{english}%
 
 \usepackage{enumitem}
 \usepackage{epigraph}
@@ -147,7 +148,7 @@
 
 \usepackage[xindy]{imakeidx}
 \makeindex
-%\input{auxilliaires/glossaire}
+%\input{auxiliaries/glossaire}
 
 % Define tightlist command (used by pandoc)
 \providecommand{\tightlist}{%
@@ -229,7 +230,7 @@ Devant un jury composé de : %(indiquer le jury complet)
 %----------------------------------------------------------------------------------------
 %	RESUME ET ABSTRACT PAGE
 %----------------------------------------------------------------------------------------
-\input{auxilliaires/resume} %résumé en francais
+\input{auxiliaries/resume} %résumé en francais
 
 %----------------------------------------------------------------------------------------
 %	QUOTATION PAGE ou DEDICACE
@@ -249,7 +250,7 @@ George E. P. Box - 1976
 %----------------------------------------------------------------------------------------
 %	ACKNOWLEDGEMENTS
 %----------------------------------------------------------------------------------------
-\input{auxilliaires/remerciements}
+\input{auxiliaries/remerciements}
 
 
 %----------------------------------------------------------------------------------------
@@ -267,7 +268,7 @@ George E. P. Box - 1976
 %----------------------------------------------------------------------------------------
 %	Liste des abréviations-
 %----------------------------------------------------------------------------------------
-\input{auxilliaires/abreviations}
+\input{auxiliaries/abreviations}
 
 
 % --------------------------------------------------------------
@@ -297,11 +298,11 @@ George E. P. Box - 1976
 \immediate\write18{pandoc chapters/objectifs.md -f markdown -t latex --template=templates/chapter-template.tex --variable title="Objectifs de la thèse" -o chapters/objectifs.tex}
 \input{chapters/objectifs}
 
-\input{chapters/scprint}
-\input{chapters/scprint_methods}
-\input{chapters/xpressor}
-\input{chapters/scprint2}
-%\input{chapters/scprint2_methods}
+\input{papers/scprint}
+\input{papers/scprint_methods}
+\input{papers/xpressor}
+\input{papers/scprint2}
+%\input{papers/scprint2_methods}
 
 %\part*{Discussion et conclusion générale}
 \fancyhead{} % clear all header fields

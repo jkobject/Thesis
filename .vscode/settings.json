@@ -2,6 +2,13 @@
   "latex-workshop.latex.autoBuild.run": "onSave",
   "latex-workshop.latex.autoBuild.interval": 0,
   "latex-workshop.latex.recipe.default": "latexmk (lualatex)",
+  "latex-workshop.latex.watch.files.glob": "**/*.{tex,bib,cls,sty}",
+  "latex-workshop.latex.rootFile.useSubFile": true,
+  "latex-workshop.latex.rootFile.doNotPrompt": true,
+  "latex-workshop.latex.build.rootfileInStatus": true,
+  "latex-workshop.latex.build.forceRecipeUsage": false,
+  "latex-workshop.synctex.afterBuild.enabled": true,
+  "latex-workshop.view.pdf.viewer": "tab",
   "latex-workshop.latex.tools": [
     {
       "name": "latexmk",
@@ -13,6 +20,7 @@
         "-lualatex",
         "-f",
         "-shell-escape",
+        "-outdir=build",
         "%DOC%"
       ]
     },
@@ -27,7 +35,7 @@
         "latex",
         "--template=templates/thesis-template.tex",
         "--pdf-engine=lualatex",
-        "--bibliography=biblio.bib",
+        "--bibliography=bibliography.bib",
         "--citeproc",
         "-o",
         "%DOCFILE_EXT%.tex"
@@ -69,7 +77,9 @@
     "*.dvi",
     "*.synctex.gz"
   ],
-  "latex-workshop.latex.autoClean.run": "onFailed",
+  "latex-workshop.latex.autoClean.run": "onBuilt",
+  "latex-workshop.message.error.show": true,
+  "latex-workshop.message.warning.show": true,
   "latex-workshop.formatting.latex": "latexindent",
   "latex-workshop.formatting.latexindent.path": "latexindent" // optional—full path if it isn't in PATH
 }

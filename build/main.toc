@@ -1,0 +1,110 @@
+\babel@toc {english}{}\relax 
+\babel@toc {french}{}\relax 
+\contentsline {chapter}{Résumé}{i}{chapter*.1}%
+\contentsline {chapter}{Abstract}{iii}{chapter*.5}%
+\contentsline {chapter}{Remerciements}{vii}{chapter*.9}%
+\contentsline {chapter}{Liste des figures}{xiii}{chapter*.11}%
+\contentsline {chapter}{Liste des tableaux}{xv}{chapter*.12}%
+\contentsline {chapter}{Liste des abréviations}{xvii}{chapter*.13}%
+\contentsline {chapter}{Avant-propos}{1}{chapter*.14}%
+\contentsline {section}{\numberline {0.1}My background to this thesis}{1}{section.0.1}%
+\contentsline {subsection}{\numberline {0.1.1}Why did I do it}{2}{subsection.0.1.1}%
+\contentsline {subsection}{\numberline {0.1.2}Issues and realizations}{2}{subsection.0.1.2}%
+\contentsline {subsection}{\numberline {0.1.3}Cell and Gene Therapies}{3}{subsection.0.1.3}%
+\contentsline {section}{\numberline {0.2}Introduction}{4}{section.0.2}%
+\contentsline {subsection}{\numberline {0.2.1}GRN and the cell}{4}{subsection.0.2.1}%
+\contentsline {subsection}{\numberline {0.2.2}Single-cell omics}{6}{subsection.0.2.2}%
+\contentsline {subsection}{\numberline {0.2.3}AIVC: the virtual cell models}{7}{subsection.0.2.3}%
+\contentsline {subsection}{\numberline {0.2.4}Current single cell foundation models}{9}{subsection.0.2.4}%
+\contentsline {subsection}{\numberline {0.2.5}Current single cell tasks}{9}{subsection.0.2.5}%
+\contentsline {chapter}{Objectifs de la thèse}{11}{chapter*.15}%
+\contentsline {section}{\numberline {0.3}Thesis objectives}{11}{section.0.3}%
+\contentsline {subsection}{\numberline {0.3.1}Initial objectives}{11}{subsection.0.3.1}%
+\contentsline {subsubsection}{Background}{12}{section*.16}%
+\contentsline {subsubsection}{WP1: Review of current tools and creation of a set of benchmarks}{13}{section*.17}%
+\contentsline {subsubsection}{WP2: GNN model/layers to better predict TF-gene relationships}{14}{section*.18}%
+\contentsline {subsubsection}{WP3: Collaboration to test the model's prediction on novel data}{14}{section*.19}%
+\contentsline {subsection}{\numberline {0.3.2}Revised objectives}{14}{subsection.0.3.2}%
+\contentsline {subsubsection}{Objectif 1: assessment and review of existing methods}{15}{section*.20}%
+\contentsline {subsubsection}{Objectif 2: novel model and benchmark}{15}{section*.21}%
+\contentsline {subsubsection}{Objectif 3: novel architecture and approaches for training multi modal, multi scale models}{15}{section*.22}%
+\contentsline {subsubsection}{Objectif 4: General improvements demonstrating novel applications for large models}{15}{section*.23}%
+\contentsline {subsection}{\numberline {0.3.3}Personal Objectives during the thesis}{15}{subsection.0.3.3}%
+\contentsline {chapter}{\numberline {1}scPRINT: pre-training on 50 million cells allows robust gene network predictions}{17}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Summary}{17}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Introduction}{17}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Results}{19}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}scPRINT: a scRNAseq foundation model for gene network inference}{19}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}scPRINT recovers biological features in its gene networks}{22}{subsection.1.3.2}%
+\contentsline {subsection}{\numberline {1.3.3}scPRINT outperforms the state of the art on cell type-specific ground truths}{25}{subsection.1.3.3}%
+\contentsline {subsection}{\numberline {1.3.4}scPRINT is competitive on tasks orthogonal to GN inference}{26}{subsection.1.3.4}%
+\contentsline {subsection}{\numberline {1.3.5}scPRINT highlights the role of ion exchange and fibrosis in the ECM of Benign Prostatic Hyperplasia}{28}{subsection.1.3.5}%
+\contentsline {section}{\numberline {1.4}Discussion}{31}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Methods}{32}{section.1.5}%
+\contentsline {subsection}{\numberline {1.5.1}Architecture}{33}{subsection.1.5.1}%
+\contentsline {subsubsection}{Expression encoder}{33}{section*.30}%
+\contentsline {subsubsection}{Model}{35}{section*.31}%
+\contentsline {subsubsection}{Expression decoder}{36}{section*.32}%
+\contentsline {subsubsection}{Class decoder}{37}{section*.33}%
+\contentsline {subsection}{\numberline {1.5.2}Ablation study}{37}{subsection.1.5.2}%
+\contentsline {subsection}{\numberline {1.5.3}Pretraining}{38}{subsection.1.5.3}%
+\contentsline {subsubsection}{Optimization method}{38}{section*.34}%
+\contentsline {subsubsection}{The classification task}{38}{section*.35}%
+\contentsline {subsubsection}{The denoising task}{39}{section*.36}%
+\contentsline {subsubsection}{The bottleneck learning task}{41}{section*.37}%
+\contentsline {subsection}{\numberline {1.5.4}scDataloader}{42}{subsection.1.5.4}%
+\contentsline {subsection}{\numberline {1.5.5}Extracting meta-cell gene networks from attention matrices in scPRINT}{43}{subsection.1.5.5}%
+\contentsline {subsection}{\numberline {1.5.6}Heads selection}{43}{subsection.1.5.6}%
+\contentsline {subsection}{\numberline {1.5.7}Normalization and network interpretation }{44}{subsection.1.5.7}%
+\contentsline {subsection}{\numberline {1.5.8}Simulated datasets, BoolODE and Sergio}{44}{subsection.1.5.8}%
+\contentsline {subsection}{\numberline {1.5.9}BenGRN and gene network metrics}{45}{subsection.1.5.9}%
+\contentsline {subsection}{\numberline {1.5.10}Other evaluation metrics}{46}{subsection.1.5.10}%
+\contentsline {subsection}{\numberline {1.5.11}Denoising Benchmarks}{46}{subsection.1.5.11}%
+\contentsline {subsection}{\numberline {1.5.12}Fine-tuning}{47}{subsection.1.5.12}%
+\contentsline {subsection}{\numberline {1.5.13}State-of-the-art methods used in benchmarking}{47}{subsection.1.5.13}%
+\contentsline {subsubsection}{Gene network inference with an ensemble of trees (GENIE3)}{47}{section*.38}%
+\contentsline {subsubsection}{DeepSEM}{48}{section*.39}%
+\contentsline {subsubsection}{Single-cell generative pretraining transformer (scGPT)}{48}{section*.40}%
+\contentsline {subsubsection}{Geneformer}{48}{section*.41}%
+\contentsline {subsubsection}{scFoundation}{49}{section*.42}%
+\contentsline {subsubsection}{Marker-based cell type prediction with CellTypist}{50}{section*.43}%
+\contentsline {subsubsection}{Classification benchmark and associated methods}{50}{section*.44}%
+\contentsline {subsection}{\numberline {1.5.14}Ground truth preparation}{50}{subsection.1.5.14}%
+\contentsline {subsubsection}{McCalla et al.}{50}{section*.45}%
+\contentsline {subsubsection}{Omnipath}{51}{section*.46}%
+\contentsline {subsubsection}{Gene networks from genome-wide perturb-seq}{51}{section*.47}%
+\contentsline {subsection}{\numberline {1.5.15}Details on the Benign Prostatic Hyperplasia analysis}{51}{subsection.1.5.15}%
+\contentsline {subsection}{\numberline {1.5.16}Negative Binomial to Poisson relationship}{52}{subsection.1.5.16}%
+\contentsline {subsection}{\numberline {1.5.17}Data availability}{53}{subsection.1.5.17}%
+\contentsline {subsection}{\numberline {1.5.18}Code availability}{53}{subsection.1.5.18}%
+\contentsline {chapter}{\numberline {2}Xpressor: Towards foundation models that learn across biological scales}{61}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Summary}{61}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Introduction}{61}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Foundation models across scales}{62}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Architectural modifications: compressed representations}{65}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Training modifications: fine-tuning}{65}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}Contributions}{65}{subsection.2.2.4}%
+\contentsline {section}{\numberline {2.3}Xpressor}{66}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Background}{66}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Approach}{66}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Results}{67}{subsection.2.3.3}%
+\contentsline {section}{\numberline {2.4}Multi-scale Fine-tuning}{69}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Background}{69}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Approach}{69}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}Results}{69}{subsection.2.4.3}%
+\contentsline {subsection}{\numberline {2.4.4}proof that fine-tuning ESM2 with an adapter layer is at least sufficient to learn to add co-expression information}{71}{subsection.2.4.4}%
+\contentsline {subsection}{\numberline {2.4.5}argument about the Tishby et al. bottleneck learning approach}{71}{subsection.2.4.5}%
+\contentsline {subsection}{\numberline {2.4.6}FSQ and other contrastive losses on the cell embeddings}{72}{subsection.2.4.6}%
+\contentsline {paragraph}{VQ-VAE.}{72}{section*.55}%
+\contentsline {paragraph}{FSQ-VAE.}{72}{section*.56}%
+\contentsline {paragraph}{Contrastive regularization across embedding dimensions.}{73}{section*.57}%
+\contentsline {paragraph}{Dimension-specific classifiers.}{73}{section*.58}%
+\contentsline {chapter}{\numberline {3}Résultats sous forme d'article}{77}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Discussion et perspectives}{79}{chapter.4}%
+\contentsline {chapter}{Discussion et perspectives}{79}{chapter.4}%
+\contentsline {section}{\numberline {4.1}AIVC}{79}{section.4.1}%
+\contentsline {section}{\numberline {4.2}collecting data in the wild}{79}{section.4.2}%
+\contentsline {section}{\numberline {4.3}multi modality}{79}{section.4.3}%
+\contentsline {section}{\numberline {4.4}perturbations}{80}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Conclusion générale}{81}{chapter.5}%
+\contentsfinish 

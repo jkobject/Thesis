@@ -1,0 +1,53 @@
+name: Build LaTeX Document
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup TeX Live
+        uses: teatimeguest/setup-texlive-action@v3
+        with:
+          packages: |
+            scheme-full
+          
+      - name: Cache TeX Live packages
+        uses: actions/cache@v3
+        with:
+          path: /tmp/texlive
+          key: ${{ runner.os }}-texlive-${{ hashFiles('**/*.tex') }}
+          restore-keys: |
+            ${{ runner.os }}-texlive-
+            
+      - name: Create build directory
+        run: mkdir -p build
+        
+      - name: Build LaTeX document
+        run: |
+          latexmk -synctex=1 -interaction=nonstopmode -file-line-error -lualatex -f -shell-escape main.tex
+          
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: thesis-pdf
+          path: main.pdf
+          retention-days: 30
+          
+      - name: Upload build logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-logs
+          path: |
+            build/*.log
+            *.log
+          retention-days: 7

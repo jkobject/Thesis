@@ -20,7 +20,6 @@ The aim of this Ph.D. was to develop novel approaches using deep learning and sp
 
 The methods developed during this project will be applied in collaboration with wet-lab biologists, in order to derive new biological knowledge from their in-house data.
 
-
 ### Background
 
 Single-cell omics. Single-cell RNA sequencing (scRNA-seq) has revolutionized biology and medicine by unrevealing the diversity of the cells constituting human tissues. The possibility to assess cellular heterogeneity at a previously inaccessible resolution has profoundly impacted our understanding of development, of the immune system functioning, and of many diseases.

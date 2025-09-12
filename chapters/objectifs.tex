@@ -1,72 +1,40 @@
 \chapter*{Objectifs de la thèse}
 \addcontentsline{toc}{chapter}{Objectifs de la thèse}
 
-\section{Objectifs de la thèse}\label{objectifs-de-la-thuxe8se}
+\section{Thesis objectives}\label{thesis-objectives}
 
-L'objectif central de travail a été de développer de nouvelles méthodes
-d'apprentissage automatique pour l'analyse de données génomiques, en se
-concentrant sur l'intégration de différentes sources de données
-biologiques et l'amélioration de l'interprétabilité des modèles.
+At the start of the project, two things were sure, we wanted to
+understand the single cell foundation models and we wanted to see if we
+could improve the gene regulatory network (GRN) inference from
+single-cell RNA sequencing (scRNA-seq) data.
 
-Partant de l'hypothèse que l'analyse intégrative de données
-multi-omiques peut révéler des interactions biologiques complexes, nous
-avons formulé les objectifs suivants :
+seeiing if we could find interplay between the two.
 
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+I think it is also important to reflect on what we wanted to achieve at
+the start of the project, without knowing what we know now.
 
-\{Objectiv\} A main mistake during one's Ph.D.~is to not see the time
-passing by. My goal for this Ph.D.~is to be as product-first as I was at
-Whitelab. Delivering results quickly \& improving until it is
-publishable.
+And what become the revised objectives of the project that we updated as
+we went along.
 
-This mistake, thinking ``Well I have 3 years\ldots'' is what makes
-people go overboard, finish stressed, and unprepared for what is next.
-Thus I plan for doing mine in 2 years. And I will prepare everything
-around this idea. I will also start to think about what is next ASAP.
+Overall this PhD project will impact both computational fields and
+biomedical fields, by developing rigorous methods that can reliably
+maximize the information extracted from complex multimodal datasets. In
+particular, applications of the tool will contribute to personalized
+medicine.
 
-To do that best, one needs to take the chance of the Ph.D.~to make
-connections with other labs (industry or academic) on my end I am
-thinking for example at Broad, the Theis lab, the Yosef lab, Valence
-labs, \ldots{}
+\subsection{Initial objectives}\label{initial-objectives}
 
-Moreover, a good advice I have been given is to know what you want to do
-and what you don't want to do. Know what you are here for. Learn to say
-no. And I learned to say no in the last 4 years. My goal is to work on
-large models \& large datasets, mostly transcriptomics. But also making
-sure to always go back to first principles and biology.
+\begin{itemize}
+\tightlist
+\item
+  Background to these objectives
+\item
+  why i chose them
+\item
+  what we knew was not working before
+\end{itemize}
 
-I also know I want to make something useful, make something that can be
-a stepping stone for others. Something that has an impact on the
-community. I know that to do that you have to go the extra mile in terms
-of dev with and be honest with yourself about any shortcomings.
-
-Finally, I have been very lucky to often become addicted to my work. I
-like working hard and I like challenges. But for this to happen, I need
-to keep enjoying what I am doing. I also wish to have no regrets about
-this decision. Thus my final goal is to enjoy it, as much as I can!
-
-RecapPermalink Thus my motto for this Ph.D.~will be:
-
-do it in 2 years and be prepared make as many connections as I can
-maximize impact on the community: make something useful enjoy it as much
-as possible
-
-\subsection{Initial Thesis Proposal: Deep learning approaches as
-predictors of the cell's regulatory
-networks}\label{initial-thesis-proposal-deep-learning-approaches-as-predictors-of-the-cells-regulatory-networks}
-
-\subsubsection{Summary}\label{summary}
-
-Single-cell transcriptomics (scRNA-seq) has revolutionized biology and
-medicine by unrevealing the diversity of the cells constituting human
-tissues. However, the complex task of inferring gene regulatory networks
-has not yet profited from this revolution and tools have not been
-predictive enough to reach any usability. Knowing such a network for
-each cell type is expected to provide a more comprehensive view of the
-cell's states and explain some of the different cellular phenotypes and
-responses of the cells.
-
-The aim of this Ph.D.~project is to develop novel approaches using deep
+The aim of this Ph.D.~was to develop novel approaches using deep
 learning and specifically novel graph neural network approaches on large
 scRNAseq datasets, to assess their predictability in high-quality
 benchmarks and package them as an open-source Python library.
@@ -75,13 +43,7 @@ The methods developed during this project will be applied in
 collaboration with wet-lab biologists, in order to derive new biological
 knowledge from their in-house data.
 
-This PhD project will impact both computational fields and biomedical
-fields, by developing rigorous methods that can reliably maximize the
-information extracted from complex multimodal datasets. In particular,
-applications of the tool will contribute to personalized medicine.
-
-\subsubsection{Background and
-objectives}\label{background-and-objectives}
+\subsubsection{Background}\label{background}
 
 Single-cell omics. Single-cell RNA sequencing (scRNA-seq) has
 revolutionized biology and medicine by unrevealing the diversity of the
@@ -190,16 +152,13 @@ distribution. Concerning the expected applications of our methods, GRN
 inference per cell type is expected to impact the clinic in the context
 of precision medicine.
 
-\subsubsection{Detailed description of the
-project}\label{detailed-description-of-the-project}
-
 This project is organized into three Work Packages (WP)s, WP1 and WP2
 will be devoted to the formulation, implementation, and testing of the
 methods while WP3 will be devoted to delivering usable tools and
 experimental results through their application in collaboration with
 wet-lab biologists.
 
-\paragraph{WP1: Review of current tools and creation of a set of
+\subsubsection{WP1: Review of current tools and creation of a set of
 benchmarks}\label{wp1-review-of-current-tools-and-creation-of-a-set-of-benchmarks}
 
 The first step is to review the fundamental question of what are GRNs.
@@ -217,7 +176,7 @@ GRNs, the goal is also one of interpretability for the community.
 A good benchmark should thus review all of these requirements from
 existing methods.
 
-\paragraph{WP2: GNN model/layers to better predict TF-gene
+\subsubsection{WP2: GNN model/layers to better predict TF-gene
 relationships}\label{wp2-gnn-modellayers-to-better-predict-tf-gene-relationships}
 
 We posit that the best model is one that can scale linearly to the data
@@ -241,7 +200,8 @@ GNN layers jointly and separately to understand how each is improving
 performances. Finally getting something such as a scaling law for large
 unsupervised models on scRNAseq would be a major breakthrough.
 
-\paragraph{WP3: Collaboration to test the model's prediction on novel
+\subsubsection{WP3: Collaboration to test the model's prediction on
+novel
 data}\label{wp3-collaboration-to-test-the-models-prediction-on-novel-data}
 
 Collaborative projects are the workhorse of interdisciplinary science
@@ -262,7 +222,17 @@ will need specific re-design, fine-tuning, and assessment. Taking
 advantage of previously gained expertise on this task. The Ph.D.~end on
 a joint project over such a foundation model.
 
-\subsection{Objectif 1: assessment and review of existing
+\subsection{Revised objectives}\label{revised-objectives}
+
+\begin{itemize}
+\tightlist
+\item
+  what we didn't knew about
+\item
+  what seemed like key questions to answer
+\end{itemize}
+
+\subsubsection{Objectif 1: assessment and review of existing
 methods}\label{objectif-1-assessment-and-review-of-existing-methods}
 
 Le premier objectif a donc consisté à analyser les méthodes existantes
@@ -279,7 +249,7 @@ performances de ces méthodes.
   donc obj 2
 \end{itemize}
 
-\subsection{Objectif 2: novel model and
+\subsubsection{Objectif 2: novel model and
 benchmark}\label{objectif-2-novel-model-and-benchmark}
 
 De part ces problématiques, nous avons produit un nouveau modele basé
@@ -296,18 +266,57 @@ performances de ce nouveau modèle.
   donc obj 3 et 4
 \end{itemize}
 
-\subsection{Objectif 3: novel architecture and approaches for training
-multi modal, multi scale
+\subsubsection{Objectif 3: novel architecture and approaches for
+training multi modal, multi scale
 models}\label{objectif-3-novel-architecture-and-approaches-for-training-multi-modal-multi-scale-models}
 
 Analysant certains des problèmes rencontrés, nous avons proposés des
 approches innovantes sur l'architecture meme des modèles de
 transformers.
 
-\subsection{Objectif 4: General improvements demonstrating novel
+\subsubsection{Objectif 4: General improvements demonstrating novel
 applications for large
 models}\label{objectif-4-general-improvements-demonstrating-novel-applications-for-large-models}
 
 Ces améliorations ainsi que beaucoup d'autres nous ont permis de
 travailler plus en profondeur sur des capacités nouvelles de ces modèles
-et leur possibilités de scale à des données plus riches et importantes. 
+et leur possibilités de scale à des données plus riches et importantes.
+
+\subsection{Personal Objectives during the
+thesis}\label{personal-objectives-during-the-thesis}
+
+A main mistake during one's Ph.D.~is to not see the time passing by. My
+goal for this Ph.D.~is to be as product-first as I was at Whitelab.
+Delivering results quickly \& improving until it is publishable.
+
+This mistake, thinking ``Well I have 3 years\ldots'' is what makes
+people go overboard, finish stressed, and unprepared for what is next.
+Thus I plan for doing mine in 2 years. And I will prepare everything
+around this idea. I will also start to think about what is next ASAP.
+
+To do that best, one needs to take the chance of the Ph.D.~to make
+connections with other labs (industry or academic) on my end I am
+thinking for example at Broad, the Theis lab, the Yosef lab, Valence
+labs, \ldots{}
+
+Moreover, a good advice I have been given is to know what you want to do
+and what you don't want to do. Know what you are here for. Learn to say
+no. And I learned to say no in the last 4 years. My goal is to work on
+large models \& large datasets, mostly transcriptomics. But also making
+sure to always go back to first principles and biology.
+
+I also know I want to make something useful, make something that can be
+a stepping stone for others. Something that has an impact on the
+community. I know that to do that you have to go the extra mile in terms
+of dev with and be honest with yourself about any shortcomings.
+
+Finally, I have been very lucky to often become addicted to my work. I
+like working hard and I like challenges. But for this to happen, I need
+to keep enjoying what I am doing. I also wish to have no regrets about
+this decision. Thus my final goal is to enjoy it, as much as I can!
+
+Thus my motto for this Ph.D.~will be:
+
+do it in 2 years and be prepared make as many connections as I can
+maximize impact on the community: make something useful enjoy it as much
+as possible 
