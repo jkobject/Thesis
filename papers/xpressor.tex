@@ -137,9 +137,8 @@ We show that such an instantiation of the transformer leads to better performanc
 \toprule
 \textbf{Model} & \begin{tabular}[c]{@{}c@{}}Cell Label\\Pred.\end{tabular} & \begin{tabular}[c]{@{}c@{}}Embed.\\Quality\end{tabular} & \begin{tabular}[c]{@{}c@{}}Gene-Net\\Infer.\end{tabular} \\
 \midrule
-Class-pooling & 0.64 & 0.48 & \textbf{4.0,2.3} \\
+Class-pooling & 0.60 & 0.48 & \textbf{5.2,2.0} \\
 \textbf{Xpressor} & \textbf{0.72} & \textbf{0.52} & 4.1,2.1 \\
-% scPRINT & 0.60 & 0.48 & \textbf{5.2,2.0} \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -188,7 +187,7 @@ We show that a cFM trained using the pooled embeddings of a pretrained nFM perfo
 \textbf{Model} & \begin{tabular}[c]{@{}c@{}}Cell Label\\Pred.\end{tabular} & \begin{tabular}[c]{@{}c@{}}Embed.\\Quality\end{tabular} & \begin{tabular}[c]{@{}c@{}}Gene-Net\\Infer.\end{tabular} \\
 \midrule
 Random init. & 0.62 & 0.48 & 4.5,1.0 \\
-ESM2 frozen & 0.60 & 0.484 & 5.2,1.4 \\
+ESM2 frozen & 0.60 & 0.48 & 5.2,2.0 \\
 \textbf{ESM2 fine-tuned} & \textbf{0.70} & \textbf{0.49} & \textbf{4.8,2.4} \\
 \bottomrule
 \end{tabular}
@@ -302,8 +301,6 @@ WandB logs, are available in the following link:
 Model checkpoints are available in the following link:
 \url{https://huggingface.co/jkobject/scPRINT/tree/main}
 
-Checkpoints, wandb logs, and more will be made available after the review and deanonymization process.
-
 \subsection*{Acknowledgments}
 
 The project leading to this manuscript has received funding from the Inception program (Investissement d'Avenir grant ANR-16-CONV-0005) L.C. and the European Union (ERC StG, MULTIview-CELL, 101115618) L.C. We acknowledge the help of the HPC Core Facility of the Institut Pasteur and Déborah Philipps for the administrative support. L.C.
@@ -313,6 +310,3 @@ The work of G. Peyré was supported by the French government under management of
 \subsection*{Impact Statement}
 
 This paper presents work whose goal is to advance the fields of computational biology and machine learning. No ethical issues are raised by the work other than what is typically noted in computational biology and foundation model papers. It might have an impact on building better models for drug discovery, target discovery, and improving our understanding of biological systems.
-
-
-%\includepdf[pages=-]{chapters/xpressor.pdf}

@@ -15,13 +15,13 @@
 %	PREAMBULE // PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
 \documentclass[a4paper,12pt,twoside,french]{book}
-[a4paper,12pt,twoside]
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{babel}
 \input{./math_commands.tex}
 %	MARGIN SETTINGS
 \usepackage[a4paper,left=3cm,right=2.5cm,top=3cm,bottom=3cm, twoside]{geometry}
+\setlength{\headheight}{14.5pt}
 
 \usepackage{xcolor}
 \usepackage{stmaryrd}
@@ -40,7 +40,7 @@
     sorting=none
 ]{biblatex} %Imports biblatex package
 
-\addbibresource{biblio.bib} %Import the bibliography file
+\addbibresource{bibliography.bib} %Import the bibliography file
 \usepackage{hyperref} % for references (\ref, \label), url
 \hypersetup{
     colorlinks=true,
@@ -54,18 +54,15 @@
 % Pandoc-specific configurations
 \usepackage{fancyvrb}
 \usepackage{upquote}
-\usepackage{textcomp}
 \usepackage{lineno}
 \usepackage{fancyhdr}
 \usepackage{grffile}
-\usepackage{longtable}
 \usepackage{wrapfig}
 \usepackage{rotating}
 \usepackage[normalem]{ulem}
 \usepackage{textcomp}
 \usepackage{capt-of}
 \usepackage{microtype}
-\usepackage{graphicx}
 \usepackage{subfigure}
 \usepackage{booktabs} % for professional tables
 \usepackage{url}
@@ -77,11 +74,12 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{float}
-\usepackage{multirow}
 \usepackage{array, multirow, tabularx}
 \usepackage{longtable}
 \usepackage{apalike}
+\usepackage{sectsty}
 \usepackage{minitoc}
+\usepackage{xurl}
 \usepackage{tikz}
 \pagestyle{fancy}
 \usepackage[strict]{changepage}
@@ -97,6 +95,7 @@
 
 \usepackage{tabu}
 \usepackage{pdfpages}
+\usepackage{morewrites} % Add this line to allocate more write streams
 
 \usepackage{arydshln}
 %\usepackage[nonumberlist]{glossaries}
@@ -244,6 +243,13 @@ Devant un jury composé de : %(indiquer le jury complet)
 \hfill 
 George E. P. Box - 1976
 
+\vspace*{0.1\textheight}
+
+\begin{quote}
+	A Ph.D. is not a scprint, \\ it is a marathon\end{quote} \bigbreak
+
+\hfill 
+Someone
 %----------------------------------------------------------------------------------------
 
 
@@ -294,8 +300,6 @@ George E. P. Box - 1976
 \fancyhead[RO]{\leftmark}
 \fancyhead[LE]{\textsc{\chaptername~\thechapter}}
 
-% Convert Markdown to LaTeX and include
-\immediate\write18{pandoc chapters/objectifs.md -f markdown -t latex --template=templates/chapter-template.tex --variable title="Objectifs de la thèse" -o chapters/objectifs.tex}
 \input{chapters/objectifs}
 
 \input{papers/scprint}
@@ -327,6 +331,5 @@ title={Bibliography}]
 \fancyhead{} % clear all header fields
 \fancyhead[OL]{\textsc{Appendices}}
 \input{appendix.tex}
-
 
 \end{document}

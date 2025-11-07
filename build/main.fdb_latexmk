@@ -1,18 +1,18 @@
 # Fdb version 4
-["biber build/main"] 0 "build/main.bcf" "build/main.bbl" "build/main" 0 0
-  "biblio.bib" 0 -1 0 ""
-  "build/main.bcf" 0 -1 0 "lualatex"
+["biber build/main"] 1759736602.96843 "build/main.bcf" "build/main.bbl" "build/main" 1760193152.10694 0
+  "bibliography.bib" 1758704860.17286 892005 88a69710526fa0887a09169771ad0321 ""
+  "build/main.bcf" 1760193150.89818 125320 546abc4ec24e2ef8952ef30d9ac0c9dd "lualatex"
   (generated)
   "build/main.bbl"
   "build/main.blg"
   (rewritten before read)
-["cusdep acn acr build/main"] 1754565384.7629 "build/main.acn" "build/main.acr" "build/main" 1754565584.49469 0
-  "build/main.acn" 1754565536.17352 0 d41d8cd98f00b204e9800998ecf8427e "lualatex"
+["cusdep acn acr build/main"] 1759736582.22931 "build/main.acn" "build/main.acr" "build/main" 1760193152.1073 0
+  "build/main.acn" 1760193130.46777 0 d41d8cd98f00b204e9800998ecf8427e "lualatex"
   (generated)
   "build/main.acr"
   (rewritten before read)
-["lualatex"] 1754565528.16814 "/Users/jkobject/Documents/code/PhD thesis template Université Paris Cité/main.tex" "build/main.pdf" "main" 1754565584.49485 2
-  "/Users/jkobject/Documents/code/PhD thesis template Université Paris Cité/main.tex" 1754565049.06306 11079 ff5c39845254e1306c7d06feb64af8b2 ""
+["lualatex"] 1760193126.65912 "/Users/jkobject/Documents/code/PhD thesis template Université Paris Cité/main.tex" "build/main.pdf" "main" 1760193152.10736 2
+  "/Users/jkobject/Documents/code/PhD thesis template Université Paris Cité/main.tex" 1760192519.35563 11019 34e410fd73fc906e3c67294f4f10f8f0 ""
   "/Users/jkobject/Library/texlive/2025/texmf-var/luatex-cache/generic/fonts/otl/linbiolinum-k.luc" 1747152650.65635 89629 8be65e2c0821ef80a2a4248010d67e71 ""
   "/Users/jkobject/Library/texlive/2025/texmf-var/luatex-cache/generic/fonts/otl/linbiolinum-r.luc" 1747152639.90653 322950 6af77a98c3c61a7a6aa25408d2e61619 ""
   "/Users/jkobject/Library/texlive/2025/texmf-var/luatex-cache/generic/fonts/otl/linbiolinum-rb.luc" 1747152641.63301 331339 6e02cfdeda2f5f8ca95de5500f3c2776 ""
@@ -311,6 +311,8 @@
   "/usr/local/texlive/2025/texmf-dist/tex/latex/minitoc/french.mld" 1531603538 1600 8a23c1d3048002e8d36632376cf01abb ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/minitoc/minitoc.sty" 1531603538 172643 4ec2adf559637f1d30250d5f9ed55a00 ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/minitoc/mtcmess.sty" 1531603538 1669 432cfbf11e5782559fd31ee60d136c60 ""
+  "/usr/local/texlive/2025/texmf-dist/tex/latex/morewrites/morewrites.sty" 1706910167 21552 6a0b8297038593e03927fc00b913eab5 ""
+  "/usr/local/texlive/2025/texmf-dist/tex/latex/morewrites/primargs.sty" 1706910167 11529 8ea952a63de6fe330f35c7247d1ffd3b ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/multirow/multirow.sty" 1731446765 6696 886c9f3087d0b973ed2c19aa79cb3023 ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/needspace/needspace.sty" 1364856750 852 0e34dbb72efc69fa07602405ad95585e ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/newtx/lmsntxsy.fd" 1634244313 1140 ee5963b0c88b5c4f92fed61a27034b79 ""
@@ -371,6 +373,7 @@
   "/usr/local/texlive/2025/texmf-dist/tex/latex/xcolor/xcolor.sty" 1727642399 55384 b454dec21c2d9f45ec0b793f0995b992 ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/xfor/xfor.sty" 1233902931 2689 44855b72da58344b1c1d9b3087bce6ca ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/xkeyval/xkeyval.sty" 1655411236 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
+  "/usr/local/texlive/2025/texmf-dist/tex/latex/xurl/xurl.sty" 1641763214 4675 e4b8c405820368c2dfb03526e16d725a ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/zref/zref-abspage.sty" 1694723124 2269 4fe6fb3396214c91f164d45faf9bec45 ""
   "/usr/local/texlive/2025/texmf-dist/tex/latex/zref/zref-base.sty" 1694723124 20785 f7d1133a287929598a897c93f8f4c44b ""
   "/usr/local/texlive/2025/texmf-dist/tex/luatex/lua-uni-algos/lua-uni-case.lua" 1645915452 1921 020c660fdc1d4c83ffebb059fead7b51 ""
@@ -421,23 +424,23 @@
   "/usr/local/texlive/2025/texmf-var/web2c/luahbtex/lualatex.fmt" 1747143387 6376897 57cff07f74fe79f9a5f62a32bd5480bb ""
   "appendix.tex" 1754565317.70074 217 b69d026d0bf320e1c26fffcea11fe216 ""
   "auxiliaries/abreviations.tex" 1754222333.76038 793 71739ff1f8d2e63dec229cb91af1a5ab ""
-  "auxiliaries/remerciements.tex" 1754564744.10946 1303 26e09bc448c2cf5fa70ff7e28e0b6aa3 ""
+  "auxiliaries/remerciements.tex" 1760182797.05919 1719 e72be24e4ee42ca3e6f29866ccf31c98 ""
   "auxiliaries/resume.tex" 1753975073.60871 1047 465c9b6c98b4a1be50f9dc5fe04c50ab ""
-  "build/main.acr" 1754565385.10682 6 9f404503043ec80c08484be9f659189e "cusdep acn acr build/main"
-  "build/main.aux" 1754565582.42823 46733 b1052d37b28787f7e0cf7e49ac518a29 "lualatex"
-  "build/main.bbl" 0 -1 0 "biber build/main"
-  "build/main.glsdefs" 1754565582.38632 4142 8e558f85496a8bf48737e74f0e1c53f4 "lualatex"
-  "build/main.ind" 1754565384.7494 0 d41d8cd98f00b204e9800998ecf8427e "makeindex build/main.idx"
-  "build/main.lof" 1754565582.5635 1939 a3f105ecd8ea359c038ee02dc1ccc343 "lualatex"
-  "build/main.lot" 1754565582.56351 864 39239b8b3332e89d43aec6e4d2d5c91d "lualatex"
-  "build/main.mtc0" 1754565534.42188 0 d41d8cd98f00b204e9800998ecf8427e "lualatex"
-  "build/main.out" 1754565582.55546 15565 90e84ae33a4f4a734128dd89f125b0be "lualatex"
-  "build/main.run.xml" 1754565582.56332 2400 c457ff2c0774b4b270262dfea310b3c7 "lualatex"
-  "build/main.toc" 1754565582.56348 9667 5760111f1b91a4e3e9251bddbf8eb8cb "lualatex"
-  "chapters/conclusion.tex" 1747144846 1197 29a9e3664306b7323498c140a961d241 ""
-  "chapters/discussion.tex" 1754307714.21019 1384 aa6349265a5245880977691fb1247e6a ""
-  "chapters/intro.tex" 1754560037.47706 30042 c9903ddfa5f73298c1ab50be5f859fb0 ""
-  "chapters/objectifs.tex" 1754565542.20432 14514 a7e71905d8ad3c1a0a9181d2750e8334 ""
+  "build/main.acr" 1759736582.34822 6 9f404503043ec80c08484be9f659189e "cusdep acn acr build/main"
+  "build/main.aux" 1760193150.54393 60552 ca9e9c54df3a2d0f0f58bd08c7110a74 "lualatex"
+  "build/main.bbl" 1759736617.15514 690179 9d0b7e1b04f8ded6ca3e444c778d11a0 "biber build/main"
+  "build/main.glsdefs" 1760193150.4955 4142 8e558f85496a8bf48737e74f0e1c53f4 "lualatex"
+  "build/main.ind" 1759736574.82271 0 d41d8cd98f00b204e9800998ecf8427e "makeindex build/main.idx"
+  "build/main.lof" 1760193150.90933 1907 bee4ca9703c5185172526a8f6d753915 "lualatex"
+  "build/main.lot" 1760193150.9094 832 7adbe6f34f59a43eb6f3a3126698fc55 "lualatex"
+  "build/main.mtc0" 1760193129.46675 0 d41d8cd98f00b204e9800998ecf8427e "lualatex"
+  "build/main.out" 1760193150.72911 16103 0ead08c8b18a4b613052bb491312ae0d "lualatex"
+  "build/main.run.xml" 1760193150.90783 2406 53a5b523a6d2763bf9c0dff5787b845a "lualatex"
+  "build/main.toc" 1760193150.90858 9133 35ab966e35311ec7e4f98861f7f96730 "lualatex"
+  "chapters/conclusion.tex" 1760000499.81261 1924 1ce33b8bd6357baa91ed1e2f5888658f ""
+  "chapters/discussion.tex" 1760192863.60212 5725 4b6694cd84e218e2f48dadc06870a320 ""
+  "chapters/intro.tex" 1760193101.66022 28487 db6754a945c37beeb65a08661076b383 ""
+  "chapters/objectifs.tex" 1760192704.57129 12005 1e26760338538faa6bcd7b977dee5487 ""
   "figures/scprint/figure1.png" 1744276985.04516 8567500 9c8a0731e1595b2a77b5cca3c8438cf6 ""
   "figures/scprint/figure2.png" 1739873571.16993 1521029 1c2f7105b6b8133ac17d7a4ae6f53070 ""
   "figures/scprint/figure3.png" 1741264698.30546 1132682 fcbefe8a492ef1e9fd4cc616edd87c00 ""
@@ -448,10 +451,10 @@
   "figures/xpressor/first.png" 1749663964.57118 413418 78c321481ae92c14b47e0daac1e78d18 ""
   "figures/xpressor/scales.png" 1747403262.16242 433089 45644f44d9d97ff80b7d77def0ed8c69 ""
   "figures/xpressor/second.png" 1745163148.50262 19810207 548f3e551971b70637e388f03ca2be62 ""
-  "math_commands.tex" 1740582509.55763 12284 a71653715108dc62b66e3a0bde0307d8 ""
-  "papers/scprint.tex" 1753977366.49747 63466 c5156671e3f77fd7f91c8b07ed541452 ""
-  "papers/scprint2.tex" 1751555161.45084 332 ac8bd43c1db963185c77fdae94334b62 ""
-  "papers/scprint_methods.tex" 1754393818.9731 63038 8dd25ff24f4c2243f68b6d061393a9c0 ""
+  "math_commands.tex" 1757696445.7896 12288 aa00ebbcfb069e09cf985fc268cf730b ""
+  "papers/scprint.tex" 1758714353.22811 63418 984000deb8405c325f992433a8594764 ""
+  "papers/scprint2.tex" 1759739554.64988 293 dda0b71c6cdc81774476241242531cba ""
+  "papers/scprint_methods.tex" 1758715153.05095 63035 dc92b67e08b2a0f9d19563db738d87dc ""
   "papers/xpressor.tex" 1753904097.99881 38738 37fab57b3302864d48cdbf2155927a91 ""
   "supplementaries/supplementary_scprint.pdf" 1739883241.2887 4967421 79b20110b7648a1ce2e4e541b5630932 ""
   (generated)
@@ -475,8 +478,8 @@
   "build/main.xdy"
   (rewritten before read)
   "build/main.mtc0"
-["makeindex build/main.idx"] 1754565384.09415 "build/main.idx" "build/main.ind" "build/main" 1754565584.49268 0
-  "build/main.idx" 1754565536.19856 0 d41d8cd98f00b204e9800998ecf8427e "lualatex"
+["makeindex build/main.idx"] 1759736574.64011 "build/main.idx" "build/main.ind" "build/main" 1760193152.10669 0
+  "build/main.idx" 1760193130.47718 0 d41d8cd98f00b204e9800998ecf8427e "lualatex"
   (generated)
   "build/main.ilg"
   "build/main.ind"

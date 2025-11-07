@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.21.0 (TeX Live 2025)  (format=lualatex 2025.5.13)  7 AUG 2025 13:18
+This is LuaHBTeX, Version 1.21.0 (TeX Live 2025)  (format=lualatex 2025.5.13)  11 OCT 2025 16:32
  system commands enabled.
  file:line:error style messages enabled.
 **"/Users/jkobject/Documents/code/PhD thesis template Université Paris Cité/main.tex"
@@ -1105,19 +1105,6 @@ LaTeX Font Info:    Redeclaring math delimiter \arrowvert on input line 919.
 LaTeX Font Info:    Redeclaring math delimiter \vert on input line 920.
 LaTeX Font Info:    Redeclaring math accent \dot on input line 991.
 LaTeX Font Info:    Redeclaring math accent \ddot on input line 992.
-
-/usr/local/texlive/2025/texmf-dist/tex/latex/newtx/newtxmath.sty:1165: LaTeX Error: Command `\laplace' already defined.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1165 ...Symbol{\laplace}{\mathord}{symbols}{217}
-                                                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
 LaTeX Font Info:    Redeclaring math accent \vec on input line 2057.
 LaTeX Info: Redefining \Bbbk on input line 2847.
 LaTeX Info: Redefining \not on input line 2995.
@@ -1544,72 +1531,54 @@ Package graphics Info: Driver file: luatex.def on input line 106.
 )
 \Gin@req@height=\dimen195
 \Gin@req@width=\dimen196
-)) (/usr/local/texlive/2025/texmf-dist/tex/latex/tools/longtable.sty
-Package: longtable 2024-10-27 v4.22 Multi-page Table package (DPC)
-\LTleft=\skip94
-\LTright=\skip95
-\LTpre=\skip96
-\LTpost=\skip97
-\LTchunksize=\count471
-\LTcapwidth=\dimen197
-\LT@head=\box58
-\LT@firsthead=\box59
-\LT@foot=\box60
-\LT@lastfoot=\box61
-\LT@gbox=\box62
-\LT@cols=\count472
-\LT@rows=\count473
-\c@LT@tables=\count474
-\c@LT@chunks=\count475
-\LT@p@ftn=\toks35
-) (/usr/local/texlive/2025/texmf-dist/tex/latex/wrapfig/wrapfig.sty
-\wrapoverhang=\dimen198
-\WF@size=\dimen199
-\c@WF@wrappedlines=\count476
-\WF@box=\box63
-\WF@everypar=\toks36
+)) (/usr/local/texlive/2025/texmf-dist/tex/latex/wrapfig/wrapfig.sty
+\wrapoverhang=\dimen197
+\WF@size=\dimen198
+\c@WF@wrappedlines=\count471
+\WF@box=\box58
+\WF@everypar=\toks35
 Package: wrapfig 2003/01/31  v 3.6
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/graphics/rotating.sty
 Package: rotating 2016/08/11 v2.16d rotated objects in LaTeX
-\c@r@tfl@t=\count477
-\rotFPtop=\skip98
-\rotFPbot=\skip99
-\rot@float@box=\box64
-\rot@mess@toks=\toks37
+\c@r@tfl@t=\count472
+\rotFPtop=\skip94
+\rotFPbot=\skip95
+\rot@float@box=\box59
+\rot@mess@toks=\toks36
 ) (/usr/local/texlive/2025/texmf-dist/tex/generic/ulem/ulem.sty
-\UL@box=\box65
-\UL@hyphenbox=\box66
-\UL@skip=\skip100
-\UL@hook=\toks38
-\UL@height=\dimen256
-\UL@pe=\count478
-\UL@pixel=\dimen257
-\ULC@box=\box67
+\UL@box=\box60
+\UL@hyphenbox=\box61
+\UL@skip=\skip96
+\UL@hook=\toks37
+\UL@height=\dimen199
+\UL@pe=\count473
+\UL@pixel=\dimen256
+\ULC@box=\box62
 Package: ulem 2019/11/18
-\ULdepth=\dimen258
+\ULdepth=\dimen257
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/capt-of/capt-of.sty
 Package: capt-of 2009/12/29 v0.2 standard captions outside of floats
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/microtype.sty
 Package: microtype 2025/02/11 v3.2a Micro-typographical refinements (RS)
-\MT@toks=\toks39
-\MT@tempbox=\box68
-\MT@count=\count479
+\MT@toks=\toks38
+\MT@tempbox=\box63
+\MT@count=\count474
 LaTeX Info: Redefining \noprotrusionifhmode on input line 1087.
 LaTeX Info: Redefining \leftprotrusion on input line 1088.
-\MT@prot@toks=\toks40
+\MT@prot@toks=\toks39
 LaTeX Info: Redefining \rightprotrusion on input line 1107.
 LaTeX Info: Redefining \textls on input line 1449.
-\MT@outer@kern=\dimen259
+\MT@outer@kern=\dimen258
 LaTeX Info: Redefining \microtypecontext on input line 2053.
 LaTeX Info: Redefining \textmicrotypecontext on input line 2070.
-\MT@listname@count=\count480
+\MT@listname@count=\count475
  (/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/microtype-luatex.def
 File: microtype-luatex.def 2025/02/11 v3.2a Definitions specific to luatex (RS)
 Lua module: microtype 2025/02/11 v3.2a microtype module.
 Module microtype Info: overwriting function `keepligature' on input line 63
 LaTeX Info: Redefining \lsstyle on input line 779.
 LaTeX Info: Redefining \lslig on input line 779.
-\MT@outer@space=\skip101
+\MT@outer@space=\skip97
 )
 Package microtype Info: Loading configuration file microtype.cfg.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/microtype.cfg
@@ -1618,42 +1587,42 @@ File: microtype.cfg 2025/02/11 v3.2a microtype main configuration file (RS)
 LaTeX Info: Redefining \microtypesetup on input line 3065.
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/subfigure/subfigure.sty
 Package: subfigure 2002/03/15 v2.1.5 subfigure package
-\subfigtopskip=\skip102
-\subfigcapskip=\skip103
-\subfigcaptopadj=\dimen260
-\subfigbottomskip=\skip104
-\subfigcapmargin=\dimen261
-\subfiglabelskip=\skip105
-\c@subfigure=\count481
-\c@lofdepth=\count482
-\c@subtable=\count483
-\c@lotdepth=\count484
+\subfigtopskip=\skip98
+\subfigcapskip=\skip99
+\subfigcaptopadj=\dimen259
+\subfigbottomskip=\skip100
+\subfigcapmargin=\dimen260
+\subfiglabelskip=\skip101
+\c@subfigure=\count476
+\c@lofdepth=\count477
+\c@subtable=\count478
+\c@lotdepth=\count479
 
 ****************************************
 * Local config file subfigure.cfg used *
 ****************************************
 (/usr/local/texlive/2025/texmf-dist/tex/latex/subfigure/subfigure.cfg)
-\subfig@top=\skip106
-\subfig@bottom=\skip107
+\subfig@top=\skip102
+\subfig@bottom=\skip103
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen262
-\lightrulewidth=\dimen263
-\cmidrulewidth=\dimen264
-\belowrulesep=\dimen265
-\belowbottomsep=\dimen266
-\aboverulesep=\dimen267
-\abovetopsep=\dimen268
-\cmidrulesep=\dimen269
-\cmidrulekern=\dimen270
-\defaultaddspace=\dimen271
-\@cmidla=\count485
-\@cmidlb=\count486
-\@aboverulesep=\dimen272
-\@belowrulesep=\dimen273
-\@thisruleclass=\count487
-\@lastruleclass=\count488
-\@thisrulewidth=\dimen274
+\heavyrulewidth=\dimen261
+\lightrulewidth=\dimen262
+\cmidrulewidth=\dimen263
+\belowrulesep=\dimen264
+\belowbottomsep=\dimen265
+\aboverulesep=\dimen266
+\abovetopsep=\dimen267
+\cmidrulesep=\dimen268
+\cmidrulekern=\dimen269
+\defaultaddspace=\dimen270
+\@cmidla=\count480
+\@cmidlb=\count481
+\@aboverulesep=\dimen271
+\@belowrulesep=\dimen272
+\@thisruleclass=\count482
+\@lastruleclass=\count483
+\@thisrulewidth=\dimen273
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/svg/svg.sty
 Package: svg 2020/11/26 v2.02k (include SVG pictures)
  (/usr/local/texlive/2025/texmf-dist/tex/latex/koma-script/scrbase.sty
@@ -1683,9 +1652,9 @@ runsystem(uname -s > "main.w18")...executed.
  (./main.w18)
 runsystem(rm -- "main.w18")...executed.
 )
-\c@svg@param@lastpage=\count489
-\svg@box=\box69
-\c@svg@param@currpage=\count490
+\c@svg@param@lastpage=\count484
+\svg@box=\box64
+\c@svg@param@currpage=\count485
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/transparent/transparent.sty
 Package: transparent 2022-10-27 v1.5 Transparency with color stacks
  (/usr/local/texlive/2025/texmf-dist/tex/latex/transparent/transparent-nometadata.sty
@@ -1693,41 +1662,41 @@ Package: transparent-nometadata 2022-10-27 v1.5 Transparency via pdfTeX's color 
  (/usr/local/texlive/2025/texmf-dist/tex/latex/auxhook/auxhook.sty
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 ))) (/usr/local/texlive/2025/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty (/usr/local/texlive/2025/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
-\pgfutil@everybye=\toks41
-\pgfutil@tempdima=\dimen275
-\pgfutil@tempdimb=\dimen276
+\pgfutil@everybye=\toks40
+\pgfutil@tempdima=\dimen274
+\pgfutil@tempdimb=\dimen275
 ) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
-\pgfutil@abb=\box70
+\pgfutil@abb=\box65
 ) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/pgf.revision.tex)
 Package: pgfrcs 2023-01-15 v3.1.10 (3.1.10)
 )) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
 Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
  (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
-\pgfkeys@pathtoks=\toks42
-\pgfkeys@temptoks=\toks43
+\pgfkeys@pathtoks=\toks41
+\pgfkeys@temptoks=\toks42
  (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfiltered.code.tex
-\pgfkeys@tmptoks=\toks44
+\pgfkeys@tmptoks=\toks43
 ))
-\pgf@x=\dimen277
-\pgf@y=\dimen278
-\pgf@xa=\dimen279
-\pgf@ya=\dimen280
-\pgf@xb=\dimen281
-\pgf@yb=\dimen282
-\pgf@xc=\dimen283
-\pgf@yc=\dimen284
-\pgf@xd=\dimen285
-\pgf@yd=\dimen286
+\pgf@x=\dimen276
+\pgf@y=\dimen277
+\pgf@xa=\dimen278
+\pgf@ya=\dimen279
+\pgf@xb=\dimen280
+\pgf@yb=\dimen281
+\pgf@xc=\dimen282
+\pgf@yc=\dimen283
+\pgf@xd=\dimen284
+\pgf@yd=\dimen285
 \w@pgf@writea=\write5
 \r@pgf@reada=\read6
-\c@pgf@counta=\count491
-\c@pgf@countb=\count492
-\c@pgf@countc=\count493
-\c@pgf@countd=\count494
-\t@pgf@toka=\toks45
-\t@pgf@tokb=\toks46
-\t@pgf@tokc=\toks47
-\pgf@sys@id@count=\count495
+\c@pgf@counta=\count486
+\c@pgf@countb=\count487
+\c@pgf@countc=\count488
+\c@pgf@countd=\count489
+\t@pgf@toka=\toks44
+\t@pgf@tokb=\toks45
+\t@pgf@tokc=\toks46
+\pgf@sys@id@count=\count490
  (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
 )
@@ -1738,32 +1707,28 @@ File: pgfsys-luatex.def 2023-01-15 v3.1.10 (3.1.10)
 File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
 ))) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfsyssoftpath@smallbuffer@items=\count496
-\pgfsyssoftpath@bigbuffer@items=\count497
+\pgfsyssoftpath@smallbuffer@items=\count491
+\pgfsyssoftpath@bigbuffer@items=\count492
 ) (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
 File: pgfsysprotocol.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )) (/usr/local/texlive/2025/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2023/08/05 v3.6o Customizing captions (AR)
  (/usr/local/texlive/2025/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
-\caption@tempdima=\dimen287
-\captionmargin=\dimen288
-\caption@leftmargin=\dimen289
-\caption@rightmargin=\dimen290
-\caption@width=\dimen291
-\caption@indent=\dimen292
-\caption@parindent=\dimen293
-\caption@hangindent=\dimen294
+\caption@tempdima=\dimen286
+\captionmargin=\dimen287
+\caption@leftmargin=\dimen288
+\caption@rightmargin=\dimen289
+\caption@width=\dimen290
+\caption@indent=\dimen291
+\caption@parindent=\dimen292
+\caption@hangindent=\dimen293
 Package caption Info: Standard document class detected.
 Package caption Info: french babel package is loaded.
 )
-\c@caption@flags=\count498
-\c@continuedfloat=\count499
+\c@caption@flags=\count493
+\c@continuedfloat=\count494
 Package caption Info: hyperref package is loaded.
-Package caption Info: longtable package is loaded.
- (/usr/local/texlive/2025/texmf-dist/tex/latex/caption/ltcaption.sty
-Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
-)
 Package caption Info: rotating package is loaded.
 Package caption Info: subfigure package is loaded.
 Package caption Info: wrapfig package is loaded.
@@ -1776,37 +1741,66 @@ Package subcaption Info: The counter `subtable' was already defined by
 (subcaption)             an unknown document class or package on input line 238.
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count500
-\float@exts=\toks48
-\float@box=\box71
-\@float@everytoks=\toks49
-\@floatcapt=\box72
-) (/usr/local/texlive/2025/texmf-dist/tex/latex/multirow/multirow.sty
-Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
-\multirow@colwidth=\skip108
-\multirow@cntb=\count501
-\multirow@dima=\skip109
-\bigstrutjot=\dimen295
+\c@float@type=\count495
+\float@exts=\toks47
+\float@box=\box66
+\@float@everytoks=\toks48
+\@floatcapt=\box67
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/tools/array.sty
 Package: array 2024/10/17 v2.6g Tabular extension package (FMi)
-\col@sep=\dimen296
-\ar@mcellbox=\box73
-\extrarowheight=\dimen297
-\NC@list=\toks50
-\extratabsurround=\skip110
-\backup@length=\skip111
-\ar@cellbox=\box74
+\col@sep=\dimen294
+\ar@mcellbox=\box68
+\extrarowheight=\dimen295
+\NC@list=\toks49
+\extratabsurround=\skip104
+\backup@length=\skip105
+\ar@cellbox=\box69
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
+\multirow@colwidth=\skip106
+\multirow@cntb=\count496
+\multirow@dima=\skip107
+\bigstrutjot=\dimen296
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/tools/tabularx.sty
 Package: tabularx 2023/12/11 v2.12a `tabularx' package (DPC)
-\TX@col@width=\dimen298
-\TX@old@table=\dimen299
-\TX@old@col=\dimen300
-\TX@target=\dimen301
-\TX@delta=\dimen302
-\TX@cols=\count502
-\TX@ftn=\toks51
+\TX@col@width=\dimen297
+\TX@old@table=\dimen298
+\TX@old@col=\dimen299
+\TX@target=\dimen300
+\TX@delta=\dimen301
+\TX@cols=\count497
+\TX@ftn=\toks50
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2024-10-27 v4.22 Multi-page Table package (DPC)
+\LTleft=\skip108
+\LTright=\skip109
+\LTpre=\skip110
+\LTpost=\skip111
+\LTchunksize=\count498
+\LTcapwidth=\dimen302
+\LT@head=\box70
+\LT@firsthead=\box71
+\LT@foot=\box72
+\LT@lastfoot=\box73
+\LT@gbox=\box74
+\LT@cols=\count499
+\LT@rows=\count500
+\c@LT@tables=\count501
+\c@LT@chunks=\count502
+\LT@p@ftn=\toks51
 ) (/usr/local/texlive/2025/texmf-dist/tex/generic/bibtex/apalike.sty
 \bibhang=\skip112
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/sectsty/sectsty.sty
+Package: sectsty 2002/02/25 v2.0.2 Commands to change all sectional heading styles
+
+
+LaTeX Warning: Command \underbar  has changed.
+               Check if current package is valid.
+
+
+LaTeX Warning: Command \underline  has changed.
+               Check if current package is valid.
+
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/minitoc/minitoc.sty
 Package: minitoc 2018/07/12 v62 Package minitoc
  (/usr/local/texlive/2025/texmf-dist/tex/latex/minitoc/mtcmess.sty
@@ -1860,7 +1854,11 @@ Package minitoc Info: I0010
 (minitoc)              on input line 4911.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/minitoc/french.mld
 File: french.mld 2006/03/21
-)) (/usr/local/texlive/2025/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (/usr/local/texlive/2025/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+)) (/usr/local/texlive/2025/texmf-dist/tex/latex/xurl/xurl.sty
+Package: xurl 2022/01/09 v 0.10 modify URL breaks
+
+xurl: Set penalties for biblatex
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (/usr/local/texlive/2025/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
 Package: pgf 2023-01-15 v3.1.10 (3.1.10)
  (/usr/local/texlive/2025/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
 Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
@@ -2025,7 +2023,7 @@ Package: translations 2022/02/05 v1.12 internationalization of LaTeX2e packages 
 \l__siunitx_unit_total_int=\count536
 ) (/usr/local/texlive/2025/texmf-dist/tex/generic/babel/locale/en/babel-english.tex)
 Package babel Info: Importing data for english
-(babel)             from babel-en.ini. Reported on input line 89.
+(babel)             from babel-en.ini. Reported on input line 87.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/enumitem/enumitem.sty
 Package: enumitem 2025/02/06 v3.11 Customized lists
 \labelindent=\skip116
@@ -2202,6 +2200,14 @@ File: ppluatex.def 2025/01/30 v0.6e Pdfpages driver for LuaTeX (AM)
 \AM@lof@heading=\toks63
 \c@AM@survey=\count555
 \AM@templatesizebox=\box107
+) (/usr/local/texlive/2025/texmf-dist/tex/latex/morewrites/morewrites.sty (/usr/local/texlive/2025/texmf-dist/tex/latex/morewrites/primargs.sty
+Package: primargs 2024/02/02 Parsing arguments of primitives
+)
+Package: morewrites 2024/02/02 Always room for a new write
+
+
+Package morewrites Warning: The morewrites package is unnecessary in LuaTeX.
+
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/arydshln/arydshln.sty
 Package: arydshln 2019/02/21 v1.76 
 \dashlinedash=\dimen364
@@ -2235,17 +2241,6 @@ Package: titlesec 2025/01/04 v2.17 Sectioning titles
 \titlewidth=\dimen374
 \titlewidthlast=\dimen375
 \titlewidthfirst=\dimen376
-) (/usr/local/texlive/2025/texmf-dist/tex/latex/sectsty/sectsty.sty
-Package: sectsty 2002/02/25 v2.0.2 Commands to change all sectional heading styles
-
-
-LaTeX Warning: Command \underbar  has changed.
-               Check if current package is valid.
-
-
-LaTeX Warning: Command \underline  has changed.
-               Check if current package is valid.
-
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/lipsum/lipsum.sty (/usr/local/texlive/2025/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
 Package: l3keys2e 2024-08-16 LaTeX2e option processing using LaTeX3 keys
 )
@@ -2355,11 +2350,11 @@ Package: glossary-tree 2025/03/03 v4.56 (NLCT)
 \glo@main@file=\write8
 
 \openout8 = main.glo
-Package glossaries Info: Writing glossary file main.glo on input line 147.
+Package glossaries Info: Writing glossary file main.glo on input line 146.
 \glo@acronym@file=\write9
 
 \openout9 = main.acn
-Package glossaries Info: Writing glossary file main.acn on input line 147.
+Package glossaries Info: Writing glossary file main.acn on input line 146.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/imakeidx/imakeidx.sty
 Package: imakeidx 2016/10/15 v1.3e Package for typesetting indices in a synchronous mode
  (/usr/local/texlive/2025/texmf-dist/tex/latex/tools/multicol.sty
@@ -2446,55 +2441,55 @@ Package biblatex Warning: 'babel/polyglossia' detected but 'csquotes' missing.
 (./build/main.aux)
 \openout1 = main.aux
 
-LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 162.
-LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line 162.
+LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 161.
+LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line 161.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/newtx/omlntxmi.fd
 File: omlntxmi.fd 2015/08/25 Fontinst v1.933 font definitions for OML/ntxmi.
 )
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 162.
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 162.
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 162.
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 162.
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 162.
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 162.
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 162.
-LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 162.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 161.
+LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 161.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/newtx/untxexa.fd
 File: untxexa.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxexa.
 )
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 162.
-LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line 162.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 161.
+LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line 161.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/newtx/lmsntxsy.fd
 File: lmsntxsy.fd 2016/07/02 Fontinst v1.933 font definitions for LMS/ntxsy.
 )
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 162.
-LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input line 162.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 161.
+LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input line 161.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/newtx/lmxntxexx.fd
 File: lmxntxexx.fd 2016/07/03 Fontinst v1.933 font definitions for LMX/ntxexx.
 )
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 162.
-LaTeX Font Info:    ... okay on input line 162.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 162.
-LaTeX Font Info:    ... okay on input line 162.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
 Package french.ldf Info: Setting StandardItemizeEnv=true for
 (french.ldf)             compatibility with enumitem package,
-(french.ldf)             reported on input line 162.
+(french.ldf)             reported on input line 161.
 Package french.ldf Info: Setting StandardEnumerateEnv=true for
 (french.ldf)             compatibility with enumitem package,
-(french.ldf)             reported on input line 162.
-LaTeX Info: Redefining \up on input line 162.
-LaTeX Info: Command `\dddot' is already robust on input line 162.
-LaTeX Info: Command `\ddddot' is already robust on input line 162.
+(french.ldf)             reported on input line 161.
+LaTeX Info: Redefining \up on input line 161.
+LaTeX Info: Command `\dddot' is already robust on input line 161.
+LaTeX Info: Command `\ddddot' is already robust on input line 161.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: luatex
@@ -2513,7 +2508,7 @@ LaTeX Info: Command `\ddddot' is already robust on input line 162.
 * \oddsidemargin=13.08827pt
 * \evensidemargin=-1.1381pt
 * \topmargin=-18.78552pt
-* \headheight=12.0pt
+* \headheight=14.5pt
 * \headsep=19.8738pt
 * \topskip=12.0pt
 * \footskip=30.0pt
@@ -2566,33 +2561,32 @@ Package biblatex Info: Automatic encoding selection.
 
 \openout3 = main.bcf
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file 'main.bbl' not found.
-
-No file main.bbl.
-Package biblatex Info: Reference section=0 on input line 162.
-Package biblatex Info: Reference segment=0 on input line 162.
-Package hyperref Info: Link coloring ON on input line 162.
-(./build/main.out) (./build/main.out)
+Package biblatex Info: ... file 'main.bbl' found.
+ (./build/main.bbl)
+Package biblatex Info: Reference section=0 on input line 161.
+Package biblatex Info: Reference segment=0 on input line 161.
+Package hyperref Info: Link coloring ON on input line 161.
+ (./build/main.out) (./build/main.out)
 \@outlinefile=\write11
 
 \openout11 = main.out
 Package microtype Info: Patching varwidth to enable character protrusion.
 \MT@vwid@leftmargin=\dimen400
 \MT@vwid@rightmargin=\dimen401
-LaTeX Info: Redefining \microtypecontext on input line 162.
-Package microtype Info: Applying patch `item' on input line 162.
-Package microtype Info: Applying patch `toc' on input line 162.
-Package microtype Info: Applying patch `eqnum' on input line 162.
-Package microtype Info: Applying patch `footnote' on input line 162.
-Package microtype Info: Applying patch `verbatim' on input line 162.
-LaTeX Info: Redefining \microtypesetup on input line 162.
+LaTeX Info: Redefining \microtypecontext on input line 161.
+Package microtype Info: Applying patch `item' on input line 161.
+Package microtype Info: Applying patch `toc' on input line 161.
+Package microtype Info: Applying patch `eqnum' on input line 161.
+Package microtype Info: Applying patch `footnote' on input line 161.
+Package microtype Info: Applying patch `verbatim' on input line 161.
+LaTeX Info: Redefining \microtypesetup on input line 161.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 162.
+LaTeX Info: Redefining \showhyphens on input line 161.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of spacing.
 Package microtype Info: No adjustment of kerning.
@@ -2607,13 +2601,17 @@ Package svg Warning: No version of Inkscape was detected by invoking
 (svg)                so the Inkscape export will fail quite sure as the
 (svg)                command is probably unknown to your OS. You could set
 (svg)                `inkscapeversion=<version>' manually but this is very
-(svg)                unlikely to work on input line 162.
+(svg)                unlikely to work on input line 161.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: changepage package is loaded.
 \caption@adjustwidth@hsize=\dimen402
 \caption@adjustwidth@linewidth=\dimen403
 Package caption Info: float package is loaded.
+Package caption Info: longtable package is loaded.
+(/usr/local/texlive/2025/texmf-dist/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
+)
 Package caption Info: supertabular package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@minilofdepth=\count614
@@ -2626,6 +2624,7 @@ Package minitoc(hints) Info: I0049
 (minitoc(hints))             ==> You requested the hints option. 
 (minitoc(hints))             Some hints are eventually given below.
 
+
 Package minitoc(hints) Warning: W0099
 (minitoc(hints))                --- The titlesec package is loaded. 
 (minitoc(hints))                It is incompatible 
@@ -2637,35 +2636,25 @@ Package minitoc(hints) Warning: W0040
 (minitoc(hints))                It is incompatible 
 (minitoc(hints))                with the minitoc package.
 
-
-Package minitoc(hints) Warning: W0030
-(minitoc(hints))                --- The \part command is altered 
-(minitoc(hints))                after minitoc.
-
-
-Package minitoc(hints) Warning: W0023
-(minitoc(hints))                --- It may be the consequence 
-(minitoc(hints))                of loading the ``hyperref'' package.
-
 (/usr/local/texlive/2025/texmf-dist/tex/latex/translations/translations-basic-dictionary-french.trsl
 File: translations-basic-dictionary-french.trsl (french translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `french'. on input line 162.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `french'. on input line 161.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/pdflscape/pdflscape.sty
 Package: pdflscape 2022-10-27 v0.13 Display of landscape pages in PDF
  (/usr/local/texlive/2025/texmf-dist/tex/latex/pdflscape/pdflscape-nometadata.sty
 Package: pdflscape-nometadata 2022-10-28 v0.13 Display of landscape pages in PDF (HO)
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )) (./build/main.glsdefs)
-LaTeX Font Info:    Trying to load font information for OT1+LinLibertine(0) on input line 170.
-LaTeX Font Info:    No file OT1LinLibertine(0).fd. on input line 170.
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 170.
+LaTeX Font Info:    Trying to load font information for OT1+LinLibertine(0) on input line 169.
+LaTeX Font Info:    No file OT1LinLibertine(0).fd. on input line 169.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 169.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 
 LaTeX Font Warning: Font shape `OT1/LinLibertine(0)/m/n' undefined
-(Font)              using `OT1/lmr/m/n' instead on input line 170.
+(Font)              using `OT1/lmr/m/n' instead on input line 169.
 
 (/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-LatinModernRoman.cfg
 File: mt-LatinModernRoman.cfg 2021/02/21 v1.1 microtype config. file: Latin Modern Roman (RS)
@@ -2679,30 +2668,30 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 12.0pt on input line 170.
+(Font)              scaled to size 12.0pt on input line 169.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 8.8pt on input line 170.
+(Font)              scaled to size 8.8pt on input line 169.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 6.6pt on input line 170.
+(Font)              scaled to size 6.6pt on input line 169.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 12.0pt on input line 170.
+(Font)              scaled to size 12.0pt on input line 169.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 8.8pt on input line 170.
+(Font)              scaled to size 8.8pt on input line 169.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 6.6pt on input line 170.
+(Font)              scaled to size 6.6pt on input line 169.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 12.0pt on input line 170.
+(Font)              scaled to size 12.0pt on input line 169.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 8.8pt on input line 170.
+(Font)              scaled to size 8.8pt on input line 169.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 6.6pt on input line 170.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 170.
+(Font)              scaled to size 6.6pt on input line 169.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 169.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 170.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 169.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-msb.cfg
@@ -2710,53 +2699,53 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+stmry on input line 170.
+LaTeX Font Info:    Trying to load font information for U+stmry on input line 169.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
-LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 170.
+LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 169.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/newtx/untxmia.fd
 File: untxmia.fd 2024/04/09 Fontinst v1.933 font definitions for U/ntxmia.
 )
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 12.0pt on input line 170.
+(Font)              scaled to size 12.0pt on input line 169.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 8.8pt on input line 170.
+(Font)              scaled to size 8.8pt on input line 169.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 6.6pt on input line 170.
-LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 170.
+(Font)              scaled to size 6.6pt on input line 169.
+LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 169.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/newtx/untxsyc.fd
 File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 )
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 12.0pt on input line 170.
+(Font)              scaled to size 12.0pt on input line 169.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 8.8pt on input line 170.
+(Font)              scaled to size 8.8pt on input line 169.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 6.6pt on input line 170.
+(Font)              scaled to size 6.6pt on input line 169.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 12.0pt on input line 170.
+(Font)              scaled to size 12.0pt on input line 169.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 8.8pt on input line 170.
+(Font)              scaled to size 8.8pt on input line 169.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 6.6pt on input line 170.
-<figures/titre/UParisCitelogo.jpg, id=315, 1842.885pt x 702.625pt>
+(Font)              scaled to size 6.6pt on input line 169.
+<figures/titre/UParisCitelogo.jpg, id=323, 1842.885pt x 702.625pt>
 File: figures/titre/UParisCitelogo.jpg Graphic file (type jpg)
 <use figures/titre/UParisCitelogo.jpg>
-Package luatex.def Info: figures/titre/UParisCitelogo.jpg  used on input line 171.
+Package luatex.def Info: figures/titre/UParisCitelogo.jpg  used on input line 170.
 (luatex.def)             Requested size: 186.5489pt x 71.13188pt.
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/sc' will be
-(Font)              scaled to size 12.0pt on input line 179.
+(Font)              scaled to size 12.0pt on input line 178.
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/sc' will be
-(Font)              scaled to size 20.74pt on input line 179.
+(Font)              scaled to size 20.74pt on input line 178.
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/n' will be
-(Font)              scaled to size 14.4pt on input line 180.
+(Font)              scaled to size 14.4pt on input line 179.
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/n' will be
-(Font)              scaled to size 20.74pt on input line 189.
+(Font)              scaled to size 20.74pt on input line 188.
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/b/n' will be
-(Font)              scaled to size 20.74pt on input line 189.
+(Font)              scaled to size 20.74pt on input line 188.
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/sc' will be
-(Font)              scaled to size 17.28pt on input line 197.
+(Font)              scaled to size 17.28pt on input line 196.
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/sc' will be
-(Font)              scaled to size 14.4pt on input line 198.
+(Font)              scaled to size 14.4pt on input line 197.
 
 
 [1
@@ -2852,12 +2841,9 @@ Package mdframed Info: mdframed works in twoside mode on input line 25.
 
 ] (./chapters/intro.tex
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/n' will be
-(Font)              scaled to size 17.28pt on input line 9.
+(Font)              scaled to size 17.28pt on input line 6.
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/b/n' will be
-(Font)              scaled to size 17.28pt on input line 9.
-
-Underfull \vbox (badness 2538) has occurred while \output is active []
-
+(Font)              scaled to size 17.28pt on input line 6.
 
 
 
@@ -2866,19 +2852,12 @@ warning  (pdf backend): ignoring duplicate destination with the name 'page.1'
 
 ]
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/b/n' will be
-(Font)              scaled to size 14.4pt on input line 29.
+(Font)              scaled to size 14.4pt on input line 40.
 
 
 
 warning  (pdf backend): ignoring duplicate destination with the name 'page.2'
 [2]
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [3]
 
@@ -2887,26 +2866,378 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
 [5]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+./chapters/intro.tex:106: Undefined control sequence.
+l.106 \beging
+             {enumerate}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./chapters/intro.tex:107: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.107   \item I
+               t all starts with preprocessing the raw sequencing data: dete...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 107
+[][]
+ []
+
+
+./chapters/intro.tex:109: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.109   \item T
+               he data might be normalized to correct for sequencing depth a...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 109
+[][]
+ []
+
+
+./chapters/intro.tex:111: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.111   \item T
+               he dataset might be aligned to a reference atlas in cases whe...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 111
+[][]
+ []
+
+
+./chapters/intro.tex:113: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.113   \item C
+               luster-level and dataset-level labels might be inferred, such...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 113
+[][]
+ []
+
+
+./chapters/intro.tex:114: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.114   \item I
+               n the case where specific clusters contain a low amount of ce...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 114
+[][]
+ []
 
 
 
 [6]
 
+./chapters/intro.tex:115: LaTeX Error: Lonely \item--perhaps a missing list environment.
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.115   \item I
+               n the case where users would have access to a dataset of a si...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 115
+[][]
+ []
+
+
+./chapters/intro.tex:117: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.117   \item I
+               f the dataset was measured in a non-static context, one can i...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 117
+[][]
+ []
+
+
+./chapters/intro.tex:119: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.119   \item I
+               f the dataset contains spatial information: how cells were po...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 119
+[][]
+ []
+
+
+./chapters/intro.tex:121: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.121   \item I
+               f the dataset includes perturbation experiments, one can pred...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 121
+[][]
+ []
+
+./chapters/intro.tex:122: Undefined control sequence.
+\enit@endenumerate ->\enit@after 
+                                 \endlist \ifx \enit@series \relax \else \if...
+l.122 \end{enumerate}
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./chapters/intro.tex:122: Undefined control sequence.
+\enit@endenumerate ...\else \ifnum \enit@resuming 
+                                                  =\@ne \enit@setresumekeys ...
+l.122 \end{enumerate}
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./chapters/intro.tex:122: Missing number, treated as zero.
+<to be read again> 
+                   =
+l.122 \end{enumerate}
+                     
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+./chapters/intro.tex:122: Undefined control sequence.
+\enit@setresumekeys ...xpandafter {\enit@savekeys 
+                                                  }\xdef \enit@afterlist {#2...
+l.122 \end{enumerate}
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./chapters/intro.tex:122: Undefined control sequence.
+\enit@setresumekeys ...it@toks }\ifnum \enit@type 
+                                                  =\z@ #3\def \enit@noexcs {...
+l.122 \end{enumerate}
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./chapters/intro.tex:122: Missing number, treated as zero.
+<to be read again> 
+                   =
+l.122 \end{enumerate}
+                     
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+./chapters/intro.tex:122: Undefined control sequence.
+<argument> enit@resume@series@\enit@series 
+                                           
+l.122 \end{enumerate}
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./chapters/intro.tex:122: Undefined control sequence.
+\enit@setresumekeys ...me@#1}{\csname c@\@listctr 
+                                                  \endcsname \the \csname c@...
+l.122 \end{enumerate}
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./chapters/intro.tex:122: Undefined control sequence.
+\enit@setresumekeys ...e \the \csname c@\@listctr 
+                                                  \endcsname }\fi }
+l.122 \end{enumerate}
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./chapters/intro.tex:122: You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.122 \end{enumerate}
+                     
+I'm forgetting what you said and using zero instead.
+
+./chapters/intro.tex:122: Undefined control sequence.
+\enit@endenumerate ...t \fi \ifnum \enit@resuming 
+                                                  =\thr@@ \enit@setresumekey...
+l.122 \end{enumerate}
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./chapters/intro.tex:122: Missing number, treated as zero.
+<to be read again> 
+                   =
+l.122 \end{enumerate}
+                     
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+./chapters/intro.tex:122: Undefined control sequence.
+\enit@setresumekeys ...xpandafter {\enit@savekeys 
+                                                  }\xdef \enit@afterlist {#2...
+l.122 \end{enumerate}
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./chapters/intro.tex:122: Undefined control sequence.
+\enit@setresumekeys ...it@toks }\ifnum \enit@type 
+                                                  =\z@ #3\def \enit@noexcs {...
+l.122 \end{enumerate}
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./chapters/intro.tex:122: Missing number, treated as zero.
+<to be read again> 
+                   =
+l.122 \end{enumerate}
+                     
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+./chapters/intro.tex:122: Undefined control sequence.
+\enit@setresumekeys ...me@#1}{\csname c@\@listctr 
+                                                  \endcsname \the \csname c@...
+l.122 \end{enumerate}
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./chapters/intro.tex:122: Undefined control sequence.
+\enit@setresumekeys ...e \the \csname c@\@listctr 
+                                                  \endcsname }\fi }
+l.122 \end{enumerate}
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./chapters/intro.tex:122: You can't use `\relax' after \the.
+<recently read> \c@ 
+                    
+l.122 \end{enumerate}
+                     
+I'm forgetting what you said and using zero instead.
+
+
+./chapters/intro.tex:122: LaTeX Error: \begin{document} ended by \end{enumerate}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.122 \end{enumerate}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./chapters/intro.tex:122: Extra \endgroup.
+\end  ...end#1\endcsname \@checkend {#1}\endgroup 
+                                                  \UseHook {env/#1/after}\if...
+l.122 \end{enumerate}
+                     
+Things are pretty mixed up, but I think the worst is over.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 
 [7]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -2915,27 +3246,15 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [8]
 
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[9])
-runsystem(pandoc chapters/objectifs.md -f markdown -t latex --template=templates/chapter-template.tex --variable title="Objectifs de la thèse" -o chapters/objectifs.tex)...executed.
- (./chapters/objectifs.tex
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+[9]) (./chapters/objectifs.tex
 
 [10]
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 11.
+
+LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/it' will be
+(Font)              scaled to size 12.0pt on input line 17.
 
 
 [11
@@ -2945,50 +3264,17 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
 [12]
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [13]
 
+[14]) (./papers/scprint.tex
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+[15]
 
-[14]
+[16
 
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[15]) (./papers/scprint.tex
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[16]
+]
 Chapitre 1.
 
 Overfull \hbox (7.77927pt too wide) in paragraph at lines 14--14
@@ -2996,786 +3282,132 @@ Overfull \hbox (7.77927pt too wide) in paragraph at lines 14--14
  []
 
 
-LaTeX Warning: Citation 'lahnemannElevenGrandChallenges2020' on page 17 undefined on input line 23.
 
-
-LaTeX Warning: Citation 'roohaniPredictingTranscriptionalOutcomes2024' on page 17 undefined on input line 23.
-
-
-LaTeX Warning: Citation 'gonzalezCombinatorialPredictionTherapeutic2024' on page 17 undefined on input line 23.
-
-
-LaTeX Warning: Citation 'haradaDistinctCoreRegulatory2022a' on page 17 undefined on input line 23.
-
-
-LaTeX Warning: Citation 'haradaLeukemiaCoreTranscriptional2023' on page 17 undefined on input line 23.
-
-
-LaTeX Warning: Citation 'badia-i-mompelGeneRegulatoryNetwork2023' on page 17 undefined on input line 23.
-
-
-LaTeX Warning: Citation 'littmanSCINGInferenceRobust2023' on page 17 undefined on input line 23.
-
-
-LaTeX Warning: Citation 'aibarSCENICSinglecellRegulatory2017' on page 17 undefined on input line 23.
-
-
-LaTeX Warning: Citation 'bravogonzalez-blasSCENICSinglecellMultiomic2023' on page 17 undefined on input line 23.
-
-
-LaTeX Warning: Citation 'suInferringGeneRegulatory2024' on page 17 undefined on input line 23.
-
-
-LaTeX Warning: Citation 'ganInferringGeneRegulatory2024' on page 17 undefined on input line 23.
-
-
-LaTeX Warning: Citation 'raharinirinaInferringGeneRegulatory2021' on page 17 undefined on input line 23.
-
-
-LaTeX Warning: Citation 'chenGraphAttentionNetwork2022' on page 17 undefined on input line 23.
-
-
-LaTeX Warning: Citation 'wangDictysDynamicGene2023' on page 17 undefined on input line 23.
-
-
-LaTeX Warning: Citation 'zhangInferenceCellTypespecific2023' on page 17 undefined on input line 23.
-
-
-LaTeX Warning: Citation 'wangInductiveInferenceGene2020' on page 17 undefined on input line 23.
-
-
-LaTeX Warning: Citation 'kamimotoDissectingCellIdentity2023' on page 17 undefined on input line 23.
-
-
-LaTeX Warning: Citation 'shuModelingGeneRegulatory2021' on page 17 undefined on input line 23.
-
-
-LaTeX Warning: Citation 'boijaTranscriptionFactorsActivate2018' on page 17 undefined on input line 23.
-
-
-LaTeX Warning: Citation 'gretafriarItTakesThree2023' on page 17 undefined on input line 23.
-
-
-LaTeX Warning: Citation 'oksuzTranscriptionFactorsInteract2023' on page 17 undefined on input line 23.
-
-
-LaTeX Warning: Citation 'talukdarTranscriptionalCoactivatorsEmerging2023' on page 17 undefined on input line 23.
-
-
-LaTeX Warning: Citation 'statelloGeneRegulationLong2021' on page 17 undefined on input line 23.
-
-
-LaTeX Warning: Citation 'wangDictysDynamicGene2023' on page 17 undefined on input line 23.
-
-
-LaTeX Warning: Citation 'wangDecipheringDriverRegulators2023' on page 17 undefined on input line 23.
-
-
-Overfull \hbox (91.388pt too wide) in paragraph at lines 23--24
-\TU/LinLibertine(0)/m/n/12 pre-dict cell be-ha-vior and the im-pact of drugs and gene knock-outs[[],
- []
-
-
-Overfull \hbox (100.20764pt too wide) in paragraph at lines 23--24
-[]\TU/LinLibertine(0)/m/n/12 , [],
- []
-
-
-Overfull \hbox (4.71342pt too wide) in paragraph at lines 23--24
-[]\TU/LinLibertine(0)/m/n/12 , []]. A
- []
-
-
-Overfull \hbox (50.04733pt too wide) in paragraph at lines 23--24
-\TU/LinLibertine(0)/m/n/12 can sim-plify these in-ter-ac-tions via a gene net-work[[]]
- []
-
-
-Overfull \hbox (7.75725pt too wide) in paragraph at lines 23--24
-\TU/LinLibertine(0)/m/n/12 TAC-seq[[], [],
- []
-
-
-Overfull \hbox (21.6916pt too wide) in paragraph at lines 23--24
-[]\TU/LinLibertine(0)/m/n/12 , [],
- []
-
-
-Overfull \hbox (169.06985pt too wide) in paragraph at lines 23--24
-[]\TU/LinLibertine(0)/m/n/12 , [], [],
- []
-
-
-Overfull \hbox (118.06984pt too wide) in paragraph at lines 23--24
-[]\TU/LinLibertine(0)/m/n/12 , [], [],
- []
-
-
-Overfull \hbox (4.84131pt too wide) in paragraph at lines 23--24
-[]\TU/LinLibertine(0)/m/n/12 , []]. This gene
- []
-
-
-Overfull \hbox (207.98595pt too wide) in paragraph at lines 23--24
-[]\TU/LinLibertine(0)/m/n/12 , [], [],
- []
-
-
-
-[17
-
-]
-
-LaTeX Warning: Citation 'pratapaBenchmarkingAlgorithmsGene2020' on page 18 undefined on input line 25.
-
-
-LaTeX Warning: Citation 'mccallaIdentifyingStrengthsWeaknesses2023' on page 18 undefined on input line 25.
-
-
-LaTeX Warning: Citation 'vaswaniAttentionAllYou2023' on page 18 undefined on input line 25.
-
-
-LaTeX Warning: Citation 'devlinBERTPretrainingDeep2019' on page 18 undefined on input line 25.
-
-
-LaTeX Warning: Citation 'theodorisTransferLearningEnables2023' on page 18 undefined on input line 25.
-
-
-LaTeX Warning: Citation 'cuiScGPTBuildingFoundation2024' on page 18 undefined on input line 25.
-
-
-Overfull \hbox (112.35074pt too wide) in paragraph at lines 25--26
-\TU/LinLibertine(0)/m/n/12 effect cor-rec-tion, per-tur-ba-tion pre-dic-tion, and gene net-work in-fe-rence[[]].
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[18]
-
-LaTeX Warning: Citation 'kalfonCantinilabScPRINT2025' on page 19 undefined on input line 32.
-
+[17]
 LaTeX Font Info:    Font shape `TU/LinLibertine(5)/m/n' will be
 (Font)              scaled to size 12.0pt on input line 32.
-
-LaTeX Warning: Citation 'programCZCELLxGENEDiscover2023' on page 19 undefined on input line 32.
-
-LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/it' will be
-(Font)              scaled to size 12.0pt on input line 32.
-
-LaTeX Warning: Citation 'kalfonJkobjectBenGRNAwesome2025' on page 19 undefined on input line 32.
-
-
-LaTeX Warning: Citation 'kalfonCantinilabGRnnData2025' on page 19 undefined on input line 32.
-
-
-Overfull \hbox (16.30547pt too wide) in paragraph at lines 32--33
-[]\TU/LinLibertine(0)/m/n/12 sc-Print[[]] ([][]$\TU/LinLibertine(5)/m/n/12 https://github.com/cantinilab/
- []
-
-<figures/scprint/figure1.png, id=603, 6999.14874pt x 4889.26625pt>
+<figures/scprint/figure1.png, id=665, 6999.14874pt x 4889.26625pt>
 File: figures/scprint/figure1.png Graphic file (type png)
 <use figures/scprint/figure1.png>
 Package luatex.def Info: figures/scprint/figure1.png  used on input line 40.
 (luatex.def)             Requested size: 352.81552pt x 246.41734pt.
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+[18]
+
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-LaTeX Warning: Citation 'jeremiekalfonTrainingFoundationModels' on page 19 undefined on input line 46.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-LaTeX Warning: Citation 'programCZCELLxGENEDiscover2023' on page 19 undefined on input line 46.
-
-
-LaTeX Warning: Citation 'daoFlashAttention2FasterAttention2023' on page 19 undefined on input line 46.
-
-
-Overfull \hbox (2.68193pt too wide) in paragraph at lines 46--47
-\TU/LinLibertine(0)/m/n/12 cus-tom weighted-random-sampling me-thod[[]]
- []
-
-
-LaTeX Warning: Citation 'leoteRegulatoryNetworkbasedImputation2022' on page 19 undefined on input line 52.
-
-
-LaTeX Warning: Citation 'eraslanSinglecellRNAseqDenoising2019' on page 19 undefined on input line 52.
-
-
-Overfull \hbox (202.58713pt too wide) in paragraph at lines 52--53
-[]\TU/LinLibertine(0)/m/n/12 In-deed, si-mi-larly to ADIm-pute[[], []],
- []
-
-
-LaTeX Warning: Citation 'haoLargescaleFoundationModel2024' on page 19 undefined on input line 54.
-
-
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [19]
-
-LaTeX Warning: Citation 'piranDisentanglementSinglecellData2024' on page 20 undefined on input line 58.
-
-
-LaTeX Warning: Citation 'rivesBiologicalStructureFunction2021' on page 20 undefined on input line 62.
-
-
-LaTeX Warning: Citation 'rosenUniversalCellEmbeddings2023' on page 20 undefined on input line 62.
-
-
-LaTeX Warning: Citation 'huImprovingProteinproteinInteraction2024' on page 20 undefined on input line 62.
-
-
 Overfull \hbox (6.83517pt too wide) in paragraph at lines 64--65
 []\TU/LinLibertine(0)/m/n/12 The ge-ne’s ex-pres-sion is to-ke-ni-zed via a multi-layer per-cep-tron (MLP) using log-normalized
  []
 
 
-LaTeX Warning: Citation 'choromanskiRethinkingAttentionPerformers2022' on page 20 undefined on input line 70.
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
 [20]
-
-LaTeX Warning: Citation 'abnarQuantifyingAttentionFlow2020' on page 21 undefined on input line 76.
-
-
-LaTeX Warning: Citation 'clarkWhatDoesBERT2019a' on page 21 undefined on input line 76.
-
-
-LaTeX Warning: Citation 'bibalAttentionExplanationIntroduction2022' on page 21 undefined on input line 76.
-
-
-Overfull \hbox (185.9333pt too wide) in paragraph at lines 76--77
-\TU/LinLibertine(0)/m/n/12 ture[[], [], []],
- []
-
-
-LaTeX Warning: Citation 'shuModelingGeneRegulatory2021' on page 21 undefined on input line 78.
-
-
-LaTeX Warning: Citation 'huynh-thuInferringRegulatoryNetworks2010' on page 21 undefined on input line 78.
-
-
-LaTeX Warning: Citation 'chenQuantizedMultitaskLearning2024' on page 21 undefined on input line 78.
-
-
-LaTeX Warning: Citation 'cuiScGPTBuildingFoundation2024' on page 21 undefined on input line 78.
-
-
-Overfull \hbox (133.8526pt too wide) in paragraph at lines 78--79
-\TU/LinLibertine(0)/m/n/12 scGPT, Deep-SEM[[]], GE-NIE3[[]],
- []
-
-
-Overfull \hbox (63.91121pt too wide) in paragraph at lines 78--79
-\TU/LinLibertine(0)/m/n/12 single-cell RNA-seq, men-tio-ning the in-fe-rence of gene in-ter-ac-tions[[]].
- []
-
-<figures/scprint/figure2.png, id=639, 4067.195pt x 4354.2675pt>
+<figures/scprint/figure2.png, id=744, 4067.195pt x 4354.2675pt>
 File: figures/scprint/figure2.png Graphic file (type png)
 <use figures/scprint/figure2.png>
 Package luatex.def Info: figures/scprint/figure2.png  used on input line 84.
 (luatex.def)             Requested size: 352.81552pt x 377.7153pt.
 
-LaTeX Warning: Citation 'subramanianGeneSetEnrichment2005a' on page 21 undefined on input line 86.
-
-
-LaTeX Warning: Citation 'subramanianGeneSetEnrichment2005a' on page 21 undefined on input line 86.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[21]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-LaTeX Warning: Citation 'dibaeiniaSERGIOSingleCellExpression2020' on page 22 undefined on input line 92.
 
-
-LaTeX Warning: Citation 'liuRegNetworkIntegratedDatabase2015' on page 22 undefined on input line 92.
-
-
-LaTeX Warning: Citation 'tureiOmniPathGuidelinesGateway2016' on page 22 undefined on input line 94.
-
-
-LaTeX Warning: Citation 'marshallHighresolutionSlideseqV2Spatial2022' on page 22 undefined on input line 94.
-
-
-LaTeX Warning: Citation 'wangSinglecellMultiomeHuman2022b' on page 22 undefined on input line 94.
-
-
-LaTeX Warning: Citation 'kongLandscapeImmuneDysregulation2023' on page 22 undefined on input line 94.
-
-
-Overfull \hbox (7.49898pt too wide) in paragraph at lines 94--95
-[]\TU/LinLibertine(0)/m/n/12 , []]
- []
-
-
-LaTeX Warning: Citation 'dunhamIntegratedEncyclopedia' on page 22 undefined on input line 96.
-
-
-LaTeX Warning: Citation 'subramanianGeneSetEnrichment2005a' on page 22 undefined on input line 96.
-
-
-LaTeX Warning: Citation 'nichaniHowTransformersLearn2024' on page 22 undefined on input line 100.
-
-
-LaTeX Warning: Citation 'shimLayerwisePruningTransformer2021' on page 22 undefined on input line 100.
-
-
-LaTeX Warning: Citation 'fedusSwitchTransformersScaling2022' on page 22 undefined on input line 100.
-
-
+[21]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [22]
-
-LaTeX Warning: Citation 'pratapaBenchmarkingAlgorithmsGene2020' on page 23 undefined on input line 102.
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
 [23]
-
-LaTeX Warning: Citation 'franzenPanglaoDBWebServer2019' on page 24 undefined on input line 113.
-
-
-Overfull \hbox (150.54594pt too wide) in paragraph at lines 113--114
-[]\TU/LinLibertine(0)/m/n/12 Mo-reo-ver, amongst the 178 cell types we have mar-ker gene sets for in pan-ga-loDB[[]],
- []
-
-
-LaTeX Warning: Citation 'liberzonMolecularSignaturesDatabase2015' on page 24 undefined on input line 115.
-
-
-Overfull \hbox (123.3544pt too wide) in paragraph at lines 115--116
-\TU/LinLibertine(0)/m/n/12 tions si-gni-fi-cantly en-ri-ched for their ENCODE-validated gene tar-gets[[]].
- []
-
-<figures/scprint/figure3.png, id=678, 4387.39125pt x 3598.44376pt>
+<figures/scprint/figure3.png, id=815, 4387.39125pt x 3598.44376pt>
 File: figures/scprint/figure3.png Graphic file (type png)
 <use figures/scprint/figure3.png>
 Package luatex.def Info: figures/scprint/figure3.png  used on input line 125.
 (luatex.def)             Requested size: 352.81552pt x 289.36389pt.
 
+
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-LaTeX Warning: Citation 'dixitPerturbseqDissectingMolecular2016' on page 24 undefined on input line 131.
-
-
-LaTeX Warning: Citation 'parkChIPSeqAdvantages2009' on page 24 undefined on input line 131.
-
-
-Overfull \hbox (102.38948pt too wide) in paragraph at lines 131--132
-\TU/LinLibertine(0)/m/n/12 ties, perturb-seq[[]], and ChIP-seq[[]],
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [24]
-
-LaTeX Warning: Citation 'mccallaIdentifyingStrengthsWeaknesses2023' on page 25 undefined on input line 133.
-
-
-LaTeX Warning: Citation 'yanSinglecellRNASeqProfiling2013' on page 25 undefined on input line 135.
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
 [25]
-
-LaTeX Warning: Citation 'kidderChIPSeqTechnicalConsiderations2011' on page 26 undefined on input line 147.
-
-
-LaTeX Warning: Citation 'replogleMappingInformationrichGenotypephenotype2022' on page 26 undefined on input line 149.
-
-
-Overfull \hbox (295.96214pt too wide) in paragraph at lines 149--150
-[]\TU/LinLibertine(0)/m/n/12 To ans-wer this is-sue, we se-lec-ted ano-ther da-ta-set : genome-wide perturb-seq (gwps)[[]].
- []
-
-<figures/scprint/figure4.png, id=700, 4632.30624pt x 4806.95876pt>
+<figures/scprint/figure4.png, id=849, 4632.30624pt x 4806.95876pt>
 File: figures/scprint/figure4.png Graphic file (type png)
 <use figures/scprint/figure4.png>
 Package luatex.def Info: figures/scprint/figure4.png  used on input line 162.
 (luatex.def)             Requested size: 352.81552pt x 366.08081pt.
 
+
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-LaTeX Warning: Citation 'dijkRecoveringGeneInteractions2018' on page 26 undefined on input line 170.
-
-
-LaTeX Warning: Citation 'wagnerKnearestNeighborSmoothing2018' on page 26 undefined on input line 170.
-
-
-LaTeX Warning: Citation 'wangSinglecellMultiomeHuman2022b' on page 26 undefined on input line 170.
-
-
-LaTeX Warning: Citation 'vanzylCellAtlasHuman2022' on page 26 undefined on input line 170.
-
-
-LaTeX Warning: Citation 'burclaffProximaltoDistalSurveyHealthy2022' on page 26 undefined on input line 170.
-
-
-Overfull \hbox (37.98949pt too wide) in paragraph at lines 170--171
-\TU/LinLibertine(0)/m/n/12 sc-PRINT and two other state-of-the-art me-thods, MA-GIC[[]]
- []
-
-
-Overfull \hbox (200.22902pt too wide) in paragraph at lines 170--171
-\TU/LinLibertine(0)/m/n/12 sues[[], [], []],
- []
-
-
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [26]
-
-LaTeX Warning: Citation 'lueckenBenchmarkingAtlaslevelData2022' on page 27 undefined on input line 176.
-
-
-LaTeX Warning: Citation 'OpenproblemsbioOpenproblemsv22024' on page 27 undefined on input line 176.
-
-
-Overfull \hbox (44.81398pt too wide) in paragraph at lines 176--177
-\TU/LinLibertine(0)/m/n/12 thods)[[], []]. 
- []
-
-
-LaTeX Warning: Citation 'condeCrosstissueImmuneCell2022' on page 27 undefined on input line 178.
-
-
-LaTeX Warning: Citation 'OpenproblemsbioOpenproblemsv22024' on page 27 undefined on input line 180.
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
 [27]
-
-LaTeX Warning: Citation 'sikkemaIntegratedCellAtlas2023' on page 28 undefined on input line 188.
-
-
-LaTeX Warning: Citation 'amodioExploringSinglecellData2019' on page 28 undefined on input line 190.
-
-
-LaTeX Warning: Citation 'liuJointlyDefiningCell2020' on page 28 undefined on input line 190.
-
-<figures/scprint/figure5.png, id=728, 2937.97626pt x 2975.115pt>
+<figures/scprint/figure5.png, id=897, 2937.97626pt x 2975.115pt>
 File: figures/scprint/figure5.png Graphic file (type png)
 <use figures/scprint/figure5.png>
 Package luatex.def Info: figures/scprint/figure5.png  used on input line 198.
 (luatex.def)             Requested size: 352.81552pt x 357.27078pt.
 
+
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-LaTeX Warning: Citation 'josephSingleCellAnalysis2021' on page 28 undefined on input line 204.
-
-
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [28]
-
-LaTeX Warning: Citation 'saudiImmuneActivatedCellsAre2023' on page 29 undefined on input line 206.
-
-
-LaTeX Warning: Citation 'Bcl2AssociatedAthanogene' on page 29 undefined on input line 206.
-
-
-LaTeX Warning: Citation 'HostCLIC4Expression' on page 29 undefined on input line 206.
-
-
-Overfull \hbox (71.36978pt too wide) in paragraph at lines 206--207
-\TU/LinLibertine(0)/m/n/12 mi-nant in pros-tate can-cer and are of-ten swit-ched me-mory B-cells[[]].
- []
-
-
-Overfull \hbox (10.58081pt too wide) in paragraph at lines 206--207
-\TU/LinLibertine(0)/m/n/12 main-te-nance of the tu-mor mi-croen-vi-ron-ment (TME) in breast can-cer[[]]. 
- []
-
-
-LaTeX Warning: Citation 'zhuTAP1PotentialImmunerelated2023' on page 29 undefined on input line 210.
-
-
-LaTeX Warning: Citation 'TargetingLIPAIndependent' on page 29 undefined on input line 210.
-
-
-Overfull \hbox (19.92381pt too wide) in paragraph at lines 210--211
-\TU/LinLibertine(0)/m/n/12 gni-fi-cance, like LIP, whose pa-ra-log LIPA is a known can-cer tar-get[[]]
- []
-
-
-LaTeX Warning: Citation 'CancerassociatedFibroblastsBasic' on page 29 undefined on input line 214.
-
-
-LaTeX Warning: Citation 'FibroblastHeterogeneityProstate' on page 29 undefined on input line 214.
-
-
-LaTeX Warning: Citation 'EpidemiologyClinicalBenign' on page 29 undefined on input line 214.
-
-<figures/scprint/figure6.png, id=744, 2921.91624pt x 2804.4775pt>
+<figures/scprint/figure6.png, id=930, 2921.91624pt x 2804.4775pt>
 File: figures/scprint/figure6.png Graphic file (type png)
 <use figures/scprint/figure6.png>
 Package luatex.def Info: figures/scprint/figure6.png  used on input line 218.
 (luatex.def)             Requested size: 352.81552pt x 338.61963pt.
 
+
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-LaTeX Warning: Citation 'kuznickiCalcyclinMarkerHuman1992' on page 29 undefined on input line 224.
-
-
-LaTeX Warning: Citation 'S100A6MolecularFunction' on page 29 undefined on input line 224.
-
-
-LaTeX Warning: Citation 'WikiPathways2024Next' on page 29 undefined on input line 224.
-
-
-LaTeX Warning: Citation 'ROLEBIOMARKERMACROPHAGE' on page 29 undefined on input line 224.
-
-
-LaTeX Warning: Citation 'IGFBP7PromotesEndothelial' on page 29 undefined on input line 224.
-
-
-Overfull \hbox (116.88887pt too wide) in paragraph at lines 224--225
-\TU/LinLibertine(0)/m/n/12 other things, cell cycle and dif-fe-ren-tia-tion[[], []].
- []
-
-
-Overfull \hbox (87.31415pt too wide) in paragraph at lines 224--225
-\TU/LinLibertine(0)/m/n/12 We also see MIF, IGFBP7, and other genes in-vol-ved in im-mune si-gna-ling and growth[[],
- []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [29]
 
-LaTeX Warning: Citation 'liProstateAssociatedGene42022' on page 30 undefined on input line 228.
-
-
-LaTeX Warning: Citation 'josephSingleCellAnalysis2021' on page 30 undefined on input line 228.
-
-
-LaTeX Warning: Citation 'lvPAGE4PromotesProstate2019' on page 30 undefined on input line 228.
-
-
-LaTeX Warning: Citation 'diasDownregulationMetallothionein2A2022' on page 30 undefined on input line 228.
-
-
-LaTeX Warning: Citation 'luoMechanismPrognosticMarker2023' on page 30 undefined on input line 228.
-
-
-LaTeX Warning: Citation 'defreitasCirculating70KDa2022' on page 30 undefined on input line 228.
-
-
-LaTeX Warning: Citation 'CD99CrossroadsPhysiology' on page 30 undefined on input line 228.
-
-
-LaTeX Warning: Citation 'milacicReactomePathwayKnowledgebase2024' on page 30 undefined on input line 228.
-
-
-LaTeX Warning: Citation 'mausIronAccumulationDrives2023' on page 30 undefined on input line 228.
-
-
-LaTeX Warning: Citation 'qianEstablishmentCancerassociatedFibroblastsrelated2023' on page 30 undefined on input line 228.
-
-
-Overfull \hbox (144.74394pt too wide) in paragraph at lines 228--229
-\TU/LinLibertine(0)/m/n/12 anti-invasion)[[], [], []].
- []
-
-
-Overfull \hbox (97.12839pt too wide) in paragraph at lines 228--229
-[]\TU/LinLibertine(0)/m/n/12 , [], []].
- []
-
-
-Overfull \hbox (219.99251pt too wide) in paragraph at lines 228--229
-\TU/LinLibertine(0)/m/n/12 C ;HSPE1), and the se-cre-tory se-nes-cence phe-no-type (H2AZ1 ;UBE2S ;UBE2C ;IGFBP7)[[]],
- []
-
-
-Overfull \hbox (261.08237pt too wide) in paragraph at lines 228--229
-\TU/LinLibertine(0)/m/n/12 hall-marks of fi-bro-sis and ma-li-gnan-cies[[], []].
- []
-
-
-LaTeX Warning: Citation 'liAccumulationNCOA1Dependent2023' on page 30 undefined on input line 230.
-
-
-LaTeX Warning: Citation 'luoMechanismPrognosticMarker2023' on page 30 undefined on input line 230.
-
-
-LaTeX Warning: Citation 'kladi-skandaliExpressionalProfilingClinical2018' on page 30 undefined on input line 230.
-
-
-LaTeX Warning: Citation 'SelenoproteinDeficiencyAlters' on page 30 undefined on input line 230.
-
-
-Overfull \hbox (52.24298pt too wide) in paragraph at lines 230--231
-\TU/LinLibertine(0)/m/n/12 be re-la-ted to pros-tate ma-li-gnan-cies and col-la-gen in the ECM[[]].
- []
-
-
-LaTeX Warning: Citation 'EffectPHExtracellular' on page 30 undefined on input line 232.
-
-
-LaTeX Warning: Citation 'colottaCancerrelatedInflammationSeventh2009' on page 30 undefined on input line 232.
-
-
-LaTeX Warning: Citation 'hanahanHallmarksCancerNext2011' on page 30 undefined on input line 232.
-
-
+[30]) (./papers/scprint_methods.tex
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[30]
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[31]) (./papers/scprint_methods.tex
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+[31]
 
 [32]
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[33]
 
 LaTeX Font Warning: Font shape `OT1/LinLibertine(0)/sb/n' undefined
 (Font)              using `OT1/LinLibertine(0)/m/n' instead on input line 60.
@@ -3785,271 +3417,80 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[34]
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[35]
+[33]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
+[34]
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+[35]
 
 [36]
 
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
 [37]
+Underfull \vbox (badness 1939) has occurred while \output is active []
 
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [38]
-./papers/scprint_methods.tex:401: Too many }'s.
-l.401 MONDO, EFO, HANCESTRO-126}
-                                , respectively.
-You've closed more groups than you opened.
-Such booboos are generally harmless, so keep going.
-
-
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [39]
 
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
 [40]
-Underfull \vbox (badness 1072) has occurred while \output is active []
-
-
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [41]
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[42]
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/b/it' will be
 (Font)              scaled to size 12.0pt on input line 646.
 
 
+[42]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
 
 [43]
-Overfull \hbox (12.58592pt too wide) in paragraph at lines 744--755
-\TU/LinLibertine(5)/m/n/12 minimal_example.ipynb$[][] \TU/LinLibertine(0)/m/n/12 from the re-po-si-tory : [][]$\TU/LinLibertine(5)/m/n/12 https://github.com/g-[]torr/
- []
-
-
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [44]
 
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
 [45]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [46]
 
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
 [47]
 
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
 [48]
-Underfull \vbox (badness 3657) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [49]
 
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
 [50]
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [51]
 
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
 [52]
 Overfull \hbox (15.3782pt too wide) in paragraph at lines 1161--1162
-[]\TU/LinLibertine(0)/b/n/12 Grnn-Data \TU/LinLibertine(0)/m/n/12 : [][]$\TU/LinLibertine(5)/m/n/12 https://github.com/cantinilab/GRnnData$[][]\TU/LinLibertine(0)/m/n/12 , DOI :[][]10.5281/ze-
- []
-
-
-Overfull \hbox (49.28229pt too wide) in paragraph at lines 1163--1164
-[]\TU/LinLibertine(0)/b/n/12 sc-Da-ta-Loa-der \TU/LinLibertine(0)/m/n/12 : [][]$\TU/LinLibertine(5)/m/n/12 https://github.com/jkobject/scDataLoader$[][]\TU/LinLibertine(0)/m/n/12 , DOI :[][]10.5281/ze-
+[]\TU/LinLibertine(0)/b/n/12 Grnn-Data \TU/LinLibertine(0)/m/n/12 : [][]$\TU/LinLibertine(5)/m/n/12 h t t p s : / / g i t h u b . c o m / c a n t i n i l a b / G R n n D a ta$[][]\TU/LinLibertine(0)/m/n/12 , DOI :[][]10.5281/ze-
  []
 
 ) (./papers/xpressor.tex
 
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
 [53]
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [54<./figures/scprint/figure1.png>]
 
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
 [55<./figures/scprint/figure2.png>]
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [56<./figures/scprint/figure3.png>]
 
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
 [57<./figures/scprint/figure4.png>]
 
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
 [58<./figures/scprint/figure5.png>]
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [59<./figures/scprint/figure6.png>]
 
@@ -4058,315 +3499,24 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 ]
 Chapitre 2.
 
-LaTeX Warning: Citation 'esm2' on page 61 undefined on input line 23.
-
-
-LaTeX Warning: Citation 'scprint' on page 61 undefined on input line 23.
-
-
-LaTeX Warning: Citation 'cuiScGPTBuildingFoundation2024' on page 61 undefined on input line 23.
-
-
-LaTeX Warning: Citation 'bunneHowBuildVirtual2024' on page 61 undefined on input line 25.
-
-
-LaTeX Warning: Citation 'songAIDrivenDigitalOrganism2024' on page 61 undefined on input line 25.
-
-
 
 [61]
 
-LaTeX Warning: Citation 'siFoundationModelsMolecular2024' on page 62 undefined on input line 27.
-
-
-LaTeX Warning: Citation 'abramsonAccurateStructurePrediction2024' on page 62 undefined on input line 32.
-
-
-LaTeX Warning: Citation 'mendez-lucioMolEFoundationModel2024' on page 62 undefined on input line 32.
-
-
-LaTeX Warning: Citation 'rossLargescaleChemicalLanguage2022' on page 62 undefined on input line 32.
-
-
-LaTeX Warning: Citation 'batznerE3equivariantGraphNeural2022' on page 62 undefined on input line 32.
-
-
-LaTeX Warning: Citation 'kozinskyScalingLeadingAccuracy2023' on page 62 undefined on input line 32.
-
-
-Overfull \hbox (173.80429pt too wide) in paragraph at lines 32--33
-\TU/LinLibertine(0)/m/n/12 plex quan-tum physics-based rules that go-vern mo-le-cules and their in-ter-ac-tions [[]].
- []
-
-
-Overfull \hbox (123.83308pt too wide) in paragraph at lines 32--33
-\TU/LinLibertine(0)/m/n/12 mea-su-re-ments such as bin-ding to a tar-get, po-tency, so-lu-bi-lity, and more [[],
- []
-
-
-Overfull \hbox (116.46535pt too wide) in paragraph at lines 32--33
-\TU/LinLibertine(0)/m/n/12 concer-ning the sym-me-tries of mo-le-cules (re-la-tive po-si-tions and angles) [[]].
- []
-
-
-LaTeX Warning: Citation 'benali2025pushingaccuracylimitfoundation' on page 62 undefined on input line 34.
-
-
-LaTeX Warning: Citation 'rhodes2025orbv3atomisticsimulationscale' on page 62 undefined on input line 34.
-
-
-LaTeX Warning: Citation 'nguyen2023hyenadnalongrangegenomicsequence' on page 62 undefined on input line 36.
-
-
-LaTeX Warning: Citation 'vaswaniAttentionAllYou2023' on page 62 undefined on input line 36.
-
-
-LaTeX Warning: Citation 'dalla-torreNucleotideTransformerBuilding2024' on page 62 undefined on input line 36.
-
-
-LaTeX Warning: Citation 'wangMultipurposeRNALanguage2024' on page 62 undefined on input line 36.
-
-
-LaTeX Warning: Citation 'fradkinOrthrusEvolutionaryFunctional2024' on page 62 undefined on input line 36.
-
-
-LaTeX Warning: Citation 'brixiGenomeModelingDesign2025' on page 62 undefined on input line 36.
-
-
-Overfull \hbox (76.462pt too wide) in paragraph at lines 36--37
-\TU/LinLibertine(0)/m/n/12 have been in-tro-du-ced to handle large context sizes [[]],
- []
-
-
-Overfull \hbox (9.59563pt too wide) in paragraph at lines 36--37
-[]\TU/LinLibertine(0)/m/n/12 , [],
- []
-
-
-LaTeX Warning: Citation 'esm2' on page 62 undefined on input line 38.
-
-
-LaTeX Warning: Citation 'brixiGenomeModelingDesign2025' on page 62 undefined on input line 38.
-
-
-LaTeX Warning: Citation 'cornmanOMGDatasetOpen2024a' on page 62 undefined on input line 38.
-
-
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
 [62]
-
-LaTeX Warning: Citation 'abramsonAccurateStructurePrediction2024' on page 63 undefined on input line 42.
-
-
-LaTeX Warning: Citation 'xiaNatureLMDecipheringLanguage2025' on page 63 undefined on input line 43.
-
-
-Overfull \hbox (153.56589pt too wide) in paragraph at lines 42--44
-\TU/LinLibertine(0)/m/n/12 RNA, DNA, and pro-teins, as well as in mo-de-ling their in-tri-cate in-ter-ac-tions [[]].
- []
-
-
-LaTeX Warning: Citation 'bunneHowBuildVirtual2024' on page 63 undefined on input line 47.
-
-
-LaTeX Warning: Citation 'scprint' on page 63 undefined on input line 47.
-
-
-LaTeX Warning: Citation 'theodorisTransferLearningEnables2023' on page 63 undefined on input line 47.
-
-
-LaTeX Warning: Citation 'cuiScGPTBuildingFoundation2024' on page 63 undefined on input line 47.
-
-
-LaTeX Warning: Citation 'haoLargescaleFoundationModel2024' on page 63 undefined on input line 47.
-
-
-LaTeX Warning: Citation 'rosenUniversalCellEmbeddings2023' on page 63 undefined on input line 47.
-
-
-LaTeX Warning: Citation 'kedzierskaAssessingLimitsZeroshot2023' on page 63 undefined on input line 47.
-
-
-Overfull \hbox (34.21332pt too wide) in paragraph at lines 47--48
-\TU/LinLibertine(0)/m/n/12 of the dif-ferent che-mi-cal ele-ments (pro-teins, RNAs) present in cells. [[],
- []
-
-
-Overfull \hbox (8.6658pt too wide) in paragraph at lines 47--48
-[]\TU/LinLibertine(0)/m/n/12 , [], [],
- []
-
-
-Overfull \hbox (5.41492pt too wide) in paragraph at lines 47--48
-[]\TU/LinLibertine(0)/m/n/12 , []]. Their ar-
- []
-
-
-LaTeX Warning: Citation 'bendidiBenchmarkingTranscriptomicsFoundation2024' on page 63 undefined on input line 49.
-
-
-LaTeX Warning: Citation 'boiarskyDeepDiveSingleCell2023' on page 63 undefined on input line 49.
-
-
-LaTeX Warning: Citation 'programCZCELLxGENEDiscover2023' on page 63 undefined on input line 49.
-
-
-Overfull \hbox (119.87389pt too wide) in paragraph at lines 49--51
-\TU/LinLibertine(0)/m/n/12 tal va-li-da-tions [[], []].
- []
-
-
-LaTeX Warning: Citation 'oquabDINOv2LearningRobust2024' on page 63 undefined on input line 52.
-
-
-LaTeX Warning: Citation 'chief' on page 63 undefined on input line 52.
-
-
-LaTeX Warning: Citation 'brayCellPaintingHighcontent2016' on page 63 undefined on input line 52.
-
-
-LaTeX Warning: Citation 'wencksternAIpoweredVirtualTissues2025' on page 63 undefined on input line 52.
-
-
-Overfull \hbox (7.07594pt too wide) in paragraph at lines 52--53
-\TU/LinLibertine(0)/m/n/12 [[], []]. The
- []
-
-
-LaTeX Warning: Citation 'alonExpansionSequencingSpatially2021' on page 63 undefined on input line 54.
-
-
-LaTeX Warning: Citation 'hertleHorizontalGenomeTransfer2021' on page 63 undefined on input line 54.
-
-
-Overfull \hbox (23.91652pt too wide) in paragraph at lines 54--55
-\TU/LinLibertine(0)/m/n/12 in 2D slides, and 3D mo-da-li-ties are still bur-geo-ning [[]].
- []
-
-
-Overfull \hbox (13.85382pt too wide) in paragraph at lines 54--55
-\TU/LinLibertine(0)/m/n/12 se-quences to mo-le-cules and even en-tire or-ga-nelles [[]].
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[63]
-<figures/xpressor/scales.png, id=1005, 1438.37375pt x 2313.64375pt>
+<figures/xpressor/scales.png, id=1273, 1438.37375pt x 2313.64375pt>
 File: figures/xpressor/scales.png Graphic file (type png)
 <use figures/xpressor/scales.png>
 Package luatex.def Info: figures/xpressor/scales.png  used on input line 58.
 (luatex.def)             Requested size: 264.61333pt x 425.61678pt.
 
-
-LaTeX Warning: Citation 'gunawanIntroductionRepresentationLearning2023' on page 64 undefined on input line 66.
-
-
-LaTeX Warning: Citation 'bengioRepresentationLearningReview2014a' on page 64 undefined on input line 66.
-
-
-LaTeX Warning: Citation 'scvi' on page 64 undefined on input line 66.
-
-
-LaTeX Warning: Citation 'scarches' on page 64 undefined on input line 66.
-
-
-LaTeX Warning: Citation 'cheap' on page 64 undefined on input line 66.
-
-
-LaTeX Warning: Citation 'mentzerFiniteScalarQuantization2023' on page 64 undefined on input line 66.
-
-
-LaTeX Warning: Citation 'zhouDNABERTSPioneeringSpecies2024' on page 64 undefined on input line 66.
-
-
-Overfull \hbox (153.20435pt too wide) in paragraph at lines 66--67
-\TU/LinLibertine(0)/m/n/12 from ma-trix fac-to-ri-za-tion, nea-rest neigh-bors, and neu-ral net-works [[],
- []
-
-
-Overfull \hbox (80.50346pt too wide) in paragraph at lines 66--67
-\TU/LinLibertine(0)/m/n/12 ding, the Hour-Glass em-bed-ding me-thod [[]] in-tro-du-ced FSQ [[]]
- []
-
-
-Overfull \hbox (118.14832pt too wide) in paragraph at lines 66--67
-\TU/LinLibertine(0)/m/n/12 mostly res-tric-ted to me-ta-ge-no-mics, with the ex-cep-tion of DNA-BERT-S [[]]. 
- []
-
-
-Underfull \vbox (badness 4686) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+[63]
 
 [64<./figures/xpressor/scales.png>]
-
-LaTeX Warning: Citation 'schockaertEmbeddingsEpistemicStates2023' on page 65 undefined on input line 68.
-
-
-LaTeX Warning: Citation 'leeNVEmbedImprovedTechniques2025' on page 65 undefined on input line 68.
-
-
-LaTeX Warning: Citation 'ilseAttentionbasedDeepMultiple2018' on page 65 undefined on input line 68.
-
-
-LaTeX Warning: Citation 'testft' on page 65 undefined on input line 74.
-
-
-LaTeX Warning: Citation 'lora' on page 65 undefined on input line 74.
-
-
-LaTeX Warning: Citation 'qlora' on page 65 undefined on input line 74.
-
-
-LaTeX Warning: Citation 'cola' on page 65 undefined on input line 74.
-
-
-LaTeX Warning: Citation 'tangEvaluatingRepresentationalPower2024' on page 65 undefined on input line 74.
-
-
-LaTeX Warning: Citation 'petersTuneNotTune2019' on page 65 undefined on input line 74.
-
-
-LaTeX Warning: Citation 'chronopoulouEmbarrassinglySimpleApproach2019' on page 65 undefined on input line 74.
-
-
-LaTeX Warning: Citation 'efficientft' on page 65 undefined on input line 75.
-
-
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[65]
-<figures/xpressor/first.png, id=1017, 1644.1425pt x 1625.07124pt>
+<figures/xpressor/first.png, id=1323, 1644.1425pt x 1625.07124pt>
 File: figures/xpressor/first.png Graphic file (type png)
 <use figures/xpressor/first.png>
 Package luatex.def Info: figures/xpressor/first.png  used on input line 92.
@@ -4376,119 +3526,23 @@ Package luatex.def Info: figures/xpressor/first.png  used on input line 92.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-LaTeX Warning: Citation 'scprint' on page 66 undefined on input line 100.
-
-
-LaTeX Warning: Citation 'cuiScGPTBuildingFoundation2024' on page 66 undefined on input line 100.
-
-
-LaTeX Warning: Citation 'haoLargescaleFoundationModel2024' on page 66 undefined on input line 100.
-
-
-LaTeX Warning: Citation 'scprint' on page 66 undefined on input line 100.
-
-
-Overfull \hbox (22.85133pt too wide) in paragraph at lines 100--101
-\TU/LinLibertine(0)/m/n/12 PRINT builds on pre-vious foun-da-tion mo-dels, like scGPT [[]]
- []
-
-
-LaTeX Warning: Citation 'esm2' on page 66 undefined on input line 102.
-
-
-LaTeX Warning: Citation 'esmfold' on page 66 undefined on input line 102.
-
-
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[66]
-
-LaTeX Warning: Citation 'vaswaniAttentionAllYou2023' on page 67 undefined on input line 119.
-
-
-LaTeX Warning: Citation 'leeNVEmbedImprovedTechniques2025' on page 67 undefined on input line 120.
-
-
-LaTeX Warning: Citation 'tishbyInformationBottleneckMethoda' on page 67 undefined on input line 124.
-
-
-LaTeX Warning: Citation 'scprint' on page 67 undefined on input line 148.
-
-
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[67]
-
-LaTeX Warning: Citation 'lueckenBenchmarkingAtlaslevelData2022' on page 68 undefined on input line 150.
-
-
-Overfull \hbox (33.80075pt too wide) in paragraph at lines 150--151
-[]\TU/LinLibertine(0)/m/n/12 ”Em-bed-ding qua-lity” re-fers to the ave-rage scIB [[]]
- []
-
-
-LaTeX Warning: Citation 'scprint' on page 68 undefined on input line 152.
-
-
-LaTeX Warning: Citation 'wangHierarchicalInterpretationOutofDistribution2024' on page 68 undefined on input line 152.
-
-
-LaTeX Warning: Citation 'scprint' on page 68 undefined on input line 154.
-
-
-LaTeX Warning: Citation 'tureiOmniPathGuidelinesGateway2016' on page 68 undefined on input line 154.
-
-
-LaTeX Warning: Citation 'cuiScGPTBuildingFoundation2024' on page 68 undefined on input line 156.
-
-
-LaTeX Warning: Citation 'rosenUniversalCellEmbeddings2023' on page 68 undefined on input line 166.
-
-
-LaTeX Warning: Citation 'scprint' on page 68 undefined on input line 166.
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
+[65]
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+[66]
+
+[67]
+Underfull \vbox (badness 3838) has occurred while \output is active []
+
+
 
 [68]
 
-LaTeX Warning: Citation 'esmfold' on page 69 undefined on input line 176.
-
-
-LaTeX Warning: Citation 'scprint' on page 69 undefined on input line 180.
-
-
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
 [69]
-<figures/xpressor/second.png, id=1052, 8722.5875pt x 6270.42625pt>
+<figures/xpressor/second.png, id=1398, 8722.5875pt x 6270.42625pt>
 File: figures/xpressor/second.png Graphic file (type png)
 <use figures/xpressor/second.png>
 Package luatex.def Info: figures/xpressor/second.png  used on input line 202.
@@ -4498,13 +3552,9 @@ Package luatex.def Info: figures/xpressor/second.png  used on input line 202.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [70]
 Overfull \hbox (18.80281pt too wide) in paragraph at lines 227--233
@@ -4516,78 +3566,27 @@ LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/n' will be
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/n' will be
 (Font)              scaled to size 6.6pt on input line 243.
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [71]
 
-LaTeX Warning: Citation 'oordRepresentationLearningContrastive2019' on page 72 undefined on input line 284.
+[72]) (./papers/scprint2.tex
 
+[73]
 
+[74<./figures/xpressor/first.png>]
 
+[75<./figures/xpressor/second.png>]
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+[76
 
-[72]
-Overfull \hbox (3.30977pt too wide) in paragraph at lines 299--301
-[]\TU/LinLibertine(0)/m/n/12 WandB logs, are avai-lable in the fol-lo-wing link : [][]$\TU/LinLibertine(5)/m/n/12 https://api.wandb.ai/links/
- []
-
-
-Underfull \vbox (badness 1342) has occurred while \output is active []
-
-
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[73]) (./papers/scprint2.tex
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[74]
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[75<./figures/xpressor/first.png>]
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[76<./figures/xpressor/second.png>]
+]
 Chapitre 3.
 ) (./chapters/discussion.tex
 
-[77
-
-]
+[77]
 
 [78
 
@@ -4595,25 +3594,79 @@ Chapitre 3.
 Chapitre 4.
 \c@ttl@toc@chapters=\count620
 
-Underfull \vbox (badness 7888) has occurred while \output is active []
-
-
 
 [79]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[80]) (./chapters/conclusion.tex
+
+
+[80]
+
+[81]) (./chapters/conclusion.tex
+
+[82
+
+]
 Chapitre 5.
 )
 
-LaTeX Warning: Empty bibliography on input line 322.
+[83]
 
-(./appendix.tex
-<supplementaries/supplementary_scprint.pdf, id=1121, 614.295pt x 794.97pt>
+[84
+
+]
+Overfull \hbox (6.5802pt too wide) in paragraph at lines 328--328
+\TU/LinLibertine(0)/m/n/12 Using Causally-Inspired Neu-ral Net-works''. In : \TU/LinLibertine(0)/m/it/12 bioRxiv \TU/LinLibertine(0)/m/n/12 (jan. 2024), p. 2024.01.03.573985.
+ []
+
+
+
+[85]
+Overfull \hbox (2.8013pt too wide) in paragraph at lines 328--328
+\TU/LinLibertine(0)/m/it/12 RNA | Whi-te-head Ins-ti-tute\TU/LinLibertine(0)/m/n/12 . https://wi.mit.edu/news/it-takes-three-tango-transcription-
+ []
+
+
+
+[86]
+
+[87]
+
+[88]
+
+[89]
+
+[90]
+
+[91]
+Overfull \hbox (47.95528pt too wide) in paragraph at lines 328--328
+[]\TU/LinLibertine(0)/m/it/12 Fi-bro-blast He-te-ro-ge-neity in Pros-tate Car-ci-no-ge-ne-sis - PMC\TU/LinLibertine(0)/m/n/12 . https://www.ncbi.nlm.nih.gov/pmc/ar-
+ []
+
+
+Overfull \hbox (61.95168pt too wide) in paragraph at lines 328--328
+[]\TU/LinLibertine(0)/m/it/12 Epi-de-mio-logy of Cli-ni-cal Be-nign Pros-ta-tic Hy-per-pla-sia - PMC\TU/LinLibertine(0)/m/n/12 . https://www.ncbi.nlm.nih.gov/pmc/ar-
+ []
+
+
+
+[92]
+
+[93]
+
+[94]
+
+[95]
+
+[96]
+
+[97] (./appendix.tex
+<supplementaries/supplementary_scprint.pdf, id=1792, 614.295pt x 794.97pt>
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
 <use supplementaries/supplementary_scprint.pdf>
 Package luatex.def Info: supplementaries/supplementary_scprint.pdf  used on input line 3.
 (luatex.def)             Requested size: 614.29349pt x 794.96806pt.
-<supplementaries/supplementary_scprint.pdf, id=1123, page=1, 614.295pt x 794.97pt>
+<supplementaries/supplementary_scprint.pdf, id=1794, page=1, 614.295pt x 794.97pt>
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
 <use supplementaries/supplementary_scprint.pdf, page 1>
 Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page1 used on input line 3.
@@ -4624,11 +3677,7 @@ Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page1 used 
 (luatex.def)             Requested size: 597.78697pt x 773.60669pt.
 
 
-[81
-
-]
-
-[82]
+[98]
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
 <use supplementaries/supplementary_scprint.pdf, page 1>
 Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page1 used on input line 3.
@@ -4642,476 +3691,476 @@ Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page1 used 
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
 <use supplementaries/supplementary_scprint.pdf, page 1>
 Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page1 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-[83
-
-<./supplementaries/supplementary_scprint.pdf>]
-<supplementaries/supplementary_scprint.pdf, id=1166, page=2, 614.295pt x 794.97pt>
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 2>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page2 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 2>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page2 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-
-
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 2>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page2 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-[84
-
-<./supplementaries/supplementary_scprint.pdf>]
-<supplementaries/supplementary_scprint.pdf, id=1171, page=3, 614.295pt x 794.97pt>
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 3>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page3 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 3>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page3 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-
-
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 3>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page3 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-[85
-
-<./supplementaries/supplementary_scprint.pdf>]
-<supplementaries/supplementary_scprint.pdf, id=1181, page=4, 614.295pt x 794.97pt>
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 4>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page4 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 4>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page4 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-
-
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 4>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page4 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-[86
-
-<./supplementaries/supplementary_scprint.pdf>]
-<supplementaries/supplementary_scprint.pdf, id=1186, page=5, 845.1575pt x 597.23125pt>
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 5>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page5 used on input line 3.
-(luatex.def)             Requested size: 822.4455pt x 581.18178pt.
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 5>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page5 used on input line 3.
-(luatex.def)             Requested size: 822.4455pt x 581.18178pt.
-
-
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 5>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page5 used on input line 3.
-(luatex.def)             Requested size: 822.4455pt x 581.18178pt.
-[87
-
-<./supplementaries/supplementary_scprint.pdf>]
-<supplementaries/supplementary_scprint.pdf, id=1203, page=6, 614.295pt x 794.97pt>
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 6>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page6 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 6>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page6 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-
-
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 6>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page6 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-[88
-
-<./supplementaries/supplementary_scprint.pdf>]
-<supplementaries/supplementary_scprint.pdf, id=1208, page=7, 614.295pt x 794.97pt>
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 7>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page7 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 7>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page7 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-
-
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 7>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page7 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-[89
-
-<./supplementaries/supplementary_scprint.pdf>]
-<supplementaries/supplementary_scprint.pdf, id=1218, page=8, 614.295pt x 794.97pt>
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 8>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page8 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 8>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page8 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-
-
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 8>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page8 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-[90
-
-<./supplementaries/supplementary_scprint.pdf>]
-<supplementaries/supplementary_scprint.pdf, id=1223, page=9, 614.295pt x 794.97pt>
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 9>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page9 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 9>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page9 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-
-
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 9>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page9 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-[91
-
-<./supplementaries/supplementary_scprint.pdf>]
-<supplementaries/supplementary_scprint.pdf, id=1229, page=10, 614.295pt x 794.97pt>
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 10>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page10 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 10>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page10 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-
-
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 10>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page10 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-[92
-
-<./supplementaries/supplementary_scprint.pdf>]
-<supplementaries/supplementary_scprint.pdf, id=1234, page=11, 614.295pt x 794.97pt>
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 11>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page11 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 11>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page11 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-
-
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 11>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page11 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-[93
-
-<./supplementaries/supplementary_scprint.pdf>]
-<supplementaries/supplementary_scprint.pdf, id=1239, page=12, 614.295pt x 794.97pt>
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 12>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page12 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 12>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page12 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-
-
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 12>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page12 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-[94
-
-<./supplementaries/supplementary_scprint.pdf>]
-<supplementaries/supplementary_scprint.pdf, id=1246, page=13, 614.295pt x 794.97pt>
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 13>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page13 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 13>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page13 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-
-
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 13>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page13 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-[95
-
-<./supplementaries/supplementary_scprint.pdf>]
-<supplementaries/supplementary_scprint.pdf, id=1253, page=14, 614.295pt x 794.97pt>
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 14>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page14 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 14>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page14 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-
-
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 14>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page14 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-[96
-
-<./supplementaries/supplementary_scprint.pdf>]
-<supplementaries/supplementary_scprint.pdf, id=1260, page=15, 614.295pt x 794.97pt>
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 15>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page15 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 15>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page15 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-
-
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 15>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page15 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-[97
-
-<./supplementaries/supplementary_scprint.pdf>]
-<supplementaries/supplementary_scprint.pdf, id=1266, page=16, 614.295pt x 794.97pt>
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 16>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page16 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 16>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page16 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-
-
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 16>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page16 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-[98
-
-<./supplementaries/supplementary_scprint.pdf>]
-<supplementaries/supplementary_scprint.pdf, id=1277, page=17, 614.295pt x 794.97pt>
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 17>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page17 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 17>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page17 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
-
-
-File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 17>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page17 used on input line 3.
 (luatex.def)             Requested size: 597.78697pt x 773.60669pt.
 [99
 
 <./supplementaries/supplementary_scprint.pdf>]
-<supplementaries/supplementary_scprint.pdf, id=1283, page=18, 614.295pt x 794.97pt>
+<supplementaries/supplementary_scprint.pdf, id=1836, page=2, 614.295pt x 794.97pt>
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 18>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page18 used on input line 3.
+<use supplementaries/supplementary_scprint.pdf, page 2>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page2 used on input line 3.
 (luatex.def)             Requested size: 597.78697pt x 773.60669pt.
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 18>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page18 used on input line 3.
+<use supplementaries/supplementary_scprint.pdf, page 2>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page2 used on input line 3.
 (luatex.def)             Requested size: 597.78697pt x 773.60669pt.
 
 
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 18>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page18 used on input line 3.
+<use supplementaries/supplementary_scprint.pdf, page 2>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page2 used on input line 3.
 (luatex.def)             Requested size: 597.78697pt x 773.60669pt.
 [100
 
 <./supplementaries/supplementary_scprint.pdf>]
-<supplementaries/supplementary_scprint.pdf, id=1289, page=19, 614.295pt x 794.97pt>
+<supplementaries/supplementary_scprint.pdf, id=1841, page=3, 614.295pt x 794.97pt>
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 19>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page19 used on input line 3.
+<use supplementaries/supplementary_scprint.pdf, page 3>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page3 used on input line 3.
 (luatex.def)             Requested size: 597.78697pt x 773.60669pt.
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 19>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page19 used on input line 3.
+<use supplementaries/supplementary_scprint.pdf, page 3>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page3 used on input line 3.
 (luatex.def)             Requested size: 597.78697pt x 773.60669pt.
 
 
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 19>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page19 used on input line 3.
+<use supplementaries/supplementary_scprint.pdf, page 3>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page3 used on input line 3.
 (luatex.def)             Requested size: 597.78697pt x 773.60669pt.
 [101
 
 <./supplementaries/supplementary_scprint.pdf>]
-<supplementaries/supplementary_scprint.pdf, id=1296, page=20, 614.295pt x 794.97pt>
+<supplementaries/supplementary_scprint.pdf, id=1852, page=4, 614.295pt x 794.97pt>
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 20>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page20 used on input line 3.
+<use supplementaries/supplementary_scprint.pdf, page 4>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page4 used on input line 3.
 (luatex.def)             Requested size: 597.78697pt x 773.60669pt.
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 20>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page20 used on input line 3.
+<use supplementaries/supplementary_scprint.pdf, page 4>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page4 used on input line 3.
 (luatex.def)             Requested size: 597.78697pt x 773.60669pt.
 
 
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 20>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page20 used on input line 3.
+<use supplementaries/supplementary_scprint.pdf, page 4>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page4 used on input line 3.
 (luatex.def)             Requested size: 597.78697pt x 773.60669pt.
 [102
 
 <./supplementaries/supplementary_scprint.pdf>]
-<supplementaries/supplementary_scprint.pdf, id=1302, page=21, 614.295pt x 794.97pt>
+<supplementaries/supplementary_scprint.pdf, id=1857, page=5, 845.1575pt x 597.23125pt>
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 21>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page21 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+<use supplementaries/supplementary_scprint.pdf, page 5>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page5 used on input line 3.
+(luatex.def)             Requested size: 822.4455pt x 581.18178pt.
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 21>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page21 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+<use supplementaries/supplementary_scprint.pdf, page 5>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page5 used on input line 3.
+(luatex.def)             Requested size: 822.4455pt x 581.18178pt.
 
 
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 21>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page21 used on input line 3.
-(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+<use supplementaries/supplementary_scprint.pdf, page 5>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page5 used on input line 3.
+(luatex.def)             Requested size: 822.4455pt x 581.18178pt.
 [103
 
 <./supplementaries/supplementary_scprint.pdf>]
-<supplementaries/supplementary_scprint.pdf, id=1308, page=22, 614.295pt x 794.97pt>
+<supplementaries/supplementary_scprint.pdf, id=1874, page=6, 614.295pt x 794.97pt>
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 22>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page22 used on input line 3.
+<use supplementaries/supplementary_scprint.pdf, page 6>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page6 used on input line 3.
 (luatex.def)             Requested size: 597.78697pt x 773.60669pt.
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 22>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page22 used on input line 3.
+<use supplementaries/supplementary_scprint.pdf, page 6>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page6 used on input line 3.
 (luatex.def)             Requested size: 597.78697pt x 773.60669pt.
 
 
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 22>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page22 used on input line 3.
+<use supplementaries/supplementary_scprint.pdf, page 6>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page6 used on input line 3.
 (luatex.def)             Requested size: 597.78697pt x 773.60669pt.
 [104
 
 <./supplementaries/supplementary_scprint.pdf>]
-<supplementaries/supplementary_scprint.pdf, id=1315, page=23, 614.295pt x 794.97pt>
+<supplementaries/supplementary_scprint.pdf, id=1879, page=7, 614.295pt x 794.97pt>
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 23>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page23 used on input line 3.
+<use supplementaries/supplementary_scprint.pdf, page 7>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page7 used on input line 3.
 (luatex.def)             Requested size: 597.78697pt x 773.60669pt.
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 23>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page23 used on input line 3.
+<use supplementaries/supplementary_scprint.pdf, page 7>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page7 used on input line 3.
 (luatex.def)             Requested size: 597.78697pt x 773.60669pt.
 
 
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 23>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page23 used on input line 3.
+<use supplementaries/supplementary_scprint.pdf, page 7>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page7 used on input line 3.
 (luatex.def)             Requested size: 597.78697pt x 773.60669pt.
 [105
 
 <./supplementaries/supplementary_scprint.pdf>]
-<supplementaries/supplementary_scprint.pdf, id=1321, page=24, 614.295pt x 794.97pt>
+<supplementaries/supplementary_scprint.pdf, id=1889, page=8, 614.295pt x 794.97pt>
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 24>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page24 used on input line 3.
+<use supplementaries/supplementary_scprint.pdf, page 8>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page8 used on input line 3.
 (luatex.def)             Requested size: 597.78697pt x 773.60669pt.
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 24>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page24 used on input line 3.
+<use supplementaries/supplementary_scprint.pdf, page 8>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page8 used on input line 3.
 (luatex.def)             Requested size: 597.78697pt x 773.60669pt.
 
 
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 24>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page24 used on input line 3.
+<use supplementaries/supplementary_scprint.pdf, page 8>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page8 used on input line 3.
 (luatex.def)             Requested size: 597.78697pt x 773.60669pt.
 [106
 
 <./supplementaries/supplementary_scprint.pdf>]
-<supplementaries/supplementary_scprint.pdf, id=1333, page=25, 614.295pt x 794.97pt>
+<supplementaries/supplementary_scprint.pdf, id=1894, page=9, 614.295pt x 794.97pt>
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 25>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page25 used on input line 3.
+<use supplementaries/supplementary_scprint.pdf, page 9>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page9 used on input line 3.
 (luatex.def)             Requested size: 597.78697pt x 773.60669pt.
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 25>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page25 used on input line 3.
+<use supplementaries/supplementary_scprint.pdf, page 9>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page9 used on input line 3.
 (luatex.def)             Requested size: 597.78697pt x 773.60669pt.
 
 
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 25>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page25 used on input line 3.
+<use supplementaries/supplementary_scprint.pdf, page 9>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page9 used on input line 3.
 (luatex.def)             Requested size: 597.78697pt x 773.60669pt.
 [107
 
 <./supplementaries/supplementary_scprint.pdf>]
-<supplementaries/supplementary_scprint.pdf, id=1340, page=26, 614.295pt x 794.97pt>
+<supplementaries/supplementary_scprint.pdf, id=1899, page=10, 614.295pt x 794.97pt>
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 26>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page26 used on input line 3.
+<use supplementaries/supplementary_scprint.pdf, page 10>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page10 used on input line 3.
 (luatex.def)             Requested size: 597.78697pt x 773.60669pt.
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 26>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page26 used on input line 3.
+<use supplementaries/supplementary_scprint.pdf, page 10>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page10 used on input line 3.
 (luatex.def)             Requested size: 597.78697pt x 773.60669pt.
 
 
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 26>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page26 used on input line 3.
+<use supplementaries/supplementary_scprint.pdf, page 10>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page10 used on input line 3.
 (luatex.def)             Requested size: 597.78697pt x 773.60669pt.
 [108
 
 <./supplementaries/supplementary_scprint.pdf>]
-<supplementaries/supplementary_scprint.pdf, id=1347, page=27, 614.295pt x 794.97pt>
+<supplementaries/supplementary_scprint.pdf, id=1904, page=11, 614.295pt x 794.97pt>
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 27>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page27 used on input line 3.
+<use supplementaries/supplementary_scprint.pdf, page 11>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page11 used on input line 3.
 (luatex.def)             Requested size: 597.78697pt x 773.60669pt.
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 27>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page27 used on input line 3.
+<use supplementaries/supplementary_scprint.pdf, page 11>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page11 used on input line 3.
 (luatex.def)             Requested size: 597.78697pt x 773.60669pt.
 
 
 File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
-<use supplementaries/supplementary_scprint.pdf, page 27>
-Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page27 used on input line 3.
+<use supplementaries/supplementary_scprint.pdf, page 11>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page11 used on input line 3.
 (luatex.def)             Requested size: 597.78697pt x 773.60669pt.
 [109
+
+<./supplementaries/supplementary_scprint.pdf>]
+<supplementaries/supplementary_scprint.pdf, id=1910, page=12, 614.295pt x 794.97pt>
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 12>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page12 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 12>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page12 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+
+
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 12>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page12 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+[110
+
+<./supplementaries/supplementary_scprint.pdf>]
+<supplementaries/supplementary_scprint.pdf, id=1917, page=13, 614.295pt x 794.97pt>
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 13>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page13 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 13>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page13 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+
+
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 13>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page13 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+[111
+
+<./supplementaries/supplementary_scprint.pdf>]
+<supplementaries/supplementary_scprint.pdf, id=1925, page=14, 614.295pt x 794.97pt>
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 14>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page14 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 14>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page14 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+
+
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 14>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page14 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+[112
+
+<./supplementaries/supplementary_scprint.pdf>]
+<supplementaries/supplementary_scprint.pdf, id=1932, page=15, 614.295pt x 794.97pt>
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 15>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page15 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 15>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page15 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+
+
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 15>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page15 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+[113
+
+<./supplementaries/supplementary_scprint.pdf>]
+<supplementaries/supplementary_scprint.pdf, id=1938, page=16, 614.295pt x 794.97pt>
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 16>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page16 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 16>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page16 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+
+
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 16>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page16 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+[114
+
+<./supplementaries/supplementary_scprint.pdf>]
+<supplementaries/supplementary_scprint.pdf, id=1949, page=17, 614.295pt x 794.97pt>
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 17>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page17 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 17>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page17 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+
+
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 17>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page17 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+[115
+
+<./supplementaries/supplementary_scprint.pdf>]
+<supplementaries/supplementary_scprint.pdf, id=1955, page=18, 614.295pt x 794.97pt>
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 18>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page18 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 18>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page18 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+
+
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 18>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page18 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+[116
+
+<./supplementaries/supplementary_scprint.pdf>]
+<supplementaries/supplementary_scprint.pdf, id=1961, page=19, 614.295pt x 794.97pt>
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 19>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page19 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 19>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page19 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+
+
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 19>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page19 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+[117
+
+<./supplementaries/supplementary_scprint.pdf>]
+<supplementaries/supplementary_scprint.pdf, id=1967, page=20, 614.295pt x 794.97pt>
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 20>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page20 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 20>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page20 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+
+
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 20>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page20 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+[118
+
+<./supplementaries/supplementary_scprint.pdf>]
+<supplementaries/supplementary_scprint.pdf, id=1973, page=21, 614.295pt x 794.97pt>
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 21>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page21 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 21>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page21 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+
+
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 21>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page21 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+[119
+
+<./supplementaries/supplementary_scprint.pdf>]
+<supplementaries/supplementary_scprint.pdf, id=1979, page=22, 614.295pt x 794.97pt>
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 22>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page22 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 22>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page22 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+
+
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 22>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page22 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+[120
+
+<./supplementaries/supplementary_scprint.pdf>]
+<supplementaries/supplementary_scprint.pdf, id=1986, page=23, 614.295pt x 794.97pt>
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 23>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page23 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 23>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page23 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+
+
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 23>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page23 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+[121
+
+<./supplementaries/supplementary_scprint.pdf>]
+<supplementaries/supplementary_scprint.pdf, id=1993, page=24, 614.295pt x 794.97pt>
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 24>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page24 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 24>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page24 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+
+
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 24>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page24 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+[122
+
+<./supplementaries/supplementary_scprint.pdf>]
+<supplementaries/supplementary_scprint.pdf, id=2004, page=25, 614.295pt x 794.97pt>
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 25>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page25 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 25>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page25 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+
+
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 25>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page25 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+[123
+
+<./supplementaries/supplementary_scprint.pdf>]
+<supplementaries/supplementary_scprint.pdf, id=2011, page=26, 614.295pt x 794.97pt>
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 26>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page26 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 26>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page26 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+
+
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 26>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page26 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+[124
+
+<./supplementaries/supplementary_scprint.pdf>]
+<supplementaries/supplementary_scprint.pdf, id=2018, page=27, 614.295pt x 794.97pt>
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 27>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page27 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 27>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page27 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+
+
+File: supplementaries/supplementary_scprint.pdf Graphic file (type pdf)
+<use supplementaries/supplementary_scprint.pdf, page 27>
+Package luatex.def Info: supplementaries/supplementary_scprint.pdf , page27 used on input line 3.
+(luatex.def)             Requested size: 597.78697pt x 773.60669pt.
+[125
 
 <./supplementaries/supplementary_scprint.pdf>])
 Package minitoc Info: I0009
@@ -5119,17 +4168,12 @@ Package minitoc Info: I0009
 (minitoc)             Creating the main.maf file.
 
 \openout6 = main.maf
-
-
-Package minitoc(hints) Warning: W0037
-(minitoc(hints))                The sectsty package should be 
-(minitoc(hints))                loaded BEFORE the minitoc package.
-
 Package minitoc(hints) Info: I0053
 (minitoc(hints))             You have loaded the float package; 
 (minitoc(hints))             please be aware that the minitoc package 
 (minitoc(hints))             facilities can not be used for new types 
 (minitoc(hints))             of floats defined by the float package.
+
 
 Package minitoc(hints) Warning: W0024
 (minitoc(hints))                Some hints have been written 
@@ -5140,7 +4184,7 @@ Package minitoc(hints) Warning: W0024
 \openout16 = main.ptc
 
 
-[110] (./build/main.aux)
+[126] (./build/main.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-04-14>
@@ -5149,35 +4193,27 @@ L3 programming layer <2025-04-14>
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: There were undefined references.
-
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 90E84AE33A4F4A734128DD89F125B0BE;15565.
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                main
-(biblatex)                and rerun LaTeX afterwards.
-
+(rerunfilecheck)             Checksum: 0EAD08C8B18A4B613052BB491312AE0D;16103.
 Package logreq Info: Writing requests to 'main.run.xml'.
 
 \openout1 = main.run.xml
 )
 
 Here is how much of LuaTeX's memory you used:
- 69926 strings out of 471925
- 195338,2848258 words of node,token memory allocated
- 6578 words of node memory still in use:
-   12 hlist, 2 vlist, 4 rule, 1 local_par, 223 glue, 4 kern, 2 penalty, 7 sub_mlist, 4 glyph, 1703 attribute, 136 glue_spec, 245 attribute_list, 2 write, 21 pdf_action nodes
-   avail lists: 1:7,2:3080,3:493,4:350,5:1296,6:123,7:17847,8:80,9:870,10:63,11:1614,12:13
- 94476 multiletter control sequences out of 65536+600000
+ 71004 strings out of 471925
+ 244186,2848258 words of node,token memory allocated
+ 20308 words of node memory still in use:
+   12 hlist, 2 vlist, 4 rule, 1 local_par, 1018 glue, 5 kern, 2 penalty, 7 sub_mlist, 1 margin_kern, 5 glyph, 5112 attribute, 139 glue_spec, 732 attribute_list, 2 write, 78 pdf_action nodes
+   avail lists: 1:4,2:4685,3:1503,4:356,5:1251,6:406,7:16738,8:88,9:891,10:63,11:1582,12:13
+ 95395 multiletter control sequences out of 65536+600000
  143 fonts using 22516719 bytes
- 94i,17n,115p,2441b,2828s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2025/texmf-dist/fonts/opentype/public/libertine/LinLibertine_RBI.otf>{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}</usr/local/texlive/2025/texmf-dist/fonts/opentype/public/libertine/LinLibertine_RI.otf></usr/local/texlive/2025/texmf-dist/fonts/opentype/public/libertine/LinLibertine_M.otf></usr/local/texlive/2025/texmf-dist/fonts/opentype/public/libertine/LinLibertine_RB.otf></usr/local/texlive/2025/texmf-dist/fonts/opentype/public/libertine/LinLibertine_R.otf></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
-Output written on main.pdf (130 pages, 41906369 bytes).
+ 94i,17n,115p,2441b,2801s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2025/texmf-dist/fonts/opentype/public/libertine/LinLibertine_RBI.otf>{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}</usr/local/texlive/2025/texmf-dist/fonts/opentype/public/libertine/LinLibertine_M.otf></usr/local/texlive/2025/texmf-dist/fonts/opentype/public/libertine/LinLibertine_RI.otf></usr/local/texlive/2025/texmf-dist/fonts/opentype/public/libertine/LinLibertine_RB.otf></usr/local/texlive/2025/texmf-dist/fonts/opentype/public/libertine/LinLibertine_R.otf></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/lm/lmr9.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txexs.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsys.pfb>
+Output written on main.pdf (146 pages, 41992342 bytes).
 
-PDF statistics: 1434 PDF objects out of 1440 (max. 8388607)
- 1171 compressed objects within 12 object streams
- 261 named destinations out of 1000 (max. 131072)
- 632 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 2110 PDF objects out of 2487 (max. 8388607)
+ 1823 compressed objects within 19 object streams
+ 400 named destinations out of 1000 (max. 131072)
+ 648 words of extra memory for PDF output out of 10000 (max. 100000000)
 
