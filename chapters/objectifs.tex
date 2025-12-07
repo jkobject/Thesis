@@ -5,14 +5,16 @@ At the start of the project, two things were certain: I wanted to understand how
 
 To start, it is important to reflect on what I wanted to achieve at the start of the project, without knowing what I know now.
 
-The second part will introduce the different chapters of the thesis and how they relate to my Ph.D. objectives and novel questions that arose along the project. This being a Thesis by Articles, each of the three chapters relates to a specific publication.
+The second part will introduce the different chapters of the thesis and how they relate to my Ph.D. objectives and novel questions that arose along the project. This being a Thesis by Articles, each of the three chapters relates to a specific publication. 
 
-\subsection{Personal Objectives during the
-thesis}\label{personal-objectives-during-the-thesis}
+\section{At the start: Personal Objectives during the thesis}
+\label{personal-objectives-during-the-thesis}
 
-A main mistake during one's Ph.D.~is to not see the time passing by. My goal for this Ph.D.~is to be as product-first as I was at Whitelab. Delivering results quickly \& improving until it is publishable.
+\textit{This is an excerpt of my initial objectives written in my research proposal at the start of the Ph.D.}
 
-This mistake, thinking ``Well, I have 3 years\ldots'' is what makes people go overboard, finish stressed, and unprepared for what is next. Thus, I plan to do mine in 2 years. And I will prepare everything around this idea. I will also start to prepare for what is next from the start.
+I had the chance to see many friends doing their Ph.D.s before starting mine. A main mistake I saw during one's Ph.D.~is to not see the time passing by. My goal for this Ph.D.~is to be as product-first as I was at Whitelab. Delivering results quickly \& improving until it is publishable.
+
+This mistake, thinking ``Well, I have 3 years\ldots'' is in part at least responsible for the stress, the crash and the unpreparedness for what happens after the Ph.D. that some students might experience. Thus, I plan to give myself a short timeline, knowing I will likely go over. And I will prepare everything around this idea. I will also start to prepare for what is next from the start.
 
 To do that best, one needs to take the opportunity of the Ph.D.~to make connections with other labs (industry or academic). Moreover, a good advice I have been given is to \emph{know what you want to do and what you don't want to do}. Know what you are here for. Learn to say no. And I learned to say no in the last 4 years. My goal is to work on large models \& large datasets, mostly in transcriptomics, and always to go back to first principles and biology.
 
@@ -20,19 +22,20 @@ I also know I want to make something useful, create something that can be a step
 
 Finally, I have been fortunate to become often addicted to my work. I like working hard and challenges. But for this to happen, I need to keep enjoying what I am doing. I also wish to have no regrets about this decision. Thus, my final goal is to enjoy it as much as I can.
 
-\subsection{Initial Ph.D. objectives}
+\section{Initial Ph.D. objectives}
 \label{initial-objectives}
 
-This Ph.D. aimed to develop new approaches using deep
-learning, possibly by using innovative graph neural network architectures on large scRNAseq datasets, to assess their predictability in high-quality benchmarks and package them as an open-source Python library.
+This Ph.D. aimed to develop new approaches using deep learning, possibly by using innovative graph neural network architectures on large scRNAseq datasets, to assess their predictability in high-quality benchmarks and package them as an open-source Python library.
 
 Graph Neural Networks (GNN)s: are a class of deep learning models designed to operate on graph-structured data. They are specifically tailored to handle and process data represented as graphs, where edges connect the elements (nodes or vertices).
 
+%TODO: add refs and figures% GNN
+
 Traditional neural networks are primarily designed for processing grid-like data, like images, or sequential data, such as text. However, GNNs extend this capability to graph-structured data by incorporating graph-related operations and architectures.
 
-Objectives. We wished to improve GRN predictions from scRNAseq data. Our approach is:
+\textbf{Objectives}. We wished to improve GRN predictions from scRNAseq data. Our approach is:
 
-\begin{itemize}
+\begin{enumerate}
 \tightlist
 \item
  To use larger neural network models that scale linearly with the dataset size, taking advantage of the tens of millions of data points now becoming available.
@@ -46,7 +49,9 @@ Objectives. We wished to improve GRN predictions from scRNAseq data. Our approac
  To create formal and rational benchmarks that best capture the ability of a GRN methodology.
 \item
  To assess predictions and any usefulness or lack of it by having biologists test hypotheses using the model.
-\end{itemize}
+\end{enumerate}
+
+\section{potential impacts}
 
 Impact of the project. This Ph.D.~project would thereby contribute to methodological breakthroughs by providing new tools and methods to use neural networks on unstructured data, like scRNAseq. To improve the state of the art in GRNs prediction from scRNAseq.
 
@@ -61,31 +66,39 @@ The initial objectives were separated into three possible work packages:
 \item Collaboration to test the model's prediction on novel data
 \end{enumerate}
 
-\subsection{Revised objectives}
+\section{Revised objectives}
 
 The first objective was thus to review existing methods for inferring GRNs from multi-omics data, as well as the existing foundation models and benchmarks used to evaluate the performance of these methods.
 
 What I quickly learnt is that GNNs were not the best approach for this problem. Indeed, we do not have good ground truths for GRNs, so we cannot start from a known graph. Moreover, GNNs tend not to scale well, and benchmarks show them as almost invariably performing worse than transformer-based models.
 
+\subsection{transformers}
+
 Thus, we quickly decided to stick with transformers, which can be seen as GNN working on fully-connected graphs. The main issue with transformers is their quadratic complexity in relation to the number of input tokens. Thus, we worked on making them scale sub-quadratically with the number of input genes and cells. This is one of our contributions on this side of the thesis.
 
-Moreover, while we aimed to benchmark current methods, we also sought to create a new benchmark better suited to the single-cell field and the current data available.
+%TODO: add refs and figures% transformer architecture figure
 
-Finally, while we managed to get some collaborations going, I realized the need for these foundation models to be made more accessible, which also became one of my objectives. It is represented not only in the effort to release easy-to-use open source models but also in various side contributions and outreach efforts.
+Moreover, while we aimed to benchmark current methods, we also sought to create a new benchmark better suited to the single-cell field and the current data available.
 
 Transformer-based models can be seen as GNNs, and examples have already been presented of them generating networks and GRNs directly from non-graph data, which is a feat that regular GNNs cannot achieve. 
 
 However, when we benchmarked them, we realized there were many shortcomings with these foundation models, which led us to create our own. Improving these models to scale better, adapt more effectively to the data, and generate better representations of genes, cells, and their networks thus became the main objective of this Ph.D.
 
+\subsection{collaborations}
+
+Finally, while we managed to get some collaborations going, I realized the need for these foundation models to be made more accessible, which also became one of my objectives. It is represented not only in the effort to release easy-to-use open source models but also in various side contributions and outreach efforts.
+
 \section{Chapters overview \& main contributions}
+
+%TODO: make it at least 2x longer and talk more about the contributions
+% TODO: reading this they should be able to grade the thesis
 
 This thesis is structured as follows:
 
 \begin{enumerate}
-\tightlist
 \item In Chapter \ref{article1}, we present scPRINT, a single-cell foundation model for transcriptomics with a focus on gene network inference. We examine other foundation models and state-of-the-art tools in the field, creating a benchmark to compare them, first on GRN inference and then on other single-cell tasks. We show that current foundation models are performing better than random predictors, but worse than SOTA tools in most of our benchmarks. We show that our contributions in scPRINT make it a superior foundation model than the existing ones across all our benchmarks. We showcase the need for improved architectures and tasks that reflect the potential offered by foundation models, as well as reproducible benchmarks of the impact of different design choices.
 \item In Chapter \ref{article2}, we present Xpressor, a transformer-based compression mechanism, and fine-tuning approach to build foundation models across scales. We show how to plug a model that talks about proteins and genes in a model that talks about cells, and how this makes both models better.
-\item In Chapter \ref{article}, we present scPRINT-2 a next-generation single-cell foundation model whose design decisions were driven by an in-depth additive study of each model's components. We also present many contributions in architecture, training, datasets, losses, and fine-tuning. We showcase them in novel tasks and approaches.
+\item In Chapter \ref{article}, we present scPRINT-2 a next-generation single-cell foundation model whose design decisions were driven by an in-depth additive study of each model's components. We also present many contributions in architecture, training, datasets, losses, and fine-tuning. We showcase them in novel tasks and approaches. Also, 
 \end{enumerate}
 
 \subsection{Other contributions}
@@ -94,18 +107,19 @@ This thesis presented other contributions not in the form of publications:
 
 \begin{itemize}
  \item The first ones are six open source Python packages named:
-   \subitem \emph{scPRINT}: where the model and its v2 are available, together with training scripts and notebooks to use the model, functions to download and preprocess data, and more.
-   \subitem \emph{scDataloader}: a package to load efficiently thousands of large single-cell datasets, with preprocessing, filtering, and loading options. It also allows a first-of-its-kind efficient weighted random sampling over billions of elements.
-   \subitem \emph{Bengrn}: a package to benchmark GRN inference methods on single-cell data, using multiple types of metrics and ground truth networks.
-   \subitem \emph{GRNNdata}: a package to work with gene regulatory networks and single-cell data jointly, using the Anndata format.
-   \subitem \emph{Xpressor}: a package to reproduce the second paper's experiments and create an Xpressor model from scratch.
-   \subitem \emph{Simpler Flash}: Initially a package to facilitate the use of flash attention before it became part of the pytorch implementation itself. It now includes multiple types of efficient attention mechanisms, such as softpick-flash and our flash criss-cross attention mechanism.
-   \subitem \emph{Hierarchical Classifier}: a package to implement hierarchical classification for single-cell data.
- \item Another contribution, as previously mentioned, is around accessibility. Not only did I release model weights and inference code, but I also provided easy-to-use inference tools, pre-training methods and datasets, training traces, and documentation. Moreover, tutorials were implemented in Google Colab, and versions of the models got released on the Chan-Zuckerberg's model hub and superbio.ai's platform.
+   \subitem \emph{scPRINT}: where the model is made available, together with training scripts and notebooks to use the model, functions to download and preprocess data, and more. \url{https://github.com/cantinilab/scPRINT}
+   \subitem \emph{scPRINT-2}: where the second model is made available, together with training scripts and notebooks to use the model, functions to download and preprocess data, and more. \url{https://github.com/cantinilab/scPRINT-2}
+   \subitem \emph{scDataloader}: a package to load efficiently thousands of large single-cell datasets, with preprocessing, filtering, and loading options. It also allows a first-of-its-kind efficient weighted random sampling over billions of elements. \url{https://github.com/jkobject/scDataLoader}
+   \subitem \emph{Bengrn}: a package to benchmark GRN inference methods on single-cell data, using multiple types of metrics and ground truth networks. \url{https://github.com/jkobject/Bengrn}
+   \subitem \emph{GRNNdata}: a package to work with gene regulatory networks and single-cell data jointly, using the Anndata format. \url{https://github.com/cantinilab/GRNNdata}
+   \subitem \emph{Xpressor}: a package to reproduce the second paper's experiments and create an Xpressor model from scratch. \url{https://github.com/cantinilab/XPressor}
+   \subitem \emph{Simpler Flash}: Initially a package to facilitate the use of flash attention before it became part of the pytorch implementation itself. It now includes multiple types of efficient attention mechanisms, such as softpick-flash and our flash criss-cross attention mechanism. \url{https://github.com/jkobject/simpler_flash}
+   \subitem \emph{Hierarchical Classifier}: a package to implement hierarchical classification for single-cell data. \url{https://gist.github.com/jkobject/5b36bc4807edb440b86644952a49781e}
+\item Another contribution, as previously mentioned, is around accessibility. Not only did I release model weights and inference code, but I also provided easy-to-use inference tools, pre-training methods and datasets, training traces, and documentation. Moreover, tutorials were implemented in Google Colab, and versions of the models got released on the Chan–Zuckerberg model hub (\url{https://virtualcellmodels.cziscience.com/}) and Superb.io's platform (\url{https://superbio.ai}).
  \item Finally, I made a Docker implementation of scPRINT, scGPT, and Geneformer for their benchmarking on the open problems platform and participated in the improvement and creation of two benchmarks on the platform.
- \item In addition to publication, I wrote a blog post with Lamin.ai on training on large datasets. I also wrote with multiple x-plainers on the X, LinkedIn, Bluesky, and threads platform, as well as my personal website, to share some of our findings with a possibly wider audience. Similarly, I wrote vulgarisation articles for the Pasteur Institute’s and CNRS’s websites and created one of the most viewed videos on the Pasteur Institute's YouTube and Instagram accounts, presenting my work. I also got highlighted on Whitelab’s blog posts and released four YouTube videos of diverse presentations of my work.
+\item In addition to publication, I wrote a \href{https://blog.lamin.ai/arrayloader-benchmarks}{blog post} with \href{https://lamin.ai}{Lamin.ai} on training on large datasets. I also wrote with multiple \href{https://x.com/jkobject}{x-plainers} on X, LinkedIn, Bluesky, and Threads, as well as my \href{https://www.jkobject.com}{personal website}, to share some of our findings with a possibly wider audience. Similarly, I wrote vulgarisation articles for the \href{https://www.pasteur.fr/fr/journal-recherche/videos/langage-cellules}{Pasteur Institute}’s and \href{https://www.insb.cnrs.fr/fr/cnrsinfo/scprint-le-premier-modele-dia-francais-pour-dechiffrer-les-reseaux-genetiques}{CNRS}’s websites and created one of the most viewed videos on the \href{https://www.youtube.com/watch?v=bgtcDs5EXY8}{Pasteur Institute's YouTube} and Instagram accounts, presenting my work. I also got highlighted on Whitelab's blog posts and released four \href{https://www.youtube.com/@jkobject}{YouTube} videos of diverse presentations of my work.
  \item Other outreach efforts were done through conference presentations and invited talks with:
    \subitem A participation in three international ML conferences
    \subitem Over 25 invited talks and five poster presentations.
- \item Finally, I also contributed to the European ecosystem of start-ups, translating works from Academia to Industry. I became part of a worldwide organization called Nucleate to help Master students, PhDs, and Post-docs translate their research into start-ups. I also worked as a consultant for four start-ups: Whitelab Genomics, Biographica, Blossom, and dot-omics, assisting them in developing strategies for foundation models in single-cell RNA-seq and DNA sequencing.
+ \item Finally, I also contributed to the European ecosystem of start-ups, translating works from Academia to Industry. I became part of a worldwide organization called Nucleate to help Master students, PhDs, and Post-docs translate their research into start-ups. I also worked as a consultant for four start-ups: \href{https://whitelabgx.com/}{Whitelab Genomics}, \href{https://graphica.bio/}{Biographica}, Blossom, and \href{https://www.dotomics.bio/}{dot-omics}, assisting them in developing strategies for foundation models in single-cell RNA-seq and DNA sequencing.
 \end{itemize}

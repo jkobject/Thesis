@@ -1,33 +1,480 @@
-\chapter*{Liste des abréviations}
-\addcontentsline{toc}{chapter}{Liste des abréviations} 
-
-\printglossary[type=\acronymtype, title=Abreviation list,toctitle=Liste des abréviations]
-
 \newglossaryentry{latex}
 {
         name=latex,
         description={Is a mark up language specially suited for 
-scientific documents}
+scientific documents},
+        type=\acronymtype
 }
 
 \newglossaryentry{scRNA-seq}
 {
         name={scRNA-seq},
-        description={Single-Cell RNA-Sequencing: Method to measure the RNA content of a cell}
+        description={Single-Cell RNA-Sequencing: Method to measure the RNA content of a cell},
+        type=\acronymtype
 }
 
-
-
-\newacronym{RNA}{RNA}{RiboNucléique Acide}
-\newacronym{GRN}{GRN}{Gene Regulatory Network}
-\newacronym{GNN}{GNN}{Graph Neural Network}
-\newacronym{TF}{TF}{Transcription Factor}
+\newglossaryentry{RNA}
+{
+    name={RNA},
+    description={RiboNucléique Acide. Polymeric molecule essential in various biological roles in coding, decoding, regulation and expression of genes},
+    type=\acronymtype
+}
+\newglossaryentry{GRN}
+{
+    name={GRN},
+    description={Gene Regulatory Network. A collection of molecular regulators that interact with each other and with other substances in the cell to govern the gene expression levels of mRNA and proteins},
+    type=\acronymtype
+}
+\newglossaryentry{GNN}
+{
+    name={GNN},
+    description={Graph Neural Network. A class of artificial neural networks for processing data that can be represented as graphs},
+    type=\acronymtype
+}
+\newglossaryentry{TF}
+{
+    name={TF},
+    description={Transcription Factor. A protein that controls the rate of transcription of genetic information from DNA to messenger RNA, by binding to a specific DNA sequence},
+    type=\acronymtype
+}
 \newacronym{RBP}{RBP}{RNA Binding Protein}
 \newacronym{AIVC}{AIVC}{Artificial Intelligence for a Virtual Cell}
-AI
-LLMs
-ML
-NN
-GNs
-CGTs
-ASOs
+
+\newglossaryentry{DNA}
+{
+    name={DNA},
+    description={Deoxyribonucleic Acid. Molecule that carries genetic information for the development and functioning of an organism},
+    type=\acronymtype
+}
+\newglossaryentry{UCE}
+{
+    name={UCE},
+    description={Universal Cell Embedding. A foundation model for single-cell biology},
+    type=\acronymtype
+}
+\newglossaryentry{ESM}
+{
+    name={ESM},
+    description={Evolutionary Scale Modeling. Protein language models trained on evolutionary data},
+    type=\acronymtype
+}
+\newacronym{ECM}{ECM}{Extracellular Matrix}
+\newacronym{SEM}{SEM}{Structural Equation Modeling}
+\newglossaryentry{ENCODE}
+{
+    name={ENCODE},
+    description={Encyclopedia of DNA Elements. A public research project which aims to identify all functional elements in the human genome sequence},
+    type=\acronymtype
+}
+\newacronym{EPR}{EPR}{Early Precision Ratio}
+\newglossaryentry{KO}
+{
+    name={KO},
+    description={Knockout. A genetic technique in which one of an organism's genes is made inoperative},
+    type=\acronymtype
+}
+\newacronym{SOTA}{SOTA}{State of the Art}
+\newacronym{BPH}{BPH}{Benign Prostatic Hyperplasia}
+\newglossaryentry{TME}
+{
+    name={TME},
+    description={Tumor Microenvironment. The environment around a tumor, including the surrounding blood vessels, immune cells, fibroblasts, signaling molecules and the extracellular matrix},
+    type=\acronymtype
+}
+\newacronym{gwps}{gwps}{Genome-wide Perturb-seq}
+\newglossaryentry{scGPT}
+{
+    name={scGPT},
+    description={Single-cell Generative Pretrained Transformer. A foundation model for single-cell biology based on the GPT architecture},
+    type=\acronymtype
+}
+\newglossaryentry{AI}
+{
+    name={AI},
+    description={Artificial Intelligence. The simulation of human intelligence processes by machines, especially computer systems},
+    type=\acronymtype
+}
+\newglossaryentry{LLM}
+{
+    name={LLM},
+    description={Large Language Model. A language model notable for its ability to achieve general-purpose language generation and understanding},
+    type=\acronymtype
+}
+\newglossaryentry{PE}
+{
+    name={PE},
+    description={Positional Encoding. A mechanism in Transformers to inject information about the relative or absolute position of the tokens in the sequence},
+    type=\acronymtype
+}
+\newacronym{GELU}{GELU}{Gaussian Error Linear Unit}
+\newglossaryentry{BERT}
+{
+    name={BERT},
+    description={Bidirectional Encoder Representations from Transformers. A transformer-based machine learning technique for natural language processing pre-training},
+    type=\acronymtype
+}
+\newacronym{LSE}{LSE}{Log-Sum-Exp}
+\newglossaryentry{scVI}
+{
+    name={scVI},
+    description={Single-cell Variational Inference. A probabilistic framework for analyzing single-cell RNA sequencing data},
+    type=\acronymtype
+}
+\newacronym{MVC}{MVC}{Model-View-Controller}
+\newacronym{ODE}{ODE}{Ordinary Differential Equation}
+\newglossaryentry{ARI}
+{
+    name={ARI},
+    description={Adjusted Rand Index. A measure of the similarity between two data clusterings},
+    type=\acronymtype
+}
+\newglossaryentry{NMI}
+{
+    name={NMI},
+    description={Normalized Mutual Information. A normalization of the Mutual Information (MI) score to scale the results between 0 (no mutual information) and 1 (perfect correlation)},
+    type=\acronymtype
+}
+\newglossaryentry{NGS}
+{
+    name={NGS},
+    description={Next-Generation Sequencing. A high-throughput method used to determine the sequence of nucleotides in DNA or RNA samples},
+    type=\acronymtype
+}
+\newglossaryentry{ASW}
+{
+    name={ASW},
+    description={Average Silhouette Width. A measure of how similar an object is to its own cluster (cohesion) compared to other clusters (separation)},
+    type=\acronymtype
+}
+\newglossaryentry{iLISI}
+{
+    name={iLISI},
+    description={Integration Local Inverse Simpson’s Index. A metric to quantify the degree of mixing of datasets in an integrated embedding},
+    type=\acronymtype
+}
+\newglossaryentry{kBET}
+{
+    name={kBET},
+    description={k-nearest-neighbor Batch Effect Test. A metric to quantify batch effects in single-cell RNA-seq data},
+    type=\acronymtype
+}
+\newglossaryentry{ML}
+{
+    name={ML},
+    description={Machine Learning. A field of inquiry devoted to understanding and building methods that 'learn', that is, methods that leverage data to improve performance on some set of tasks},
+    type=\acronymtype
+}
+\newglossaryentry{NN}
+{
+    name={NN},
+    description={Neural Network. A method in artificial intelligence that teaches computers to process data in a way that is inspired by the human brain},
+    type=\acronymtype
+}
+\newacronym{GN}{GN}{Gene Network}
+\newacronym{CGT}{CGT}{Cell Graph Transformer}
+\newacronym{ASO}{ASO}{Antisense Oligonucleotide}
+\newglossaryentry{UMAP}
+{
+    name={UMAP},
+    description={Uniform Manifold Approximation and Projection. A dimension reduction technique that can be used for visualization similarly to t-SNE, but also for general non-linear dimension reduction},
+    type=\acronymtype
+}
+\newglossaryentry{PCA}
+{
+    name={PCA},
+    description={Principal Component Analysis. A statistical procedure that uses an orthogonal transformation to convert a set of observations of possibly correlated variables into a set of values of linearly uncorrelated variables called principal components},
+    type=\acronymtype
+}
+\newglossaryentry{FM}
+{
+    name={FM},
+    description={Foundation Model. A large machine learning model trained on a vast amount of data at scale that can be adapted to a wide range of downstream tasks},
+    type=\acronymtype
+}
+\newglossaryentry{scFM}
+{
+    name={scFM},
+    description={Single-cell Foundation Model. A foundation model specifically designed for single-cell biology tasks},
+    type=\acronymtype
+}
+\newacronym{W2}{W2}{Wasserstein-2 Distance}
+\newglossaryentry{PEFT}
+{
+    name={PEFT},
+    description={Parameter-Efficient Fine-Tuning. Approaches to fine-tune large models with a small number of parameters},
+    type=\acronymtype
+}
+\newglossaryentry{VAE}
+{
+    name={VAE},
+    description={Variational Autoencoder. A type of artificial neural network used to learn efficient data codings in an unsupervised manner},
+    type=\acronymtype
+}
+\newacronym{FSQ-VAE}{FSQ-VAE}{Finite Scalar Quantization Variational Autoencoder}
+\newglossaryentry{LR}
+{
+    name={LR},
+    description={Learning Rate. A hyperparameter that controls how much to change the model in response to the estimated error each time the model weights are updated},
+    type=\acronymtype
+}
+\newacronym{NNZ}{NNZ}{Number of Non-Zeros}
+\newglossaryentry{MSE}
+{
+    name={MSE},
+    description={Mean Squared Error. A measure of the average of the squares of the errors—that is, the average squared difference between the estimated values and the actual value},
+    type=\acronymtype
+}
+\newglossaryentry{ZINB}
+{
+    name={ZINB},
+    description={Zero-Inflated Negative Binomial. A distribution used to model count data that has an excess of zero counts},
+    type=\acronymtype
+}
+\newglossaryentry{KNN}
+{
+    name={KNN},
+    description={K-Nearest Neighbors. A non-parametric method used for classification and regression},
+    type=\acronymtype
+}
+\newacronym{CxG}{CxG}{CellxGene}
+\newglossaryentry{CCE}
+{
+    name={CCE},
+    description={Categorical Cross Entropy. A loss function used in multi-class classification tasks},
+    type=\acronymtype
+}
+\newacronym{OR}{OR}{Odds Ratio}
+\newglossaryentry{AUPRC}
+{
+    name={AUPRC},
+    description={Area Under the Precision-Recall Curve. A performance metric for binary classification problems},
+    type=\acronymtype
+}
+\newacronym{log1p}{log1p}{Logarithm of (1 + x)}
+\newacronym{FFPE}{FFPE}{Formalin-Fixed Paraffin-Embedded}
+\newglossaryentry{MMD}
+{
+    name={MMD},
+    description={Maximum Mean Discrepancy. A kernel-based statistical test used to determine whether two given samples are drawn from the same distribution},
+    type=\acronymtype
+}
+\newglossaryentry{MLP}
+{
+    name={MLP},
+    description={Multi-Layer Perceptron. A class of feedforward artificial neural network},
+    type=\acronymtype
+}
+\newglossaryentry{scPRINT}
+{
+    name={scPRINT},
+    description={Single-cell PRe-trained INference Transformer. The model developed in this thesis},
+    type=\acronymtype
+}
+\newglossaryentry{GPU}
+{
+    name={GPU},
+    description={Graphics Processing Unit. A specialized electronic circuit designed to manipulate and alter memory to accelerate the creation of images in a frame buffer intended for output to a display device},
+    type=\acronymtype
+}
+\newglossaryentry{mRNA}
+{
+    name={mRNA},
+    description={Messenger RNA. A single-stranded RNA molecule that corresponds to the genetic sequence of a gene, and is read by a ribosome in the process of synthesizing a protein},
+    type=\acronymtype
+}
+\newglossaryentry{tRNA}
+{
+    name={tRNA},
+    description={Transfer RNA. An RNA molecule that helps decode a messenger RNA (mRNA) sequence into a protein},
+    type=\acronymtype
+}
+\newglossaryentry{rRNA}
+{
+    name={rRNA},
+    description={Ribosomal RNA. A type of non-coding RNA which is the primary component of ribosomes, essential to all cells},
+    type=\acronymtype
+}
+\newglossaryentry{siRNA}
+{
+    name={siRNA},
+    description={Small Interfering RNA. A class of double-stranded RNA non-coding RNA molecules, typically 20-24 base pairs in length, similar to miRNA, and operating within the RNA interference (RNAi) pathway},
+    type=\acronymtype
+}
+\newglossaryentry{scGEN}
+{
+    name={scGEN},
+    description={Single-cell Generative. A tool for predicting single-cell perturbation responses},
+    type=\acronymtype
+}
+\newglossaryentry{miRNA}
+{
+    name={miRNA},
+    description={MicroRNA. A small single-stranded non-coding RNA molecule (containing about 22 nucleotides) found in plants, animals and some viruses, that functions in RNA silencing and post-transcriptional regulation of gene expression},
+    type=\acronymtype
+}
+\newglossaryentry{lncRNA}
+{
+    name={lncRNA},
+    description={Long Non-Coding RNA. A type of RNA, defined as being transcripts with lengths exceeding 200 nucleotides that are not translated into protein},
+    type=\acronymtype
+}
+
+\newglossaryentry{mFM}
+{
+    name={mFM},
+    description={Molecular Foundation Model. A foundation model trained on molecular data},
+    type=\acronymtype
+}
+\newglossaryentry{nFM}
+{
+    name={nFM},
+    description={Nucleotide Foundation Model. A foundation model trained on nucleotide sequences},
+    type=\acronymtype
+}
+\newglossaryentry{cFM}
+{
+    name={cFM},
+    description={Cell Foundation Model. A foundation model trained on cellular data},
+    type=\acronymtype
+}
+\newglossaryentry{tFM}
+{
+    name={tFM},
+    description={Tissue Foundation Model. A foundation model trained on tissue data},
+    type=\acronymtype
+}
+\newglossaryentry{SMILES}
+{
+    name={SMILES},
+    description={Simplified Molecular Input Line Entry System. A specification in the form of a line notation for describing the structure of chemical species using short ASCII strings},
+    type=\acronymtype
+}
+\newglossaryentry{pLM}
+{
+    name={pLM},
+    description={Protein Language Model. A language model trained on protein sequences},
+    type=\acronymtype
+}
+\newglossaryentry{NLP}
+{
+    name={NLP},
+    description={Natural Language Processing. A subfield of linguistics, computer science, and artificial intelligence concerned with the interactions between computers and human language},
+    type=\acronymtype
+}
+\newglossaryentry{QKV}
+{
+    name={QKV},
+    description={Query, Key, Value. The three matrices used in the attention mechanism of transformers},
+    type=\acronymtype
+}
+\newglossaryentry{LoRA}
+{
+    name={LoRA},
+    description={Low-Rank Adaptation. A technique for fine-tuning large language models},
+    type=\acronymtype
+}
+\newglossaryentry{MSA}
+{
+    name={MSA},
+    description={Multiple Sequence Alignment. The alignment of three or more biological sequences (protein or nucleic acid) of similar length},
+    type=\acronymtype
+}
+\newglossaryentry{IB}
+{
+    name={IB},
+    description={Information Bottleneck. A method for extracting relevant information from an input variable},
+    type=\acronymtype
+}
+\newglossaryentry{VQ-VAE}
+{
+    name={VQ-VAE},
+    description={Vector Quantized Variational Autoencoder. A generative model that learns discrete latent representations},
+    type=\acronymtype
+}
+\newglossaryentry{FSQ}
+{
+    name={FSQ},
+    description={Finite Scalar Quantization. A quantization method for latent representations},
+    type=\acronymtype
+}
+\newglossaryentry{scIB}
+{
+    name={scIB},
+    description={Single-cell Integration Benchmark. A benchmark for single-cell RNA-seq integration methods},
+    type=\acronymtype
+}
+\newglossaryentry{GSEA}
+{
+    name={GSEA},
+    description={Gene Set Enrichment Analysis. A computational method that determines whether an a priori defined set of genes shows statistically significant, concordant differences between two biological states},
+    type=\acronymtype
+}
+\newglossaryentry{PPI}
+{
+    name={PPI},
+    description={Protein-Protein Interaction. The physical contact between two or more protein molecules as a result of biochemical events},
+    type=\acronymtype
+}
+\newglossaryentry{CAF}
+{
+    name={CAF},
+    description={Cancer-Associated Fibroblast. A cell type within the tumor microenvironment that promotes tumorigenic features},
+    type=\acronymtype
+}
+\newglossaryentry{RNA-seq}
+{
+    name={RNA-seq},
+    description={RNA Sequencing. A technique used to analyze the transcriptome of gene expression patterns},
+    type=\acronymtype
+}
+\newglossaryentry{BS-seq}
+{
+    name={BS-seq},
+    description={Bisulfite Sequencing. The use of bisulfite treatment of DNA before routine sequencing to determine the pattern of methylation},
+    type=\acronymtype
+}
+\newglossaryentry{ATAC-seq}
+{
+    name={ATAC-seq},
+    description={Assay for Transposase-Accessible Chromatin using sequencing. A technique used in molecular biology to assess genome-wide chromatin accessibility},
+    type=\acronymtype
+}
+\newglossaryentry{ChIP-seq}
+{
+    name={ChIP-seq},
+    description={Chromatin Immunoprecipitation Sequencing. A method used to analyze protein interactions with DNA},
+    type=\acronymtype
+}
+\newglossaryentry{CRISPR}
+{
+    name={CRISPR},
+    description={Clustered Regularly Interspaced Short Palindromic Repeats. A family of DNA sequences found in the genomes of prokaryotic organisms such as bacteria and archaea, used in gene editing},
+    type=\acronymtype
+}
+\newglossaryentry{scATAC-seq}
+{
+    name={scATAC-seq},
+    description={Single-cell ATAC-seq. A method to map chromatin accessibility at the single-cell level},
+    type=\acronymtype
+}
+\newglossaryentry{OT}
+{
+    name={OT},
+    description={Optimal Transport. A mathematical theory that deals with the problem of finding the most efficient way to move objects from one location to another},
+    type=\acronymtype
+}
+\newglossaryentry{SGD}
+{
+    name={SGD},
+    description={Stochastic Gradient Descent. An iterative method for optimizing an objective function with suitable smoothness properties},
+    type=\acronymtype
+}
+\newglossaryentry{GPT}
+{
+    name={GPT},
+    description={Generative Pre-trained Transformer. A type of large language model (LLM) and a prominent framework for generative artificial intelligence},
+    type=\acronymtype
+}
+
+\glsaddall
+\printglossary[type=\acronymtype, title=Liste des abréviations, toctitle=Liste des abréviations]

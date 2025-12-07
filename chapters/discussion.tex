@@ -11,33 +11,47 @@ In our third publication, we reused our proposed architecture, refined our train
 
 But a lot of work remains at the crossroads of AI and biology. In the following sections, I will discuss some of the challenges and opportunities that I see in this space.
 
-\section{collecting data in the wild}
+\section{Collecting data in the wild}
+
+\subsection{Genetic diversity}
 
 The first issue to address for a better model will be obtaining cell expression data across a much more diverse genetic background. This also means sequencing the genome of the tissues we are analyzing, which is rarely done because genomic data has strong laws surrounding patient anonymity and public sharing.
 
 Fortunately, we have seen projects starting around this goal, such as the 10K10K, which aims to sequence 10,000 cells from 10,000 people along with genetic data. The Sanger Institute is also doing something similar with spatial transcriptomics of 10,000s of samples in development, along with their genomes.
 
+%TODO: add refs and figures% genetic diversity projects image
+
 But these remain small-scale projects compared to the diversity of life on Earth. In genomics, scBasecamp and other for-profit companies are working on sampling life around the world from barren places to ocean depths, with the stated goal ofdeveloping higherr quality models. Single-cell models would stand to benefit just as much.
 
+\subsection{Interventional data}
+
 Finally, we also want interventional datasets. Currently, perturb-seq datasets with tens of thousands of perturbations exist, such as the genome-wide perturb-seq dataset and Tahoe-100M. However, here too, the scale remains too small. The Broad \& Sanger Institute's PRISM and DepMap projects examined millions of perturbations, albeit without deep phenotypic readouts. Recursion assessed image-based perturbations across at least as many. Xaira has started to release a dual gene knockout dataset of unparalleled quality.
+
+\subsection{Data quality}
 
 Indeed, the second missing important axis is data quality. Genomics is plagued with very low-quality, noisy, or biased, poorly labeled datasets. This is due to the high cost of sequencing, the complex chemistry of the experiments, and the poor academic incentives driving the creation of these datasets.
 
 It leads to an unstate Pareto front, where we want both more depth and more breadth: more diversity versus more quality.
 
+%TODO: add refs and figures% genetic genes per cell plot by technology
+
 It might be solved by new technologies, indeed we now have technologies like VASA-seq, 10X's Flex, and smart-seq 3 that promise unparalleled definition for a given sequencing budget. 10x's Xenium, BGI's STEREO-seq,, and expansion-based in situ method are promising for sequencing RNAs in their original 2D or even 3D context within sub-cellular locations of millions of cells at once. But we will also have to be smarter in how we select cells to sequence. 
 
-\section{multi modality \& perturbations}
+\section{Multi modality \& perturbations}
 
 Indeed,, these two modalities and their tradeoffs exist within a range of other techniques often needed to make sense of RNA biology itself.
 
 Interventional data is also required for the model to learn causality, especially when assessed at multiple fine-grained timescales and in higher-quality cellular models such as organoids.
 
+%TODO: add refs and figures% organoid image
+
 But the search space is unfathomable. Tools like digital microfluidics might allow us to solve some of these problems by providing precise control over which cells receive specific perturbations and obtain particular readouts, instead of pooling experiments and sequencing budgets randomly. If paired with AI models and online active learning, we might have a shot at creating a true AI-virtual cell.
 
-\section{AIVC}
+\section{The AI virtual cell}
 
 One could view such a training modality as reinforcement learning with active feedback (RLAF) of a large pretrained AI model. It would have been pretrained on most of biology, using foundation models of single-cell multimodalities, tissues, molecules, and protein-RNA-DNA sequences, pooled together in the kind of approaches we described in Chapter 2. LLMs could allow rich reasoning across these representations, results, and the breadth of written human knowledge.
+
+%TODO: add refs and figures% active learning image
 
 Many challenges remain in bridging fields such as data engineering, machine learning, material engineering, microelectronics, molecular biology, and cell biology, but the rewards are tremendous.
 

@@ -7,7 +7,7 @@
   "latex-workshop.latex.build.rootfileInStatus": true,
   "latex-workshop.latex.build.forceRecipeUsage": false,
   "latex-workshop.latex.tools": [
-    {
+    { //latexmk -synctex=1 -interaction=nonstopmode -file-line-error -lualatex -f -shell-escape -outdir=build %DOC%
       "name": "latexmk",
       "command": "latexmk",
       "args": [
