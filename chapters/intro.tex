@@ -245,7 +245,9 @@ In single-cell \gls{RNA-seq} data, a typical pipeline is as follows and contains
 
 These analysis and tools are available in a set of packages called scverse, which our work relies heavily on and has contributed to.
 
-\subsection{The AI virtual cell}
+Now that we understood more about the biology underpinning this Ph.D.'s work, let's understand the specific method we are trying to develop. A method where we are bringing artificial intelligence to the modeling of the cell.
+
+\section{The AI virtual cell}
 
 %TODO: it inspired my research, what are the scientific questions from it and what did I do there
 % SPOIL the PAPERS
@@ -258,7 +260,7 @@ These analysis and tools are available in a set of packages called scverse, whic
 
 A virtual cell model has been the dream of computational and systems biologists for decades. Initially, these models were based on simplified representations of cellular processes, often focusing on specific pathways or interactions. The models examined chemical reaction parameters involving proteins, \gls{RNA}s, and \gls{DNA}. However, in addition to computational challenges, these models were not able to generate realistic predictions of cellular behavior.
 
-Nowadays, the dominant idea is that artificial intelligence would allow us to solve some of these problems. But first, what is \gls{AI}, and what is the difference between machine learning, data science, and informatics?
+Nowadays, an idea has emerged that artificial intelligence techniques,  would allow us to solve some of these problems. But first, what is \gls{AI}, and what is the difference between machine learning (\gls{ML}), data science, and informatics?
 
 \subsection{AI and neural networks}
 
@@ -266,7 +268,7 @@ Nowadays, the dominant idea is that artificial intelligence would allow us to so
 
 \textbf{Data Science} encompasses the gathering, management, and analysis of data in information systems. Machine Learning happens when one uses statistical methods to generate predictions from data. But these methods can be more complex, and while they can be seen in the framework of statistics, they also have an underpinning in other domains, like neuroscience (with neural networks) and applied mathematics with Algebra, Topology, Analysis, and most importantly, Optimization. These methods often allow powerful modeling of the data statistics.
 
-Artificial Intelligence (\gls{AI}) is a broad term that has had multiple meanings in society and culture. But it mainly refers to applications of machine learning methods to human and animal-related tasks, such as understanding images, videos, speech, and text, as well as robot manipulation. This creates many bridges and links between data science, machine learning, statistics, informatics, and \gls{AI}.
+Artificial Intelligence (\gls{AI}) is a broad term that has had multiple meanings in society and culture. For many, it mainly refers to applications of machine learning methods to human and animal-related tasks, such as understanding images, videos, speech, and text, as well as robot manipulation. For the field, it has often been a much broader term encompassing even knowledge bases and many statistical methods. This creates many bridges and links between data science, machine learning, statistics, informatics, and \gls{AI}.
 
 Recently, Machine Learning (\gls{ML}) has made great strides in many areas, primarily due to a significant increase in data generation, along with improvements in optimization methods and neural networks.
 
@@ -279,7 +281,9 @@ Recently, Machine Learning (\gls{ML}) has made great strides in many areas, prim
 
 \subsubsection{intuition}
 
-These tools convert concepts and objects into high-dimensional vectors, called embeddings. In Neural Networks (\gls{NN}) these embedding vectors are then processed through layers of mathematical operations, often involving matrix multiplications and non-linear functions\cite{Goodfellow-et-al-2016}. The layers are designed to learn hierarchical representations of the input data, capturing increasingly complex features as the data passes through the network.
+Most of the potent machine learning tools today are part of the representation learning category. These tools convert concepts and objects into high-dimensional vectors, called embeddings. In Neural Networks (\gls{NN}) these embedding vectors are then processed through layers of mathematical operations, often involving matrix multiplications and non-linear functions\cite{Goodfellow-et-al-2016}. The layers are designed to learn hierarchical representations of the input data, capturing increasingly complex features as the data passes through the network.
+
+Such tools have also been heavily applied in the study of single-cell data, with many methods relying on representation learning and \gls{NN}s to denoise, align, and analyze the data\cite{scvi}.
 
 \begin{figure}[ht]
   \centering
@@ -288,15 +292,15 @@ These tools convert concepts and objects into high-dimensional vectors, called e
   \label{fig:ffn}
 \end{figure}
 
-Large Language Models (\gls{LLM}s) have become ubiquitous nowadays, and many in the field are trying to generalize them to \textbf{world models}\cite{haWorldModels2018}. These models, trained on physics simulations and videos, aim to predict the next state of complex physical phenomena, such as what happens when someone throws a ball or the physics of water flowing down a river.
+Recently, using specific neural network architectures with great scaling properties and training on a large swath of the internet, we built what has been termed Large Language Models (\gls{LLM}s). \gls{LLM}s have become ubiquitous nowadays, and researchers have been trying to extend  them to novel data modalities in what has been termed \textbf{world models}\cite{haWorldModels2018}. These models, trained on physics simulations, videos or other modalities, aim to predict the next state of complex physical phenomena, such as what happens when someone throws a ball or the physics of water flowing down a river.
 
-They have already shown promise in powering humanoid robots. Google DeepMind recently released a model for predicting the weather better and faster than the best "physics-based" models\cite{lamLearningSkillfulMediumrange2023}. But why and how are these models so powerful? While this remains an active area of research, essential theories have been presented. 
+World models have already shown promise in powering, for example, humanoid robots. In a different domain, Google DeepMind recently released a model for predicting the weather better and faster than the best "physics-based" models\cite{lamLearningSkillfulMediumrange2023}. But why and how are these models so powerful? While this remains an active area of research, essential theories have been presented. 
 
 \subsubsection{why does it work?}
 
-Contrary to the commonly accepted machine learning dogma, deep learning researchers showed, in the 2010s, that increasing the number of parameters did not necessarily lead to overfitting, i.e., the model learning by heart to reproduce the data. Instead, thanks to some light regularization methods, such as dropout and weight decay, which involve randomly removing some neurons during training and penalizing large weights, the models were able to learn more complex patterns in the data.
+Contrary to the previously accepted machine learning dogma, deep learning researchers showed, in the 2010s, that increasing the number of parameters did not necessarily lead to overfitting, i.e., the model learning by heart to reproduce its training data. Instead, thanks to some light regularization methods the models were able to learn more complex patterns in the data. There methods such as dropout and weight decay, involve randomly removing some neurons during training and penalizing large weights.
 
-Thanks also to \gls{GPU}s and interconnects allowing large parallel matrix operations in a distributed manner, such models could be scaled to orders of magnitude more parameters, thereby demonstrating the power of weak learning methods\cite{lecunDeepLearning2015}.
+Another enabler to achieve such large models was the advent of Graphical Processing Units (\gls{GPU})s, while allowed large and very efficient parallel matrix operations. Thanks to  interconnects, hundreds of GPUs could be linked to form nodes and pods of compute clusters which allowed training distributed manner, such models could be scaled to orders of magnitude more parameters, thereby demonstrating the power of weak learning methods\cite{lecunDeepLearning2015}.
 
 \begin{figure}[ht]
   \centering
