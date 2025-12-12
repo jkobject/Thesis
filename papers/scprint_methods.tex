@@ -26,7 +26,7 @@ The model architecture is composed of:
 In scPRINT, each gene in a cell is converted to an embedding: It
 corresponds to the sum of 3 different elements:
 
-1. An embedding representing the gene itself (see ~\ref{sec:suppscprint}. Supplementary Table S2 for model embedding size). ESM2 embedding of each gene's most common protein product was used to represent that gene. While imperfect in some ways, this inductive bias allows the model to learn representations that potentially apply to even unseen genes from unseen species or integrate specific genetic mutations into its representation. First implemented in UCE, this provides the model information related to the gene product's structure, ontology, and similarity to other genes. This also speeds up the training greatly, particularly for small models. We show that this is a great gene representation, but that model performance can be increased by refining gene embeddings further during training. However, we elect not to do so to maintain the model's versatility in working on unseen genes.
+1. An embedding representing the gene itself (see Supplementary Table \href{table-s1-list-of-novelties-in-scprint-and-comparison-to-scgpt-and-scfoundation} for model embedding size). ESM2 embedding of each gene's most common protein product was used to represent that gene. While imperfect in some ways, this inductive bias allows the model to learn representations that potentially apply to even unseen genes from unseen species or integrate specific genetic mutations into its representation. First implemented in UCE, this provides the model information related to the gene product's structure, ontology, and similarity to other genes. This also speeds up the training greatly, particularly for small models. We show that this is a great gene representation, but that model performance can be increased by refining gene embeddings further during training. However, we elect not to do so to maintain the model's versatility in working on unseen genes.
 
 We encode the genes' embeddings using ESM2. The mapping process happens the following way:
 
@@ -57,14 +57,19 @@ haven't found that this approach was the simplest, nor was it performing
 better than only using the log-transformed counts. We thus directly take
 the log-transformed counts
 
-\(\mathbf{e}_{\mathbf{i,j}}\  = \ MLP(log_{2}(x_{i,j} + 1)),\ x_{i,j}\mathfrak{\in \ R\ ,\ }\mathbf{e}_{\mathbf{i,j}}\mathfrak{\  \in \ R}\ ^{d}\),
-(1)
+\begin{equation}
+\mathbf{e}_{\mathbf{i,j}} = MLP(log_{2}(x_{i,j} + 1)),\ x_{i,j} \in \mathbb{R},\ \mathbf{e}_{\mathbf{i,j}} \in \mathbb{R}^{d}
+\label{eq:expression_embedding}
+\end{equation}
 
 where \(\exp r_{i,j}\ \)is the embedding of the expression, \(x_{i,j}\)
 is the expression value of the gene j in the cell i, and the MLP is a
 two-layer neural network, where each layer is composed of
 
-\(Dropout(ReLU(LayerNorm(Linear(\mathbf{e}_{\mathbf{i,j}}\ ))))\) , (2)
+\begin{equation}
+Dropout(ReLU(LayerNorm(Linear(\mathbf{e}_{\mathbf{i,j}}))))
+\label{eq:mlp_layer}
+\end{equation}
 
 where the Dropout rate is fixed at 0.1, and the dimensions are specified
 as 1 → \emph{d} for the first layer of the MLP and \emph{d → d} for the
@@ -123,8 +128,10 @@ dropout.
 The full set of embeddings of cell i sent to the transformer is the
 matrix \(X_{i}\) where
 
-\(X_{i}\  = \lbrack\mathbf{g}_{\mathbf{0}} + \mathbf{e}_{\mathbf{i,0}} + \mathbf{l}_{\mathbf{0}}\ ,\ \mathbf{g}_{\mathbf{1}} + \mathbf{e}_{\mathbf{i,1}} + \mathbf{l}_{\mathbf{1}}\ ,\ ...\ ,\mathbf{e}_{\mathbf{i,t}}\ ,\mathbf{p}_{\mathbf{default}},\ \mathbf{p}_{\mathbf{celltype}}\ ,\mathbf{p}_{\mathbf{disease}}\ ,\ ...\rbrack\),
-(3)
+\begin{equation}
+X_{i} = [\mathbf{g}_{\mathbf{0}} + \mathbf{e}_{\mathbf{i,0}} + \mathbf{l}_{\mathbf{0}}, \mathbf{g}_{\mathbf{1}} + \mathbf{e}_{\mathbf{i,1}} + \mathbf{l}_{\mathbf{1}}, ..., \mathbf{e}_{\mathbf{i,t}}, \mathbf{p}_{\mathbf{default}}, \mathbf{p}_{\mathbf{celltype}}, \mathbf{p}_{\mathbf{disease}}, ...]
+\label{eq:cell_embeddings}
+\end{equation}
 
 where \(\mathbf{g}_{\mathbf{j}}\) is the gene j encoding,
 \(\mathbf{e}_{\mathbf{i,j}}\) is the encoding of the expression of gene
@@ -135,8 +142,10 @@ class A.
 The total count information is stored separately and encoded similarly
 to the expression,
 
-\(\mathbf{e}_{\mathbf{t,i}}\  = \ MLP(log_{2}(1 + t_{i}))\), where
-\(t_{i} = \ \sum_{j}^{}x_{i,j}\), (4)
+\begin{equation}
+\mathbf{e}_{\mathbf{t,i}} = MLP(log_{2}(1 + t_{i})), \text{ where } t_{i} = \sum_{j}x_{i,j}
+\label{eq:total_count}
+\end{equation}
 
 with \(x_{i,j}\) the expression value of gene j in cell i, and the MLP
 is a two-layer neural network similar to the previous one.
@@ -174,13 +183,19 @@ outputs the parameters of a zero-inflated negative binomial
 (\emph{ZiNB}) function for each gene \emph{i} in cell \emph{j}. The
 \emph{ZiNB} distribution is defined as
 
-\(X\sim ZiNB(\mu,\ \theta,\ \pi)\), (5)
+\begin{equation}
+X \sim ZiNB(\mu, \theta, \pi)
+\label{eq:zinb_dist}
+\end{equation}
 
 where the parameters \(\mu,\ \theta,\ \pi\) are obtained from a
 multi-layer perceptron (MLP) applied to the expression embeddings
 outputted by the transformer model at its last layer (e), which are the:
 
-\(\mu,\ \theta,\ \pi\  = \ MLP(\mathbf{e})\) (6)
+\begin{equation}
+\mu, \theta, \pi = MLP(\mathbf{e})
+\label{eq:zinb_params}
+\end{equation}
 
 The MLP is a two-layer neural network with dimensions {[}\emph{d, d},
 3{]}
@@ -191,8 +206,10 @@ measurements, where some have enough dropouts, and a zero inflation term
 is needed to model it. In our case, and similarly to
 scVI, we define our \emph{ZiNB} as
 
-\(ZiNB(x\ |\ \mu,\ \theta,\ \pi)\  = \pi\delta_{0}(x)\  + \ (1\  - \pi)NB(x\ |\ \mu,\ \theta)\ \)
-, (7)
+\begin{equation}
+ZiNB(x | \mu, \theta, \pi) = \pi\delta_{0}(x) + (1 - \pi)NB(x | \mu, \theta)
+\label{eq:zinb_def}
+\end{equation}
 
 where \(\delta_{0}(x)\) is a point mass at zero, and
 \(NB(x\ |\ \mu,\theta)\) is the negative binomial distribution with mean
@@ -201,15 +218,20 @@ where \(\delta_{0}(x)\) is a point mass at zero, and
 With these parameters, the negative binomial distribution is represented
 in the following way
 
-\(NB(x\ |\ \mu,\ \theta) = \ \frac{\Gamma(x + \theta)}{x!\Gamma(\theta)}{(\frac{\mu}{\mu + \theta})}^{x}{(\frac{\theta}{\mu + \theta})}^{\theta}\)
-, (8)
+\begin{equation}
+NB(x | \mu, \theta) = \frac{\Gamma(x + \theta)}{x!\Gamma(\theta)}\left(\frac{\mu}{\mu + \theta}\right)^{x}\left(\frac{\theta}{\mu + \theta}\right)^{\theta}
+\label{eq:nb_dist}
+\end{equation}
 
 where \(\mu\) is the mean and \(\theta\) the overdispersion parameter,
 representing the inverse of the dispersion. From Hibe et
 al., we know that this is a parameter change from
 the most used probability mass function (PMF) given by
 
-\(P(X = x) = \binom{x\  + \ r - 1}{x\ }{(1 - p)}^{r}p^{x}\) (9)
+\begin{equation}
+P(X = x) = \binom{x + r - 1}{x}(1 - p)^{r}p^{x}
+\label{eq:pmf}
+\end{equation}
 
 where r is the number of successes, \emph{p} is the probability of
 success, and \emph{k} is the number of failures.
@@ -226,7 +248,7 @@ to Poisson relationship} section in Methods).
 
 Compared to scVI, where the overdispersion parameter \(\theta\) is
 learned for each gene, we make scPRINT output it together with
-\(\mu,\ \pi\) (see ~\ref{sec:suppscprint}. Supplementary Figure S13)
+\(\mu,\ \pi\) (see Supplementary Figure \ref{fig-s13-graphical-model})
 
 Effectively, the model learns that the dispersion might change depending
 on the gene, the sequencer, the cell type, and the sequencing depth.
@@ -244,8 +266,10 @@ disentangled embedding (e.g., cell type, disease, tissue, age). This
 means the model uses an MLP to transform each token where A is a class.
 For each, we jointly train a classifier:
 
-\(\widehat{\mathbf{c}_{\mathbf{A}}}\  = \ \sigma(MLP_{A}(\widehat{\mathbf{e}_{A}}))\),
-(10)
+\begin{equation}
+\widehat{\mathbf{c}_{\mathbf{A}}} = \sigma(MLP_{A}(\widehat{\mathbf{e}_{A}}))
+\label{eq:classifier}
+\end{equation}
 
 where:
 
@@ -268,7 +292,7 @@ Fortunately, cellxgene classes follow an ontology, a robust structure
 that defines relationships among the labels. We reduce the size of the
 output labels by training the model only on the leaf labels in the
 ontology hierarchy (i.e., the most precise available). For cell types,
-this represents around 400 different labels (see ~\ref{sec:suppscprint}. Supplementary Table S13).
+this represents around 400 different labels (see Supplementary Table \ref{table-s13-number-of-elements-predicted-per-class}).
 
 Thus, when a label is not very specific for a cell type (e.g., neuron),
 the model will predict the best leaf label (e.g., dopaminergic neuron).
@@ -351,15 +375,20 @@ hierarchical loss. Here, we compute the loss regularly when the label is
 a leaf label. Otherwise, we replace all associated leaf labels to the
 given label by the log-sum-exp, such that for a cell label, the loss is:
 
-\(Loss_{classification} = CE(\sigma(\overline{\mathbf{c}},\mathbf{c})\),,
-(11)
+\begin{equation}
+Loss_{classification} = CE(\sigma(\overline{\mathbf{c}},\mathbf{c}))
+\label{eq:class_loss}
+\end{equation}
 
 with:
 
-\(\overline{\mathbf{c}} = \ \left\{ \begin{array}{r}
-\widehat{\mathbf{c}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ \left\{ i\ |\ c_{i} = 1 \right\}\  \subseteq T\  \\
-LSE\left( {\widehat{\mathbf{c}}}_{d} \right)||{\widehat{\mathbf{c}}}_{\sim d}\ \ \ \ else\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 
-\end{array} \right.\ \) (12)
+\begin{equation}
+\overline{\mathbf{c}} = \left\{ \begin{array}{r}
+\widehat{\mathbf{c}} \quad \text{if } \left\{ i | c_{i} = 1 \right\} \subseteq T \\
+LSE\left( {\widehat{\mathbf{c}}}_{d} \right)||{\widehat{\mathbf{c}}}_{\sim d} \quad \text{else}
+\end{array} \right.
+\label{eq:c_bar}
+\end{equation}
 
 where:
 
@@ -384,17 +413,22 @@ where:
 
 The CE (cross-entropy) is defined as:
 
-\(CE(\mathbf{p},\mathbf{q})\  = \  - \ \sum_{u}^{}{q_{u}log(p_{u})}\) .
-(13)
+\begin{equation}
+CE(\mathbf{p},\mathbf{q}) = - \sum_{u}{q_{u}\log(p_{u})}
+\label{eq:cross_entropy}
+\end{equation}
 
 And the LSE (log-sum-exp) is defined as
 
-\(LSE(X)\  = \ log(\sum_{p \in X}^{}e^{p})\). (14)
+\begin{equation}
+LSE(X) = \log\left(\sum_{p \in X}e^{p}\right)
+\label{eq:lse}
+\end{equation}
 
 This loss allows the classifier to learn even in cases where the labels
 can be of varying coarseness without the coarseness of some labels
 impacting the ability of the model to predict the true fine-grained
-labels (see ~\ref{sec:suppscprint}. Supplementary Figure S14)
+labels (see Supplementary Figure \ref{fig-s14-hierarchical-classifier})
 
 The loss is hierarchical for the classes: cell type, disease, sequencer,
 ethnicity; the labels follow a hierarchy defined by (Cell Ontology,
@@ -438,8 +472,10 @@ Let \(\mathbf{x}_{\mathbf{i}}\) be the gene expression vector of cell i
 with dimensions \(n_{genes}\); we create a downsampled \emph{version} by
 doing
 
-\({\widehat{\mathbf{x}}}_{\mathbf{i}} = \ max((\mathbf{x}_{\mathbf{i}} - \ \mathbf{p}_{\mathbf{i}}) \cdot \ \mathbf{\pi}_{\mathbf{i}},\ 0)\),
-(15)
+\begin{equation}
+{\widehat{\mathbf{x}}}_{\mathbf{i}} = \max((\mathbf{x}_{\mathbf{i}} - \mathbf{p}_{\mathbf{i}}) \cdot \mathbf{\pi}_{\mathbf{i}}, 0)
+\label{eq:downsample}
+\end{equation}
 
 with:
 
@@ -472,21 +508,26 @@ The contribution of cell i to the loss is then computed as the negative
 log-likelihood of the count data given the distribution parameters being
 generated by the model
 
-\(Loss_{denoising}\  = \ Loss_{ZINB}\  = \  - \frac{1}{n_{gene}m}\sum_{i = 0,j = 0}^{n_{gene},m}{log(L(x_{i,j}|\ \mu_{i,j\ },\ \theta_{i,j}\ ,\ \pi_{i,j}))},\ \)
-(16)
+\begin{equation}
+Loss_{denoising} = Loss_{ZINB} = - \frac{1}{n_{gene}m}\sum_{i = 0,j = 0}^{n_{gene},m}{\log(L(x_{i,j}| \mu_{i,j}, \theta_{i,j}, \pi_{i,j}))}
+\label{eq:denoising_loss}
+\end{equation}
 
 where \(n_{gene}\) is the size of the expression profile
 \(\mathbf{x}_{\mathbf{i}}\) , m is the size of the minibatch and
 
-\(L\left( x \middle| \mu,\theta,\pi \right) = \ \left\{ \begin{array}{r}
-\frac{\pi}{\pi - \ \theta \bullet (\log(\theta) - log(\theta + \mu))}\ \ \ \ \ \ \ \ \ if\ x = 0 \\
-\frac{{(\frac{\mu}{\theta + \mu})}^{x} \cdot \Gamma(x + \theta) \bullet \sigma( - \pi)}{exp(\pi) \bullet \left( \frac{\mu}{\theta + \mu} \right)^{\theta} \bullet \Gamma(\theta) \bullet \Gamma(x + 1)}\ \ if\ x\  > 0
-\end{array} \right.\ \) (17)
+\begin{equation}
+L\left( x | \mu,\theta,\pi \right) = \left\{ \begin{array}{r}
+\frac{\pi}{\pi - \theta \cdot (\log(\theta) - \log(\theta + \mu))} \quad \text{if } x = 0 \\
+\frac{\left(\frac{\mu}{\theta + \mu}\right)^{x} \cdot \Gamma(x + \theta) \cdot \sigma(-\pi)}{\exp(\pi) \cdot \left( \frac{\mu}{\theta + \mu} \right)^{\theta} \cdot \Gamma(\theta) \cdot \Gamma(x + 1)} \quad \text{if } x > 0
+\end{array} \right.
+\label{eq:likelihood}
+\end{equation}
 
 with \(\sigma\) the sigmoid function.
 
 We show that models trained with such a framework perform better than
-regular MSE-trained models (see ~\ref{sec:suppscprint}. Supplementary Table S3), for which one only outputs
+regular MSE-trained models (see Supplementary Table \ref{table-s3-ablation-study-and-impact-on-performance-across-tasks}), for which one only outputs
 one value instead of three, directly representing the
 data's log-transformed count. In this case, the loss is
 the mean squared error between the predicted and true count values.
@@ -523,8 +564,10 @@ the expression information.\\
 scGPT used another methodology (called MVC) to generate an embedding
 vector such that
 
-\(x_{i,j} = \ \mathbf{e}_{\mathbf{i}} \odot \mathbf{g}_{\mathbf{j}}\mathbf{\ }\ \),
-(18)
+\begin{equation}
+x_{i,j} = \mathbf{e}_{\mathbf{i}} \odot \mathbf{g}_{\mathbf{j}}
+\label{eq:scgpt_mvc}
+\end{equation}
 
 where \(x_{i,j}\) is the expression of gene j in cell i, and \(\odot\)
 is the dot product. For each gene embedding \(\mathbf{g}_{\mathbf{j}}\)
@@ -537,7 +580,7 @@ all the expression information of the cell i.
 
 This is less computationally intensive to train than our bottleneck
 learning method. However, we have noticed poorer reconstruction through
-this methodology than ours (see ~\ref{sec:suppscprint}. Supplementary Table S3).
+this methodology than ours (see Supplementary Table \ref{table-s3-ablation-study-and-impact-on-performance-across-tasks}).
 
 In our case, we consider that our model scPRINT can act as two parts of
 an autoencoder. The encoding part is when we give scPRINT the expression
@@ -546,28 +589,34 @@ profile of a cell and retrieve a set of disentangled cell embeddings
 methods). The decoder part is when we provide scPRINT only the gene
 labels without their corresponding expression values and the
 disentangled cell embedding in place of the empty placeholder embeddings
-(see ~\ref{sec:suppscprint}. SupplementaryFigure S15).
+(see Supplementary Figure \ref{fig-s15-detailed-representation-of-the-bottleneck-learning-procedure}).
 
 This means the encoder is considered as
 
-\(\mathbf{e}_{\mathbf{A,i}} = scPRINT(\lbrack\mathbf{g}_{\mathbf{O}} + \mathbf{e}_{\mathbf{0,i}} + \mathbf{l}_{\mathbf{0}},{\ \mathbf{g}}_{\mathbf{1}} + \mathbf{e}_{\mathbf{1,i}} + \mathbf{l}_{\mathbf{1}},\ ...,\ \mathbf{p}_{\mathbf{A}}\rbrack)\),
-(19)
+\begin{equation}
+\mathbf{e}_{\mathbf{A,i}} = scPRINT([\mathbf{g}_{\mathbf{O}} + \mathbf{e}_{\mathbf{0,i}} + \mathbf{l}_{\mathbf{0}}, \mathbf{g}_{\mathbf{1}} + \mathbf{e}_{\mathbf{1,i}} + \mathbf{l}_{\mathbf{1}}, ..., \mathbf{p}_{\mathbf{A}}])
+\label{eq:encoder}
+\end{equation}
 
 where \(\mathbf{e}_{A,i}\) is the output embedding of the placeholder
 embedding token A for the cell i (in our case, we use multiple (default,
 totalcount, cell\_type, disease, sex, organism, ethnicity, sequencer).
 Then the decoder is defined as
 
-\(\mathbf{\mu}_{\mathbf{i}},\mathbf{\theta}_{\mathbf{i}},\mathbf{\pi}_{\mathbf{i}} = scPRINT(\lbrack\mathbf{g}_{\mathbf{O}} + \mathbf{l}_{\mathbf{0}},\mathbf{\ g}_{\mathbf{1}} + \mathbf{l}_{\mathbf{1}},\ ...\rbrack,\ \mathbf{e}_{\mathbf{0,i}},\ \mathbf{e}_{\mathbf{1,i}},\ ...,\ \mathbf{e}_{\mathbf{t,i}})\),
-(20)
+\begin{equation}
+\mathbf{\mu}_{\mathbf{i}},\mathbf{\theta}_{\mathbf{i}},\mathbf{\pi}_{\mathbf{i}} = scPRINT([\mathbf{g}_{\mathbf{O}} + \mathbf{l}_{\mathbf{0}}, \mathbf{g}_{\mathbf{1}} + \mathbf{l}_{\mathbf{1}}, ...], \mathbf{e}_{\mathbf{0,i}}, \mathbf{e}_{\mathbf{1,i}}, ..., \mathbf{e}_{\mathbf{t,i}})
+\label{eq:decoder}
+\end{equation}
 
 With
 \(\mathbf{\mu}_{\mathbf{i}}\ ,\ \mathbf{\theta}_{\mathbf{i\ }},\ \mathbf{\pi}_{\mathbf{i}}\)
 vectors of size \(n_{genes}\). Finally, the loss is given by the ZINB
 loss:
 
-\(Loss_{bottleneck}\  = \sum_{i = 0}^{m}{Loss_{ZINB}(\mathbf{x}_{\mathbf{i}}\mathbf{|}\ \mathbf{\mu}_{\mathbf{i}}\mathbf{\ },\ \mathbf{\theta}_{\mathbf{i}}\mathbf{\ },\ \mathbf{\pi}_{\mathbf{i}})}\ \),
-(21)
+\begin{equation}
+Loss_{bottleneck} = \sum_{i = 0}^{m}{Loss_{ZINB}(\mathbf{x}_{\mathbf{i}} | \mathbf{\mu}_{\mathbf{i}}, \mathbf{\theta}_{\mathbf{i}}, \mathbf{\pi}_{\mathbf{i}})}
+\label{eq:bottleneck_loss}
+\end{equation}
 
 where \(\mathbf{x}_{\mathbf{i}}\) is the cell i expression profile and
 \emph{m} the minibatch size.
@@ -576,8 +625,10 @@ Implementing a set of disentangled embeddings is not straightforward. In
 our case, we push the embeddings to be as different from one another as
 possible with a contrastive loss defined as
 
-\(Loss_{constrastive} = \frac{1}{m^{2}}\sum_{i = 1}^{m}{\sum_{i'}^{m}{1 - cos(\mathbf{e}_{\mathbf{i}},\mathbf{e}_{\mathbf{i'}})}}\),
-(22)
+\begin{equation}
+Loss_{contrastive} = \frac{1}{m^{2}}\sum_{i = 1}^{m}{\sum_{i'}^{m}{1 - \cos(\mathbf{e}_{\mathbf{i}},\mathbf{e}_{\mathbf{i'}})}}
+\label{eq:contrastive_loss}
+\end{equation}
 
 where \(\mathbf{e}_{\mathbf{i}}\) and \(\mathbf{e}_{\mathbf{i'}}\) are
 the cell embeddings, \emph{m} is the minibatch size, and \emph{cos}
@@ -591,15 +642,17 @@ embeddings. This works particularly well for cell type, disease, or
 sequencer classes containing many labels. It has been shown that
 classifier logit outputs behave similarly to
 embeddings and, in our case, offer an even better
-removal of the batch effects (see ~\ref{sec:suppscprint}. SupplementaryFigure S7).
+removal of the batch effects (See Supplementary Figure \ref{fig-s7-full-scib-batch-correction-scores}).
 
 For the bottleneck loss, we directly reconstruct expression using the
 cell embeddings generated from the noisy, downsampled expression profile
 of the denoising process, doing the entire process in one single pass.
 We sum all the losses without scaling them:
 
-\(Loss\  = \ Loss_{contrastive} + Loss_{bottleneck} + Loss_{denoising} + Loss_{class}\)
-(23)
+\begin{equation}
+Loss = Loss_{contrastive} + Loss_{bottleneck} + Loss_{denoising} + Loss_{class}
+\label{eq:total_loss}
+\end{equation}
 
 \subsection{scDataloader}\label{scdataloader}
 
@@ -623,7 +676,7 @@ downloading, preprocessing, and QC of large single-cell databases and
 datasets. It is very flexible and can represent expression data in the
 formats used by scPRINT, scGPT, and Geneformer. It also implements a
 lightning datamodule scheme and command line interfaces for quick setup
-(see ~\ref{sec:suppscprint}. SupplementaryFigure S16).
+(see Supplementary Figure \ref{fig-s16-schematic-representation-of-our-dataloader}).
 
 Overall, we preprocess each of the 1200 datasets in cellxgene by only
 keeping primary cells from either humans or mice and dropping all the
@@ -647,15 +700,20 @@ attention heads. This is done by splitting the generated
 \emph{m} sub-embeddings, thus defining \emph{m} attention heads. Each
 attention head computes the attention matrix via the equation:
 
-\(softmax(\frac{\mathbf{QK}^{T}}{\sqrt{d_{k}}})\). (24)
+\begin{equation}
+\text{softmax}\left(\frac{\mathbf{QK}^{T}}{\sqrt{d_{k}}}\right)
+\label{eq:attention}
+\end{equation}
 
 However, we would want to aggregate those over multiple cells from a
 similar cell state to increase the signal obtained from only one cell.
 We are doing so by averaging the Keys and Queries embeddings over the
 set of cells \(U\) passed to the model:
 
-\(softmax(\frac{{mean_{U}(\mathbf{Q})_{}mean_{U}(\mathbf{K})}^{T}}{\sqrt{d_{k}}})\).
-(25)
+\begin{equation}
+\text{softmax}\left(\frac{mean_{U}(\mathbf{Q}) \cdot mean_{U}(\mathbf{K})^{T}}{\sqrt{d_{k}}}\right)
+\label{eq:meta_attention}
+\end{equation}
 
 By doing this, the attention matrix behaves as if each query vector for
 cell i was ``looking'' across the key vectors of all the cells in U.
@@ -712,8 +770,7 @@ and S13 show that this performs better than taking the opposite view by
 transposing the inferred networks.
 
 This assumption is challenged for Omnipath, which has most of its
-elements connected to a sparse set of other elements (see ~\ref{sec:suppscprint}. SupplementaryFigure
-S3). Due to the sparsity of connections for regulators (i.e., sources)
+elements connected to a sparse set of other elements (see Supplementary Figure\ref{fig-s3-distribution-of-connection-amongst-the-three-ground-truths}). Due to the sparsity of connections for regulators (i.e., sources)
 in the ground truth network and the large number of regulators (8000+),
 the methods are challenged and perform much better when taking the
 transpose of their network and matching the regulators to the sources
@@ -1113,23 +1170,31 @@ As explained in \hyperref[the-denoising-task]{The denoising task} and \hyperref[
 
 Moreover, we have also used the zero-inflated Poisson mechanism to downsample the cell expression profiles. These are consistent because we can view the Poisson distribution as a NB without overdispersion. The relationship between \emph{NB} and \emph{Poisson} is given by making the dispersion term go to 0 and the inverse dispersion term \(\theta \rightarrow \infty\). Doing so, the term \(\frac{\theta}{\theta + \mu}\) approaches 1. Thus, the PMF simplifies to:
 
-\(P(X = x) \approx \frac{\Gamma(x + \theta)}{x!\Gamma(\theta)}1^{\theta}{(\frac{\mu}{\theta + \mu})}^{x}\)
-(26)
+\begin{equation}
+P(X = x) \approx \frac{\Gamma(x + \theta)}{x!\Gamma(\theta)}1^{\theta}\left(\frac{\mu}{\theta + \mu}\right)^{x}
+\label{eq:pmf_simplified}
+\end{equation}
 
 For large \(\theta\), we use Stirling's approximation of the Gamma function: \(\Gamma(\theta) \approx \sqrt{2\pi\theta}{(\frac{\theta}{e})}^{\theta}\)
 
 we get:
 
-\(\Gamma(x + \theta) \approx \sqrt{2\pi(x + \theta)}{(\frac{x + \theta}{e})}^{x + \theta}\)
-(27)
+\begin{equation}
+\Gamma(x + \theta) \approx \sqrt{2\pi(x + \theta)}\left(\frac{x + \theta}{e}\right)^{x + \theta}
+\label{eq:stirling1}
+\end{equation}
 
-\(\Gamma(\theta) \approx \sqrt{2\pi\theta}{(\frac{\theta}{e})}^{\theta}\)
-(28)
+\begin{equation}
+\Gamma(\theta) \approx \sqrt{2\pi\theta}\left(\frac{\theta}{e}\right)^{\theta}
+\label{eq:stirling2}
+\end{equation}
 
 Simplifying the ratio of the Gamma functions:
 
-\(\frac{\sqrt{2\pi(x + \theta)}{(\frac{x\  + \ \theta}{e})}^{x\  + \ \theta}}{\sqrt{2\pi\theta}{(\frac{\theta}{e})}^{\theta}}\  = \sqrt{\frac{x\  + \ \theta}{\theta}}{(\frac{x\  + \ \theta}{\theta})}^{\theta}{(\frac{x\  + \ \theta}{e})}^{x}\ \).
-(29)
+\begin{equation}
+\frac{\sqrt{2\pi(x + \theta)}\left(\frac{x + \theta}{e}\right)^{x + \theta}}{\sqrt{2\pi\theta}\left(\frac{\theta}{e}\right)^{\theta}} = \sqrt{\frac{x + \theta}{\theta}}\left(\frac{x + \theta}{\theta}\right)^{\theta}\left(\frac{x + \theta}{e}\right)^{x}
+\label{eq:gamma_ratio}
+\end{equation}
 
 For large \(\theta\), \(\frac{x\  + \ \theta}{\theta}\sim 1\), so: \(\sqrt{\frac{x\  + \ \theta}{\theta}} \approx 1\)
 
@@ -1137,13 +1202,17 @@ For large \(\theta\), \(\frac{x\  + \ \theta}{\theta}\sim 1\), so: \(\sqrt{\frac
 
 Thus, the expression simplifies to:
 
-\({P(X = x) \approx \frac{1}{x!}(\frac{\mu}{\theta + \mu})}^{x}{(\frac{\theta\  + \ x}{\theta})}^{x}\)
-(30)
+\begin{equation}
+P(X = x) \approx \frac{1}{x!}\left(\frac{\mu}{\theta + \mu}\right)^{x}\left(\frac{\theta + x}{\theta}\right)^{x}
+\label{eq:pmf_approx}
+\end{equation}
 
 Finally, \({(\frac{x\  + \ \theta}{\theta\  + \ \mu})}^{x} \approx \ 1\ \)for large \(\theta\), so:
 
-\(\lim_{\theta \rightarrow \infty}P(X = x) = \frac{\mu^{x}}{x!}e^{- \mu}\)
-(31)
+\begin{equation}
+\lim_{\theta \rightarrow \infty}P(X = x) = \frac{\mu^{x}}{x!}e^{-\mu}
+\label{eq:poisson_limit}
+\end{equation}
 
 This is the PMF of the Poisson distribution with mean \(\mu\).
 

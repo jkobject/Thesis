@@ -1,3 +1,5 @@
+\raggedbottom % Allow flexible page heights to reduce underfull vbox warnings
+
 \chapter*{Preamble} % Main chapter title
 \addcontentsline{toc}{chapter}{Preamble}  
 
@@ -292,15 +294,19 @@ Such tools have also been heavily applied in the study of single-cell data, with
   \label{fig:ffn}
 \end{figure}
 
-Recently, using specific neural network architectures with great scaling properties and training on a large swath of the internet, we built what has been termed Large Language Models (\gls{LLM}s). \gls{LLM}s have become ubiquitous nowadays, and researchers have been trying to extend  them to novel data modalities in what has been termed \textbf{world models}\cite{haWorldModels2018}. These models, trained on physics simulations, videos or other modalities, aim to predict the next state of complex physical phenomena, such as what happens when someone throws a ball or the physics of water flowing down a river.
+Recently, specific neural network architectures with powerfull scaling properties and trained on a large swath of the internet, also named Large Language Models (\gls{LLM}s), have become ubiquitous. Researchers have started to extend their abilities to novel data modalities in what has been termed \textbf{world models}\cite{haWorldModels2018}. These models, trained on physics simulations, videos or more, aim to predict the next state of complex physical phenomena, such as what happens when someone throws a ball or how water flows down a river.
 
-World models have already shown promise in powering, for example, humanoid robots. In a different domain, Google DeepMind recently released a model for predicting the weather better and faster than the best "physics-based" models\cite{lamLearningSkillfulMediumrange2023}. But why and how are these models so powerful? While this remains an active area of research, essential theories have been presented. 
+World models have already shown promise in powering, for example, humanoid robots. In different domain, Google DeepMind recently released a model for predicting the weather better and faster than the best "physics-based" models\cite{lamLearningSkillfulMediumrange2023}. But why and how are these models so powerful? While this remains an active area of research, essential theories have been presented. 
 
 \subsubsection{why does it work?}
 
 Contrary to the previously accepted machine learning dogma, deep learning researchers showed, in the 2010s, that increasing the number of parameters did not necessarily lead to overfitting, i.e., the model learning by heart to reproduce its training data. Instead, thanks to some light regularization methods the models were able to learn more complex patterns in the data. There methods such as dropout and weight decay, involve randomly removing some neurons during training and penalizing large weights.
 
-Another enabler to achieve such large models was the advent of Graphical Processing Units (\gls{GPU})s, while allowed large and very efficient parallel matrix operations. Thanks to  interconnects, hundreds of GPUs could be linked to form nodes and pods of compute clusters which allowed training distributed manner, such models could be scaled to orders of magnitude more parameters, thereby demonstrating the power of weak learning methods\cite{lecunDeepLearning2015}.
+To make deep models a final element called skip connections was introduced. Skip connections prevented a previous known issue called vanishing gradients. This innovation led to architectures like ResNet and VGG, which significantly improved performance on various tasks\cite{heDeepResidualLearning2015, simonyanVeryDeepConvolutional2015}.
+
+Finally, transformer architectures, introduced in 2017, generalized neural networks further by working on matrices instead of vectors and using invariances in the model architecture itself. This allowed the models to scale even further and learn more complex patterns in the data\cite{vaswaniAttentionAllYou2023}.
+
+Another enabler to achieve large models was the advent of Graphical Processing Units (\gls{GPU})s, which allowed large and very efficient parallel matrix operations. Furthermore, thanks to  interconnects, hundreds of GPUs can be linked to form nodes and pods of compute clusters.
 
 \begin{figure}[ht]
   \centering
@@ -309,13 +315,15 @@ Another enabler to achieve such large models was the advent of Graphical Process
   \label{fig:vgg}
 \end{figure}
 
-Finally, advanced first-order optimization methods, such as Adam, together with back-propagation, allowed even such a large number of parameters to be trained efficiently\cite{kingmaAdamMethodStochastic2017}.
+Now, the final piece of the puzzle is in how we train such models.
 
 \subsubsection{optimization and loss landscapes}
 
-Indeed, stochastic gradient descent (\gls{SGD}) methods like Adam not only minimize the loss function but also help escape local minima and saddle points\cite{liVisualizingLossLandscape2018}. 
+Interestingly, whether small or large, neural network or else amost all \gls{ML} methods are trained using variants of gradient descent optimization methods. These methods aim to minimize a loss function, which quantifies the difference between the model's predictions and the actual data. By iteratively adjusting the model's parameters in the direction that reduces the loss, these optimization algorithms help the model learn from the data.
 
-To understand this, we need to understand the loss landscape. Imagine a 3D landscape where the height represents the loss value, and the two other "surface" dimensions are the model's parameters. The goal of the model is to find the lowest point in this landscape, which corresponds to the best set of parameters. However, this landscape is often very complex, with many local minima and saddle regions. The model wanders blindly and can only sense its immediate surroundings. If it falls into a local minimum, it should get stuck.
+But this is through \emph{stochastic} gradient descent (\gls{SGD}) methods like Adam that we succeffully train \gls{NN}s. Indeed, using only a small subset of the data at each training step is not only much faster to minimize the loss function but it also helps escape local minima and saddle points\cite{liVisualizingLossLandscape2018}. 
+
+To understand this, we need to understand the loss landscape. Imagine a 3D landscape where the height represents the loss value, and the two other "surface" dimensions are the model's parameters. The goal of the model is to find the lowest point in this landscape, which corresponds to the best set of parameters to fit the data. However, this landscape is very complex, with many local minima and saddle  which would prevent the model from reaching a nice minima. The model wanders blindly and can only sense its immediate surroundings.
 
 \begin{figure}[ht]
   \centering
@@ -324,7 +332,7 @@ To understand this, we need to understand the loss landscape. Imagine a 3D lands
   \label{fig:loss_surface}
 \end{figure}
 
-In very high dimensions, however, when the model has millions of parameters and \gls{SGD}, by being stochastic, alters the loss landscape each time, the model can escape these local minima and saddle points.
+In very high dimensions, however, when the model has millions of parameters and \gls{SGD}, by being stochastic, alters the loss landscape each time, thus letting the model easily find a possible escape direction.
 
 Behind this unexpected behavior is the unsettling theory of emergence. Or how small objects can combine and interact in ways that would be unexpected and difficult to predict based on their individual properties. This theory tries to explain phenomena in dunes, snowflakes, ant colonies, and life itself, which might explain how large neural networks achieve such complex behaviors\cite{weiEmergentAbilitiesLarge2022}.
 
@@ -332,9 +340,9 @@ Behind this unexpected behavior is the unsettling theory of emergence. Or how sm
 
 \subsubsection{large language models}
 
-For text, images, videos, and audio, \gls{LLM}s are everywhere now. In other domains, we often call similar models, trained on all the available data, foundation models. 
+For text, images, videos, and audio, \gls{LLM}s are everywhere now. In other domains, we often call similar models, trained on all the available data in some modalities, foundation models. 
 
-This epitomizes a switch from small, simple neural architectures trained per dataset to larger neural architectures, called transformers \cite{vaswaniAttentionAllYou2023}, trained across the entirety of the available data. These models are called foundation models. The stated goal is for them to generalize better to their training data and task, and perform better than state-of-the-art small models.
+Foundation models epitomize a switch from small, simple neural architectures trained per dataset to larger, more powerful transformers models, trained across the entirety of the available datasets. The stated goal is for them to generalize better to unseen dataset and novel tasks. To do this however they will need to be fine-tuned.
 
 \begin{figure}[ht]
   \centering
@@ -343,16 +351,16 @@ This epitomizes a switch from small, simple neural architectures trained per dat
   \label{fig:transformer}
 \end{figure}
 
-\subsubsection{fine tuning}
+\subsubsection{fine-tuning}
 
-After this initial training phase using a very generic unsupervised task, often referred to as pre-training, these models can be further fine-tuned to specific downstream objectives. Fine-tuning involves training the model on a smaller dataset with a goal specific to the task we want it to learn. In other domains, this has allowed the model to adapt its learned representations, enabling it to quickly gain higher accuracy than would be achieved without pretraining. For example, going from predicting the next word in a sentence to classifying the sentiment of a text, or even to being a chatbot.
+After this initial training phase using a very generic unsupervised task, often referred to as pre-training, foundation models can be further fine-tuned to specific downstream objectives. Fine-tuning involves training the model on a smaller dataset with a goal specific to the task we want it to learn. In other domains, this has allowed the model to adapt its learned representations, enabling it to quickly gain higher accuracy than would be achieved without pre-training. For example, going from predicting the next word in a sentence to classifying the sentiment of a text, or to becoming a chatbot.
 For this reason, essential innovations in fine-tuning methods involve creating losses that best align the model with the task\cite{bommasaniOpportunitiesRisksFoundation2022,duanOneShotImitationLearning}.
 
-These foundation models are still in their infancy. We want to understand how they work, if they can be useful to current research, and how we can improve on their training, architecture, and generalization capabilities for the modality at hand.
+This is such foundation models, pre-trained on \gls{scRNA-seq} data that we want to understand in this thesis. In many domains outside of text or images, they are still in their infancy and we have important research questions to ask: Do they work? Can they be useful to current research? and how can we improve their training, architecture?
 
 \subsubsection{initial single-cell foundation models}
 
-The first practical example of a single-cell (\gls{RNA-seq}) foundation model could have been scBERT, released in 2021. However, it was only used and benchmarked for cell type classification and pretrained on 1 million single cells\cite{yangScBERTLargescalePretrained2022a}. The first real foundational model, Geneformer, was released a year later \cite{theodorisTransferLearningEnables2023}. There, the author displayed the model's ability to perform various single-cell tasks, such as cell type classification, gene regulatory network inference, and perturbation prediction. Geneformer was trained on a much larger dataset of 33 million single-cells.
+The first practical example of a single-cell (\gls{RNA-seq}) foundation model could have been scBERT, released in 2021. However, it was only used and benchmarked for cell type classification and pre-trained on 1 million single cells\cite{yangScBERTLargescalePretrained2022a}. The first real foundational model, Geneformer, was released a year later \cite{theodorisTransferLearningEnables2023}. There, the author displayed the model's ability to perform various single-cell tasks, such as cell type classification, gene regulatory network inference, and perturbation prediction. Geneformer was trained on a much larger dataset of 33 million single-cells.
 
 \begin{figure}[ht]
   \centering
@@ -361,11 +369,11 @@ The first practical example of a single-cell (\gls{RNA-seq}) foundation model co
   \label{fig:geneformer}
 \end{figure}
 
-However, Geneformer, like scBERT, was really a complete reuse of the \gls{BERT} model architecture. Furthermore, while showcasing interesting behaviors, it did not outperform simpler models on classifcal benchmarks of single-cell data\cite{boiarskyDeepDiveSingleCell2023,alsabbaghFoundationModelsMeet2023}. 
+However, Geneformer, like scBERT, was really an LLM, here \gls{BERT}, applied to single-cell data. In this context, words are gene names and they are listed in order of expression level in the cell, to make up a sentence.
 
 \subsubsection{current single-cell foundation models}
 
-In 2023, a year after Geneformer, a few additional foundation models were released from scGPT \cite{cuiScGPTBuildingFoundation2024}, showcasing a take on the \gls{GPT} architecture and presenting various losses for fine-tuning the model. It was the first example of fine-tuning in a single cell and a more in-depth benchmark of the model across four different abilities: cell type prediction, gene network inference, perturbation prediction, and batch correction. However, it did not outperform state-of-the-art (\gls{SOTA}) methods\cite{boiarskyDeepDiveSingleCell2023}.
+In 2023, a year after Geneformer, a few additional foundation models were released from scGPT \cite{cuiScGPTBuildingFoundation2024}, showcasing a take on the \gls{GPT} architecture and presenting various losses for fine-tuning the model. It was the first example of fine-tuning in a single cell and a more in-depth benchmark of the model across four different abilities: cell type prediction, gene network inference, perturbation prediction, and batch correction. However, it did not outperform state-of-the-art (\gls{SOTA}) methods\cite{boiarskyDeepDiveSingleCell2023, alsabbaghFoundationModelsMeet2023}.
 
 At the same time, Universal Cell Embedding \cite{rosenUniversalCellEmbeddings2023} demonstrated how one could train these models across multiple species to achieve state-of-the-art cross-species cell embeddings —vectors that represent the cell according to the model. It also showed a new kind of loss function to generate embeddings of the cells.
 
@@ -377,3 +385,5 @@ At the same time, Universal Cell Embedding \cite{rosenUniversalCellEmbeddings202
 \end{figure}
 
 Finally, scFoundation \cite{haoLargescaleFoundationModel2024}, despite being closed-source, showcased a truly novel architecture specifically built for single-cell data and a novel training method based on the noise-to-sequencing-depth relationship of single-cell data.
+
+This is right after the release of scGPT and UCE that this Ph.D. started. The field of single-cell foundation models had just began. In the next chapter, we will present the specific scientific questions and objectives of these thesis and how we decided to tackle them.

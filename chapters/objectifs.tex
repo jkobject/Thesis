@@ -1,105 +1,146 @@
 \chapter*{Thesis Objectives}
 \addcontentsline{toc}{chapter}{Thesis Objectives}
 
-At the start of the project, two things were certain: I wanted to understand how single-cell foundation models worked and whether they indeed worked. I also wanted to see if I could improve gene regulatory network (GRN) inference from single-cell RNA sequencing (scRNA-seq) data. Knowing that I might see a possible interplay between the two.
+At the start of the project, two things were certain: I wanted to understand how single-cell foundation models worked and whether they indeed worked. I also wanted to see if I could improve gene regulatory network (\gls{GRN}) inference from single-cell RNA sequencing (\gls{scRNA-seq}) data. Knowing that I might see a possible interplay between the two.
 
-To start, it is important to reflect on what I wanted to achieve at the start of the project, without knowing what I know now.
+To start, it is important to reflect on what I wanted to achieve initially, without knowing what I know now.
 
-The second part will introduce the different chapters of the thesis and how they relate to my Ph.D. objectives and novel questions that arose along the project. This being a Thesis by Articles, each of the three chapters relates to a specific publication. 
+In the second part I will introduce the different chapters of the thesis and how they relate to my Ph.D. objectives. This being a Thesis by Articles, each of the three chapters relates to a specific publication. 
 
 \section{At the start: Personal Objectives during the thesis}
 \label{personal-objectives-during-the-thesis}
 
-\textit{This is an excerpt of my initial objectives written in my research proposal at the start of the Ph.D.}
+\textit{This is copied from my initial objectives written in my research proposal at the start of the Ph.D.}
 
-I had the chance to see many friends doing their Ph.D.s before starting mine. A main mistake I saw during one's Ph.D.~is to not see the time passing by. My goal for this Ph.D.~is to be as product-first as I was at Whitelab. Delivering results quickly \& improving until it is publishable.
+I had the chance to see many friends doing their Ph.D.s before starting mine. A main mistake I saw during one's Ph.D.~is to not see the time passing by. My goal for this Ph.D.~was to be as product-first as I was at Whitelab genomics. Delivering results quickly \& improving until it is publishable. This mistake, thinking ``Well, I have 3 years\ldots'' is in part at least responsible for the stress, the crash and the unpreparedness for what happens after the Ph.D. that some students might experience. Thus, I plan to give myself a short timeline, knowing I will likely go over. And I will prepare everything around this idea. I will also start to prepare for what is next from the get-go.
 
-This mistake, thinking ``Well, I have 3 years\ldots'' is in part at least responsible for the stress, the crash and the unpreparedness for what happens after the Ph.D. that some students might experience. Thus, I plan to give myself a short timeline, knowing I will likely go over. And I will prepare everything around this idea. I will also start to prepare for what is next from the start.
+To do that best, one needs to take the opportunity of the Ph.D.~to make connections with other labs (industry or academic). Moreover, a good advice I have been given is to \emph{know what you want to do and what you don't want to do}. Know what you are here for. Learn to say no. And I learned to say no in the last 4 years. My goal is to work on large models \& large datasets, mostly in transcriptomics, and always to go back to first principles and biology. I also know I want to make something useful, create something that can be a stepping stone for others. Something that has an impact on the community. I know that to do that, you have to go the extra mile in terms of development and be honest with yourself about any shortcomings.
 
-To do that best, one needs to take the opportunity of the Ph.D.~to make connections with other labs (industry or academic). Moreover, a good advice I have been given is to \emph{know what you want to do and what you don't want to do}. Know what you are here for. Learn to say no. And I learned to say no in the last 4 years. My goal is to work on large models \& large datasets, mostly in transcriptomics, and always to go back to first principles and biology.
+Finally, I have been fortunate to become often addicted to my work. I like working hard and I like challenges. But for this to happen, I need to keep enjoying what I am doing. I also wish to have no regrets about this decision. Thus, my final goal is to enjoy it as much as I can.
 
-I also know I want to make something useful, create something that can be a stepping stone for others. Something that has an impact on the community. I know that to do that, you have to go the extra mile in terms of development and be honest with yourself about any shortcomings.
-
-Finally, I have been fortunate to become often addicted to my work. I like working hard and challenges. But for this to happen, I need to keep enjoying what I am doing. I also wish to have no regrets about this decision. Thus, my final goal is to enjoy it as much as I can.
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.9\textwidth]{./figures/pasteur.jpg}
+  \caption{A view of the Pasteur Institute in Paris, where I did my Ph.D.}
+  \label{fig:pasteur}
+\end{figure}
 
 \section{Initial Ph.D. objectives}
 \label{initial-objectives}
 
-This Ph.D. aimed to develop new approaches using deep learning, possibly by using innovative graph neural network architectures on large scRNAseq datasets, to assess their predictability in high-quality benchmarks and package them as an open-source Python library.
+This Ph.D. aimed to develop new approaches using deep learning, possibly by using innovative graph neural network architectures on large \gls{scRNA-seq} datasets, to assess their predictability in high-quality benchmarks and package them as an open-source Python library. Our principle idea was to use Graph Neural Networks (\gls{GNN})s. \gls{GNN}s are a class of deep learning layers designed to operate on graph-structured data. They are specifically tailored to handle modalities where edges connect the different input elements (nodes or vertices)\citep{evansGraphStructuredNeural2024, corsoGraphNeuralNetworks2024}.
 
-Graph Neural Networks (GNN)s: are a class of deep learning models designed to operate on graph-structured data. They are specifically tailored to handle and process data represented as graphs, where edges connect the elements (nodes or vertices).
+Traditional neural networks are primarily designed for processing grid-like data, like images, or sequential data, such as text. However, \gls{GNN}s extend this capability to graph-structured data by incorporating a pooling operations across connected nodes.
 
-%TODO: add refs and figures% GNN
-
-Traditional neural networks are primarily designed for processing grid-like data, like images, or sequential data, such as text. However, GNNs extend this capability to graph-structured data by incorporating graph-related operations and architectures.
-
-\textbf{Objectives}. We wished to improve GRN predictions from scRNAseq data. Our approach is:
+\textbf{Objectives}. We wished to improve \gls{GRN} predictions from \gls{scRNA-seq} data. Our approach was:
 
 \begin{enumerate}
 \tightlist
 \item
  To use larger neural network models that scale linearly with the dataset size, taking advantage of the tens of millions of data points now becoming available.
 \item
- To use novel GNN layers that could reduce the ``search space'' of the model by constraining the set of possible topologies it is learning.
+ To use novel \gls{GNN} layers that could reduce the ``search space'' of the model by constraining the set of possible topologies it is learning.
 \item
-  To improve the pretraining and fine-tuning of these models to the predictive task they have to perform, and the constraints of the system they are predicting.
+ To improve the pretraining and fine-tuning of these models to the predictive task they have to perform, and the constraints of the system they are predicting.
 \item
  To formulate better layers that correspond to the sparse interactions between genes and our current knowledge about their functions.
 \item
- To create formal and rational benchmarks that best capture the ability of a GRN methodology.
+ To create formal and rational benchmarks that best capture the ability of a \gls{GRN} methodology.
 \item
  To assess predictions and any usefulness or lack of it by having biologists test hypotheses using the model.
 \end{enumerate}
 
 \section{potential impacts}
 
-Impact of the project. This Ph.D.~project would thereby contribute to methodological breakthroughs by providing new tools and methods to use neural networks on unstructured data, like scRNAseq. To improve the state of the art in GRNs prediction from scRNAseq.
+Impact of the project. This Ph.D.~project would thereby contribute to methodological breakthroughs by providing new tools and methods to use neural networks on unstructured data, like \gls{scRNA-seq}. To improve the state of the art in \gls{GRN}s prediction from \gls{scRNA-seq}.
 
-The proposed methodologies will impact computational (bioinformatics, machine learning) and biomedical fields. These new GNN layers could solve challenges faced by fields similar to those utilizing scRNAseq profiles, including environmental research, industrial biotechnology, and biofuel studies.
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.9\textwidth]{./figures/gnn.png}
+  \caption{illustration of the graph neural network mechanism, update and pooling (e.g. summing) across multiple connected nodes represented as vectors}
+  \label{fig:gnn}
+\end{figure}
+
+The proposed methodologies will impact computational (bioinformatics, machine learning) and biomedical fields. These new \gls{GNN} layers could solve challenges faced by fields similar to those utilizing \gls{scRNA-seq} profiles, including environmental research, industrial biotechnology, and biofuel studies\citep{batznerE3equivariantGraphNeural2022,decaoMolGANImplicitGenerative2018,ganInferringGeneRegulatory2024}.
 
 The initial objectives were separated into three possible work packages:
 
 \begin{enumerate}
- \tightlist
+\tightlist
 \item Review of current tools and creation of a set of benchmarks
-\item GNN model/layers to better predict TF-gene relationships
+\item \gls{GNN} model/layers to better predict \gls{TF}-gene relationships
 \item Collaboration to test the model's prediction on novel data
 \end{enumerate}
 
 \section{Revised objectives}
 
-The first objective was thus to review existing methods for inferring GRNs from multi-omics data, as well as the existing foundation models and benchmarks used to evaluate the performance of these methods.
+The first objective was thus to review existing methods for inferring \gls{GRN}s from multi-omics data, as well as the existing foundation models and benchmarks used to evaluate the performance of these methods.
 
-What I quickly learnt is that GNNs were not the best approach for this problem. Indeed, we do not have good ground truths for GRNs, so we cannot start from a known graph. Moreover, GNNs tend not to scale well, and benchmarks show them as almost invariably performing worse than transformer-based models.
+What I quickly learnt is that \gls{GNN}s were not the best approach for this problem. Indeed, we do not have good ground truths for \gls{GRN}s, so we cannot start from a known graph. Moreover, \gls{GNN}s tend not to scale well, and benchmarks show them as almost invariably performing worse than transformer-based models\citep{hussainGlobalSelfAttentionReplacement2022,chenGraphAttentionNetwork2022}
 
 \subsection{transformers}
 
-Thus, we quickly decided to stick with transformers, which can be seen as GNN working on fully-connected graphs. The main issue with transformers is their quadratic complexity in relation to the number of input tokens. Thus, we worked on making them scale sub-quadratically with the number of input genes and cells. This is one of our contributions on this side of the thesis.
+Thus, we quickly decided to stick with transformers, which can be seen as \gls{GNN} working on fully-connected graphs\citep{dwivediGeneralizationTransformerNetworks2021,joshiTransformersAreGraph2025,nichaniHowTransformersLearn2024a,shawSelfAttentionRelativePosition2018}. The main issue with transformers is their quadratic complexity in relation to the number of input tokens. Thus, we worked on making them scale sub-quadratically with the number of input genes and cells. This is one of our contributions in this thesis.
 
-%TODO: add refs and figures% transformer architecture figure
+Transformer-based models can be seen as \gls{GNN}s, and examples had already been presented of using single cell foundation models (\gls{scFM})s to generate putative \gls{GRN}s directly from their non-graph input data\citep{cuiScGPTBuildingFoundation2024,theodorisTransferLearningEnables2023}. This was a feat that regular \gls{GNN}s cannot achieve.
 
-Moreover, while we aimed to benchmark current methods, we also sought to create a new benchmark better suited to the single-cell field and the current data available.
+\subsection{building our own models and benchmarks}
 
-Transformer-based models can be seen as GNNs, and examples have already been presented of them generating networks and GRNs directly from non-graph data, which is a feat that regular GNNs cannot achieve. 
+Moreover, as we aimed to benchmark these methods, which had made claims about their ability, we realized there were many shortcomings, from usability to ease of use, reproducibility of pretraining. We also found that they were not very usable in standalone mode and had made many arguable decisions. This led us to create our own model. Improving \gls{scFM}s to generate better representations of cells, genes, and their networks thus became one of the main objective of this Ph.D.
 
-However, when we benchmarked them, we realized there were many shortcomings with these foundation models, which led us to create our own. Improving these models to scale better, adapt more effectively to the data, and generate better representations of genes, cells, and their networks thus became the main objective of this Ph.D.
+We also sought to create a new benchmark, better suited to the single-cell genomics field and especially to \gls{GRN} inference. The goal of the benchmarks were to be more driven by real life applicability. Indeed the current methods often tended to use artificial data and groundtruths that are not representative of the real biological systems. The tasks and scores were more reminiscent of classical machine learning benchmarks than of biological relevance. The known single-cell standardized benchmarks were also almost never used by the first generations of \gls{scFM}s papers.
 
 \subsection{collaborations}
 
-Finally, while we managed to get some collaborations going, I realized the need for these foundation models to be made more accessible, which also became one of my objectives. It is represented not only in the effort to release easy-to-use open source models but also in various side contributions and outreach efforts.
+Finally, while we managed to get some collaborations going, this is something that we did not manage to achieve successfully. I think it would surprise no-one to say that we are in a challenging environment for cross-discipline collaborations. I still realize the need for these foundation models to be made more accessible, which also became one of the objectives and contributions in this thesis. It is represented not only in the effort to release easy-to-use open source models but also in various side contributions and outreach efforts.
 
 \section{Chapters overview \& main contributions}
 
-%TODO: make it at least 2x longer and talk more about the contributions
-% TODO: reading this they should be able to grade the thesis
+This thesis is structured around three main publications, each presented as a chapter. Below, we provide detailed summaries of our contributions and results for each chapter.
 
-This thesis is structured as follows:
+\subsection{Chapter \ref{article1}: scPRINT: pre-training on 50 million cells allows robust gene network predictions}
 
-\begin{enumerate}
-\item In Chapter \ref{article1}, we present scPRINT, a single-cell foundation model for transcriptomics with a focus on gene network inference. We examine other foundation models and state-of-the-art tools in the field, creating a benchmark to compare them, first on GRN inference and then on other single-cell tasks. We show that current foundation models are performing better than random predictors, but worse than SOTA tools in most of our benchmarks. We show that our contributions in scPRINT make it a superior foundation model than the existing ones across all our benchmarks. We showcase the need for improved architectures and tasks that reflect the potential offered by foundation models, as well as reproducible benchmarks of the impact of different design choices.
-\item In Chapter \ref{article2}, we present Xpressor, a transformer-based compression mechanism, and fine-tuning approach to build foundation models across scales. We show how to plug a model that talks about proteins and genes in a model that talks about cells, and how this makes both models better.
-\item In Chapter \ref{article}, we present scPRINT-2 a next-generation single-cell foundation model whose design decisions were driven by an in-depth additive study of each model's components. We also present many contributions in architecture, training, datasets, losses, and fine-tuning. We showcase them in novel tasks and approaches. Also, 
-\end{enumerate}
+In this chapter, we present \gls{scPRINT} (single-cell PRe-trained Inference of Networks with Transformers), a large cell model designed for cell-specific gene network inference at genome scale. This work addresses a fundamental challenge in cellular biology: inferring the network of molecular interactions that governs cell behavior.
+
+\textbf{Model architecture and training innovations.} We trained \gls{scPRINT} on more than 50 million cells from the \gls{CxG} database, representing approximately 80 billion tokens across multiple species, diseases, and ethnicities. Our model introduces several architectural innovations: (1) a protein-based gene encoding using \gls{ESM}2 embeddings, which reduces parameters while enabling cross-species generalization; (2) a learned expression tokenization via \gls{MLP} rather than hand-crafted binning; and (3) positional encoding of genomic location to capture co-regulation patterns. We designed three complementary pretraining tasks: a denoising task (transcript upsampling), a bottleneck learning task (embedding compression and reconstruction), and a label prediction task with hierarchical classification for disentangled cell embeddings representing different phenotypic facets.
+
+\textbf{Gene network inference methodology.} A critical contribution is our method for extracting cell-specific gene networks from the transformer's attention matrices, inspired by similar approaches in \gls{ESM}2 for protein contact prediction. We made this approach scalable to compute genome-wide networks for thousands of cells on commodity hardware. We also introduced an attention head selection mechanism, where a subset of heads can be selected based on correlation with known ground truth networks, significantly improving network quality in larger models.
+
+\textbf{Comprehensive benchmarking framework.} We created BenGRN and GRnnData, novel benchmarking suites for \gls{GRN} inference that address the lack of standardized evaluation in the field. We benchmarked \gls{scPRINT} against \gls{scGPT}, Geneformer v2, Deep\gls{SEM}, and GENIE3 using multiple ground truth types: literature-based networks (Omnipath), cell-type-specific \gls{ChIP-seq}/perturb-seq intersections (MCalla et al.), and genome-wide perturb-seq data. Our results demonstrate that \gls{scPRINT} outperforms all other methods on most benchmarks. On the Omnipath benchmark across 26 cell types, \gls{scPRINT} recovered 67\% more connections than GENIE3 and showed superior enrichment for \gls{TF}s and their \gls{ENCODE}-validated targets (20\% of \gls{TF}s with significant enrichment, compared to 0\% for \gls{scGPT}). On the MCalla et al. cell-type-specific ground truth, \gls{scPRINT} consistently outperformed all methods on both \gls{AUPRC} and \gls{EPR} metrics.
+
+\textbf{Zero-shot capabilities on orthogonal tasks.} Beyond gene network inference, we demonstrated that \gls{scPRINT}'s learned cell model enables competitive zero-shot performance on denoising, cell type prediction, and batch effect correction---without fine-tuning. For denoising, \gls{scPRINT} matches \gls{SOTA} methods (MAGIC, KNNsmoothing2) on bulk populations and outperforms them on rare cell types where neighborhood-based methods fail. For cell type classification, \gls{scPRINT} achieves 62\% accuracy as a zero-shot predictor across 200+ cell types, outperforming marker-based methods like CellTypist. For batch effect correction, \gls{scPRINT} achieves competitive \gls{scIB} scores without using batch labels, outperforming all methods that similarly do not require batch annotation.
+
+\textbf{Biological application and discovery.} We applied \gls{scPRINT} to an atlas of 83,000 cells from normal and \gls{BPH} prostate tissues. In rare switched memory B-cells, we identified early \gls{TME} markers including BAG5, a known B-cell-associated prostate cancer marker. In fibroblasts, our gene networks revealed differential hub genes between normal and \gls{BPH}-associated cells, recovering known biology around PAGE4 and uncovering interconnected pathways linking ion exchange, \gls{ECM} remodeling, oxidative stress, and chronic inflammation---hallmarks of premalignant states.
+
+\subsection{Chapter \ref{article2}: Xpressor: Towards foundation models that learn across biological scales}
+
+In this chapter, we present Xpressor, a framework and architecture enabling cross-scale learning between biological foundation models. This work addresses a fundamental challenge: while foundation models exist at multiple biological scales (molecules, sequences, cells, tissues), they operate in isolation, unable to leverage the rich interconnections between scales.
+
+\textbf{Motivation and conceptual framework.} We begin with a comprehensive review of foundation models across four biological scales: \glspl{mFM} for atomistic molecular representations, \glspl{nFM} for nucleotide and amino acid sequences (\gls{DNA}, \gls{RNA}, proteins), \glspl{cFM} for cellular abundance profiles, and \glspl{tFM} for tissue-level spatial organization. We argue that information flows between scales: lower-scale models (e.g., protein sequences) can improve input representations for higher-scale models (e.g., cells), while relationships learned at higher scales can inform lower-scale representations. Each scale's vocabulary can be seen as built from the compressed representations of the scale below---amino acids from atoms, genes from proteins, cells from genes, tissues from cells.
+
+\textbf{The Xpressor architecture.} Our first contribution is a cross-attention-based compression mechanism called Xpressor that transforms high-dimensional gene-level representations into lower-dimensional cell-state vectors. The architecture introduces additional transformer blocks that perform cross-attention between the output embeddings of a foundation model and a set of learned latent tokens. This creates a bottleneck that compresses $m$ gene tokens of dimension $d_c$ into $n$ cell tokens of dimension $d_t$, where $n \ll m$ and $d_t < d_c$. Critically, the same transformer can then decompress these cell representations back to gene-level predictions using cross-attention with gene ID tokens. This compression/decompression framework is grounded in the information bottleneck theory of Tishby et al., where the goal is to retain maximal information about relevant variables while achieving compression. We further regularize the latent space using contrastive losses between embedding dimensions and dimension-specific classifiers, ensuring each cell embedding dimension captures distinct biological information.
+
+\textbf{Multi-scale fine-tuning approach.} Our second contribution is a method for fine-tuning lower-scale models using upper-scale tasks via adapter layers. We demonstrate this using \gls{ESM}2 (a protein language model) as the lower-scale model and \gls{scPRINT} as the upper-scale model. Rather than simply using frozen \gls{ESM}2 embeddings as gene tokens, we add a trainable \gls{MLP} adapter that transforms each protein embedding during \gls{scPRINT}'s pretraining. We provide a formal proof that such an \gls{MLP} has sufficient capacity to learn any arbitrary mapping---including acting as a lookup table that assigns each of $D$ proteins to a unique learned output. This allows the adapter to enrich \gls{ESM}2's representations (which encode protein sequence, evolutionary constraints, and structure) with co-expression information learned from millions of single-cell profiles.
+
+\textbf{Empirical results on the scPRINT benchmark gymnasium.} We evaluate both contributions on three tasks from the \gls{scPRINT} benchmark: cell-type prediction, embedding quality (\gls{scIB} score for batch correction and biological consistency), and gene network inference (\gls{EPR} on genome-wide perturb-seq and Omnipath ground truths). For the Xpressor architecture versus standard class-pooling (as used in \gls{scGPT}), we observe substantial improvements: cell-type prediction accuracy increases from 0.60 to 0.72 (+20\%), and embedding quality improves from 0.48 to 0.52 (+8\%), while gene network inference remains comparable. For multi-scale fine-tuning, comparing frozen \gls{ESM}2 embeddings versus fine-tuned ones, we see cell-type prediction improve from 0.60 to 0.70 (+17\%), embedding quality from 0.48 to 0.49, and gene network inference improve on the Omnipath benchmark from 2.0 to 2.4 \gls{EPR} (+20\%). Notably, fine-tuned \gls{ESM}2 embeddings outperform both frozen \gls{ESM}2 and randomly initialized embeddings across nearly all metrics.
+
+\subsection{Chapter \ref{article}: scPRINT-2: Towards the next-generation of cell foundation models and benchmarks}
+
+In this chapter, we present \gls{scPRINT}-2, a next-generation single-cell foundation model whose design decisions were systematically validated through an unprecedented additive benchmarking framework. This work addresses the critical gap in the field: while many \gls{scFM}s have been proposed, the relative importance of their architectural choices, training strategies, and data modalities has never been rigorously assessed in isolation.
+
+\textbf{The additive benchmark: a systematic evaluation framework.} We designed a comprehensive benchmark to evaluate 42 different configurations of \gls{scFM} components, including pre-training databases, architectures, and training tasks. Each model variant was trained 6 times across multiple seeds to generate statistical error bounds, and evaluated on a gymnasium of tasks: cell-type classification, batch correction (\gls{scIB} scores), expression denoising, and gene network inference. Our benchmark revealed several key findings: (1) denoising is superior to masking as a pre-training task for classification and embedding quality; (2) un-normalized expression outperforms normalized input; (3) \gls{ESM}-based gene tokens significantly outperform learned embeddings from scratch; (4) genomic location encoding improves model convergence; (5) \gls{MSE} loss outperforms \gls{ZINB} on average, but a hybrid \gls{ZINB}+MSE loss provides the best balance between accuracy and expressivity; and (6) model size correlates with improved gene network inference and cell-type prediction.
+
+\textbf{The \gls{scPRINT}-2 corpus: the largest single-cell database to date.} We assembled a pre-training database of over 350 million cells from 16 eukaryotic organisms spanning more than one billion years of evolution. This corpus integrates data from \gls{CxG}, the Tahoe-100M dataset, and the scBasecount database (20,000 reprocessed \gls{GEO} datasets), totaling 25 TB of unique data with approximately 400,000 distinct genes and 4,764 different cell labels across 140,000 cell groups. We demonstrated that cell-state diversity and data quality are more important than sheer cell count---reducing to 200 human datasets caused only minimal performance decrease, while using low-diversity datasets alone caused performance to plummet. We introduced cluster-weighted sampling and \gls{NNZ}-weighted sampling to address dataset imbalances, enabling effective training on this heterogeneous corpus.
+
+\textbf{Architectural innovations.} \gls{scPRINT}-2 incorporates 12 distinct contributions validated through our benchmark. Key innovations include: (1) the XPressor architecture, a cross-attention-based compression mechanism that transforms gene-level representations into cell-level tokens and back, enabling the model to be generative; (2) a \gls{GNN}-based expression encoder that leverages neighborhood information from similar cells or spatial neighbors; (3) criss-cross attention, a sub-quadratic attention mechanism inspired by Recurrent Interface Networks that dramatically improves training speed while retaining model capabilities; (4) \gls{VAE}-based compression with dissimilarity losses between cell tokens, improving batch correction; and (5) an updated hierarchical classification loss that penalizes predictions based on ontological distance rather than binary correctness.
+
+\textbf{State-of-the-art performance across benchmarks.} On the Open Problems benchmark (November 2025), \gls{scPRINT}-2 achieved 75\% zero-shot cell-type classification accuracy, outperforming \gls{scPRINT}-1 (47\%) and all other zero-shot \gls{scFM}s (40-60\%). With our \gls{XPEFT}, \gls{scPRINT}-2 surpassed every existing supervised and unsupervised method on the platform. For expression denoising, \gls{scPRINT}-2 became state-of-the-art, outperforming MAGIC across all tested contexts, with particularly strong improvements on low- and mid-quality datasets where the \gls{GNN} encoder can leverage neighbor information. For batch integration, \gls{scPRINT}-2's zero-shot performance exceeded all other methods, and fine-tuned performance achieved the best overall \gls{scIB} scores.
+
+\textbf{Generalization to unseen modalities and organisms.} We demonstrated \gls{scPRINT}-2's ability to generalize beyond its training distribution. On Xenium spatial transcriptomics data (a modality absent from training), \gls{scPRINT}-2 successfully denoised expression, imputed 5,000 unseen genes with correlation scores matching denoised genes, and produced biologically meaningful cell-type and disease predictions. On cat and tiger lung tissues (organisms not seen during training), \gls{scPRINT}-2 achieved 42\% cell-type classification accuracy across 500 possible labels, with differential expression analysis confirming that \gls{scPRINT}-2 sometimes corrected expert annotations. With cluster-based logits averaging and \gls{XPEFT} fine-tuning, accuracy improved to 95\%.
+
+\textbf{Counterfactual reasoning and generative capabilities.} The XPressor architecture enables \gls{scPRINT}-2 to perform counterfactual generation. We demonstrated this by replacing organism-specific cell embeddings from mouse cells with human embeddings to generate ``humanized'' mouse expression profiles. The Wasserstein-2 distance between these counterfactual profiles and real human cells decreased significantly, and over-representation analysis showed 58\% enrichment in correctly predicted differentially expressed genes. Pathway analysis revealed biologically meaningful differences in immune function, membrane-\gls{ECM} interactions, and tissue elasticity.
+
+\textbf{Gene embeddings and network inference.} We showed that the XPressor architecture produces output gene embeddings with meaningful biological clustering (enriched for known pathways), whereas standard transformers without XPressor produce embeddings that merely encode expression values. For gene network inference, we introduced a computationally intensive extraction method biased toward co-expressed genes. Benchmarking against six ground-truth networks (including the cellmap \gls{AP-MS} data, human interactome, and \gls{gwps}), \gls{scPRINT}-2 showed improved performance on odds-ratio metrics. We demonstrated cross-species gene network analysis in macrophages, identifying conserved hub genes involved in feroptosis, pathogen phagocytosis, and \gls{MHC} pathways. We also showed how \gls{scPRINT}-2's predictions can cross-validate \gls{PPI} ground truths, identifying connections (HLA-DRA/CD74, B2M/B2M) that RoseTTAFold2-\gls{PPI} missed but AlphaFold-Multimer confirmed.
 
 \subsection{Other contributions}
 
@@ -107,19 +148,19 @@ This thesis presented other contributions not in the form of publications:
 
 \begin{itemize}
  \item The first ones are six open source Python packages named:
-   \subitem \emph{scPRINT}: where the model is made available, together with training scripts and notebooks to use the model, functions to download and preprocess data, and more. \url{https://github.com/cantinilab/scPRINT}
+   \subitem \emph{\gls{scPRINT}}: where the model is made available, together with training scripts and notebooks to use the model, functions to download and preprocess data, and more. \url{https://github.com/cantinilab/scPRINT}
    \subitem \emph{scPRINT-2}: where the second model is made available, together with training scripts and notebooks to use the model, functions to download and preprocess data, and more. \url{https://github.com/cantinilab/scPRINT-2}
    \subitem \emph{scDataloader}: a package to load efficiently thousands of large single-cell datasets, with preprocessing, filtering, and loading options. It also allows a first-of-its-kind efficient weighted random sampling over billions of elements. \url{https://github.com/jkobject/scDataLoader}
-   \subitem \emph{Bengrn}: a package to benchmark GRN inference methods on single-cell data, using multiple types of metrics and ground truth networks. \url{https://github.com/jkobject/Bengrn}
+   \subitem \emph{Bengrn}: a package to benchmark \gls{GRN} inference methods on single-cell data, using multiple types of metrics and ground truth networks. \url{https://github.com/jkobject/Bengrn}
    \subitem \emph{GRNNdata}: a package to work with gene regulatory networks and single-cell data jointly, using the Anndata format. \url{https://github.com/cantinilab/GRNNdata}
    \subitem \emph{Xpressor}: a package to reproduce the second paper's experiments and create an Xpressor model from scratch. \url{https://github.com/cantinilab/XPressor}
    \subitem \emph{Simpler Flash}: Initially a package to facilitate the use of flash attention before it became part of the pytorch implementation itself. It now includes multiple types of efficient attention mechanisms, such as softpick-flash and our flash criss-cross attention mechanism. \url{https://github.com/jkobject/simpler_flash}
    \subitem \emph{Hierarchical Classifier}: a package to implement hierarchical classification for single-cell data. \url{https://gist.github.com/jkobject/5b36bc4807edb440b86644952a49781e}
 \item Another contribution, as previously mentioned, is around accessibility. Not only did I release model weights and inference code, but I also provided easy-to-use inference tools, pre-training methods and datasets, training traces, and documentation. Moreover, tutorials were implemented in Google Colab, and versions of the models got released on the Chan–Zuckerberg model hub (\url{https://virtualcellmodels.cziscience.com/}) and Superb.io's platform (\url{https://superbio.ai}).
- \item Finally, I made a Docker implementation of scPRINT, scGPT, and Geneformer for their benchmarking on the open problems platform and participated in the improvement and creation of two benchmarks on the platform.
-\item In addition to publication, I wrote a \href{https://blog.lamin.ai/arrayloader-benchmarks}{blog post} with \href{https://lamin.ai}{Lamin.ai} on training on large datasets. I also wrote with multiple \href{https://x.com/jkobject}{x-plainers} on X, LinkedIn, Bluesky, and Threads, as well as my \href{https://www.jkobject.com}{personal website}, to share some of our findings with a possibly wider audience. Similarly, I wrote vulgarisation articles for the \href{https://www.pasteur.fr/fr/journal-recherche/videos/langage-cellules}{Pasteur Institute}’s and \href{https://www.insb.cnrs.fr/fr/cnrsinfo/scprint-le-premier-modele-dia-francais-pour-dechiffrer-les-reseaux-genetiques}{CNRS}’s websites and created one of the most viewed videos on the \href{https://www.youtube.com/watch?v=bgtcDs5EXY8}{Pasteur Institute's YouTube} and Instagram accounts, presenting my work. I also got highlighted on Whitelab's blog posts and released four \href{https://www.youtube.com/@jkobject}{YouTube} videos of diverse presentations of my work.
+ \item Finally, I made a Docker implementation of \gls{scPRINT}, \gls{scGPT}, and Geneformer for their benchmarking on the open problems platform and participated in the improvement and creation of two benchmarks on the platform.
+\item In addition to publication, I wrote a \href{https://blog.lamin.ai/arrayloader-benchmarks}{blog post} with \href{https://lamin.ai}{Lamin.ai} on training on large datasets. I also wrote with multiple \href{https://x.com/jkobject}{x-plainers} on X, LinkedIn, Bluesky, and Threads, as well as my \href{https://www.jkobject.com}{personal website}, to share some of our findings with a possibly wider audience. Similarly, I wrote vulgarisation articles for the \href{https://www.pasteur.fr/fr/journal-recherche/videos/langage-cellules}{Pasteur Institute}'s and \href{https://www.insb.cnrs.fr/fr/cnrsinfo/scprint-le-premier-modele-dia-francais-pour-dechiffrer-les-reseaux-genetiques}{\gls{CNRS}}'s websites and created one of the most viewed videos on the \href{https://www.youtube.com/watch?v=bgtcDs5EXY8}{Pasteur Institute's YouTube} and Instagram accounts, presenting my work. I also got highlighted on Whitelab's blog posts and released four \href{https://www.youtube.com/@jkobject}{YouTube} videos of diverse presentations of my work.
  \item Other outreach efforts were done through conference presentations and invited talks with:
-   \subitem A participation in three international ML conferences
+   \subitem A participation in three international \gls{ML} conferences
    \subitem Over 25 invited talks and five poster presentations.
- \item Finally, I also contributed to the European ecosystem of start-ups, translating works from Academia to Industry. I became part of a worldwide organization called Nucleate to help Master students, PhDs, and Post-docs translate their research into start-ups. I also worked as a consultant for four start-ups: \href{https://whitelabgx.com/}{Whitelab Genomics}, \href{https://graphica.bio/}{Biographica}, Blossom, and \href{https://www.dotomics.bio/}{dot-omics}, assisting them in developing strategies for foundation models in single-cell RNA-seq and DNA sequencing.
+ \item Finally, I also contributed to the European ecosystem of start-ups, translating works from Academia to Industry. I became part of a worldwide organization called Nucleate to help Master students, PhDs, and Post-docs translate their research into start-ups. I also worked as a consultant for four start-ups: \href{https://whitelabgx.com/}{Whitelab Genomics}, \href{https://graphica.bio/}{Biographica}, Blossom, and \href{https://www.dotomics.bio/}{dot-omics}, assisting them in developing strategies for foundation models in single-cell \gls{RNA-seq} and \gls{DNA} sequencing.
 \end{itemize}

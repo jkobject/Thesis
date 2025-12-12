@@ -19,6 +19,8 @@
 \usepackage[T1]{fontenc}
 \usepackage{amssymb}
 \usepackage{babel}
+\usepackage{etoolbox} % Required for biblatex
+\usepackage{csquotes} % Required by biblatex when using babel
 \input{./math_commands.tex}
 %	MARGIN SETTINGS
 \usepackage[a4paper,left=3cm,right=2.5cm,top=3cm,bottom=3cm, twoside]{geometry}
@@ -27,10 +29,12 @@
 \usepackage{xcolor}
 \usepackage{stmaryrd}
 \usepackage{amssymb}
+\usepackage{seqsplit} % For breaking long sequences
 \usepackage{mathtools}
 \usepackage{amsmath}
 \usepackage{libertine}
-\usepackage[noamssymbols]{newtxmath}    % Times New Roman math font without conflicting symbols
+\renewcommand*\ttdefault{cmtt} % Fix font compatibility
+\usepackage[libertine]{newtxmath}    % Times New Roman math font without conflicting symbols
 
 
 % \usepackage{cite} % Commented out - incompatible with biblatex
@@ -46,7 +50,7 @@
 \hypersetup{
     colorlinks=true,
     linkcolor=black,
-    filecolor=black,      
+    filecolor=black,
     urlcolor=black,
     citecolor=black,
     pdfpagemode=FullScreen,
@@ -67,7 +71,7 @@
 \usepackage{subfigure}
 \usepackage{booktabs} % for professional tables
 \usepackage{url}
-\usepackage{svg}
+% \usepackage{svg} % Commented out - Inkscape not detected
 
 \usepackage{graphicx} % to include images
 %\usepackage[pdftex]{graphicx}
@@ -77,9 +81,9 @@
 \usepackage{float}
 \usepackage{array, multirow, tabularx}
 \usepackage{longtable}
-\usepackage{apalike}
+% \usepackage{apalike} % Commented out - incompatible with biblatex
 \usepackage{sectsty}
-\usepackage{minitoc}
+% \usepackage{minitoc} % Commented out - incompatible with titlesec and titletoc
 \usepackage{xurl}
 \usepackage{tikz}
 \pagestyle{fancy}
@@ -303,8 +307,7 @@ Someone
 \input{papers/scprint}
 \input{papers/scprint_methods}
 \input{papers/xpressor}
-\input{papers/scprint2}
-%\input{papers/scprint2_methods}
+\input{papers/scprint_2}
 
 %\part*{Discussion et conclusion générale}
 \fancyhead{} % clear all header fields

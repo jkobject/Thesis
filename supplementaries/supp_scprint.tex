@@ -1,0 +1,1567 @@
+\subsection{List of novelties in scPRINT and comparison to
+scGPT and
+scFoundation}\label{table-s1-list-of-novelties-in-scprint-and-comparison-to-scgpt-and-scfoundation}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.3884}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.0938}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1942}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1808}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{features}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{scPRINT}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{scGPT}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{scFoundation}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Geneformer v2}
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{classification pretraining}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+v
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{hierarchical classification}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+v
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{denoising pretraining}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+v
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+v
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{masking pretraining}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+v
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+v
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+v
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+v
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{MVC pretraining}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+v
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+v
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{AE pretraining}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+v
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{large cell count GN inference}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+v
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{zero-shot classification}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+v
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{zero-shot batch correction}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+v
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{zero-shot denoising}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+v
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{genome-wide GN inference}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+v
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{large input context}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+v
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{raw count encoding}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+v
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+v
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{very large model}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+v
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{pretraining strategy and dataset}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+v
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{low GPU/hours implementation}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+v
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{weighted random sampling}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+v
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{protein encoding}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+v
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{cross-species abilities}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+v
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{gene location encoding}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+v
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{genome-wide input context}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+v
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{xtrimogene architecture}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+v
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{train / validate / test strategies}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+v
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{flashattention2}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+v
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+x
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+
+Comparison of the features and novelties from scPRINT
+compared to 2 similar published state-of-the-art methods: scGPT and
+scFoundation.
+
+\subsection{Model comparison}\label{table-s2-model-comparison}
+
+\includegraphics[width=\linewidth]{./supplementaries/scprint_media/table2.png}
+
+comparing different model sizes and architectures. Comparing
+scPRINT to other state-of-the-art methods, as well as GPT2-small and
+GPT3-large models
+
+\subsection{Ablation study and impact on performance across
+tasks}\label{table-s3-ablation-study-and-impact-on-performance-across-tasks}
+
+\includegraphics[width=\linewidth]{./supplementaries/scprint_media/table3.png}
+
+The table shows the results of the ablation study on denoising,
+embedding with batch correction, and cell-type classification tasks.
+Results are displayed for the medium-size scPRINT model. Top to bottom:
+s\emph{mall, medium, large:} regular models of various sizes.
+\emph{medium-nofreeze:} a model trained without freezing gene embedding
+during pre-training. \emph{medium-2-heads:} a model trained with only
+two heads per layer instead of 4. \emph{medium-MSE}: a model with Mean
+Squared Error instead of the ZINB loss. \emph{medium-MVC:} a model
+trained with scGPT's MVC methodology for the creation of the cell
+embedding. medium-noPE: a model trained without positional encoding for
+the gene's location. medium-no-random-weighted: a model trained without
+weighted random sampling. \emph{medium-MLM}: a model trained with masked
+language modeling instead of denoising.
+
+
+\subsection{Computational speed of various GN
+inference methods}\label{table-s4-computational-speed-of-various-gn-inference-methods}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2019}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1951}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.3173}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1415}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1442}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{model}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{speed for 1000 cells}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{speed for a dataset of 12 cell types}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{scale to \#cells}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{scale to \#genes}
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{DeepSEM}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+10mn
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+2 hours
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+linear
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+quadratic
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{GENIE3}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+50mn
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+10 hours
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+quadratic
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+quadratic
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{GENIE3 (100 trees)}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+4mn
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+1 hour
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+quadratic
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+quadratic
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{Geneformer v2}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+1mn
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+15mn
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+linear
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+linear
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{scGPT}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+1mn
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+15mn
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+linear
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+linear
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{scPRINT}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+1mn
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+15mn
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+linear
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+linear
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+
+The computational speed of running various gene network inference
+methods on a set of 4000 genes and 1000 cells. It is showing that
+transformer-based models are far faster than previous methods, owing to
+their clever use of the GPU and pre-training.
+
+\subsection{Table S5: Performance of GN inference methods on the Sergio
+simulated scRNAseq
+dataset}\label{table-s5-performance-of-gn-inference-methods-on-the-sergio-simulated-scrnaseq-dataset}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2438}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1867}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1981}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1848}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1867}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{model}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{EPR}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{AUPRC}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{TF\_targ}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{TF\_enr}
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{DeepSEM}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.92601
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.00101
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{GENIE3}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.94497
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.00193
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+5.2
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+TRUE
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{Geneformer v2}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.699
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.00409
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+TRUE
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{scGPT}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.6167
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.00278
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+10.5
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+TRUE
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{scPRINT}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+1.836
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.00861
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+13.15
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+
+We generate a Sergio simulated scRNAseq dataset of 1000 cells for 800
+genes from the RegNetwork ground truth network. We here showcase the
+ability of each model to recover the RegNetwork ground truth from this
+dataset. It shows how only scPRINT can recover some of RegNetwork's
+connections.
+
+\subsection{Comparison scPRINT model size on performance 
+across tasks and GN inference abilities}
+\label{table-s6-comparison-scprint-model-size-on-performance
+-across-tasks-and-gn-inference-abilities}
+
+\includegraphics[width=\linewidth]{./supplementaries/scprint_media/table6.png}
+
+\subsection{Overlap of different GN ground
+truths}\label{table-s7-overlap-of-different-gn-ground-truths}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.4622}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1471}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1176}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2731}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{comparison}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{precision}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{recall}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{random precision}
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+MCalla et al. vs Omnipath
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+0.0520
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+0.0074
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+0.00154
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+MCalla et al. - T vs Omnipath
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+0.0155
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+0.0022
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+0.00154
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+gwps vs Omnipath
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+0.0015
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+0.0219
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+0.00129
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+gwps -T vs Omnipath
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+0.0030
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+0.0426
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+0.00129
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+
+Comparison of the overlap, expressed as precision and recall, of the
+three different ground truth networks used: MCalla, Omnipath, and gwps.
+
+\subsection{Table S8: Omnipath benchmark results on the genome-wide
+perturb-seq
+dataset}\label{table-s8-omnipath-benchmark-results-on-the-genome-wide-perturb-seq-dataset}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.2593}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.0727}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.0947}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1413}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.0850}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1111}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.0809}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1550}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{tool}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{EPR}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{AUPRC}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{TF target enr.}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{TF\_enr}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{TF\_only}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{ct\_pred}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{RAND precision}
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{DeepSEM}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+4.1
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.00192
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+21.4
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+0.001633
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{GENIE3}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+4.7
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.00188
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+17.9
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+TRUE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+0.00163
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{Geneformer v2}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.2
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.001796
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+5.9
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+0.001528
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{scGPT}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+1.0
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.00208
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+14.0
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+TRUE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+0.00163
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{scPRINT}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+2.8
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.00170
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+8.6
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+TRUE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+0.00161
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{scPRINT (omnipath\textquotesingle s heads)}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+4.7
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.00189
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+3.4
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+TRUE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+0.00161
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{scPRINT (gwps\textquotesingle{} heads)}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+1.6
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.00190
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+5.0
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+TRUE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+0.00161
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+
+Omnipath network overlap (EPR, AUPRC), as well as transcription factor
+enrichment, TF target enrichment, and cell type marker enrichment for
+gene networks generated by the different tools on the genome-wide
+perturb seq K562 cells at steady state (no perturbations)
+
+\subsection{Omnipath benchmark results on the MCalla et al.
+datasets}\label{table-s9-omnipath-benchmark-results-on-the-mcalla-et-al.-datasets}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.2418}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1195}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1016}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1250}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1415}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1305}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1401}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{tool}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{dataset}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{EPR}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{AUPRC}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{TF target enr.}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{TF enr.}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{cell type enr.}
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{DeepSEM}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{Han et. al.}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+5.54
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.00029
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+18.9
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{DeepSEM}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{Yan et. al.}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.97
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+-0.00002
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+7.5
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{GENIE3}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{Han et. al.}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+1.51
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.00016
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+11.3
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+TRUE
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{GENIE3}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{Yan et. al.}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+1.74
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.00020
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.0
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+TRUE
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{Geneformer}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{Han et. al.}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+1.63
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.00010
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+11.3
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{Geneformer}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{Yan et. al.}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+1.99
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.00011
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+20.0
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{scGPT}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{Han et. al.}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.89
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.00016
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+17.0
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+TRUE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{scGPT}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{Yan et. al.}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.16
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.00007
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+20.0
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{scPRINT}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{Han et. al.}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+2.03
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.00019
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+23.6
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+TRUE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{scPRINT}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{Yan et. al.}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+1.76
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.00026
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+31.1
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+TRUE
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{scPRINT (omnipath\textquotesingle s heads)}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{Han et. al.}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+5.12
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.00004
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+3.6
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+TRUE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{scPRINT (omnipath\textquotesingle s heads)}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{Yan et. al.}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+3.35
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.00019
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+13.3
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+FALSE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+TRUE
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{scPRINT (Han et. al.\textquotesingle s heads)}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{Han et. al.}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.94
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.00030
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+30.9
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+TRUE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+TRUE
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{scPRINT (Han et. al.\textquotesingle s heads)}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{Yan et. al.}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.57
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+-0.00004
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+6.7
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+TRUE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+TRUE
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+
+Omnipath network overlap (EPR, AUPRC), as well as transcription factor
+enrichment, TF target enrichment, and cell type marker enrichment for
+gene networks generated by the different tools on the 2 human embryonic
+stem cell datasets used in Results Section 3 (scPRINT
+outperforms GENIE3 and scGPT on cell type-specific ground truths).
+
+\subsection{Denoising results per
+datasets}\label{table-s10-denoising-results-per-datasets}
+
+\includegraphics[width=\linewidth]{./supplementaries/scprint_media/table10.png}
+
+This table shows the detail of the denoising results for each of the
+three datasets for scPRINT-large, KNNsmoothing2, MAGIC, and MAGIC run on
+only the small cell type cluster. ``Random scPRINT model'' is the
+performance of an untrained scPRINT model.
+
+\subsection{Highlighted B-cell cluster genes in the BPH
+study}\label{table-s11-highlighted-b-cell-cluster-genes-in-the-bph-study}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1072}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.3953}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1809}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1759}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1407}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{gene}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{link}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{in cancer}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{in b cell}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{analysis}
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{MBNL2}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\href{https://www.nature.com/articles/s41467-023-44126-w}{link}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+prostate cancer
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+high expr in immune tissues
+\end{minipage} &
+\multirow{8}{=}{\begin{minipage}[b]{\linewidth}\raggedright
+BPH B-cell to normal B-cell diff. expr.
+\end{minipage}} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{MAGOH}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\href{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9738831/}{link}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+cancer
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+high expr in immune tissues
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{RANBP2}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\href{https://www.nature.com/articles/leu2012286.}{link1}, \href{https://www.genecards.org/cgi-bin/carddisp.pl?gene=RANBP2}{link2}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+B-cell lymphoma
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+b cell validated
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{CLIC4}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\href{https://www.nature.com/articles/s41420-022-01003-7}{link}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+prostate cancer
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+high expr in immune tissues
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{BAG5}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\href{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3598994/}{link}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+prostate cancer
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+b cell in cancer
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{NR4A1}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\href{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9424640/}{link1}, \href{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8081071/}{link2}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+prostate cancer
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+b cell validated
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{BAZ2A}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\href{https://www.nature.com/articles/s41598-024-56073-7}{link}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+prostate cancer
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+b cell validated
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{ZBTB16}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\href{https://www.pnas.org/doi/full/10.1073/pnas.0703872104}{link1}, \href{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5642638/}{link2}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+tumor suppressor in prostate cancer
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+b cell validated
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{TAP1}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\href{https://bmccancer.biomedcentral.com/articles/10.1186/s12885-023-10527-9}{link1}, \href{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5674960/}{link2}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+cancer
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+b cell validated
+\end{minipage} &
+\multirow{7}{=}{\begin{minipage}[b]{\linewidth}\raggedright
+BPH B-cell to normal B-cell diff. expr. post denoising
+\end{minipage}} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{TAS2R19}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\href{https://v19.proteinatlas.org/ENSG00000212124-TAS2R19/tissue/B-cells}{link}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+b cell validated
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{PRDM7}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\href{https://pubmed.ncbi.nlm.nih.gov/27129774/}{link}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+cancer
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{TSEN54}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\href{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10120902/}{link}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+cancer
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+b cell in cancer
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{EHMT2}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\href{https://www.frontiersin.org/journals/immunology/articles/10.3389/fimmu.2017.00429/full}{link}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+b cell validated
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{ERICH6B}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\href{https://platform.opentargets.org/target/ENSG00000163645/associations}{link}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+cancer
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{IL10RB}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\href{https://pubmed.ncbi.nlm.nih.gov/37144812/}{link}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+cancer
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+b cell in cancer
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+
+Table of the highlighted genes in the differential expression analysis
+in BPH vs normal B-cells together with their annotation on their
+relation to cancer and to b-cells, with sources.
+
+\subsection{Hub and differential hub genes in the fibroblast
+GN of the BPH
+study}\label{table-s12-hub-and-differential-hub-genes-in-the-fibroblast-gn-of-the-bph-study}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2064}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2420}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2651}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2865}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{TOP 15 hubs in BPH fibroblasts GN}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{TOP 15 hubs in normal fibroblasts GN}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{TOP 15 differential hubs in BPH fibroblasts vs normal}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{TOP 15 eigenvector\_centrality differential hubs in BPH
+fibroblasts vs normal}
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+HSPA1A
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+S100A6
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+HLA-A
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+CD99
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+MT2A
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+TGIF2-RAB5IF
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+MT2A
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+HLA-A
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+CREM
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+MIF
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+ATP6V0C
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+HSPA1A
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+TGIF2-RAB5IF
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+DNAJB9
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+DEFA1
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+LUM
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+HSPE1
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+IGFBP7
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+EIF4A1
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+ATP6V0C
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+CALD1
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+APOD
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+HSPA1A
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+CD99
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+SPOCK3
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+BRME1
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+LUM
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+EIF4A1
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+HLA-A
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+SPARCL1
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+SPOCK3
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+PAGE4
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+SPARCL1
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+TIMP1
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+nan-99
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+RYR2
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+RBP1
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+DCN
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+CD99
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+SERPINF1
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+C1S
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+C1S
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+CPE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+C1R
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+BRME1-1
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+MGP
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+THBS1
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+COL6A2
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+FABP4
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+nan-270
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+LGALS1
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+HNRNPA0
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+nan-99
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+SLC25A6
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+PYDC2
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+SERPING1
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\raggedright
+LUM
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+BLOC1S5-TXNDC5
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+SERPING1
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+SERPINA3
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+
+List of the Top-15 elements in different GN analyses. Genes in yellow in
+the last columns are the new ones found with eigenvector centrality
+compared to the 3rd columns.
+
+\subsection{Number of elements predicted per class}\label{table-s13-number-of-elements-predicted-per-class}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5749}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4251}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+ethnicity
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+21
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+sex
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+2
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+organism
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+2
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+cell type
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+424
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+disease
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+62
+\end{minipage} \\
+\begin{minipage}[b]{\linewidth}\centering
+assay
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+26
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\end{longtable}
+
+Number of labels predicted by the model for each class. We use
+hierarchical classification for cell type, disease, assay, and
+ethnicity.
+
+\section{Supplementary figures for scPRINT}\label{supplementary-figures-1}
+
+\subsection{visualization of human gene embedding from
+ESM2}\label{fig-s1-visualization-of-human-gene-embedding-from-esm2}
+
+\includegraphics[width=5.37707in,height=3.67585in]{./supplementaries/scprint_media/image5.png}
+
+Umap of the ESM2 protein embeddings for the most common protein of all
+protein-coding genes in Ensembl. The PCA variance ratio is 0.856 for the
+top 50 principal components. We color it using the Louvain clustering of
+the embedding.
+
+\subsection{Gene network inference comparison with Omnipath per
+datasets}\label{fig-s2-gene-network-inference-comparison-with-omnipath-per-datasets}
+
+\includegraphics[width=\linewidth]{./supplementaries/scprint_media/image16.png}
+
+The same plots as in Figures 2B, C, and D, showing the Omnipath and
+enrichment results per dataset for each of the 3 datasets used. Source
+data are provided as a Source Data file.
+
+\subsection{Distribution of connection amongst the three ground
+truths}\label{fig-s3-distribution-of-connection-amongst-the-three-ground-truths}
+
+\includegraphics[width=\linewidth]{./supplementaries/scprint_media/image9.png}
+
+(a) Barplot of the distribution of the number of connections per edge in
+the MCalla human ground truth network. Most connections are 0, and there
+is a roughly uniform distribution of connections otherwise. This means
+most connections belong to the half a dozen most connected edges. (b)
+Barplot of the distribution of the number of connections per edge in the
+Omnipath ground truth network. We can see an almost linear relationship
+on the log-log scale, suggesting a power law distribution. (c) Barplot
+of the distribution of the number of connections per edge in the
+genome-wide perturb-seq ground truth network. We can see a very
+different distribution where only a few genes have little differentially
+expressed genes post-knock-out, and this trend increases until reaching
+around 200 connections. Then, it diminishes in what might be a power
+law. However, some of it is likely caused by the differential expression
+method and noise in the scRNAseq methodology.
+
+\subsection{Performance of each GN inference
+method on predicting the TF-gene only subset of the GWPS ground truth
+network
+}\label{fig-s4-performance-of-each-gn-inference-method-on-predicting-the-tf-gene-only-subset-of-the-gwps-ground-truth-network}
+
+\includegraphics[width=6.5in,height=5.54167in]{./supplementaries/scprint_media/image7.png}
+
+Performances of each model's networks on its overlap with the
+TF-gene-only subset of the genome-wide perturb seq ground truth. It
+shows that on this task, most foundation models do not perform well.
+This could be due to the way their attention matrix is normalized.
+Source data are provided as a Source Data file.
+
+\subsection{Full denoising
+results}\label{fig-s5-full-denoising-results}
+
+\includegraphics[width=\linewidth]{./supplementaries/scprint_media/image1.png}
+
+Denoising scores, similar to Figure 4A, but over more tools. ``Random
+model'' means a scPRINT model without pre-training. ``Random expr''
+means that scPRINT was using a set of 3000 genes in a similar way as
+done in pre-training: Taking random expressed genes completed with
+random unexpressed genes if less than 3000 genes are expressed in the
+cell. ``low cell dataset'' means that MAGIC was only using the rare cell
+population for the dataset as presented in the methods.
+Source data are provided as a Source Data file.
+
+\subsection{Cell type classification metrics with per-batch
+split}\label{fig-s6-cell-type-classification-metrics-with-per-batch-split}
+
+\includegraphics[width=\linewidth]{./supplementaries/scprint_media/image3.png}
+
+Cell type classification scores over the kidney test dataset of
+openproblems. Same as Figure 4B, but now the trained methods are trained
+on a subset of the batches representing roughly 70\% of the dataset. The
+performance is lower in this context, and scPRINT, majority voting, and
+Celltypist's performance are not changing. Source data
+are provided as a Source Data file.
+
+\subsection{Full scIB batch correction
+scores}\label{fig-s7-full-scib-batch-correction-scores}
+
+\includegraphics[width=\linewidth]{./supplementaries/scprint_media/image11.png}
+
+scIB benchmarking scores, averaged for the kidney and lung openproblems
+test datasets. Same as Figure 4C but over more tools. Cell type logits
+mean that the logits of the cell type classifier have been used as cell
+embeddings instead of the cell type embedding itself. Source data are
+provided as a Source Data file.
+
+\subsection{Full avgBio scores}\label{fig-s8-full-avgbio-scores}
+
+\includegraphics[width=\linewidth]{./supplementaries/scprint_media/image6.png}
+
+The average Biological score of the scIB benchmark averaged over the
+kidney and lung openproblems test datasets. Same as Figure 4D but over
+more tools. Cell type logits mean that the logits of the cell type
+classifier have been used as cell embeddings instead of the cell type
+embedding itself. Source data are provided as a Source Data file.
+
+\subsection{In-depth view of the BPH dataset and its
+scPRINT-predicted
+annotations}\label{fig-s9-in-depth-view-of-the-bph-dataset-and-its-scprint-predicted-annotations}
+
+\includegraphics[width=\linewidth]{./supplementaries/scprint_media/image14.png}
+
+Detailed view of the assay, development stage, scPRINT-predicted
+diseases, and scPRINT-predicted cell types. Predicted diseases and cell
+types have been ``cleaned'' following the strategy presented in Figure
+5. We also add pie charts of the relative abundance of each predicted
+label.
+
+\subsection{Differential expression analysis of the B-cell
+cluster vs the rest of the cells in the BPH
+dataset}\label{fig-s10-differential-expression-analysis-of-the-b-cell-cluster-vs-the-rest-of-the-cells-in-the-bph-dataset}
+
+\includegraphics[width=\linewidth]{./supplementaries/scprint_media/image8.png}
+
+Top genes of the differential expression analysis of the scPRINT
+inferred B-cell cluster in vs the rest of the cells in the BPH dataset.
+
+\subsection{Gene enrichment comparison in the PAGE4
+GN}\label{fig-s11-gene-enrichment-comparison-in-the-page4-gn}
+
+\includegraphics[width=\linewidth]{./supplementaries/scprint_media/image13.png}
+
+Comparison of the top 20 most enriched terms in Wikipathways, GO
+molecular function, and Reactome for the 40 most connected genes to
+PAGE4 in both BPH-associated and normal fibroblast GNs inferred by
+scPRINT
+
+\subsection{Gene Network enrichment comparison between the BPH
+and normal fibroblast on their Louvain communities}\label{fig-s12-gene-network-enrichment-comparison-between-the-bph-and-normal-fibroblast-on-their-louvain-communities}
+
+\includegraphics[width=\linewidth]{./supplementaries/scprint_media/image15.png}
+
+Dotplot of the top 20 GO Molecular function gene sets enriched in the
+Louvain communities of the BPH and normal fibroblast's Gene Networks.
+
+\subsection{Graphical Model}\label{fig-s13-graphical-model}
+
+\begin{center}
+\includegraphics[width=2.60923in,height=4.53746in]{./supplementaries/scprint_media/image12.png}
+\end{center}
+
+Schematic representation of the zero-inflated negative binomial
+graphical model of the expression decoder. We generate three values
+\(\mu,\ \theta,\ \pi\) which are used to model a distribution. We also
+multiply the \(\mu\) with the depth (or total count) over the cell.
+
+\subsection{Hierarchical
+classifier}\label{fig-s14-hierarchical-classifier}
+
+\begin{center}
+\includegraphics[width=3.73438in,height=3.59421in]{./supplementaries/scprint_media/image10.png}
+\end{center}
+
+Schematic representation of the hierarchical classifier and its behavior
+during training. We can train on labels not predicted by the classifier
+as long as they are parent to one of the predicted labels in the
+ontological tree.
+
+\subsection{Detailed representation of the bottleneck learning
+procedure}\label{fig-s15-detailed-representation-of-the-bottleneck-learning-procedure}
+
+\begin{center}
+\includegraphics[width=3.24724in,height=4.85837in]{./supplementaries/scprint_media/image4.png}
+\end{center}
+
+Schematic representation of the bottleneck learning procedure where
+scPRINT's Bidirectional Transformer Encoder is used both as the
+``Encoder'' and ``Decoder'' of an auto-encoding (AE) bottleneck learning
+scheme.
+
+\subsection{Schematic representation of our
+dataloader}\label{fig-s16-schematic-representation-of-our-dataloader}
+
+\includegraphics[width=\linewidth]{./supplementaries/scprint_media/image2.png}
+
+Schematic representation of scDataLoader. Using Lamin.ai, we download
+and preprocess all cellxgene datasets as AnnDatas. We can also add and
+validate other expression datasets using lamin.ai. Based on lightning's
+datamodule framework, torch's dataloaders, our weighted random sampler,
+and lamin.ai's mapped collection, we can then sample minibatches for
+pre-training across thousands of datasets and millions of cells with
+weighted random sampling.

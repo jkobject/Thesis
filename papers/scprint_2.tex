@@ -1,0 +1,2150 @@
+% Fix for URLs and long text going outside page margins
+\sloppy % Allow more flexible line breaking
+\emergencystretch=1em % Extra stretch for line breaking
+
+\titleformat
+{\chapter} % command
+[display] % shape
+{\bfseries\Huge} % format
+{ } % label
+{2ex} % sep
+{
+    %\vspace{1ex}
+} % before-code
+[ \vspace{0ex}
+] % after-code
+
+\raggedbottom % Allow flexible page heights to reduce underfull vbox warnings
+
+\chapter[scPRINT-2: Towards the next-generation of cell foundation models and benchmarks]{\gls{scPRINT}-2: Towards the next-generation of cell foundation models and benchmarks}
+\label{article3}
+
+\section{Summary}
+
+Cell biology has been booming with foundation models trained on large
+single-cell \gls{RNA-seq} databases, but benchmarks and capabilities remain
+unclear. We propose an additive benchmark across a gymnasium of tasks to
+discover which features improve performance. From these findings, we
+present \gls{scPRINT}-2, a single-cell Foundation Model pre-trained across 350
+million cells and 16 organisms. Our contributions in pre-training tasks,
+tokenization, and losses made \gls{scPRINT}-2 state-of-the-art in expression
+denoising, cell embedding, and cell type prediction. Furthermore, with
+our cell-level architecture, \gls{scPRINT}-2 becomes generative, as
+demonstrated by our expression imputation and counterfactual reasoning
+results. Finally, thanks to our pre-training database, we uncover
+generalization to unseen modalities and organisms. These studies,
+together with improved abilities in gene embeddings and gene network
+inference, place \gls{scPRINT}-2 as a next-generation cell foundation model.
+
+\section{Introduction}\label{introduction}
+
+For the last few years, Single-Cell Foundation Models (\gls{scFM}s), also
+known as Virtual Cell models, have provided early approaches to modeling
+the cell using single-cell RNA-seq data as their primary
+modality\supercite{cuiScGPTBuildingFoundation2024,theodorisTransferLearningEnables2023,yangScBERTLargescalePretrained2022a,rosenUniversalCellEmbeddings2023}. The field has been booming with these
+transformer-based machine learning models trained on large databases of
+tens of millions of cells. The models themselves contain tens to
+hundreds of millions of parameters and are trained on unsupervised (or
+semi-supervised) tasks such as predicting masked gene expression or
+denoising expression. They can then be used as is to examine their
+learned representations or fine-tuned to transfer their knowledge across
+a range of everyday tasks in that modality. Many examples have now been
+proposed, such as predicting single-cell perturbation responses, patient
+drug responses, and disease states; annotating cells; correcting for
+batch effects; improving noise levels; imputing unseen gene expression
+or modality; generating gene networks; identifying cell niches; and
+more\textsuperscript{5,6,6--15}.
+
+While many AI Virtual Cell models and \gls{scFM}s exist, little has been done
+regarding their comparison\textsuperscript{16--20}. A crucial question
+remains: how to validate the impact of the different proposed methods,
+regardless of implementation, datasets, or model size. Indeed,
+reproducing results has been challenging for many, and the literature
+has yielded discordant conclusions about the performance and
+capabilities of these models. Showing they often underperform simpler
+approaches on classification, batch correction, and perturbation
+prediction\textsuperscript{16,17,21--23}. Much work remains to get to
+feature-rich, easy-to-use \gls{scFM}s. Models that allow inference in minutes,
+along with well-crafted reproducible benchmarks that demonstrate how
+\gls{scFM}s uniquely solve essential problems in single-cell biology.
+Open-sourcing not just model weights but their pre-training tasks and
+datasets.\textbf{\hfill\break
+}
+
+On this front, scPRINT was released as part of a second batch of scFM,
+presenting contributions in terms of usability and reproducibility while
+also showcasing pre-training strategies, data encoding, and
+decoding\supercite{scprint}. scPRINT was trained on 50 million cells
+using a multitask pre-training strategy that included expression
+denoising, autoencoding, and cell-label prediction. It also presented an
+in-depth benchmark that examined the foundation model's zero-shot
+performance on these tasks, as well as its internal gene network
+representation and fidelity compared to multiple ground truths.
+
+Building on these strengths and moving towards the next generation of
+\gls{scFM}s, we here use scPRINT (which will be referred to as scPRINT-1) as
+the reference to showcase an extensive additive benchmark of scFM
+attributes. We address several key questions about the importance of
+diverse architectures, datasets, and training modalities. This additive
+benchmark aims to understand the relative importance of these different
+features in our task gymnasium, examining the choice of model
+architecture and pre-training tasks across 42 different scenarios. In
+these scenarios, we propose a breadth of novel components for \gls{scFM}s. In
+addition to those 12 distinct contributions, we also examine various
+pre-training datasets, compiling a 350-million-cell database---the
+largest to date---with over 16 organisms.
+
+As a result of the benchmark, we derive a next-generation scFM,
+	extbf{\gls{scPRINT}-2}. \gls{scPRINT}-2 improves upon the previous generation of
+models by leveraging our database, the \gls{scPRINT}-2 corpus, and multiple
+data augmentation approaches. It uses a set of updated pre-training
+tasks and losses, improving its accuracy in challenging and unseen
+contexts. Finally, it is equipped with graph-based encoders and the
+XPressor architecture, enabling unprecedented expression imputation,
+high-quality zero-shot embeddings, and counterfactual reasoning. We dive
+into these specific contributions by examining multiple use cases,
+highlighting behaviors that are often overlooked or under-assessed in
+classical benchmarks.
+
+\gls{scPRINT}-2, its dataloader, pre-training datasets, preprocessing, task
+functions, pre-trained weights, as well as the additive benchmark
+training traces and all 42 models'{} weights are fully
+open-sourced and available under the GPL-v3 License.
+
+\section{\texorpdfstring{\textbf{Results}}{Results}}\label{results}
+
+\subsection{Decoding the impact of a foundation model's architecture
+through an additive
+benchmark}\label{decoding-the-impact-of-a-foundation-models-architecture-through-an-additive-benchmark}
+
+Many \gls{scFM}s have been developed in single-cell genomics. They have mostly
+been studied in isolation, using their own benchmarks. While most of
+them maintained relatively similar architectures, the impact of each
+design's decisions was never thoroughly assessed. For example, scPRINT-1
+uses a denoising reconstruction task similar to scFoundation. Still,
+scFoundation uses the mean-squared-error (\textbf{MSE}) for the
+reconstruction loss, whereas scPRINT-1 uses the zero-inflated
+negative-binomial loss (\textbf{\gls{ZINB}}) (see
+\hyperref[zinbmse-loss]{Methods}). scGPT and Geneformer utilize
+masking, but scGPT bins expression counts (\textbf{binning}), while
+scPRINT-1 does denoising and employs a continuous embedding with a log
+transform and a pseudocount of 1 (\textbf{logp1})\supercite{cuiScGPTBuildingFoundation2024,theodorisTransferLearningEnables2023}.
+Other models, like cellPLM, instead use a contrastive learning approach,
+which encourages embeddings of perturbed and unperturbed cell profiles
+to be more similar to each other than those of different cell
+profiles. This method is also known as InfoNCE or
+Contrastive Cell Embedding (\textbf{CCE}) (see
+\hyperref[embedding-contrastive-loss]{Methods})\supercite{oordRepresentationLearningContrastive2019}.
+
+\subsubsection{Additive benchmark}\label{additive-benchmark}
+
+To address the lack of a consistent assessment of these models, we have
+designed a benchmark to comprehensively evaluate the various components
+of \gls{scFM}s, including pre-training databases, architectures, and training
+tasks. This benchmark is based on a gymnasium of tasks similar to those
+presented in Kalfon et al.\supercite{scprint} (see Figure \ref{fig:scprint2_overview}; see Table
+\ref{tab:additive_benchmark}). The \gls{scFM} gymnasium assesses each model's ability to predict labels,
+remove batch effects, denoise, and impute gene expression, as well as
+discover known gene-gene relationships at different stages of training.
+For embeddings and cell type classification, we use the \gls{scIB} and
+accuracy scores over the same ground-truth test datasets as in Kalfon et
+al. (see \hyperref[additive-benchmarks-datasets]{Methods}). For
+denoising, we evaluate the model's ability to recover the noised
+expression profile of cells from a test dataset, as measured by the
+improvement in correlation with the ground-truth profile after
+denoising. For gene-network inference, we examine the Odds Ratio (OR)
+and \gls{AUPRC} scores of the model's ability to recover a ground-truth gene
+network from expression data alone (see
+\hyperref[gene-network-metrics]{Methods}).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/scprint2/image4.png}
+    \caption[Presentation of the \gls{scPRINT}-2 model, pre-training dataset, and additive benchmark]{(a) The additive benchmark example table with its gymnasium scores across the \gls{scFM}'s features. (b) Our \gls{scPRINT}-2 corpus pre-training dataset, with 16 organisms across 300+ tissues. \gls{UMAP} of 15 million cells from the corpus integrated using \gls{scPRINT}-2. Colors represent species. (c) The \gls{scPRINT}-2 model, its input data, and its different outputs. Source data are provided as a Source Data file.}
+    \label{fig:scprint2_overview}
+\end{figure}
+
+The base model, on which the additive benchmark is performed (see Figure
+\ref{fig:scprint2_overview}, Table \ref{tab:additive_benchmark}, and \hyperref[base-model-and-training]{Methods}), is
+trained on the CxG database, comprising 500 carefully annotated human
+and mouse datasets. Its training lasts for a maximum of 20 epochs, each
+of 20,000 steps, with a minibatch size of 64. We encode the gene
+expression using the scPRINT-1 approach and decode it with the MSE
+method. The base model's pre-training task uses a 30\% gene expression
+mask. We pre-train the models 6 times across multiple seeds to generate
+error bounds. Using Flash-Attention-3, the 20M parameters model trains
+on 1 H100 \gls{GPU} for 2 days.
+
+While we will not delve into the details of each feature assessed (see
+\hyperref[additive-benchmark-1]{Methods}), our benchmark broadly
+highlights several key points.
+
+Regarding the tasks, we have confirmed what Kalfon et al. and De Waele
+et al. previously showed: that denoising is superior to masking as a
+pre-training task for single-cell data in classification and embedding
+tasks\supercite{scprint,deWaeleSystematicAssessment2025}. Similarly, un-normalized expression is
+better than normalizing it at the input. Classification also serves as a
+good supplement to the pre-training task, as without it, we observe a
+slight decrease in performance (see Table 1).
+
+We also present, as part of our study, the \textbf{\gls{scPRINT}-2 corpus},
+which comprises more than 350 million single cells (see Figure \ref{fig:scprint2_overview}). This
+is the largest dataset ever assembled, consisting of data from the Chan
+Zuckerberg Institute's Cellxgene (\textbf{CxG}), the \textbf{Tahoe}-100M
+dataset, and the scBasecount database, which contains 20,000 reprocessed
+datasets from the Gene Expression Omnibus\supercite{programCZCELLxGENEDiscover2023,youngblutScBaseCount2025,zhangTahoe100M2025}. The
+cells themselves are derived from 16 different eukaryotic organisms,
+spanning more than 1 billion years of evolution. The dataset comprises
+approximately 400,000 distinct genes, 4,764 different labels, and around
+140,000 cell groups, totaling 25 TB of unique data\supercite{jeremiekalfonTrainingFoundationModels}.
+Our database contains nine main classes: \emph{cell type, disease, age,
+tissue of origin, assay, ethnicity, sex, cell culture,} and
+\emph{organism}.
+
+Thanks to this database, we demonstrated the growing importance of data
+selection in pre-training \gls{scFM}s. Indeed, when using the Tahoe-100M
+database solely for pre-training, the model's overall performance
+plummets, as the sequencing depth and diversity are low despite the
+large number of cells.
+
+However, including this lower-diversity dataset with the high-diversity
+CxG database and carefully considering the cell-state imbalances results
+in only a noticeable decrease in denoising performance. Interestingly,
+using all available datasets did not change performance across our
+benchmarks. Reducing the training database to a random subset of only
+\textbf{200 human datasets only,} led to a minimal decrease in denoising
+and cell type prediction. This shows again that the benchmark fails to
+highlight abilities on more diverse cell types and
+organisms\textsuperscript{30,31}. But it also indicates diminishing
+returns in adding more datasets---diversity in cell states and organisms
+being much more important than cell count.
+
+We thus preprocessed each dataset by removing all duplicates, filtering
+for low-quality cells, aligning metadata to the CxG ontologies, and
+computing cell-cell similarity profiles and clusters. It allowed us to
+introduce multiple data augmentation techniques, such as varying the
+input context length (\textbf{var. context}) during training and
+randomly creating \textbf{meta-cells}, which are averages of similar
+cell expression profiles across K-nearest neighbors (K-NN) (see
+\hyperref[a-multi-cell-denoising-auto-encoder-task-unlocks-new-modalities-and-performances]{Results
+section 3}). Interestingly, we observe that both methods tend to
+improve the model's performance in most metrics, even though these
+models do not examine more cells overall. This highlights the importance
+of effective data augmentation techniques for scFM
+pre-training\textsuperscript{32}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/scprint2/image6.png}
+    \caption[Full results of the additive benchmark]{Table representing the results of the additive benchmark on 42 models, over multiple metrics: batch correction and cell embedding quality, denoising quality, cell type prediction, and gene network inference. Additional information on the different components is available in the methods section. Bold elements are the features that are part of the \gls{scPRINT}-2 foundation model.}
+    \label{tab:additive_benchmark}
+\end{figure}
+
+Regarding architecture, we recomputed results from the XPressor
+manuscript\textsuperscript{33}, which showed that this architecture
+improves the embedding quality of \gls{scFM}s (see
+\hyperref[an-efficient-hierarchical-attention-architecture-makes-scprint-2-generative]{Results
+section 4}; see the full table in Supplementary Table~\ref{table-s1-detailed-version-of-the-additive-benchmark}). We also demonstrate
+that using ESM-based gene ID tokens leads to much better performance
+than learning gene tokens from scratch\textsuperscript{34}. Providing
+each gene's genomic location as additional input information
+significantly improves model convergence. However, we also noticed that
+when they do converge, models without gene location information can
+perform well. We have noticed that model size correlates with higher
+scores, at least for gene network inference and cell-type prediction.
+Using a Graph Neural Network (\textbf{GNN}) encoder shows significant
+improvements, with only a slight decrease in the cell-type prediction
+task (see Results Section 3; see \hyperref[methods]{Methods}).
+Additionally, our sub-quadratic attention mechanism, Criss-cross
+attention, also shows substantial benefits with no reduction in
+performance (see Results section 4; see \hyperref[methods]{Methods}).
+
+Moreover, \gls{MSE}, on average, outperforms \gls{ZINB} as a loss function while
+decreasing the model's expressivity (see
+\hyperref[base-model-and-training]{Methods}). A good proposed
+middle ground is the \gls{ZINB}+MSE loss (see
+\hyperref[a-multi-cell-denoising-auto-encoder-task-unlocks-new-modalities-and-performances]{Results
+Section 3}; see \hyperref[zinbmse-loss]{Methods}).
+
+Some unexpected results showed that omitting the decoder part of
+scPRINT-1 led to stronger performance; however, this comes at the cost
+of generative abilities and decreased cell-embedding fidelity. Indeed,
+despite its importance for understanding \gls{scFM}s' behavior and feature
+importance, we have noted that our benchmark does not yet capture the
+full breadth of abilities that \gls{scFM}s do or should have. For example,
+both \gls{scIB} and classification scores are very dependent on the
+dataset' s quality and its labels. Scores presented here
+show only a facet of the model's ability. We might be interested in the
+model's performance up-to-convergence instead of stopping them at 20
+epochs or looking at unseen species, or assays at training. This is a
+first attempt to benchmark \gls{scFM}s, but more extensive efforts will be
+needed.
+
+\subsubsection{\gls{scPRINT}-2}\label{scprint-2}
+
+Overall, we have examined the performance improvements driven by our 12
+distinct contributions across 42 training runs. Based on these results
+and our own considerations, we have elected a set of features to create
+\gls{scPRINT}-2, a next-generation cell foundation model (see Supplementary Figure~\ref{fig-s1-illustration-of-the-full-scprint-2s-architecture-input-and-output};
+see \hyperref[scprint-2-1]{Methods}). We highlight its architecture
+in Figure \ref{fig:scprint2_overview}; \gls{scPRINT}-2 is currently available in a small version with
+only 20M active parameters. Its encoder-compressor-decoder architecture
+produces cell- and gene-level outputs at multiple levels, working on one
+or more cells at a time.
+
+Furthermore, to aid in the exploration of this largest-ever
+cross-organism single-cell dataset, we release all of the 350 million
+cells in the \gls{scPRINT}-2 corpus, aligned into an atlas by \gls{scPRINT}-2, of
+which 1\% are directly accessible through an interactive visualization
+(see Figure \ref{fig:scprint2_overview}, see \hyperref[data-availability]{Data
+availability}) along with \gls{scPRINT}-2 cell label predictions for all
+classes. This should enable never-before analysis and exploration of
+single-cell RNA-seq data.
+
+But the additive benchmark leaves some questions unanswered about the
+effect of combining these features up-to-convergence and the models'
+abilities on unseen modalities, tasks, and species. In the following
+sections, we will focus on 1. looking at more diverse and truthful
+datasets in size, quality, and source domains; 2. using more scores and
+ground truth validations; 3. defining tasks that better reflect the
+possibilities and real-life use of these models.
+
+\subsection{A diverse dataset of 350 million cells pushes generalization
+to unseen
+organisms}\label{a-diverse-dataset-of-350-million-cells-pushes-generalization-to-unseen-organisms}
+
+One of the most critical features of foundation models (FMs) is the
+breadth of their training dataset. From vision to language, AI
+advancement has been driven by training models on ever-larger
+datasets\textsuperscript{35--39}. Nowadays, most \gls{scFM}s are trained on 20
+to 50 million cells, except the recently released Geneformer-v2 and
+STATE-SE models, which have been trained on roughly 300 million
+cells\textsuperscript{40,41}.
+
+\subsubsection{scPRINT-2 pre-training
+corpus}\label{scprint-2-pre-training-corpus}
+
+In conjunction with our model's architecture, the \gls{scPRINT}-2 corpus and
+its 16 organisms enable generalization to organisms unseen during
+training. This broader cell type diversity, however, comes with
+additional challenges: annotation quality has decreased due to missing
+annotations in scBasecount. Additionally, the skew toward low sequencing
+depth and highly similar cells has increased with the inclusion of
+spatial transcriptomics datasets and less curated databases such as
+Tahoe-100M and Arc's scBasecount (see
+\hyperref[depth-weighted-sampling]{Methods}).
+
+Fortunately, a key feature of our dataloader,
+scDataLoader\textsuperscript{3}, is its ability to perform weighted
+random sampling, thereby mitigating the heavy dataset imbalances that
+currently exist across diverse cell types, sequencing methodologies, and
+different organisms assessed. We thus present methods to successfully
+train \gls{scPRINT}-2 on this large dataset. The first, called
+cluster-weighted sampling, allows datasets with unclear annotations to
+benefit from weighted random sampling by defining clusters of high
+expression similarity (see
+\hyperref[cluster-weighted-sampling]{Methods}). This lets us define
+cell states without requiring any label information and perform sampling
+that is aware of the different cell states, regardless of the size of
+each cluster. We address the second issue of uneven cell quality by also
+skewing sampling toward cells with more non-zero genes (nnz). Both
+methods were enabled on such a vast database thanks to essential updates
+to scDataLoader. This re-weighting is performed jointly with weights on
+cell type, disease, organism, and sequencer labels, thereby addressing
+the size/diversity issues that plague these larger cell
+databases\textsuperscript{42}.
+
+Interestingly, the number of training steps required to achieve
+convergence increased only 2-fold, indicating that, as in scPRINT-1, the
+model did not sample as many cells as actually exist in the pre-training
+dataset before reaching convergence. However, with data augmentation and
+nearest-neighbor sampling, the model still encountered roughly 2 billion
+distinct input cell profiles during pre-training, corresponding to 2000
+cell profiles per step.
+
+After implementing this feature and training \gls{scPRINT}-2, its cell-type
+classification performance on the validation dataset was 76\%. For its
+other predicted labels, its performance was 59\% (disease), 96\%
+(ethnicity), 96\% (assay), 94\% (age), 100\% (cell culture), 100\%
+(organism), 93\% (sex), and 70\% (tissue of origin).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/scprint2/image2.png}
+    \caption[Presentation of the updated classifier and results on classification tasks]{(a) Open Problems benchmark results and comparison of scPRINT-1 and zero-shot and fine-tuned \gls{scPRINT}-2. (b) Illustration of our updated hierarchical classifier loss. (c) Unseen organisms cell type classification for cat and tiger datasets, across two experts and \gls{scPRINT}-2 zero-shot, after label smoothing, after cluster aggregation, and after fine-tuning. (d) Change in classification accuracy as the number of genes in context increases for high-quality single-cell datasets. The star represents the model's score when label smoothing is used.}
+    \label{fig:scprint2_classifier}
+\end{figure}
+
+On the live benchmark Open Problem from November 2025, it achieved an
+average zero-shot performance of 75\%, putting it above scPRINT-1 (47\%)
+and other zero-shot FMs (40-60\%), even above Liger, a supervised
+technique\textsuperscript{43} (see Figure \ref{fig:scprint2_classifier}; see
+\hyperref[open-problem-benchmarks]{Methods}). But \gls{scPRINT}-2 was the
+only \gls{scFM} with UCE that could run on all datasets\textsuperscript{44}.
+Against the two human datasets on which Scimilarity-KNN could be run, it
+performed slightly better than \gls{scPRINT}-2. This is most likely due to the
+smaller capacity of \gls{scPRINT}-2 (20M parameters) compared to scimilarity
+(100M parameters), as we also observed in our additive benchmark (see
+Table \ref{tab:additive_benchmark}). Another likely reason is that the model likely saw those
+datasets more often during pre-training, since it is trained only on
+CxG's human datasets.
+
+We then performed fine-tuning using our XPressor-based
+Parameter-Efficient Fine-tuning (XPEFT), in which we fine-tune only the
+XPressor layers of \gls{scPRINT}-2 (see
+\hyperref[fine-tuning-task]{Methods}). In this context, we show
+that \gls{scPRINT}-2 fine-tuned outperforms every existing supervised and
+unsupervised method on the Open-problem (see Part 4; see
+\hyperref[xpressor-model]{Methods})\textsuperscript{45}. We
+observed similar trends in the macro-F1 scores (see Supplementary Figure~\ref{fig-s2-barplot-of-the-f1-macro-scores-on-the-label-projection-task-of-the-open-problem-benchmark}). Of
+note, neither scGPT nor Geneformer are currently tested in their
+fine-tuned version on the platform.
+
+These performances are enabled in part by our update to scPRINT-1's
+hierarchical classification loss (see Figure \ref{fig:scprint2_classifier}). The scPRINT-1
+classifier generates predictions for all possible labels in a
+hierarchical ontology, while producing logits only for the leaf labels.
+To predict the other labels, it only has to aggregate their leaf logits.
+In \gls{scPRINT}-2, we improve on this loss by using the entire ontological
+graph, meaning that, e.g., given a ground truth of \emph{olfactory
+neuron,} we will penalize a prediction of \emph{inhibitory neuron} less
+overall than a non-neuron label, like \emph{fibroblast}. In conjunction
+with our weighted sampler, this allows the model to learn rich gradients
+from a low volume of data.
+
+\subsubsection{\gls{scPRINT}-2 generalizes to unseen classification
+tasks}\label{scprint-2-generalizes-to-unseen-classification-tasks}
+
+We have, however, noticed that classification performance does not
+generalize sufficiently to correctly recover the exact phylogenetic
+relationships within organisms or, similarly, within ethnicities (see
+Supplementary Figures~\ref{fig-s3-heatmap-of-ethnicity-prediction-relationship-across-samples}, \ref{fig-s4-heatmap-of-organism-prediction-relationship-across-samples}, \ref{fig-s5-heatmap-of-organism-prediction-relationship-using-organism-embedding-similarity-across-samples}). This could be biased heavily by tissue
+representation in rare ethnicities and organisms. However, some
+relationships were found, such as \emph{Singaporean Indian/Singaporean
+Chinese, Korean/Japanese/Chinese, American/Latin American,} or
+\emph{Macaque/Marmoset/Chimpanzee, Drosophila/C. elegans, Human/Mouse,
+Pig/Cow}, suggesting that with greater diversity and representation,
+\gls{scFM}s might learn this relationship classification of gene expression on
+their own.
+
+We show that this does not prevent \gls{scPRINT}-2 from generalizing to unseen
+organisms. Using a randomly selected tomato plant dataset and its
+corresponding ESM3 gene embeddings, unseen at training time, \gls{scPRINT}-2
+generates an organism label prediction for the two plant organisms it
+knows about 67\% of the time. This is despite the very low prevalence of
+these organisms in the pre-training dataset (see Figure \ref{fig:scprint2_overview}). For a horse
+dataset, \gls{scPRINT}-2 predicted mammalian organisms 72\% of the time.
+
+Unfortunately, these datasets lacked cell-type annotations. Using
+well-annotated datasets from Zhong et al.\textsuperscript{46} of cat and
+tiger lung tissues, organisms not seen at training time, we generate
+cell type predictions using \gls{scPRINT}-2 and achieved a prediction accuracy
+of 42.2\% across the 500 potential cell type leaf labels \gls{scPRINT}-2 knows
+about. While this score may seem low compared to supervised approaches,
+it is worth noting that labels from a secondary source were available in
+the datasets. Comparing them to the initial ground truth, we found only
+a 55.3\% agreement between the two. Furthermore, we noticed that for
+some cells, annotations were quite different, such as: \emph{fibroblast}
+being labelled as \emph{ciliated cell}, \emph{macrophage} as
+\emph{neuroendocrine cell, and} \emph{ionocyte} as \emph{secretory
+cell}.
+
+Given the low correspondence between the two expert annotations, we
+wanted to determine which was correct between \gls{scPRINT}-2 zero-shot or the
+expert ground-truth labels. We conducted a differential expression
+analysis between cells labeled as \emph{type 2 pneumocyte} by \gls{scPRINT}-2
+(zero-shot) but as \emph{macrophage} by the ground truth (see Supplementary
+Figure~\ref{fig-s6-differential-expression-plots-of-the-disagreeing-cells-between-scprint-2-and-ground-truth}). We saw that the most highly differentially expressed genes
+were \emph{MAGI1}, \emph{NPNT}, \emph{TEAD1}, and \emph{LMO7}, which are
+involved in cell-cell junctions, epithelial cells, alveolar cells, and
+lung tissues. Moreover, the first differentially expressed gene was
+\emph{SFTPC}, a known ``type 2 pneumocyte'' marker. This means that,
+even in this challenging unseen-organism dataset, \gls{scPRINT}-2 seems to
+legitimately correct expert annotations. This showcases strong
+generalization to unseen organisms.
+
+To further improve \gls{scPRINT}-2's accuracy, we use a method first presented
+in Hu et al. to aggregate predictions based on \textbf{nearest neighbor
+smoothing} of the model's class logits (see
+\hyperref[logits-refinement-laplacian-smoothing]{Methods})\textsuperscript{47,48}.
+This approach increased accuracy in most of our use cases but yielded a
+small 1.3\% improvement here. We also provide tools to perform
+\textbf{top-K predictions} and \textbf{confidence-based selection}. This
+means that \gls{scPRINT}-2 can list multiple putative labels for each cell.
+When multiple labels have high logits, it can output their shared
+parental label for that cell instead. When labels disagree, or the
+logits are low, \gls{scPRINT}-2 can output an ``unknown'' label instead. Using
+both approaches together, we get an additional 3\% improvement in
+accuracy, with 10\% of the cells now listed as ``unknown''.
+
+Additionally, the low accuracy is also related to \gls{scPRINT}-2 predictions
+being cell-specific, whereas most ground truth labels are
+cluster-specific. We propose a \textbf{cluster-based logits averaging,}
+which can be viewed as an extreme case of smoothing (see
+\hyperref[cluster-aggregation]{Methods}). With this tool, \gls{scPRINT}-2
+performance increased by 12\% (see Figure \ref{fig:scprint2_classifier}). Beyond improved accuracy,
+these inference-time contributions significantly enhance the usefulness
+of scFM-based cell annotation for biologists.
+
+Finally, we also demonstrate that with our XPEFT method (presented
+further in
+\hyperref[an-efficient-hierarchical-attention-architecture-makes-scprint-2-generative]{Results
+section 4}), \gls{scPRINT}-2 can improve its predictions to 95\% accuracy in
+the test subset, while preserving some fine-grained cell-type
+distinctions not present in the training data (see Figure \ref{fig:scprint2_classifier}).
+
+We then assessed \gls{scPRINT}-2' s performance as we increased
+the number of genes in context. We used a Smart-seq-v4 dataset from
+Jorstad et al., averaging around 6000 nnz genes per cell (see Supplementary
+Figure~\ref{fig-s7-umap-of-the-smart-seq-dataset-used-in-the-varying-context-classification-task})\textsuperscript{49}. As shown in Figure \ref{fig:scprint2_classifier}, we observed an
+overall increase in prediction accuracy across all labels as we
+increased the context from 200 to 8000 genes, even though \gls{scPRINT}-2 was
+pre-trained on only 3200 genes, demonstrating generalization to larger
+input contexts. Interestingly, classes such as sex and ethnicity reached
+much better predictive accuracy as we increased the number of genes.
+When using only the most expressed genes in context, we observed that
+cell types, which are often defined by highly expressed canonical genes,
+remained relatively high, even with only 200 genes in context (see Supplementary
+Figure~\ref{fig-s8-line-plot-of-the-classification-across-varying-context-length-using-the-most-expressed-genes}).
+
+Training \gls{scFM}s on large dataset sizes does not necessarily improve the
+model's performance. It is the breadth of cell types, conditions,
+organisms, and cell quality that produces real generalization abilities.
+We showcased it here, with scPRINT2 able to label unseen organisms,
+improving its predictions across various context lengths and rare
+modalities. We also showed \gls{scPRINT}-2 reaching state-of-the-art
+classification accuracy with our fine-tuning.
+
+We will now see how some of our contributions in training loss and data
+augmentation can similarly improve performance in denoising and
+imputation in unseen modalities.
+
+\subsection{A multi-cell denoising auto-encoder task unlocks new
+modalities and
+performances}\label{a-multi-cell-denoising-auto-encoder-task-unlocks-new-modalities-and-performances}
+
+Not all single-cell datasets are at the sequencing depth and quality of
+Smart-seq-v4. On average, single-cell data has very low depth,
+preventing \gls{scFM}s from learning features that may only be seen in
+higher-quality cellular profiles.
+
+\subsubsection{Meta-cells and graph neural network
+encoder}\label{meta-cells-and-graph-neural-network-encoder}
+
+In addition to biasing sampling toward cells with more non-zero genes
+(nnz), \gls{scPRINT}-2's dataloader now uses neighborhood information, whether
+defined in expression space or via spatial transcriptomics (see Figure
+\ref{fig:scprint2_denoising}; see \hyperref[multi-cell-sampling]{Methods}). This allows users
+to create models that take into account nearest neighbor cells during
+pre-training. This can be done, for example, by creating
+\textbf{meta-cells}. Meta-cells average the expression over the cell and
+its neighbors to artificially create a higher-depth cell with less
+dropout. We demonstrate that this approach achieves improved results
+across multiple model metrics, but not in denoising (see Table 1). While
+17\% of cells in the dataset have more than 2600 non-zero values, 11\%
+had at least 3200. With nnz-weighted sampling, we reach 33\%. By adding
+metacells, half of our input expression profiles now have more than 3200
+nnz elements---allowing us to extend \gls{scPRINT}-2's context to 3200 genes.
+
+However, one can go beyond meta-cells and, instead of averaging, use a
+graph neural network (\textbf{GNN}) (see Figure \ref{fig:scprint2_denoising}; see
+\hyperref[gnn-expression-encoder]{Methods})\textsuperscript{50,51}.
+In this case, the set of neighbors' expressions is encoded in the input
+token of the transformer. We show that this improves the model's
+denoising ability. However, we also noticed a decrease in cell embedding
+and classification (see Table 1). Further experiments showed that this
+was mitigated with longer training time. As in the variable context
+case, we variably select 0 to 6 neighbors per minibatch, so the model
+learns to use a variable number of cell neighbors (see Supplementary Figure~\ref{fig-s9-illustration-of-the-multiple-perturbations-applied-to-expression-data-in-scprint-2},
+see \hyperref[multi-cell-sampling]{Methods} for details on the
+choice of neighbors).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/scprint2/image5.png}
+    \caption[Presentation of the expression encoder and decoders and performance on denoising and imputation tasks]{(a) Overview of \gls{scPRINT}-2's multi-cell expression encoder and (b) \gls{scPRINT}-2's expression decoder loss. Circles represent scalar values, orange blocks represent vectors. (c) Benchmark of \gls{scPRINT}-2 on expression denoising over nine datasets of varying quality, compared to MAGIC and scPRINT-1. (d) \gls{UMAP} of the Xenium's patches of cells' expression pre/post denoising with \gls{scPRINT}-2. (e) Expression denoising of IRF8 with \gls{scPRINT}-2 over a sub-patch of the Xenium melanoma dataset with cell contour overlaid. (f) Overview of the patch selection in the Xenium dataset, and of the mapping and pseudo-imputation with Tangram using a matched melanoma 10x v3 \gls{scRNA-seq} dataset. (g) Correlation-based denoising \& imputation scores of \gls{scPRINT}-2 and denoising of MAGIC on the matched dataset. (h) \gls{scPRINT}-2 cell type prediction over the Xenium melanoma patch. (i) Expression-based clusters and \gls{scPRINT}-2 disease prediction of cells from the Xenium melanoma patch analyzed. Source data are provided as a Source Data file.}
+    \label{fig:scprint2_denoising}
+\end{figure}
+
+Pushing our analysis further, we realized that a mix of both scores,
+which we call \textbf{\gls{ZINB}+MSE} (see Figure 3B; see
+\hyperref[zinbmse-loss]{Methods}), yields a better denoising score
+while retaining the ability to model zero inflation and uncertainty (see
+Table \ref{tab:additive_benchmark}). Together, these updates have already made \gls{scPRINT}-2 better
+than scPRINT-1 and even better than MAGIC on our denoising benchmarks
+(see Table \ref{tab:additive_benchmark}, see Figure \ref{fig:scprint2_denoising})\textsuperscript{52}. While these results
+are already state-of-the-art, we wanted to explore the effects of
+denoising and how to assess our model in unseen contexts.
+
+Looking at denoising scores across technologies, we notice that
+scPRINT-1 tends to perform much better on datasets with higher nnz
+genes, i.e., higher-quality datasets (see Figure \ref{fig:scprint2_denoising}, see
+\hyperref[denoising-task]{Methods}). However, within each dataset,
+scPRINT-1 struggles more with low-depth cells than MAGIC \& \gls{scPRINT}-2,
+which is more consistent overall. We explain this paradox by the fact
+that, beyond nnz genes, the high-quality dataset often exhibits lower
+biases in the distribution of nnz genes per cell (see Supplementary Figure~\ref{fig-s10-distplot-of-the-non-zero-count-distribution-across-cells-from-the-three-dataset-qualities-used}).
+This also explains why MAGIC and \gls{scPRINT}-2 perform better than scPRINT-1
+in these biased datasets. Indeed, they can look at the neighbor's
+expression and model the expression biases this way. This usage explains
+the significant improvements in the low- and mid-quality datasets,
+making \gls{scPRINT}-2 state-of-the-art across all tested contexts and
+modalities using its estimate of zero-inflation.
+
+\subsubsection{\gls{scPRINT}-2 generalizes to unseen denoising
+tasks}\label{scprint-2-generalizes-to-unseen-denoising-tasks}
+
+Additionally, we decided to look at performance on a Xenium dataset, a
+modality completely absent from \gls{scPRINT}-2's training (see
+\hyperref[xenium-analysis]{Methods})\textsuperscript{53}. We
+elected to use a large, recent skin melanoma dataset with a 5000-gene
+panel, reaching the upper limit of what is doable with current
+technology.
+
+A first proof of \gls{scPRINT}-2's denoising is the \gls{scIB} biological
+truthfulness of the Xenium dataset, which improves over the raw
+expression embedding when using its embeddings (see Figure \ref{fig:scprint2_denoising}; see
+Supplementary Figure~\ref{fig-s11-umap-over-scprint-2-and-pca-embeddings-of-the-xenium-dataset}; see Supplementary Table~\ref{table-s3-detailed-scib-biological-conservation-scores-on-the-xenium-dataset}). To further assess how well
+\gls{scPRINT}-2 can denoise this unseen data modality, we leverage the optimal
+transport-based method Tangram\supercite{biancalaniDeepLearningAlignment2021}. We used Tangram to
+map each Xenium cell to another cell in a non-spatial 10X v3 dataset of
+similar skin melanoma\supercite{zhangSinglecellAnalysisReveals2022} (see Figure 3F). Here, the
+mapping quality is low due to many differences between the two
+technologies, e.g., number of cells, number of genes per cell, or biases
+in cell and gene types (see Supplementary Figure~\ref{fig-s12-tangram-mapping-quality-plots}). Still, using the 10X v3
+dataset as ground truth, we can see that MAGIC and \gls{scPRINT}-2 recreate an
+expression profile that correlates more than 30\% better with the 10X
+dataset than does Xenium (see Figure \ref{fig:scprint2_denoising}). There, MAGIC creates
+expression profiles closer to the 10X ones, while \gls{scPRINT}-2 remains
+closer to the initial Xenium profiles, and both \gls{scPRINT}-2 and MAGIC tend
+to agree more with each other than with anything else (see Figure \ref{fig:scprint2_denoising}).
+
+Overall, this suggests that using a tool like \gls{scPRINT}-2 might be a
+better alternative for denoising and imputing expression from Xenium
+than using a secondary non-spatial 10X dataset and aligning it with
+Tangram.
+
+At the same time, MAGIC can only perform denoising and cannot impute
+expression for unseen genes. We thus use \gls{scPRINT}-2 to impute a random
+subset of 5000 genes present only in the 10X v3 dataset. Interestingly,
+we noticed that feeding all 5000 (expressed in Xenium) + 5000
+(unexpressed in Xenium) genes in context did not lead to good
+imputation. However, using \gls{scPRINT}-2's generative architecture, we
+directly decoded the 5000 10X-only genes from the \gls{scPRINT}-2's cell
+tokens generated on the 5000 Xenium genes (see Supplementary Figure~\ref{fig-s13-illustration-of-scprint-2s-generative-imputation-mechanism}). We
+show that this imputation scores as high as the denoised Xenium genes
+(see Figure \ref{fig:scprint2_denoising}).
+
+Finally, we also wanted to examine \gls{scPRINT}-2's cell-label predictions on
+this unseen modality. While we did not have access to ground-truth
+labels in this dataset, we could already spot-check the validity of the
+predictions. Indeed, many cell types were labeled as \emph{basal} or
+\emph{epidermis}, with numerous immune cell labels in the cancer-induced
+lesion in the tissue (see Figure \ref{fig:scprint2_denoising}). It likely reflects the biases of the pre-training dataset,
+where disease labels are often applied at the dataset level rather than
+the cell level, making \gls{scPRINT}-2's disease predictions sometimes
+imprecise. Thankfully, many cells had the cell-type label
+`\emph{malignant cell}'. These cells were distributed throughout the
+tissue and showed a strong signal for the five key literature melanoma
+genes (\emph{BCL2, IGF1, EGFR, FGFR2, SOX10}) (see Supplementary Figures~\ref{fig-s15-violin-plot-comparison-of-the-genes-expression-between-predicted-malignant-vs-the-rest} and~\ref{fig-s16-differential-expression-plot-of-cancer-disease-labelled-vs-rest-in-the-xenium-dataset}).
+
+Overall, we have seen how \gls{scPRINT}-2 can be used on challenging
+modalities to augment a given dataset with cell label predictions,
+expression denoising, and gene imputation. Showing yet again another
+axis of generalization. We will now focus on how some of our contributions in training loss and data
+augmentation can similarly improve performance in denoising and
+imputation in unseen modalities.
+
+\subsection{An efficient, hierarchical attention architecture makes
+scPRINT-2
+generative}\label{an-efficient-hierarchical-attention-architecture-makes-scprint-2-generative}
+
+\subsubsection{Efficient attention architectures and compression
+methods}\label{efficient-attention-architectures-and-compression-methods}
+
+Implementing transformer models on new modalities is a potent way to
+rethink some of their mechanisms. A common issue with transformer models
+is their memory and compute requirements, which grow quadratically with
+their context length (e.g., the number of genes in their input). This is
+even more pronounced in bidirectional transformers like most \gls{scFM}s. With
+the introduction of scPRINT-1, we presented a model that could train in
+3 days on a regular A40 \gls{GPU} and on 50M cells, an order of magnitude
+faster than most similar \gls{scFM}s. A first contribution to the \gls{scPRINT}-2
+architecture is the addition of state-of-the-art approaches to reduce
+the memory footprint and increase training speed. We modified the
+attention mechanism in multiple ways, using grouped-query attention
+(GQA) to reduce memory usage. We benchmarked additional attention
+mechanisms alongside Flash-Attention-3 to assess their performance and
+their speed.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/scprint2/image1.png}
+    \caption[Presentation of the XPressor architecture and performance on cell embedding tasks]{(a) Presentation of the XPressor with \gls{VAE}-based compression. (b) Schematic representation of going from expression to classification with \gls{scPRINT}-2, XPressor, and \gls{VAE}-based compression. (c) Open-Problem scores for \gls{scPRINT}-2 across all methods. (d) \gls{UMAP}s of, respectively, \gls{PCA} embeddings, \gls{scPRINT}-2 zero-shot cell-type embeddings, and \gls{scPRINT}-2 fine-tuned cell-type embedding colors by known cell types and batches, with \gls{scIB} total scores. (e) Schematic representation of the counterfactual generation using \gls{scPRINT}-2's embedding and replacing them for the organism class from mouse to human. (f) Illustration of the decrease in distance between initially unrelated datasets from applying this counterfactual approach. (g) Differentially expressed genes post vs pre mouse ``humanization'' with \gls{scPRINT}-2. (h) Over-representation plot of the top positively differentially expressed genes in both human-like mouse and real human vs. mouse; the red line indicates random chance. Source data are provided as a Source Data file.}
+    \label{fig:scprint2_xpressor}
+\end{figure}
+
+A first one is flash-\textbf{hyper attention}, which computes specific
+attention only on sets of keys and queries known to be similar via
+locality-sensitive hashing and clustering\textsuperscript{56}. A second
+one is flash-\textbf{softpick} \textbf{attention}, a rectified softmax
+that decreases hyperactivation of specific tokens, often called
+attention sinks\textsuperscript{57}. We also present our own
+sub-quadratic attention mechanism: \textbf{criss-cross attention} (see \hyperref[methods]{Methods}),
+inspired by advanced concepts such as the Recurrent Interface Network
+(RIN) and the Induced Set Attention Block (ISAB)\textsuperscript{58,59}.
+It compresses attention by sketching it in context, using a doubly
+cross-attention mechanism with a set of latent tokens that get updated
+across layers (see Supplementary Figure~\ref{fig-s17-illustration-of-criss-cross-attention}). We show that only criss-cross
+attention dramatically improved the model' s speed while
+retaining all its abilities (see Table 1). However, it is not yet
+compatible to retrieve gene networks from; for this reason, our
+\gls{scPRINT}-2 architecture, for now, uses flash-attention-3 and XPressor.
+
+On another direction, while single-cell analysis has leveraged \gls{VAE}s for
+years to generate meaningful compressed representations of cells,
+transformers inherently lack this ability\textsuperscript{60--62}. We
+use the \textbf{XPressor} architecture presented in Kalfon et
+al.\textsuperscript{33}, which compresses output gene embeddings into a
+set of cell embeddings and decompresses them back into their original
+gene embeddings (see Figure \ref{fig:scprint2_overview}, Figure \ref{fig:scprint2_xpressor}, and
+\hyperref[xpressor-model]{Methods}). This innovative architecture
+draws on ideas that have existed in the transformer literature for
+several years\textsuperscript{59,63--66}. We show in our ablation study
+that using XPressor results in a slightly better cell representation
+overall, but does not meet the statistical threshold. This difference
+might be explained by the limit in the number of epochs and the model's
+smaller size compared to Kalfon et al. (see Table \ref{tab:additive_benchmark}, see Supplementary Table~\ref{table-s1-detailed-version-of-the-additive-benchmark}). We include an extension to this approach, in which one appends \gls{VAE}s
+to each output embedding of XPressor to regularise the different cell
+embeddings generated by the model (see Figure \ref{fig:scprint2_xpressor}). This addition allows
+us to choose a specific dimension for each cell embedding that is lower
+than that of XPressor. A second constraint is defined by applying the
+Kullback-Leibler divergence (KL) loss (see Figure \ref{fig:scprint2_overview}, see
+\hyperref[vae-based-compressor-model]{Methods}). This creates an
+information bottleneck for the different cell embeddings, pushing the
+model to select only the minimum amount of relevant information to
+represent the label. While our ablation study does not show improvement
+in cell embeddings with this approach, this is likely because each
+method was trained for only 20 epochs. Indeed, the VAE-infused model is
+taking longer to learn to classify cells. However, the batch correction
+score improved significantly, indicating that the different cell tokens
+mainly contained information about the class they encoded (see Supplementary
+Materials). Now that we have highly compressed cell-level embeddings
+(i.e., tokens), we can apply a \textbf{dissimilarity loss} between each
+for a given cell. This actively pushes them to be as different as
+possible (see Supplementary Figure~\ref{fig-s18-illustration-of-the-similarity-and-dissimilarity-based-contrastive-losses-used-in-scprint-2}; see
+\hyperref[embedding-independence-loss]{Methods}). We demonstrate
+that this tends to slightly improve the model' s output
+embedding in our ablation study (see Table 1).
+
+These architectural changes make scPRINT-2 much more efficient at
+compression and zero-shot batch-correction. Indeed, on the open
+problem's benchmark, we observe an overall improvement over scPRINT-1,
+again becoming the state-of-the-art zero-shot method on the platform
+(see Figure \ref{fig:scprint2_xpressor}). This zero-shot performance increase is solely due to
+the improvement in the batch-correction score from using our \gls{VAE} method
+(see Supplementary Figure~\ref{fig-s19-whisker-plot-of-open-problems-batch-integration-with-batch-correction-only-scores}). We then fine-tune the XPressor architecture alone
+-- our XPEFT approach -- to further learn to remove batch effects and
+predict expert-annotated cell-type labels. We add a Maximum Mean
+Discrepancy (MMD) loss (see \hyperref[fine-tuning-task]{Methods})
+that penalizes the distance between batch
+elements\textsuperscript{67,68}. Doing so, we observe a jump in scIB
+scores, especially in biological truthfulness, as measured by the scIB
+metrics (see Figure 4C; Supplementary Figure~\ref{fig-s20-whisker-plot-open-problems-batch-integration-with-bio-conservation-only-scores}), making \gls{scPRINT}-2 the
+best-performing method in the benchmark.
+
+\subsubsection{scPRINT-2 generalizes to unseen cell embedding
+tasks}\label{scprint-2-generalizes-to-unseen-cell-embedding-tasks}
+
+We then wanted to push our analysis further and test the zero-shot
+organism-level integration of \gls{scPRINT}-2 on organisms unseen during
+training. Again, using our cat and tiger dataset presented in the
+\hyperref[a-diverse-dataset-of-350-million-cells-pushes-generalization-to-unseen-organisms]{second
+result section}\textbf{,} we saw that already, \gls{scPRINT}-2's general cell
+embedding performs better than doing no correction and keeps lot of
+biological truthfulness, as shown by the \gls{scIB} score of 0.44 vs 0.37 for
+PCA (see Figure \ref{fig:scprint2_xpressor}, see Supplementary Figures~\ref{fig-s21-umap-of-scprint-2s-zero-shot-multi-species-expression-embedding-using-the-full-cell-embedding}, \ref{fig-s22-barplot-of-scib-score-on-scprint-2s-multi-species-integration}, see Supplementary Table~\ref{table-s4-detailed-scib-scores-on-the-unseen-species-integration-task}).
+Then, as often, taking the cell-type-specific embedding further
+increases the biological truthfulness to 0.49, mainly by generating a
+more faithful biological representation, as reflected in the \gls{scIB} scores
+(see Figure \ref{fig:scprint2_xpressor}, Supplementary Figures~\ref{fig-s22-barplot-of-scib-score-on-scprint-2s-multi-species-integration}, \ref{fig-s23-umap-of-scprint-2s-zero-shot-multi-species-expression-embedding-using-the-cell-type-cell-embedding}, Supplementary Table~\ref{table-s4-detailed-scib-scores-on-the-unseen-species-integration-task}). Again, using
+XPEFT, we achieve a tremendous 0.60 \gls{scIB} score, placing us among the top
+3 best-performing models in this category, behind SATURN and scGEN (see
+Figure \ref{fig:scprint2_denoising}, Supplementary Figures~\ref{fig-s22-barplot-of-scib-score-on-scprint-2s-multi-species-integration}, \ref{fig-s24-umap-of-scprint-2s-multi-species-expression-embedding-post-finetuning-using-the-full-cell-embedding}, Supplementary Table~\ref{table-s3-detailed-scib-biological-conservation-scores-on-the-xenium-dataset}). We note that even in
+this domain, many cell types didn't overlap across organisms. It is a
+common behavior in this benchmark, and similar cell types now almost
+overlap in the \gls{UMAP}, hinting at shared neighbors (see Figure \ref{fig:scprint2_denoising}, see
+\hyperref[embedding-task]{Methods})\textsuperscript{69}.
+
+Finally, we wanted to examine the model's ability not only to integrate
+cellular profiles but also to generate entirely new ones at inference
+time in a zero-shot manner by combining cell tokens (see Figure \ref{fig:scprint2_xpressor}). We
+first approach it using a matched mouse-human multi-organ atlas from
+Zhong et al.\textsuperscript{46}. We then generated cell embeddings for
+all cells and computed an average ``human''-ness cell embedding using
+the \emph{organism} embeddings of all human cells. We regenerate an
+expression profile using 1. the human gene embedding and 2. the mouse
+cell embeddings, replacing the organism cell embedding with the human
+one (see Figure \ref{fig:scprint2_xpressor} and \hyperref[generative-task]{Methods}). We
+thus generate a set of human-like cell expression profiles from mouse
+expression profiles. Using the 5000 most variable orthologous genes, we
+indeed observed a decrease in the Wasserstein-2 (W2) distance on this
+counterfactual conversion to human (see Figure \ref{fig:scprint2_xpressor}, see
+\hyperref[scrna-seq-datasets-distances]{Methods})\textsuperscript{70,71}.
+Applying a similar approach, but this time to generate females from
+males in the human dataset, we also notice a similar reduction in
+expression W2-distance from 1076 to 938.
+
+Looking at how cell expression patterns change after this transition, we
+found that most of the top differentially expressed genes are the same
+as those identified in the differential expression analysis of the real
+human dataset (see Figure \ref{fig:scprint2_xpressor}, see Supplementary Figure~\ref{fig-s25-differential-expression-plot-of-the-human-vs-mouse-dataset-from-section-4}). Computing an
+over-representation test, we observe a robust 58\% enrichment compared
+to random, with more than half of the top differentially expressed genes
+correctly predicted by \gls{scPRINT}-2 in both over- and under-expressed genes
+(see Figure \ref{fig:scprint2_xpressor}, see Supplementary Figures~\ref{fig-s26-over-representation-plot-of-humanized-mouse-data-vs-real-mouse-data-compared-to-human}, \ref{fig-s27-over-representation-plot-of-female-like-male-data-vs-real-female-data-compared-to-male}). Looking at
+\emph{Reactome\_2022} pathway enrichments, we see multiple pathways
+related to immune system function, membrane-ECM (Extra-Cellular Matrix)
+interactions, and tissue elasticity, as well as many other
+molecular-level pathways (see Supplementary Figure~\ref{fig-s28-dot-plot-of-gene-set-enrichment-analysis-over-the-differential-expression-analysis-of-section-4}). These align with
+previous analyses highlighting ECM and immune function differences
+between human and mouse tissues\textsuperscript{72,73}.
+
+Overall, we have shown that an entirely novel architecture and a set of
+learning constraints enable \gls{scPRINT}-2 to generate high-quality
+embeddings in a zero-shot manner. Thanks to its multi-organism training,
+this can be extended to unseen species, while achieving even stronger
+results with fine-tuning. We have also demonstrated how one can use the
+\gls{scPRINT}-2's cell embeddings to generate counterfactual cellular
+profiles. This makes it a strong contender for performing atlas-scale
+analysis across tissues, diseases, and organisms, by learning to
+disentangle each cell component. We will now focus on how other parts of the
+models can be used to extract additional information.
+
+\subsection{High-quality contextual gene representations from
+scPRINT-2}\label{high-quality-contextual-gene-representations-from-scprint-2}
+
+\subsubsection{scPRINT-2 has rich gene
+embeddings}\label{scprint-2-has-rich-gene-embeddings}
+
+\gls{scFM}s don't just provide cell-level embedding, they have also been used
+to generate contextual gene-level embeddings given a cell's expression
+profile or to predict gene-gene connections. The model' s
+gene embeddings can be used for fine-tuning, such as to predict ATAC-seq
+activities or gene essentiality\textsuperscript{1,2}. We investigate the
+gene embeddings produced by \gls{scPRINT}-2 and then delve into how its gene
+networks can be better extracted and assessed.
+
+A good output gene embedding is also defined by the quality of its
+input. With \gls{scPRINT}-2, we introduced a fine-tuning adapter layer on top
+of ESM3's protein embeddings, jointly trained with the model (see \hyperref[methods]{Methods}).
+This approach is one of the few that improve gene network inference
+without decreasing any other metrics in our additive benchmark (see
+Table \ref{tab:additive_benchmark}). It allows us to update gene representations during
+pre-training while maintaining the ability to work with unseen
+representations, e.g., from unseen species (see Figure \ref{fig:scprint2_genenetwork}).
+
+It remains unclear, however, what the right approach is for selecting
+output gene embeddings, with some heuristics proposing using the last or
+second-to-last layer. Using our regular transformer model trained with
+masking, we demonstrate that its output gene embeddings contain only
+their own expression values (see Figure \ref{fig:scprint2_genenetwork}). However, when trained with
+the Xpressor architecture, clusters of genes appear (see Figure \ref{fig:scprint2_genenetwork}).
+This is sensible because Xpressor forces gene embeddings to be rich in
+meaning, as the compression block must query them. We have, however,
+noticed that for regular models that are not fully trained (only up to
+20 epochs), the output gene embedding still contains some input ESM3
+features (see Supplementary Figure~\ref{fig-s29-output-gene-embedding-for-a-non-fully-trained-model-without-xpressor-architecture}). The number of enriched pathways in its
+output gene embedding cluster is still significantly less than for
+\gls{scPRINT}-2's XPressor architecture (see Figure \ref{fig:scprint2_genenetwork}; see
+\hyperref[assessment-of-gene-output-embeddings]{Methods})
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/scprint2/image3.png}
+    \caption[Presentation of the ESM3 fine-tuning and gene network study]{(a) Illustration of fine-tuning of ESM3 while training \gls{scPRINT}-2 using an adaptor layer. (b) Comparison of gene output-embeddings for a random cell in a model with the XPressor architecture and a model trained without. (c) On the side, the average number of pathways shown to be enriched in the gene output embedding clustering of each method using three main pathway databases. The number below is on the non-fully trained regular transformer; otherwise, no pathways are enriched (see Methods). (d) Comparison of ground truth networks' overlap between cellmap, the human interactome, and genome-wide perturb-seq. (e) Benchmark over six ground truth gene networks of scPRINT-1's gene networks with its extraction method and \gls{scPRINT}-2's gene networks with its extraction method, over nine different human cell types from the same dataset. (f) Comparison of the top-30 hub nodes on both gene networks. Arrows link similar genes, and colors represent similar gene groups. (g) Subset of a gene network generated by \gls{scPRINT}-2 seeded at FTL1, on human macrophage cells, and on mouse macrophage cells, edge color represents the RoseTTAFold2-PPI scores for these connections, grey means no score was computed. The AlphaFold-Multimer structure and amino-acid distance map are provided for the star-marked connections. Source data are provided as a Source Data file.}
+    \label{fig:scprint2_genenetwork}
+\end{figure}
+
+\subsubsection{extracting gene networks from
+\gls{scPRINT}-2}\label{extracting-gene-networks-from-scprint-2}
+
+Thanks to the transformer architecture, one can go beyond gene output
+embeddings to examine gene-gene interactions via the model's attention
+layers. Following the tests reported in Kalfon et al., we observed, on
+average, no dramatic performance gains across the methods we tested (see
+Table \ref{tab:additive_benchmark}). An issue we noticed is that the problem is not well-defined.
+Indeed, the ground truths widely disagreed with one another (see Figure
+\ref{fig:scprint2_genenetwork}; see Methods).
+Between the genome-wide perturb-seq (gwps) ground truth and omnipath,
+only 800 gene-gene connections were in common over the hundreds of
+thousands that each contained. This suggests that diversity of ground
+truth will be key to showcasing the breadth of potential gene-gene
+connections in the cell.
+
+We thus gathered a new set of ground truth gene networks (GN)s from
+recent works. Our first approach was to use protein-binding datafrom
+AP-MS experiments within the O2US cell line, called the
+\emph{cellmap}\textsuperscript{74} (see
+\hyperref[gene-network-task]{Methods}). Additionally, thanks to
+protein structure models, we are now able to compute putative
+interactions across millions of protein pairs; a first version of this
+analysis has been defined in the human \emph{interactome} (see
+\hyperref[gene-network-task]{Methods}). But here again, the
+disagreement was significant, with only \textasciitilde1-4\% of the
+connections in each ground truth being found in another, and no
+connections were reliably found across all five ground truths (see Supplementary
+Figure~\ref{fig-s30-venn-diagram-of-the-different-ground-truth-gene-networks}).
+
+Acknowledging these disagreements, we benchmarked them against nine
+human cell types from the same dataset using scPRINT-1 and \gls{scPRINT}-2. We
+use a gene network extraction method that is more computationally
+demanding but biases the network towards co-expressed genes (see
+\hyperref[extracting-meta-cell-gene-networks-from-attention-matrices]{Methods}).
+We see that \gls{scPRINT}-2's performance was often greater or similar across
+all benchmark networks, as indicated by the odds-ratio measures (see
+Figure \ref{fig:scprint2_genenetwork}; see Methods).
+We did not see a similar trend, however, on \gls{AUPRC} (see Supplementary Figure~\ref{fig-s31-whisker-plot-of-auprc-ratio-scores-for-scprint-1-and-scprint-2}). This suggests that our method is more accurate for its top-K
+connections. Indeed, the strongest human interactome connections were
+overrepresented in \gls{scPRINT}-2, more so than in scPRINT-1.
+
+\subsubsection{cross-organism gene network
+analysis}\label{cross-organism-gene-network-analysis}
+
+To continue on our cross-organism analysis, we also aimed to further
+characterize some of the genes observed in our previous human/mouse
+datasets by interrogating the cell-specific GN identified by scPRINT-2
+in \emph{Macrophage} cells from both mammals. Looking at their hub
+nodes, we see that many are common and represent key conserved cell
+immune pathways, such as \emph{feroptosis}, \emph{vitamin B12}, and
+\emph{Pathogen Phagocytosis Pathways} (\emph{WikiPathway\_2023\_Human}),
+with genes like \emph{C1Qs, RPs, ALB, and APOE}\textsuperscript{75,76}.
+These mainly relate to the macrophage' s internal
+machinery, which is designed to eat and destroy pathogens. Other genes
+were clear markers of macrophages (\emph{CD74;LYZ) and/or immune cells
+(HLA-DRA, B2M) or their pathways, such as interferons alpha/gamma and
+MHC Class II (MSigDB\_Hallmark\_202076--78)}. Interestingly, these
+networks share only 30\% similarity when considering the top 20
+connections for each gene. But what seemed like differences in
+connections and top 50 hub genes tended to disappear after thorough
+analysis, such as with the Ribosomal proteins, which are related in the
+kinds of pathways they are part of, or in their relationships in the
+PPI\_Hub\_Proteins database\textsuperscript{77} (see Figure \ref{fig:scprint2_genenetwork}).
+
+We then extracted a subset of the macrophage networks, seeded at the
+\emph{FTH1} gene, for both organisms, focusing on the top 15 connected
+nodes and their top 60 edges (see Figure \ref{fig:scprint2_genenetwork}; see
+\hyperref[plotting-gene-sub-networks]{Methods}). We observed a set
+of hub genes in both subnetworks, with some genes being shared between
+human and mouse. Interestingly, these hub genes had more interactions in
+the human interactome ground truth than non-hub genes. We also noticed
+that the ``hub-ness'' of the subnetworks can be very variable and seems
+to depend on the ``seed'' gene (see Supplementary Figure~\ref{fig-s32-additional-scprint-2-generated-gene-network-computed-from-cdc45}).
+
+By overlaying the human interactome ground-truth values on our
+subnetworks, we found that only a small subset of connections was marked
+as valid (i.e., score above 0.6) in the ground truth (see Figure \ref{fig:scprint2_genenetwork}). In
+the mouse \emph{Macrophage} subnetwork, almost no connections were
+recovered, but this may be explained by the fact that the ground truth
+is the ``human'' interactome, computed using human proteins rather than
+mouse proteins. We thus wondered whether we could use scPRINT-2 to
+cross-validate the interactions present in this ground truth. Indeed, we
+know that the human interactome values are not directly computed from
+AlphaFold-multimer's interaction probability (ipTM); they come from a
+simpler model called ``RoseTTAFold2-PPI''. Testing a couple of
+connections predicted to be low ipTM by RoseTTAFold2-PPI but found by
+scPRINT-2, we readily identified two: HLA-DRA/CD74 and B2M/B2M, which,
+when passed to AlphaFold-Multimer, indeed formed an interaction with an
+ipTM of more than 0.6. This showcases the potential of scPRINT-2 in this
+domain and future directions for GN inference.
+
+We have seen here how scPRINT-2's output gene embeddings and attention
+matrices can be used to extract meaningful biological insights and drive
+hypothesis generation in a cell-to-cell, state-specific manner. These
+outputs can also be used for fine-tuning purposes and in explainable
+AI-driven analysis. We also pushed our GN analysis further, defining
+additional benchmarks and a more powerful GN extraction mechanism. We
+demonstrated cross-species analysis and presented the tantalizing
+possibility of merging foundation models at different scales, including
+ESM3 fine-tuning, AlphaFold Multimer, RoseTTAFold2-PPI, and scPRINT-2.
+While these are just examples, they demonstrate what aggregating
+multiple bodies of evidence across scales can achieve for genetic
+interaction predictions. A first step towards using \gls{scFM}s, protein
+Language Models, and structural models in coordination, to shed light on
+the cellular machinery.
+
+\section{Discussion}\label{discussion}
+
+In this work, we present a gymnasium of tasks to benchmark \gls{scFM}s in
+multiple contexts. Together with an efficient and reproducible pipeline,
+we test the benefits of 42 different parts of \gls{scFM}s structures,
+encoding, and training. In this additive benchmark, 12 of these are our
+own contributions to \gls{scFM}s, including GNN-based expression encoding,
+cross-foundation model fine-tuning, sub-quadratic attention mechanisms,
+and rich losses. This massive benchmark is the first of its kind for
+\gls{scFM}s and assesses four different tasks. It allowed us to identify
+bottlenecks and limitations, issues that we solved in subsequent
+analysis. Indeed, future benchmarks will benefit from using more diverse
+datasets, tasks, and ground truths.
+
+We have also presented the largest pre-training database to date,
+encompassing more organisms, conditions, and data modalities. We have
+seen that, while more work is needed to obtain higher-quality,
+well-annotated datasets, our dataloader and preprocessing pipeline have
+made the most of this vast database.
+
+Using the best feature combinations from our additive benchmarking, we
+build and train a next-generation cell Foundation Model, scPRINT-2. We
+demonstrate that, although currently 5 times smaller, scPRINT-2
+outperforms scPRINT-1 across all benchmarks tested. On denoising,
+scPRINT-2 becomes state-of-the-art, and with our fine-tuning approach,
+it also outperforms every other method on the batch-correction and
+classification tasks of the open-problem benchmarks.
+
+We then challenge scPRINT-2 on tasks of high relevance for cellular
+biology, highlighting some pitfalls in current benchmarks. We show that
+scPRINT-2 acquires generalizable abilities across unseen modalities and
+organisms, while remaining consistent in its predictions. We demonstrate
+it across many tasks, including cross-organism integration, unseen gene
+imputation, and counterfactual reasoning.
+
+Finally, we present tools for easily extracting labels, cell-specific
+gene embeddings, imputing gene expression, performing gene network
+inference, and working with organisms unseen during pre-training. We
+believe our results demonstrate many domains where \gls{scFM}s might
+confidently replace approaches that rely on heuristics, atlases, and a
+variety of tools and packages. However, much work remains.
+
+Current ground-truth cell annotations are cluster-based and obfuscate
+the complexity of cellular states by inherent clustering biases. Batch
+correction metrics are similarly biased, and top scores can be easily
+gamed; gene network ground-truths are not cell type specific and likely
+filled with false negatives. Data diversity and quality are the
+principal pre-training bottlenecks, and efforts will be needed to
+improve foundation models. Many other key modalities, such as measuring
+time and perturbation effects, remain scarce. They will become
+increasingly helpful for enriching the future comprehensive benchmarks
+of next-generation cell foundation models.
+
+Our analysis and contributions highlight powerful features of \gls{scFM}s and
+provide guidance for designing benchmarks that better highlight their
+strengths and weaknesses. scPRINT-2 presents a direction for future
+improvements, with more specialized architectures and using a
+combination of biological FMs working jointly across modalities and
+scales. This next-generation \gls{scFM} is a step forward in the design of AI
+for cell biology.
+
+\section{Methods}\label{methods}
+
+We present an additive benchmark with over a dozen contributions to the
+pre-training tasks, losses, and architecture of single-cell foundation
+models. Along with it, \textbf{scPRINT-2} (pronounced ``sprint''), a
+next-generation model trained on the best-performing contributions. We
+analyze its out-of-distribution generalization and present methods for
+querying and fine-tuning it to solve various tasks. We will go through
+the specific techniques that made it possible.
+
+\subsection{Additive benchmark}\label{additive-benchmark-1}
+
+We now describe in matched order with respect to Table 1, the methods
+behind the multiple contributions tested in our additive benchmark (see
+\hyperref[decoding-the-impact-of-a-foundation-models-architecture-through-an-additive-benchmark]{Results
+section 1}). We bolded the ones that are further defined in the
+methods. In this benchmark, we are using and testing the:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{``base model'',} every subsequent element is applied to the
+  base model
+\item
+  ``medium model'', larger base model, see the
+  \hyperref[base-model-and-training]{\underline{base model section}}
+\item
+  ``negative control'', untrained base model
+\end{enumerate}
+
+Architecture
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+  ``no dropout'', where we remove the dropout initially applied in the
+  base model
+\item
+  ``large classifier'', where the classifier sizes are increased from
+  {[}input - output{]} in the base model to {[} input - 256 - output{]}
+\item
+  ``MVC'', where we replace the base model's decoder with the cell
+  embedding's MVC approach of scGPT\textsuperscript{1}
+\item
+  ``no decoders/generation'', where we removed the base model's decoder,
+  getting a masking+classification only pre-training
+\end{enumerate}
+
+Data
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\item
+  replacing our pre-training dataset with ``Tahoe''\,'s 100M dataset
+\item
+  Chan Zuckerberg Institute (``CZI'')'s cellxgene database (version
+  2024)
+\item
+  replacing our pretraining dataset with ``CZI + Tahoe'' with Tahoe's
+  100M database
+\item
+  replacing our pretraining dataset with ``all databases'', both CZI,
+  Tahor, and Arc's scBasecount\textsuperscript{26,27}
+\item
+  replacing our pretraining dataset with ``only 200 random'' human
+  datasets
+\item
+  replacing our sampling with a ``sampling without replacement''
+\item
+  \textbf{replacing our sampling with ``cluster-based sampling only''}
+\item
+  \textbf{adding ``meta-cell'' during pre-training}
+\end{enumerate}
+
+Attention
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{15}
+\item
+  replacing FA3 with ``softpick'' attention, using the approach of Zuhri
+  et al.\textsuperscript{57}
+\item
+  replacing FA3 with ``hyper''-attention, using the approach of Han et
+  al.\textsuperscript{56}
+\item
+  replacing self-attention with \textbf{``criss-cross'' attention
+  layers}
+\item
+  \textbf{adding ``XPressor'' layers}
+\end{enumerate}
+
+Losses
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{19}
+\item
+  \textbf{adding ``contrastive learning''}
+\item
+  \textbf{adding ``elastic cell similarity''}
+\item
+  \textbf{``no embedding independence loss'', removing the embedding
+  independence loss}
+\item
+  replacing the \gls{ZINB} loss with Mean Squared Error (``MSE'')-loss
+\item
+  \textbf{replacing the \gls{ZINB} loss with ``ZINB+MSE'' loss}
+\item
+  \textbf{adding a ``VAE compressor'' loss to the Base model}
+\end{enumerate}
+
+\textbf{\hfill\break
+}Tasks
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{25}
+\item
+  \textbf{adding ``variable context length'' and a larger context}
+\item
+  \textbf{replacing masking with a Transcription Factor ``(TF)-masking''
+  task}
+\item
+  replacing masking with ``denoising'', using the approach in scPRINT,
+  with a random level of denoising (see below)
+\item
+  ``no classification'', removing the classification pre-training task
+\item
+  \textbf{adding an ``adversarial classifier''}
+\end{enumerate}
+
+Input
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{30}
+\item
+  replacing log1p normalization with ``sum normalization'' where each
+  expression profile is normalized to sum to 10,000
+\item
+  ``no random level of denoising'' where we remove the random level of
+  denoising, see the
+  \hyperref[denoising-pre-training-task]{\underline{denoising section}}
+\item
+  \textbf{where we replace the expression encoder with a Graph Neural
+  Network (``GNN'') encoder}
+\item
+  where we replace the continuous expression encoder with a ``binning''
+  version, following the approach of scGPT\textsuperscript{1}
+\item
+  where we are ``using only expressed genes'', as in scGPT and
+  geneformer
+\item
+  ``without using gene location'', removing the gene location
+  information in the input tokens.
+\item
+  ``learn gene embedding'' where we replace the ESM3 gene embedding with
+  learnt embeddings, as in scGPT and Geneformer.
+\item
+  \textbf{replacing the ESM3 gene encoder with a ``fine-tuned ESM3''
+  gene encoder}
+\end{enumerate}
+
+The full training traces of the entire additive benchmark are available
+on weights and biases:
+
+\noindent\url{https://wandb.ai/ml4ig/scprint_ablation/reports/scPRINT-2-additive-benchmark--VmlldzoxNTIyOTYwNA}
+
+\subsubsection{Base model and training}\label{base-model-and-training}
+
+The additive benchmark is performed on a small model with 18.2M
+parameters, an embedding dimension of 256, and 8 layers and 4 heads. The
+model trains for 20 epochs of 20,000 batches of 64 cells per batch.
+Validation is performed on 10,000 minibatches. We otherwise use the same
+optimizer and hyperparameters as for scPRINT-2 (see
+\textbf{pre-training} in \hyperref[pre-training]{Methods})
+
+Gene expression is encoded using ESM3 embedding, with gene location and
+MLP-based expression encoding added, as described by Kalfon et al. The
+output is decoded using an \gls{MLP} that takes the output embeddings and
+depth information, then outputs a scalar expression value.
+
+The base model is trained on CZI's cellxgene census dataset, version
+2024 (compared to 2022 in Kalfon et al.). The pre-training task uses a
+30\% gene expression mask with an \gls{MSE} loss (as is common for BERT-like
+encoder transformers)\textsuperscript{1,2,7}. The Base model also uses a
+multi-cell-token generative loss as described in Kalfon et
+al.\textsuperscript{3}. It also performs matched multi-class
+hierarchical classification, as defined below (see \textbf{Hierarchical
+classifier} in the
+\hyperref[hierarchical-classifier-loss]{Methods}\textbf{).}
+Finally, it also uses a dissimilarity loss between each of our cell
+embeddings for a given cell (see
+\hyperref[embedding-independence-loss]{\underline{embedding independence in
+Methods}}).
+
+Each of these decisions is assessed within our additive study.
+
+We pre-train the base model 6 times across multiple seeds to generate
+error bounds. We train using Flash-Attention-3 on 1 H100 GPU, each
+training of 20 epochs taking roughly 2 days. Some runs were done on
+A100s and V100s; we thus had to rescale the time duration for some of
+these runs.
+
+Some additive study runs use denoising as a training strategy or larger
+context lengths when it seemed likely that this would best highlight the
+abilities and shortcomings of the benchmarked element.
+
+The \textbf{medium model} size uses an embedding dimension of 512, with
+16 layers and 8 heads.
+
+The \textbf{negative control} is a model that was not trained at all.
+
+\subsubsection{Weighted sampling}\label{weighted-sampling}
+
+The goal of weighted random sampling is to de-bias regular random
+sampling of cells in contexts where many cells have similar profiles and
+expression patterns, while others are rare cell types.
+
+We use weighted random sampling on our training data based on all the
+different class values we have to predict. We use a factor of \(S_{1}\),
+meaning the rarest elements will, on average, be sampled only \(S_{1}\)
+times less than the most common ones. The sampling factor used for each
+group is then\(\frac{S_{1}}{c + S_{1}}\) , instead of \(\frac{1}{c}\),
+where \(c\) is the number of cells in each group.
+
+\subsubsection{Cluster-weighted
+sampling}\label{cluster-weighted-sampling}
+
+The goal of cluster-weighted sampling is to improve weighted sampling in
+the condition where cell-type annotations are poor or non-existent.
+
+For cluster-weighted sampling, we simply use the labels obtained by
+applying Leiden clustering to the K-NN graph of cells for each dataset
+during preprocessing. We used a resolution of 1 and 15 neighbors. We
+merge clusters if their centroid correlation exceeds a threshold (here
+94\%). This cluster label is then treated similarly to other labels,
+such as \emph{cell\_type}, \emph{sequencer}, etc.
+
+In this context, within datasets that lack information about tissue of
+origin or sequencer, or that belong to the same categories, cells from
+cluster 1 will be sampled with equal weight from those datasets. The
+sampling is not dataset-specific. This decision arises because most
+datasets contain some information about their tissue of origin or
+disease, and cluster sizes of data from the same tissue/disease often
+represent similar cells.
+
+This can be applied to any dataset for training models.
+
+\subsubsection{Depth-weighted sampling}\label{depth-weighted-sampling}
+
+The goal of depth-weighted sampling is to sample cells with higher
+quality, in terms of the number of genes expressed, more often.
+
+For depth-weighted sampling, we scale each cell' s
+sampling probability by its non-zero (nnz) gene count. Similarly, we
+scale this value, but this time we apply a sigmoid function beforehand
+to reduce the impact of extreme values.
+
+Algorithm: scale\_nnz (1)
+
+Input:
+
+- midpoint: 2000
+
+- steepness: 0.003
+
+- scale: 1000
+
+Output: unormalized sampling probabilities
+
+\# Apply sigmoid transformation
+
+sigmoid\_values = 1 / (1 + np.exp(-steepness * (nnz - midpoint)))
+
+\# Then scale to {[}1, scale{]} range
+
+return 1 + ((scale - 1) * sigmoid\_values)
+
+The values shown for Input were the ones we used across our research and
+were selected manually.
+
+This can be applied to any single-cell dataset for training models.
+
+\subsubsection{Multi-cell sampling}\label{multi-cell-sampling}
+
+For all our datasets, our preprocessing pipeline computes a K-NN graph
+from the \gls{PCA} of the scaled, log-transformed expression data. For each
+sampled cell, scDataloader also retrieves its k-NN cell ID and loads
+them, along with their distance information. Here, we set K to 6 and the
+PCA components to 200.
+
+We set the number of \gls{PCA} components to 200 to retain as much information
+as possible, while accounting for rare cells whose expression might have
+only a small impact on the first \gls{PCA} components.
+
+We set K to 6 to balance the computational resources required to sample
+6 times more cells per minibatch with the need for enough neighboring
+cells. Indeed, these computational resources are more prevalent for
+smaller models that perform fast iterations across many cells than for
+larger models. 6 neighbors per sampled cell was our limit for a small
+foundation model like scPRINT-2. We also note that there is likely a
+rapid diminishing returns beyond 6 to 15 cells for most datasets as we
+start sampling more often cells that are less similar to the center one.
+
+During scPRINT-2 training, we select 0 to 6 neighbors per minibatch, so
+the model learns to use a variable number of cell neighbors.
+
+\subsubsection{GNN Expression encoder}\label{gnn-expression-encoder}
+
+The goal of the \gls{GNN} expression encoder is to increase the information
+the foundation model can obtain from 1 cell to a set of neighboring
+cells, thereby dramatically reducing input noise.
+
+The \gls{GNN} takes multiple expression values as input, optionally along with
+corresponding cell-cell distances, and returns a vector encoding this
+information. Both continuous and \gls{GNN} encodings can be configured to
+receive either logp1-transformed expression data, sum-normalized
+expression, or both. The \gls{GNN} follows the DeepSet\textsuperscript{78}
+implementation:
+
+\begin{equation}
+E_{j} = \text{DeepSet}(x_{ij}, n_{ij}, d) = \phi_{1}(\phi_{2}(x_{ij})||\phi_{3}(n_{ij},d_{ij}))
+\end{equation}
+
+Where:
+
+\begin{itemize}
+\item
+  \(x_{j}\) is the center cell's expression for the gene \(j\)
+\item
+  \(n_{ij} \in \Re^{k}\) is the K nearest neighbor cell's expression for
+  gene j and cell i
+\item
+  \(d_{ij} \in \Re^{k}\) is the distance of each neighboring cell to the
+  center one
+\item
+  \(\phi_{i}\) are MLPs.
+\item
+  \(||\) is the concat operation
+\end{itemize}
+
+We selected K to be a random number between 0 and 6 during training and
+6 at inference.
+
+\subsubsection{ESM3 fine-tuning
+gene-encoder}\label{esm3-fine-tuning-gene-encoder}
+
+The goal of ESM3 fine-tuning is to get the best of both worlds between
+learning token features from the data and using learnt protein
+representations from a pLM as a prior.
+
+We encode/tokenize gene IDs using ESM3\textsuperscript{79}. The mapping
+process happens in the following way:
+
+\begin{itemize}
+\item
+  A gene name is mapped to its canonical protein name using Ensembl114.
+\item
+  We recover the protein sequence of the protein using Ensembl
+\item
+  We use the protein sequence to generate an embedding using ESM3 by
+  averaging all its amino-acid output embeddings.
+\end{itemize}
+
+For the fine-tuning part, we reuse the fine-tuning approaches presented
+in Kalfon et al., which place an additional adapter layer after
+mean-pooling and before feeding the protein representation to the model.
+Interestingly, using gene expression as a further signal to the adaptor
+layer often led to training instability.
+
+\subsubsection{Biased attention}\label{biased-attention}
+
+The goal of biased attention is to orient our attention matrix towards
+genetic interaction priors to improve learning and the model's
+biological fidelity.
+
+We leveraged the Rcistarget computation and ranking of the human genome
+for 10kb down- and upstream of each target gene\textsuperscript{80},
+available at the Aerts Lab cistarget databases\footnote{\url{https://resources.aertslab.org/cistarget/databases/homo_sapiens/hg38/refseq_r80/mc_v10_clust/gene_based/hg38_10kbp_up_10kbp_down_full_tx_v10_clust.genes_vs_motifs.rankings.feather}}.
+Using this information, we generate a weight matrix \(M\) that links
+each motif-defined TF to its target genes.
+
+Given this matrix, we bias the attention matrix for all heads and layers
+using the attn\_mask parameter of the
+torch.nn.functional.scaled\_dot\_product\_attention function.
+
+It appears in the attention computation like so:
+$\text{softmax}\left(\frac{QK^{\top}}{\sqrt{d}} + M\right)V$ where $M$ is the
+attn\_mask matrix and is real-valued.
+
+\subsubsection{Criss-Cross attention}\label{criss-cross-attention}
+
+The goal of criss-cross attention is to create an efficient attention
+mechanism by learning, in context, a factorisation of each attention
+matrix.
+
+In criss-cross attention, we replace the self-attention mechanism with a
+double cross attention between the \(N\) input elements and \(M\) latent
+tokens (see Supplementary Figure~\ref{fig-s18-illustration-of-the-similarity-and-dissimilarity-based-contrastive-losses-used-in-scprint-2}). This is thus replacing a \(N^{2}\)
+computation with a \(2NM\) one, hence going below the quadratic
+bottleneck of attention. This bears resemblance to the ISAB
+architecture, XPressor, and
+perceiverIO\textsuperscript{58,63--65,81,82}. M, in our case, is set to
+10: our 9 predicted classes plus an additional token.
+
+Effectively, the \(M\) latent tokens are learnt at the first layer of
+the models. At the same time, they could also be generated from a
+sketching or principal components analysis (PCA) of the input tokens.
+They also get updated during the attention computation, so that at the
+second layer.
+
+We replace the traditional attention computation
+$X_{l + 1} = \text{Attention}(X_{l},X_{l},X_{l}) + X_{l}$, where Attention
+takes as input the Query, Key, Value elements, with:
+\begin{equation}
+\text{Attention}(X_{1},X_{2},X_{3}) = \text{softmax}\left(\frac{QK^{\top}}{\sqrt{d}}\right)V
+\end{equation}
+
+With
+
+\begin{itemize}
+\item
+  \(Q = X_{1}W_{Q},\ K = X_{2}W_{K},\ V = X_{3}W_{V}\)
+\end{itemize}
+
+\begin{itemize}
+\item
+  \(W_{Q},\ W_{K},W_{V}\  \in \ \Re^{dxd},\ X_{} \in \ \Re^{Nxd}\)
+\end{itemize}
+
+In self-attention \(X_{1} = X_{2} = X_{3}\)
+
+In Criss-Cross attention, the algorithm becomes:
+
+\(V_{l + 1} = Att(V_{l},X_{l},\ X_{l}) + V_{l}\) (3)
+
+for the latent update and
+
+\(X_{l + 1} = Att(X_{l},\ V_{l},\ V_{l}) + X_{l}\) (4)
+
+for the main update
+
+with \(X_{l} \in \Re^{Nxd}\) the main embeddings and
+\(V_{l} \in \Re^{Mxe}\)the latent embeddings
+
+\subsubsection{XPressor model}\label{xpressor-model}
+
+The goal of the XPressor architecture, as presented in Kalfon et al., is
+to replace and generalize the class-pooling of other transformer models
+and the bottleneck learning of scPRINT. This makes the model more
+powerful at encoding cell-level features while also separating
+cell-level tokens from gene-level tokens. Finally, it enables a new mode
+of Parameter-Efficient Fine-Tuning. This bears similarities to the ideas
+presented in criss-cross attention above.
+
+The \textbf{Xpressor} block uses as input a set of learned latent tokens
+\(T\). It then performs cross-attention between the last layer of the
+gene embeddings and the latent tokens. The goal is for the
+\textbf{Xpressor} layers to be of smaller dimensions and context size
+than the main transformer layers, such that we end up with \(C_{j}\) a
+set of \(n\) tokens of dimension \(d_{t}\) generated from the encoded
+gene expression and ID matrices \(E_{j}\) , and \(G\). Where \(G\ \)and
+\(E_{j}\ \)are sets of \(m\) tokens of size \(d_{c}\) representing the
+IDs of the genes and their corresponding expression in cell \$j\$,
+respectively, where \(d_{c} < d_{t}\) and \(n < < \ m\):
+
+\(O_{j} = Transformer(E_{j},\ G)\) (5)
+
+\(C_{j} = Xpressor(O_{j},T)\) (6)
+
+For a cell \(j\), with the \textbf{Xpressor} being initialized with a
+learned set of input cell tokens, and \(C_{j}\) being the cell tokens
+associated with the input \(E_{j}\).
+
+The \textbf{Transformer} and \textbf{Xpressor} are both transformers
+with \(l_{1}\) and \(l_{2}\) layers, respectively. Indeed, we have
+designed both layers to contain a cross-attention architecture (see
+Figure 4A, Supplementary Figure~\ref{fig-s1-illustration-of-the-full-scprint-2s-architecture-input-and-output}) such that we can also do:
+
+\(O_{j} = Transformer(C_{j},G)\), (7)
+
+With \(O_{j}\) the output of the \textbf{Transformer} when using the
+\textbf{Xpressor} representation as input.
+
+We add an optional \gls{MLP} after cross-attention to transform the embeddings
+before the self-attention round. In our example, the decompression is
+performed using gene ID tokens as input only. These tokens remain the
+same for all cells of a given organism and thus do not depend on \(j\).
+In the context of protein language models, for example, this would be
+replaced by positional tokens.
+
+As shown in Supplementary Figure~\ref{fig-s1-illustration-of-the-full-scprint-2s-architecture-input-and-output}, the \textbf{Transformer} blocks are
+applied twice. The first application serves as an ``encoder'', using
+only self-attention, while the \textbf{Xpressor} and the second
+application of the \textbf{Transformer} blocks act as ``decoders''. We
+follow these definitions from the original "Attention is All You Need"
+paper\textsuperscript{83}. It should be noted that, in our case,
+cross-attention is performed before self-attention.
+
+Related ideas have also been explored in the NVEmbed paper, where the
+authors propose a cross-attention-based method to update tokens using
+"latent" tokens and some additional prompting
+tricks\textsuperscript{66}.
+
+XPressor can be applied during pre-training or fine-tuning to replace
+mean-max-class pooling in Foundation models.
+
+\subsubsection{VAE-based compressor
+model}\label{vae-based-compressor-model}
+
+The goal of the VAE-based compressor is to reduce information sharing
+between output embeddings by penalizing the amount of information each
+embedding stores (see Figure \ref{fig:scprint2_xpressor}, Supplementary Figure~\ref{fig-s1-illustration-of-the-full-scprint-2s-architecture-input-and-output})\textsuperscript{84}.
+
+Each VAE-based compressor is explicitly applied to a cell embedding,
+compressing it into a relevant latent dimension. It has a 2-layer MLP
+encoder and a 2-layer \gls{MLP} decoder. In cases where only a small set of
+possible elements exists, such as in sex embeddings or cell culture, one
+can use the Finite Scalar Quantization (FSQ)-VAE\textsuperscript{85}.
+
+FSQ-VAE discretizes each latent dimension \textbf{independently}.
+Specifically, the encoder outputs \(d\) values, each constrained to lie
+within a bounded range (e.g., {[}-1, 1{]}). Each dimension is then
+quantized into one of \(M\) discrete levels within that range (in our
+case 2). This dimension-wise quantization can be implemented as either a
+hard nearest-bin assignment or a differentiable approximation thereof.
+Because FSQ enforces scalar-level discretization, it provides a simpler
+and more fine-grained alternative to VQ' s vector-level
+codebook approach, while still offering strong regularization of the
+latent space.
+
+In our case, all \gls{VAE}s with fewer than 8 latent dimensions used the
+FSQ-VAE approach.
+
+It can be applied on top of any output embedding at pre-training or
+fine-tuning.
+
+\subsubsection{\gls{ZINB}+MSE loss}\label{zinbmse-loss}
+
+The goal of the ZINB+MSE loss is to make the model' s
+expression-level prediction as precise as possible (thanks to the MSE)
+while preserving the \gls{ZINB}' s expressivity and uncertainty
+estimation.
+
+scPRINT-2 uses a novel expression decoder for foundation models that
+outputs the parameters of a zero-inflated negative binomial (\gls{ZINB})
+distribution for each gene \emph{i} in cell \emph{j}. The \emph{\gls{ZINB}}
+distribution is defined as
+
+\begin{equation}
+X\sim \gls{ZINB}(\mu,\ \theta,\ \pi)
+\end{equation}
+
+Where the parameters \(\mu,\ \theta,\ \pi\) are obtained from a
+multi-layer perceptron (MLP) applied to the expression embeddings
+outputted by the transformer model at its last layer (e), which are the:
+
+\begin{equation}
+\mu,\ \theta,\ \pi\  = \ MLP(e\ ||\ d)
+\end{equation}
+
+The \gls{MLP} is a two-layer neural network with dimensions {[}\emph{d+1, d},
+3{]}, where \textbar\textbar{} denotes the concatenation operation.
+
+Compared to scVI, where the overdispersion parameter \(\theta\) is
+learned for each gene, we make scPRINT-2 output it together with
+\(\mu,\ \pi\) (see Supplementary Figure~\ref{fig-s13-illustration-of-scprint-2s-generative-imputation-mechanism})
+
+Effectively, the model learns that dispersion may vary across genes,
+sequencers, cell types, and sequencing depths.
+
+In addition, the loss adds an \gls{MSE} term computed from the \(\mu\) and
+\(\theta\) output of the MLP, comparing for a gene \(i\),
+\(e_{i}\  = \ \mu_{i} \times (1 - \sigma(\pi_{i}))\) to the
+logp1-transform of the expression using mean-squared-error.
+
+Where \(e_{i}\) is the predicted expression of gene \(i\) and \(\sigma\)
+is the sigmoid
+function:\begin{equation}
+L_{MSE} = \frac{1}{n} \sum_{i = 1}^{n}(e_{i} - \log_2(x_{i} + 1))^{2}
+\end{equation}
+
+The zinb+mse loss is the addition of both losses with a scale parameter,
+here:
+
+\begin{equation}
+L_{ZINB + MSE} = L_{ZINB} + 0.{5 \times L}_{MSE}
+\end{equation}
+
+This loss comes as a replacement for the classical \gls{MSE} or \gls{ZINB} in
+\gls{scRNA-seq} models.
+
+\subsubsection{\texorpdfstring{Embedding contrastive loss
+}{Embedding contrastive loss }}\label{embedding-contrastive-loss}
+
+The goal of this contrastive loss is to remove some batch effect by
+pushing cell embeddings obtained from the expression profile after
+different perturbations to be more similar to each other than they are
+from cell embeddings of other cell profiles, using the
+InfoNCE\textsuperscript{88} loss:
+
+Algorithm: L\_contrastive (2)
+
+Input:
+
+- x: embeddings of cells post perturbation A {[}batch\_size ×
+feature\_dim{]}
+
+- y: embeddings of the same cells post perturbation B {[}batch\_size ×
+feature\_dim{]}
+
+- temperature: scaling parameter τ = 0.3
+
+Output: contrastive loss value
+
+1. // Compute similarity matrix
+
+S ← cosine\_similarity\_matrix(x, y) / τ
+
+Where S{[}i,j{]} = (x{[}i{]} · y{[}j{]}) /
+(\textbar\textbar x{[}i{]}\textbar\textbar{}
+\textbar\textbar y{[}j{]}\textbar\textbar{} τ)
+
+2. // Create positive pair labels
+
+labels ← {[}0, 1, 2, ..., batch\_size-1{]}
+
+3. // Compute cross-entropy loss
+
+loss ← cross\_entropy(S, labels)
+
+Which expands to:
+
+loss ← -Σᵢ log(exp(S{[}i,i{]}) / Σⱼ exp(S{[}i,j{]}))
+
+Return loss
+
+This loss can be added to any \gls{scFM}s at pre-training or fine-tuning (see
+Supplementary Figure~\ref{fig-s18-illustration-of-the-similarity-and-dissimilarity-based-contrastive-losses-used-in-scprint-2}).
+
+\subsubsection{Elastic cell similarity
+loss}\label{elastic-cell-similarity-loss}
+
+The goal of this loss is to reduce batch effects by pushing cells that
+are similar to become more similar and cells that are dissimilar to
+become more dissimilar\textsuperscript{1}.
+
+We implement the \textbf{cell similarity loss} of scGPT, where, given
+cell embeddings $e \in \mathbb{R}^{m \times d}$, where $m$ is the number of cells
+and $d$ is the embedding dimension:
+\begin{equation}
+L_{similarity} = \frac{1}{m(m - 1)}\sum_{i \neq j} 1 - (\max(0, \hat{e}_i^\top \hat{e}_j) - \tau)^2
+\end{equation}
+Where:
+
+$\hat{e}_i = e_{i}/\|e_{i}\|_2$ is the L2-normalized embedding of the cell
+$i$
+
+\(\tau\) is the similarity threshold (default 0.3)
+
+\(m(m - 1)\) is the number of off-diagonal pairs,
+
+This loss can be added to any \gls{scFM}s.
+
+\subsubsection{Embedding independence
+loss}\label{embedding-independence-loss}
+
+The goal of the embedding independence loss is to push the different
+class-level embeddings of a cell to encode distinct information by
+making them orthogonal (see Supplementary Figure~\ref{fig-s18-illustration-of-the-similarity-and-dissimilarity-based-contrastive-losses-used-in-scprint-2}).
+
+Implementing a set of disentangled embeddings is not straightforward. In
+our case, we push the embeddings to be as different from one another as
+possible, with an \textbf{independence loss} defined as
+
+\begin{equation}
+L_{independence} = \frac{1}{m^{2}}\sum_{i = 1}^{m}\sum_{i'}^{m}1 - \cos(e_{i},e_{i'})
+\end{equation}
+
+where \(e_{i}\) and \(e_{i'}\) are the cell embeddings, \emph{m} is the
+minibatch size, and \emph{cos} denotes the cosine similarity. This
+pushes each embedding to represent different information from the
+others.
+
+This loss can be added to any \gls{scFM}s at pre-training or fine-tuning.
+
+\subsubsection{Hierarchical classifier
+loss}\label{hierarchical-classifier-loss}
+
+The goal of the hierarchical classifier is to enable efficient label
+predictions for a set of related labels defined by a known graph.
+
+The scPRINT-1 classifier generates predictions for all possible labels
+in a hierarchical ontology, while producing logits only for the most
+fine-grained elements. To predict the other elements, it only has to
+aggregate their children' s logits. We improve this loss
+in scPRINT-2 by using the entire ontological graph: e.g., if a cell is
+an \emph{olfactory neuron}, then it is also a neuron. If the classifier
+predicts \emph{glutaminergic neuron}, it is wrong at this level but
+correct for \emph{neuron}, meaning we penalize it less overall than a
+non-neuron label, like \emph{fibroblast}. In conjunction
+with our weighted sampler, this allows the model to learn rich gradients
+from a low volume of data. We also implement two
+additional classes for predictions in our hierarchical classifier
+compared to scPRINT-1: age and tissue of origin.
+
+During pre-training, we perform label prediction for different classes,
+e.g., cell type, disease, assay, age, tissue, ethnicity, sex, and
+organism. We created a specific relabeling of the age label that could
+be very fine-grained, e.g., 2 weeks, 3 weeks, 35 years old, 36 years
+old, into biologically relevant groups such as \emph{embryo,}
+\emph{fetal}, \emph{6-month-old}, \emph{1-year-old}, \emph{adolescent},
+young adult, and so on. We mapped both human and mouse data this way to
+a common age profile. These were the only two species with such labels
+available. The labels follow a hierarchy defined by ontologies: the Cell
+Ontology for cell type, MONDO for disease, EFO for assay, HANCESTRO for
+ethnicity, HSAPDV for age, UBERON for tissue, NCBITaxon for organism,
+and EFO for sex\textsuperscript{89--92}. We do not compute the loss for
+cells with the unknown label.
+
+The algorithm thus becomes:
+
+Algorithm: L\_class (Hierarchical Classification Loss) (3)
+
+Input:
+
+- pred: predicted logits {[}batch\_size × n\_leaf\_labels{]}
+
+- cl: ground truth labels {[}batch\_size{]}
+
+- labels\_hierarchy: binary matrix {[}n\_parent\_labels ×
+n\_leaf\_labels{]}
+
+Output: hierarchical binary cross-entropy loss
+
+1. Initialize target matrix newcl ← zeros{[}batch\_size ×
+n\_leaf\_labels{]}
+
+2. Initialize weight matrix weight ← ones{[}batch\_size ×
+n\_leaf\_labels{]}
+
+3. // Handle leaf labels (known exact labels)
+
+For each valid leaf label cl{[}i{]} where cl{[}i{]} ∈ {[}0,
+n\_leaf\_labels):
+
+newcl{[}i, cl{[}i{]}{]} ← 1
+
+4. // Handle unknown labels
+
+For each unknown label cl{[}i{]} where cl{[}i{]} = -1:
+
+weight{[}i, :{]} ← 0
+
+5. // Handle parent labels (partial knowledge)
+
+If any cl{[}i{]} ≥ n\_leaf\_labels:
+
+parent\_idx ← cl{[}i{]} - n\_leaf\_labels
+
+// Zero out weights for unknown leaf children
+
+weight{[}i, children\_of\_parent{[}parent\_idx{]}{]} ← 0
+
+// Set targets for all possible children to 1
+
+newcl{[}i, children\_of\_parent{[}parent\_idx{]}{]} ← 1
+
+// Compute parent-level predictions and targets
+
+For each parent p:
+
+// Aggregate leaf predictions using logsumexp
+
+addpred{[}p{]} ← logsumexp(pred{[}:, children\_of\_parent{[}p{]}{]})
+
+// Set parent target based on leaf targets
+
+addnewcl{[}p{]} ← max(newcl{[}:, children\_of\_parent{[}p{]}{]})
+
+// Weight inversely proportional to the number of children
+
+addweight{[}p{]} ← addnewcl{[}p{]} /
+√\textbar children\_of\_parent{[}p{]}\textbar{}
+
+// Concatenate parent predictions/targets with leaf ones
+
+pred ← concat(pred, addpred)
+
+newcl ← concat(newcl, addnewcl)
+
+weight ← concat(weight, addweight)
+
+6. Return binary\_cross\_entropy\_with\_logits(pred, newcl, weight)
+
+The hierarchical loss is available as a standalone function on GitHub
+Gist\footnote{\url{https://gist.github.com/jkobject/5b36bc4807edb440b86644952a49781e}}.
+
+This loss replaces a classical pytorch classifier loss, such as
+binary\_cross\_entropy\_with\_logits.
+
+\subsubsection{Variable context length}\label{variable-context-length}
+
+The goal of the variable context length method is to decrease the
+model's bias toward a specific number of elements in context.
+
+Indeed, we noticed that at inference time, the model's performance could
+be lower in variable-context situations (e.g., on gene-panel datasets or
+when using only expressed genes). We thus introduced a
+\textbf{variable-context} training scheme in which the model's context
+sometimes drops by a random amount (see Table \ref{tab:additive_benchmark}; see \hyperref[methods]{Methods}).
+This makes the model less biased toward a specific input context during
+inference and decreases training time (see Supplementary Materials). Again, here
+we see strong consistent improvement in the model's performance across
+our additive benchmark.
+
+This can be applied to any transformer models where the number of
+elements in context can be chosen arbitrarily.
+
+\subsubsection{Adversarial classifier
+loss}\label{adversarial-classifier-loss}
+
+The goal of the Adversarial classifier is to remove batch
+effect\textsuperscript{93,94}.
+
+The adversarial classifier is applied only to the \emph{cell\_type} cell
+embedding and is tasked to classify the organism of origin for each
+cell. It uses the same \gls{MLP} as regular classifiers (2 layers, 256 as
+inner dimension). We use the reverse\_gradient operation on top of a
+simple softmax-based binary cross-entropy classifier loss as follows:
+
+Algorithm: L\_adv (adversarial classifier) (4)
+
+Input:
+
+- e: input cell embedding tensor {[}batch\_size × feature\_dim{]}
+
+- c: input ground truth label {[}batch\_size{]}
+
+Output: cross-entropy loss
+
+// reverse the gradient for adversarial behavior
+
+e = grad\_reverse(e)
+
+// compute logits from the embedding using an MLP
+
+logits = MLP(e)
+
+Return cross\_entropy(logits, c)
+
+with
+
+Algorithm: grad\_reverse (5)
+
+Input:
+
+- e: input tensor {[}batch\_size × feature\_dim{]}
+
+- λ: scaling factor for gradient reversal = 1
+
+Output: tensor with reversed gradients
+
+If forward Pass:
+
+1. Return e unchanged (identity function)
+
+If backward Pass:
+
+1. Reverse and scale the incoming gradients
+
+e.grad\_input ← -λ × e.grad\_output
+
+2. Return reversed gradients
+
+Return grad\_input, None // None for λ parameter
+
+We use it to predict both organisms and sequencers. Sequencers are
+mapped to a set of coarser labels, as we cannot use the hierarchical
+classifier in an adversarial context. Indeed, as it is sigmoid-based, it
+could easily set all label logits to -inf.
+
+This loss can be added during pre-training or finetuning of a foundation
+model, provided batch labels are available.
+
+\subsection{Additive Benchmark's
+datasets}\label{additive-benchmarks-datasets}
+
+The gene network analysis is performed on a test kidney single-cell
+dataset, using 1000 cells from the same cell type, and is compared with
+the omnipath ground truth (also known as the omnipath benchmark) across
+all cell types. It is also performed for 1000 K562 cells, comparing it
+to a network assembled from all genes ``i'' whose expression changes
+significantly when gene ``j'' is perturbed, using a genome-wide
+perturb-seq dataset called GWPS benchmark\textsuperscript{95}.
+
+Knowing that perturb-seq still often implies cell-type- and
+patient-specific off-target effects and cannot detect many direct
+effects\textsuperscript{96--99}.
+
+The cell type prediction uses accuracy, and batch correction uses scIB
+v2, as in Kalfon et al.\textsuperscript{3}. Both the lung and pancreas
+datasets have also been used in Kalfon et al. They are test datasets,
+removed from the pre-training corpus, and both come from the initial
+scIB paper\textsuperscript{100}.
+
+\subsection{\gls{scPRINT}-2}\label{scprint-2-1}
+
+The model architecture is composed of:
+
+\begin{itemize}
+\item
+  An \textbf{encoder/tokenizer} that takes multiple inputs, such as raw
+  expression data, gene names, and gene locations, and embeds them in a
+  high-dimensional space used by the transformer.
+\item
+  A \textbf{trunk} with a bidirectional multi-head transformer, an
+  XPressor bidirectional multi-head transformer, and a set of \gls{VAE}s
+  applied to each XPressor output embeddings.
+\item
+  A \textbf{class decoder} that transforms the output cell embeddings of
+  the XPressor into cell-specific label prediction logits over a range
+  of classes.
+\item
+  An \textbf{expression decoder} to transform the output embeddings into
+  expression values
+\end{itemize}
+
+Of the above-cited additive benchmark elements, \gls{scPRINT}-2 contains:
+\textbf{XPressor, all databases, denoising}, \textbf{cluster-based
+sampling,} \textbf{elastic cell similarity, ZINB+MSE,} \textbf{VAE
+compressor, variable context with larger context, TF masking, GNN
+expression encoder, and fine-tuned ESM3} (See Supplementary Figures~\ref{fig-s1-illustration-of-the-full-scprint-2s-architecture-input-and-output}, \ref{fig-s9-illustration-of-the-multiple-perturbations-applied-to-expression-data-in-scprint-2}, \ref{fig-s17-illustration-of-criss-cross-attention},
+\ref{fig-s18-illustration-of-the-similarity-and-dissimilarity-based-contrastive-losses-used-in-scprint-2})
+
+We now go into some more details about the model:
+
+\subsubsection{Encoder / Tokenizer}\label{encoder-tokenizer}
+
+In \gls{scPRINT}-2, each gene in a cell is converted to an embedding: It
+corresponds to the sum of 3 different elements:
+
+1. An embedding representing the gene itself using ESM3 with a
+fine-tuning adaptor layer (see
+\hyperref[esm3-fine-tuning-gene-encoder]{Methods})
+
+2. An embedding of the gene location in the genome. This helps the model
+understand that genes with similar locations tend to be regulated by
+similar regulatory regions\textsuperscript{101}, a relationship
+well-known in cellular biology.
+
+We encode the genes' locations using positional encoding. Every gene
+within 10,000 bp of the next is considered to be in the same location;
+otherwise, we increment the location by 1. We do this for all genes in
+the Ensembl database per organism.
+
+3. An embedding of the gene expression in the cell and its neighbor
+using our \textbf{GNN} (see
+\hyperref[gnn-expression-encoder]{Methods})
+
+Finally, during pre-training, a subset of 3200 genes is used to encode a
+cell expression profile. If fewer than 3200 genes are expressed in both
+the cell and its neighbors, we pad them with randomly sampled
+unexpressed genes (meaning with an expression value of 0). This approach
+allows the model to see different patches of the same cell profile
+during training.
+
+The full set of embeddings of cell i sent to the transformer is the
+matrix \(X_{i}\) where
+
+\begin{equation}
+X_{i} = [g_{0} + e_{i,0} + l_{0}, g_{1} + e_{i,1} + l_{1}, \ldots]
+\end{equation}
+
+Where \(g_{j}\) is the gene j encoding, \(e_{i,j}\) is the encoding of
+the expression of gene j in cell i, \(l_{j}\) is the gene j location
+encoding.
+
+Additionally, the Xpressor layers will receive a set of learnt prototype
+tokens representing the different class-level cell embeddings.
+
+\subsubsection{Trunk}\label{trunk}
+
+The model ``trunk'' is a bidirectional encoder similar to
+BERT\textsuperscript{102} with \emph{n} layers, \emph{h} attention
+heads, and a dimension of \emph{d}. It uses the
+flashattention2\textsuperscript{103} methodology implemented in Triton
+to compute its attention matrix. It uses the pre-normalization
+technique\textsuperscript{104}, with a sped-up layer norm implemented in
+Triton's tutorial\textsuperscript{105}. It uses stochastic depth with
+increasing dropout probability\textsuperscript{106} (see
+\hyperref[base-model-and-training]{\underline{Base for details about small and
+medium-sized models}}).
+
+It has a 2-layer \gls{MLP} with a 4x width increase in its hidden layer and a
+GELU activation function.
+
+Each Layer or block is composed, in order, of a layer-norm,
+self-attention, layer-norm, MLP, and layer-norm, cross-attention,
+layer-norm, MLP, which are only used during the decoding step. It has an
+additional m Xpressor blocks/layers applied to its 10 latent cell
+tokens.
+
+The output cell embeddings of the Xpressor layers are then compressed
+with \gls{VAE}s with respective latent for the {[}cell\_type, tissue, age,
+sex, disease, sequencer, ethnicity, organism, cell culture,
+additional{]} classes of: 64, 32, 8, 2, 16, 8, 8, 8, 2, None (no VAE)
+
+\subsubsection{Class Decoders}\label{class-decoders}
+
+The class decoders are MLPs applied to compressed representations of
+their respective \gls{VAE}s, with a shape of
+\(\lbrack\mu_{c},\ 256,\ n_{c}\rbrack\) with \(n_{c}\) the number of
+labels in the class c and \(\mu_{c}\) the dimension of this class for
+the VAE.
+
+\subsubsection{Expression Decoder}\label{expression-decoder-2}
+
+We had noticed that scPRINT-1 initially produced embeddings that could
+be biased by the cell-depth token. We thus push \gls{scPRINT}-2 to be
+depth-invariant by introducing the sequencing depth information only in
+the Expression Decoder, ensuring that the output gene-cell tokens
+contain little absolute sequencing depth information (see Figure \ref{fig:scprint2_denoising}, see
+Supplementary Figure~\ref{fig-s1-illustration-of-the-full-scprint-2s-architecture-input-and-output}). This debiases cell embedding to depth data and also
+improves denoising (see Table 1).
+
+The expression decoder thus gets applied to the output gene embeddings
+and also receives the log2p1-transformed sequencing depth (also called
+total cell expression count) \(c\) andis of the form:
+
+\begin{equation}
+\mu,\ \theta,\ \pi\  = \ MLP(e\ ||\ c)
+\end{equation}
+
+The \gls{MLP} is a two-layer neural network with dimensions {[}\emph{d+1, d},
+3{]}, where \textbar\textbar{} denotes the concatenation operation.
+
+The parameters \(\mu, \theta, \pi\) are the parameters of the \gls{ZINB} and
+are used in the ZINB+MSE loss.
+
+\subsection{Pre-training}\label{pre-training}
+
+The three main tasks in the multi-task pre-training of \gls{scPRINT}-2 are
+denoising, classification, and bottleneck learning. While the denoising
+loss enhances the model' s ability to find meaningful
+gene-gene connections, the other two try to make the model and its cell
+embedding representation more robust and cell-type-specific. The tasks
+are presented below.
+
+\subsubsection{Optimization method}\label{optimization-method-2}
+
+Optimization is performed with fused ADAMW and a weight decay of 0.01.
+We observed a complete inability to learn when using the base ADAM
+algorithm, which has a similar weight decay schedule. This can be
+explained by a known inequivalence issue in ADAM\textsuperscript{107}.
+
+We do not use the stochastic weight averaging\textsuperscript{108}
+method during training.
+
+During pre-training, the hyperparameters are set to a dropout of 0.1, a
+learning rate (LR) of 1e-4, and the precision is set to 16-mixed with
+residuals in fp32. We clip gradients to 10 and train over many
+sub-epochs of 20,000 training and 20,000 validation batches, with a
+warmup of 2,000 steps. Across epochs, we use a linear LR decrease of 0.6
+with a patience of 2, and we stop training after 4 consecutive increases
+in validation loss. We initialize weights to a normal distribution
+around 1, biases to 0, and biases for the final layer of the Classifiers
+to -0.12.
+
+Our batch size is 128, and we use a pre-norm strategy for the
+transformer with a linearly increasing stochastic depth dropout rate of
+0.02 per layer. We use a noise parameter of 70\%. We split the cells in
+the datasets into 98\% for training and 2\% for validation, and reserve
+at least 2\% of the split datasets for testing. Our reconstruction loss
+is \gls{ZINB}+MSE (see the \hyperref[zinbmse-loss]{\underline{ZINB+MSE section in
+Methods}}).
+
+While many pre-training variants can be selected from contrastive
+learning, classification, adversarial classification, compression (with
+XPressor and VAE), masking, biased masking, and imputation, the choice
+may depend on specific biological assumptions.
+
+\gls{scPRINT}-2 is trained with denoising an input cell profile, given its
+nearest neighbor's expression.
+
+Given the same information, it also performs label prediction during
+pre-training for: cell type, disease, sequencer, age, tissue, ethnicity,
+sex, cell culture, and organism. The classification task is performed
+jointly with the denoising task, meaning that labels are predicted from
+corrupted expression data and from nearest-neighbor expression
+information. The hierarchical classifier is applied to the
+\gls{VAE}s'{} latent embeddings.
+
+During decoding, it regenerates the expression profile for all input
+genes, including those dropped during variable context selection. This
+effectively does gene imputation.
+
+The decoder receives only the gene location and ESM3 embedding and
+performs cross-attention on cell embeddings. The cell embeddings are the
+output of the \gls{VAE}s and Xpressor layers, so the input is:
+
+\begin{equation}
+X_{i} = [g_{0} + l_{0}, g_{1} + l_{1}, \ldots]
+\end{equation}
+
+And cell-embeddings are:
+
+\begin{equation}
+C_{i} = [c_{i0}, c_{i1}, \ldots] = \bigcup_{j}\text{VAE}_{j}(u_{ij}), \quad u_{ij} \in U_{j}
+\end{equation}

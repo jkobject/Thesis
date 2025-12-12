@@ -2,3 +2,4 @@
 build/
 build/*
 supplementaries/templates/*
+.DS_Store

@@ -10,6 +10,7 @@
 [ \vspace{0ex}
 ] % after-code
 
+\raggedbottom % Allow flexible page heights to reduce underfull vbox warnings
 
 \chapter[Xpressor: Towards foundation models that learn across biological scales]{Xpressor: Towards foundation models that learn across biological scales}
 \label{article2}
@@ -109,8 +110,10 @@ Our first contribution is the compression of output embeddings of foundation mod
 As inputs \gls{scPRINT} continues to use a set of summed up gene expression and gene ID tokens. The first ones are generated using an \gls{MLP} on each expression values of genes in a cell $j$, the other ones are generated from \gls{ESM}2's output embeddings of each gene sequenced aggregated with mean-pooling. The newly proposed Xpressor block uses as input a set of learned latent tokens $\mT$. It then performs cross-attention between the last layer of the gene embeddings and the latent tokens (see Figure~\ref{fig:first}A). The goal is for the Xpressor blocks to be of smaller dimensions and context size than the main blocks, such that we end up with $\mC_j$ a set of $n$ tokens of dimension $d_t$ generated from the encoded gene expression and ID matrices $\mE_j$ and $\mG$. Where $\mG$ and $\mE_j$ are sets of $m$ tokens of size $d_c$ representing the IDs of the genes and their corresponding expression in cell $j$, respectively, where $d_c < d_t$ and $n << m$:
 
 %% architecture
-$$\mO_j=\mathrm{Transformer}(\mE_j, \mG)$$
-$$\mC_j = \mathrm{Xpressor}(\mO_j, \mT)$$
+\begin{align}
+\mO_j &= \mathrm{Transformer}(\mE_j, \mG) \label{eq:transformer} \\
+\mC_j &= \mathrm{Xpressor}(\mO_j, \mT) \label{eq:xpressor}
+\end{align}
 
 for a cell $j$, with the \emph{Xpressor} being initialized with a learned set of input cell tokens, and $\mC_j$ being the cell tokens associated with the input $\mE_j$.
 
@@ -168,7 +171,10 @@ To merge foundation models, we need a way to connect the lower-scale models to t
 
 We propose going beyond simply reusing lower-scale models' representations and fine-tuning them during the pre-training of the upper-scale model using an adapter layer (see Figure~\ref{fig:first}B). With such layer, each output embedding $\ve$ is transformed with a differentiable function $f$ (here, an \gls{MLP}):
 
-$$ \vi_{k} = f(\ve_{k})$$
+\begin{equation}
+\vi_{k} = f(\ve_{k})
+\label{eq:adapter}
+\end{equation}
 
 By using an \gls{MLP}, the adapter layer not only applies a transformation of its input but also adds information (see Supplementary Material~\ref{sec:adapter}). In our case, we use \gls{ESM}2 as the lower-scale model and \gls{scPRINT} as the upper-scale model. The initial \gls{ESM}2 embedding is known to contain a representation of the protein's sequence, evolutionary similarity, and constraints. 
 
@@ -248,6 +254,7 @@ We show below that an \gls{MLP} (with at least one hidden layer and a sufficient
 The \gls{IB} method seeks a stochastic mapping \( p(t|x) \) that compresses the input variable \( X \) into a representation \( T \), while preserving as much information as possible about the relevant variable \( Y \). The trade-off is controlled by the Lagrange multiplier \( \beta \geq 0 \). The \gls{IB} objective is to minimize the following Lagrangian:
 \begin{equation}
 \mathcal{L}_{\text{IB}}[p(t|x)] = I(X;T) - \beta\, I(T;Y),
+\label{eq:ib_objective}
 \end{equation}
 where \( I(\cdot;\cdot) \) denotes mutual information.
 
@@ -255,9 +262,9 @@ Under the Markov constraint
 \(\mathbf{Y} \leftrightarrow \mathbf{X} \leftrightarrow \mathbf{T}\),
 the optimization leads to the following self-consistent equations:
 \begin{align}
-p(t|x) &= \frac{p(t)}{Z(x,\beta)} \exp\left(-\beta\, D_{\mathrm{KL}}\bigl(p(y|x) \,\|\, p(y|t)\bigr)\right), \\
-p(t) &= \sum_{x} p(x)\, p(t|x), \\
-p(y|t) &= \frac{1}{p(t)} \sum_{x} p(y|x)\, p(x)\, p(t|x),
+p(t|x) &= \frac{p(t)}{Z(x,\beta)} \exp\left(-\beta\, D_{\mathrm{KL}}\bigl(p(y|x) \,\|\, p(y|t)\bigr)\right), \label{eq:ib_ptx} \\
+p(t) &= \sum_{x} p(x)\, p(t|x), \label{eq:ib_pt} \\
+p(y|t) &= \frac{1}{p(t)} \sum_{x} p(y|x)\, p(x)\, p(t|x), \label{eq:ib_pyt}
 \end{align}
 where:
 \begin{itemize}
@@ -265,30 +272,36 @@ where:
     \item \( Z(x,\beta) \) is the normalization factor ensuring that \( \sum_t p(t|x) = 1 \).
 \end{itemize}
 
-\subsection{\gls{FSQ} and other contrastive losses on the cell embeddings}
+\subsection{FSQ and other contrastive losses on the cell embeddings}
 \label{sec:otherlosses}
 
 While \(D_{\mathrm{KL}}\) over a non-informative Gaussian prior is a common formulation for regularizing the embedding space in \gls{VAE}s, other formulations have been used such as with the \gls{VQ-VAE} and \gls{FSQ-VAE}. In these contexts, the \(D_{\mathrm{KL}}\) is replaced with a discretization objective tailored to the respective quantization schemes.
 
-\paragraph{\gls{VQ-VAE}.} 
+\paragraph{VQ-VAE.} 
 Value Quantized (VQ)-VAE employ a \emph{codebook} of size \(C\), where each codebook entry is a \(d\)-dimensional vector. The encoder produces a continuous latent vector, which is then mapped to its nearest entry in the codebook (a hard quantization). A commitment loss term encourages the encoder's outputs to stay close to the chosen codebook vector, making the entire latent representation discrete at the vector level.
 
-\paragraph{\gls{FSQ-VAE}.}
+\paragraph{FSQ-VAE.}
 By contrast, Finite Scalar Quantization (FSQ)-VAE discretizes each latent dimension \emph{independently}. Specifically, the encoder outputs \(d\) values, each constrained to lie within a bounded range (e.g., \([-1, 1]\)). Each dimension is then quantized into one of \(M\) discrete levels within that range. This dimension-wise quantization can be implemented as either a hard nearest-bin assignment or a differentiable approximation thereof. Because \gls{FSQ} enforces scalar-level discretization, it provides a simpler and more fine-grained alternative to VQ's vector-level codebook approach, while still offering strong regularization of the latent space.
 
 \paragraph{Contrastive regularization across embedding dimensions.}
 We further encourage each of the \(d\) embedding dimensions to encode distinct information by adding a contrastive loss between them. Specifically, we compute pairwise similarities among embedding elements and penalize redundancy, thus pushing each dimension to capture complementary features. A general contrastive loss for this purpose can be written as
-\(\mathcal{L}_{\text{contrastive}} 
-= \sum_{i=1}^{d} \sum_{j \neq i} \ell\bigl(\mathbf{e}_i, \mathbf{e}_j\bigr)\),
+\begin{equation}
+\mathcal{L}_{\text{contrastive}} = \sum_{i=1}^{d} \sum_{j \neq i} \ell\bigl(\mathbf{e}_i, \mathbf{e}_j\bigr),
+\label{eq:contrastive}
+\end{equation}
 where \(\mathbf{e}_i\) denotes the \(i\)-th embedding dimension and \(\ell\) is a contrastive loss function (e.g., InfoNCE \citep{oordRepresentationLearningContrastive2019}) that encourages \emph{dissimilarity} among different embedding components.
 
 \paragraph{Dimension-specific classifiers.}
 To further steer each dimension's content, one can add a separate classifier on top of each dimension to learn about different classes. The classifier for dimension \(i\) is trained via a cross-entropy loss
-\(\mathcal{L}_{\text{cls}}^{(i)} 
-= - \sum_{c} y_{c} \log p\bigl(c \mid \mathbf{e}_i\bigr)\),
+\begin{equation}
+\mathcal{L}_{\text{cls}}^{(i)} = - \sum_{c} y_{c} \log p\bigl(c \mid \mathbf{e}_i\bigr),
+\label{eq:cls_loss_i}
+\end{equation}
 where \(y_c\) is the ground-truth label and \(p\bigl(c \mid \mathbf{e}_i\bigr)\) is the predicted probability for class \(c\). Summing these per-dimension losses yields an overall classification objective
-\(\mathcal{L}_{\text{cls}} 
-= \sum_{i=1}^{d} \mathcal{L}_{\text{cls}}^{(i)}\).
+\begin{equation}
+\mathcal{L}_{\text{cls}} = \sum_{i=1}^{d} \mathcal{L}_{\text{cls}}^{(i)}.
+\label{eq:cls_loss_total}
+\end{equation}
 Together, the contrastive and classification losses ensure each embedding dimension captures unique, discriminative information, resulting in more expressive representations.
 
 \subsection*{Software and Data}
