@@ -86,6 +86,8 @@
 % \usepackage{minitoc} % Commented out - incompatible with titlesec and titletoc
 \usepackage{xurl}
 \usepackage{tikz}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
 \pagestyle{fancy}
 \usepackage[strict]{changepage}
 \usepackage{siunitx}
@@ -208,9 +210,8 @@
 Devant un jury composé de : %(indiquer le jury complet) 		
 		\begin{center}
 			\begin{tabular}{l@{\hskip 1cm}l@{\hskip 1cm}l}
-				\textsc{Prénom NOM, HDR}  & Université de Ville &Rapportrice \\
-				\textsc{Valentina Boeva, DR}  & Université de Y &Examinateur\\
-				\textsc{Eran Segal, Pr}  &Université Paris Cité  &Examinatrice \\
+				\textsc{Prénom NOM, HDR}  &Université de Ville &Rapportrice \\
+				\textsc{Valentina Boeva, DR}  &Université ETH de Zurich &Rapportrice\\
 				\textsc{Thomas Walter, Pr}  &INSERM &Membre du comité de suivi \\
 				\textsc{Laurent Jacob, DR}  &CNRS &Membre du comité de suivi  \\
 				\textsc{Laura CANTINI, DR}  &CNRS &Directrice de thèse \\
@@ -295,7 +296,7 @@ Someone
 %\chapter*{Introduction}
 \fancyhead{} % clear all header fields
 \fancyhead[OL]{\textsc{Preamble}}
-\input{chapters/intro.tex} %partie introduction ou avant-propos
+\input{chapters/intro} %partie introduction ou avant-propos
 
 \fancyhead{} % clear all header fields
 
@@ -306,17 +307,20 @@ Someone
 
 \input{papers/scprint}
 \input{papers/scprint_methods}
+\input{papers/scprint_methods_2}
 \input{papers/xpressor}
 \input{papers/scprint_2}
+\input{papers/scprint_2_methods}
+\input{papers/scprint_2_methods_2}
 
 %\part*{Discussion et conclusion générale}
 \fancyhead{} % clear all header fields
 \fancyhead[OL]{\textsc{Discussions and perspectives}}
-\input{chapters/discussion.tex}
+\input{chapters/discussion}
 
 \fancyhead{} % clear all header fields
 \fancyhead[OL]{\textsc{Conclusion}}
-\input{chapters/conclusion.tex}
+\input{chapters/conclusion}
 
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY
@@ -331,6 +335,6 @@ title={Bibliography}]
 %----------------------------------------------------------------------------------------
 \fancyhead{} % clear all header fields
 \fancyhead[OL]{\textsc{Appendices}}
-\input{appendix.tex}
+\input{appendix}
 
 \end{document}

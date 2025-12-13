@@ -7,12 +7,19 @@
 
 \begin{small}
 \vspace{-.25cm}
-\paragraph*{Mots clefs:} scRNA-seq ; Foundation-model ; Interprétation ; Intégration de données ;
+\paragraph*{Mots clefs:} scRNA-seq ; Modèles fondamentaux ; Transformers ; Réseaux de régulation génique ; Apprentissage profond ; Apprentissage zero-shot ; Analyse inter-espèces ; Représentation ; Débruitage ; Évaluation
 
 \vspace{-.5cm}
 \setlength{\columnsep}{12pt} % I want the columnsep to be wider only on this page.
 \begin{multicols}{2}
 \paragraph*{Résumé:} 
+Cette thèse présente des avancées fondamentales dans l'application de l'apprentissage profond basé sur les transformers aux données de séquençage ARN unicellulaire, avec des applications à l'inférence de réseaux de régulation génique et à l'apprentissage de représentations cellulaires. Nous avons développé scPRINT (single-cell PRe-trained Inference of Networks with Transformers), un modèle cellulaire de grande taille entraîné sur plus de 50 millions de cellules permettant l'inférence de réseaux géniques spécifiques à chaque cellule à l'échelle du génome. Grâce à des innovations architecturales novatrices—incluant l'encodage génique basé sur les protéines, la tokenisation apprise de l'expression, et l'encodage positionnel génomique—scPRINT surpasse les méthodes existantes sur plusieurs benchmarks tout en démontrant des capacités zero-shot pour la classification de types cellulaires, la correction de lots, et le débruitage d'expression.
+
+Nous avons introduit Xpressor, une architecture à attention croisée permettant aux modèles fondamentaux d'apprendre à travers les échelles biologiques, des molécules aux tissus. Cette architecture compresse les représentations au niveau génique en vecteurs d'états cellulaires de dimension réduite via une approche de goulot d'étranglement informationnel, tout en permettant l'ajustement fin multi-échelle de modèles de langage protéique utilisant des tâches cellulaires. Xpressor a amélioré la précision de prédiction des types cellulaires ainsi que la qualité des représentations cellulaire par rapport aux architectures standard.
+
+S'appuyant sur ces fondations, nous avons développé scPRINT-2, entraîné sur 350 millions de cellules provenant de 16 organismes—le plus grand modèle fondamental unicellulaire à ce jour. Grâce à une évaluation additive systématique de 42 configurations de modèles, nous avons validé les décisions de conception clés et atteint des performances de pointe en classification sans example des types cellulaires, un débruitage supérieur dans tous les contextes, et les meilleurs scores d'intégration de lots de sa catégorie. Nous avons démontré une généralisation sans précédent aux modalités de transcriptomique spatiale et aux organismes non vus durant l'entraiment, des capacités de raisonnement contrefactuel, ainsi qu'une analyse de réseaux géniques inter-espèces, ouvreant de nouvelles perspectives.
+
+Ce travail établit des normes pour les modèles fondamentaux unicellulaires à travers une évaluation rigoureuse, des implémentations open-source, et une utilité biologique démontrée, contribuant sept paquets Python, des benchmarks complets, et des outils accessibles à la communauté.
 
 \end{multicols}
 \end{small}
@@ -28,13 +35,19 @@ data as large cell models
 
 \begin{small}
 \vspace{-.25cm}
-\paragraph*{Keywords:} sc-RNA-seq ; Foundation-model ; Transformers ; Virtual Cell ; Network Inference; AI;
+\paragraph*{Keywords:} sc-RNA-seq ; Foundation models ; Transformers ; Gene Regulatory Networks ; Deep Learning ; Zero-shot Learning ; Cross-species Analysis ; Embeddings ; Denoising ; Benchmarking
 
 \vspace{-.5cm}
 \setlength{\columnsep}{12pt} % I want the columnsep to be wider only on this page.
 \begin{multicols}{2}
 \paragraph*{Abstract:}
-\lipsum[1-5]
+This thesis presents foundational advances in applying transformer-based deep learning to single-cell RNA sequencing data, with applications to gene regulatory network inference and cellular representation learning. We developed scPRINT (single-cell PRe-trained Inference of Networks with Transformers), a large cell model trained on over 50 million cells that enables genome-wide, cell-specific gene network inference. Through novel architectural innovations—including protein-based gene encoding, learned expression tokenization, and genomic positional encoding—scPRINT outperforms existing methods on multiple benchmarks while demonstrating zero-shot capabilities for cell type classification, batch correction, and expression denoising.
+
+We introduced Xpressor, a cross-attention framework enabling foundation models to learn across biological scales, from molecules to tissues. This architecture compresses gene-level representations into lower-dimensional cell-state vectors through an information bottleneck approach, while enabling multi-scale fine-tuning of protein language models using cellular tasks. Xpressor improved cell-type prediction accuracy and embedding quality over standard architectures.
+
+Building on these foundations, we developed scPRINT-2, trained on 350 million cells across 16 organisms—the largest single-cell foundation model to date. Through systematic additive benchmarking of 42 model configurations, we validated key design decisions and achieved state-of-the-art performance with zero-shot cell-type classification accuracy, superior denoising across all contexts, and best-in-class batch integration scores. We demonstrated unprecedented generalization to unseen spatial transcriptomics modalities and organisms, counterfactual reasoning capabilities, and cross-species gene network analysis.
+
+This work establishes new standards for single-cell foundation models through rigorous benchmarking, open-source implementations, and demonstrated biological utility, contributing seven Python packages, comprehensive benchmarks, and accessible tools to the community.
 
 \end{multicols}
 \end{small}

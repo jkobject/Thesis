@@ -1,0 +1,871 @@
+\section{Methods}\label{methods}
+
+We present an additive benchmark with over a dozen contributions to the
+pre-training tasks, losses, and architecture of single-cell foundation
+models. Along with it, \textbf{scPRINT-2} (pronounced ``sprint''), a
+next-generation model trained on the best-performing contributions. We
+analyze its out-of-distribution generalization and present methods for
+querying and fine-tuning it to solve various tasks. We will go through
+the specific techniques that made it possible.
+
+\subsection{Additive benchmark}\label{additive-benchmark-1}
+
+We now describe in matched order with respect to Table 1, the methods
+behind the multiple contributions tested in our additive benchmark (see
+\hyperref[decoding-the-impact-of-a-foundation-models-architecture-through-an-additive-benchmark]{Results
+section 1}). We bolded the ones that are further defined in the
+methods. In this benchmark, we are using and testing the:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{``base model'',} every subsequent element is applied to the
+  base model
+\item
+  ``medium model'', larger base model, see the
+  \hyperref[base-model-and-training]{\underline{base model section}}
+\item
+  ``negative control'', untrained base model
+\end{enumerate}
+
+Architecture
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+  ``no dropout'', where we remove the dropout initially applied in the
+  base model
+\item
+  ``large classifier'', where the classifier sizes are increased from
+  {[}input - output{]} in the base model to {[} input - 256 - output{]}
+\item
+  ``MVC'', where we replace the base model's decoder with the cell
+  embedding's MVC approach of scGPT\citep{cuiScGPTBuildingFoundation2024}
+\item
+  ``no decoders/generation'', where we removed the base model's decoder,
+  getting a masking+classification only pre-training
+\end{enumerate}
+
+Data
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\item
+  replacing our pre-training dataset with ``Tahoe''\,'s 100M dataset
+\item
+  Chan Zuckerberg Institute (``CZI'')'s cellxgene database (version
+  2024)
+\item
+  replacing our pretraining dataset with ``CZI + Tahoe'' with Tahoe's
+  100M database
+\item
+  replacing our pretraining dataset with ``all databases'', both CZI,
+  Tahor, and Arc's scBasecount\citep{zhangTahoe100M2025,youngblutScBaseCount2025}
+\item
+  replacing our pretraining dataset with ``only 200 random'' human
+  datasets
+\item
+  replacing our sampling with a ``sampling without replacement''
+\item
+  \textbf{replacing our sampling with ``cluster-based sampling only''}
+\item
+  \textbf{adding ``meta-cell'' during pre-training}
+\end{enumerate}
+
+Attention
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{15}
+\item
+  replacing FA3 with ``softpick'' attention, using the approach of Zuhri
+  et al.\citep{zuhriSoftpickNoAttention2025}
+\item
+  replacing FA3 with ``hyper''-attention, using the approach of Han et
+  al.\citep{hanHyperAttentionLongcontextAttention2023}
+\item
+  replacing self-attention with \textbf{``criss-cross'' attention
+  layers}
+\item
+  \textbf{adding ``XPressor'' layers}
+\end{enumerate}
+
+Losses
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{19}
+\item
+  \textbf{adding ``contrastive learning''}
+\item
+  \textbf{adding ``elastic cell similarity''}
+\item
+  \textbf{``no embedding independence loss'', removing the embedding
+  independence loss}
+\item
+  replacing the \gls{ZINB} loss with Mean Squared Error (``MSE'')-loss
+\item
+  \textbf{replacing the \gls{ZINB} loss with ``ZINB+MSE'' loss}
+\item
+  \textbf{adding a ``VAE compressor'' loss to the Base model}
+\end{enumerate}
+
+\textbf{\hfill\break
+}Tasks
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{25}
+\item
+  \textbf{adding ``variable context length'' and a larger context}
+\item
+  \textbf{replacing masking with a Transcription Factor ``(TF)-masking''
+  task}
+\item
+  replacing masking with ``denoising'', using the approach in scPRINT,
+  with a random level of denoising (see below)
+\item
+  ``no classification'', removing the classification pre-training task
+\item
+  \textbf{adding an ``adversarial classifier''}
+\end{enumerate}
+
+Input
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{30}
+\item
+  replacing log1p normalization with ``sum normalization'' where each
+  expression profile is normalized to sum to 10,000
+\item
+  ``no random level of denoising'' where we remove the random level of
+  denoising, see the
+  \hyperref[denoising-pre-training-task]{\underline{denoising section}}
+\item
+  \textbf{where we replace the expression encoder with a Graph Neural
+  Network (``GNN'') encoder}
+\item
+  where we replace the continuous expression encoder with a ``binning''
+  version, following the approach of scGPT\citep{cuiScGPTBuildingFoundation2024}
+\item
+  where we are ``using only expressed genes'', as in scGPT and
+  geneformer
+\item
+  ``without using gene location'', removing the gene location
+  information in the input tokens.
+\item
+  ``learn gene embedding'' where we replace the ESM3 gene embedding with
+  learnt embeddings, as in scGPT and Geneformer.
+\item
+  \textbf{replacing the ESM3 gene encoder with a ``fine-tuned ESM3''
+  gene encoder}
+\end{enumerate}
+
+The full training traces of the entire additive benchmark are available
+on weights and biases:
+
+\noindent\url{https://wandb.ai/ml4ig/scprint_ablation/reports/scPRINT-2-additive-benchmark--VmlldzoxNTIyOTYwNA}
+
+\subsubsection{Base model and training}\label{base-model-and-training}
+
+The additive benchmark is performed on a small model with 18.2M
+parameters, an embedding dimension of 256, and 8 layers and 4 heads. The
+model trains for 20 epochs of 20,000 batches of 64 cells per batch.
+Validation is performed on 10,000 minibatches. We otherwise use the same
+optimizer and hyperparameters as for scPRINT-2 (see
+\textbf{pre-training} in \hyperref[pre-training]{Methods})
+
+Gene expression is encoded using ESM3 embedding, with gene location and
+MLP-based expression encoding added, as described by Kalfon et al. The
+output is decoded using an \gls{MLP} that takes the output embeddings and
+depth information, then outputs a scalar expression value.
+
+The base model is trained on CZI's cellxgene census dataset, version
+2024 (compared to 2022 in Kalfon et al.). The pre-training task uses a
+30\% gene expression mask with an \gls{MSE} loss (as is common for BERT-like
+encoder transformers)\citep{cuiScGPTBuildingFoundation2024,rosenUniversalCellEmbeddings2023,theodorisTransferLearningEnables2023}. The Base model also uses a
+multi-cell-token generative loss as described in Kalfon et
+al.\citep{kalfonCantinilabScPRINT2025}. It also performs matched multi-class
+hierarchical classification, as defined below (see \textbf{Hierarchical
+classifier} in the
+\hyperref[hierarchical-classifier-loss]{Methods}\textbf{).}
+Finally, it also uses a dissimilarity loss between each of our cell
+embeddings for a given cell (see
+\hyperref[embedding-independence-loss]{\underline{embedding independence in
+Methods}}).
+
+Each of these decisions is assessed within our additive study.
+
+We pre-train the base model 6 times across multiple seeds to generate
+error bounds. We train using Flash-Attention-3 on 1 H100 GPU, each
+training of 20 epochs taking roughly 2 days. Some runs were done on
+A100s and V100s; we thus had to rescale the time duration for some of
+these runs.
+
+Some additive study runs use denoising as a training strategy or larger
+context lengths when it seemed likely that this would best highlight the
+abilities and shortcomings of the benchmarked element.
+
+The \textbf{medium model} size uses an embedding dimension of 512, with
+16 layers and 8 heads.
+
+The \textbf{negative control} is a model that was not trained at all.
+
+\subsubsection{Weighted sampling}\label{weighted-sampling}
+
+The goal of weighted random sampling is to de-bias regular random
+sampling of cells in contexts where many cells have similar profiles and
+expression patterns, while others are rare cell types.
+
+We use weighted random sampling on our training data based on all the
+different class values we have to predict. We use a factor of \(S_{1}\),
+meaning the rarest elements will, on average, be sampled only \(S_{1}\)
+times less than the most common ones. The sampling factor used for each
+group is then\(\frac{S_{1}}{c + S_{1}}\) , instead of \(\frac{1}{c}\),
+where \(c\) is the number of cells in each group.
+
+\subsubsection{Cluster-weighted
+sampling}\label{cluster-weighted-sampling}
+
+The goal of cluster-weighted sampling is to improve weighted sampling in
+the condition where cell-type annotations are poor or non-existent.
+
+For cluster-weighted sampling, we simply use the labels obtained by
+applying Leiden clustering to the K-NN graph of cells for each dataset
+during preprocessing. We used a resolution of 1 and 15 neighbors. We
+merge clusters if their centroid correlation exceeds a threshold (here
+94\%). This cluster label is then treated similarly to other labels,
+such as \emph{cell\_type}, \emph{sequencer}, etc.
+
+In this context, within datasets that lack information about tissue of
+origin or sequencer, or that belong to the same categories, cells from
+cluster 1 will be sampled with equal weight from those datasets. The
+sampling is not dataset-specific. This decision arises because most
+datasets contain some information about their tissue of origin or
+disease, and cluster sizes of data from the same tissue/disease often
+represent similar cells.
+
+This can be applied to any dataset for training models.
+
+\subsubsection{Depth-weighted sampling}\label{depth-weighted-sampling}
+
+The goal of depth-weighted sampling is to sample cells with higher
+quality, in terms of the number of genes expressed, more often.
+
+For depth-weighted sampling, we scale each cell' s
+sampling probability by its non-zero (\gls{NNZ}) gene count. Similarly, we
+scale this value, but this time we apply a sigmoid function beforehand
+to reduce the impact of extreme values.
+
+\begin{algorithm}
+\caption{Depth-weighted sampling using sigmoid scaling}
+\label{alg:depth-weighted-sampling}
+\begin{algorithmic}
+\Require $\text{nnz}$: number of non-zero genes per cell
+\Require $\text{midpoint} = 2000$: sigmoid midpoint
+\Require $\text{steepness} = 0.003$: sigmoid steepness parameter
+\Require $\text{scale} = 1000$: scaling factor
+\Ensure sampling probability for each cell
+
+\State \Comment{Apply sigmoid transformation centered at midpoint}
+\State $\text{sigmoid\_values} \gets \frac{1}{1 + \exp(-\text{steepness} \times (\text{nnz} - \text{midpoint}))}$
+
+\State \Comment{Scale sigmoid output to range [1, scale]}
+\State $\text{probability} \gets 1 + (\text{scale} - 1) \times \text{sigmoid\_values}$
+
+\State \Return $\text{probability}$
+\end{algorithmic}
+\end{algorithm}
+
+The values shown for Input were the ones we used across our research and
+were selected manually.
+
+This can be applied to any single-cell dataset for training models.
+
+\subsubsection{Multi-cell sampling}\label{multi-cell-sampling}
+
+For all our datasets, our preprocessing pipeline computes a K-NN graph
+from the \gls{PCA} of the scaled, log-transformed expression data. For each
+sampled cell, scDataloader also retrieves its k-NN cell ID and loads
+them, along with their distance information. Here, we set K to 6 and the
+PCA components to 200.
+
+We set the number of \gls{PCA} components to 200 to retain as much information
+as possible, while accounting for rare cells whose expression might have
+only a small impact on the first \gls{PCA} components.
+
+We set K to 6 to balance the computational resources required to sample
+6 times more cells per minibatch with the need for enough neighboring
+cells. Indeed, these computational resources are more prevalent for
+smaller models that perform fast iterations across many cells than for
+larger models. 6 neighbors per sampled cell was our limit for a small
+foundation model like scPRINT-2. We also note that there is likely a
+rapid diminishing returns beyond 6 to 15 cells for most datasets as we
+start sampling more often cells that are less similar to the center one.
+
+During scPRINT-2 training, we select 0 to 6 neighbors per minibatch, so
+the model learns to use a variable number of cell neighbors.
+
+\subsubsection{GNN Expression encoder}\label{gnn-expression-encoder}
+
+The goal of the \gls{GNN} expression encoder is to increase the information
+the foundation model can obtain from 1 cell to a set of neighboring
+cells, thereby dramatically reducing input noise.
+
+The \gls{GNN} takes multiple expression values as input, optionally along with
+corresponding cell-cell distances, and returns a vector encoding this
+information. Both continuous and \gls{GNN} encodings can be configured to
+receive either logp1-transformed expression data, sum-normalized
+expression, or both. The \gls{GNN} follows the DeepSet\citep{zaheerDeepSets2018}
+implementation:
+
+\begin{equation}
+E_{j} = \text{DeepSet}(x_{ij}, n_{ij}, d) = \phi_{1}(\phi_{2}(x_{ij})||\phi_{3}(n_{ij},d_{ij}))
+\end{equation}
+
+Where:
+
+\begin{itemize}
+\item
+  \(x_{j}\) is the center cell's expression for the gene \(j\)
+\item
+  \(n_{ij} \in \Re^{k}\) is the K nearest neighbor cell's expression for
+  gene j and cell i
+\item
+  \(d_{ij} \in \Re^{k}\) is the distance of each neighboring cell to the
+  center one
+\item
+  \(\phi_{i}\) are MLPs.
+\item
+  \(||\) is the concat operation
+\end{itemize}
+
+We selected K to be a random number between 0 and 6 during training and
+6 at inference.
+
+\subsubsection{ESM3 fine-tuning
+gene-encoder}\label{esm3-fine-tuning-gene-encoder}
+
+The goal of ESM3 fine-tuning is to get the best of both worlds between
+learning token features from the data and using learnt protein
+representations from a pLM as a prior.
+
+We encode/tokenize gene IDs using ESM3\citep{hayesSimulating500Million2025}. The mapping
+process happens in the following way:
+
+\begin{itemize}
+\item
+  A gene name is mapped to its canonical protein name using Ensembl114.
+\item
+  We recover the protein sequence of the protein using Ensembl
+\item
+  We use the protein sequence to generate an embedding using ESM3 by
+  averaging all its amino-acid output embeddings.
+\end{itemize}
+
+For the fine-tuning part, we reuse the fine-tuning approaches presented
+in Kalfon et al., which place an additional adapter layer after
+mean-pooling and before feeding the protein representation to the model.
+Interestingly, using gene expression as a further signal to the adaptor
+layer often led to training instability.
+
+\subsubsection{Biased attention}\label{biased-attention}
+
+The goal of biased attention is to orient our attention matrix towards
+genetic interaction priors to improve learning and the model's
+biological fidelity.
+
+We leveraged the Rcistarget computation and ranking of the human genome
+for 10kb down- and upstream of each target gene\citep{aibarSCENICSinglecellRegulatory2017},
+available at the Aerts Lab cistarget databases\footnote{\url{https://resources.aertslab.org/cistarget/databases/homo_sapiens/hg38/refseq_r80/mc_v10_clust/gene_based/hg38_10kbp_up_10kbp_down_full_tx_v10_clust.genes_vs_motifs.rankings.feather}}.
+Using this information, we generate a weight matrix \(M\) that links
+each motif-defined TF to its target genes.
+
+Given this matrix, we bias the attention matrix for all heads and layers
+using the attn\_mask parameter of the
+torch.nn.functional.scaled\_dot\_product\_attention function.
+
+It appears in the attention computation like so:
+$\text{softmax}\left(\frac{QK^{\top}}{\sqrt{d}} + M\right)V$ where $M$ is the
+attn\_mask matrix and is real-valued.
+
+\subsubsection{Criss-Cross attention}\label{criss-cross-attention}
+
+The goal of criss-cross attention is to create an efficient attention
+mechanism by learning, in context, a factorisation of each attention
+matrix.
+
+In criss-cross attention, we replace the self-attention mechanism with a
+double cross attention between the \(N\) input elements and \(M\) latent
+tokens (see Supplementary Figure~\ref{fig-s18-illustration-of-the-similarity-and-dissimilarity-based-contrastive-losses-used-in-scprint-2}). This is thus replacing a \(N^{2}\)
+computation with a \(2NM\) one, hence going below the quadratic
+bottleneck of attention. This bears resemblance to the ISAB
+architecture, XPressor, and
+perceiverIO\citep{leeSetTransformerFramework2019,kalfonTowardsFoundationModels2025,jaeglePerceiverGeneralPerception2021,jaeglePerceiverIOGeneral2022,carreiraHiPHierarchicalPerceiver2022,leeNVEmbedImprovedTechniques2025}. M, in our case, is set to
+10: our 9 predicted classes plus an additional token.
+
+Effectively, the \(M\) latent tokens are learnt at the first layer of
+the models. At the same time, they could also be generated from a
+sketching or principal components analysis (PCA) of the input tokens.
+They also get updated during the attention computation, so that at the
+second layer.
+
+We replace the traditional attention computation
+$X_{l + 1} = \text{Attention}(X_{l},X_{l},X_{l}) + X_{l}$, where Attention
+takes as input the Query, Key, Value elements, with:
+\begin{equation}
+\text{Attention}(X_{1},X_{2},X_{3}) = \text{softmax}\left(\frac{QK^{\top}}{\sqrt{d}}\right)V
+\end{equation}
+
+With
+
+\begin{itemize}
+\item
+  \(Q = X_{1}W_{Q},K = X_{2}W_{K},V = X_{3}W_{V}\)
+\end{itemize}
+
+\begin{itemize}
+\item
+  \(W_{Q},W_{K},W_{V} \in \Re^{dxd},X_{} \in \Re^{Nxd}\)
+\end{itemize}
+
+In self-attention \(X_{1} = X_{2} = X_{3}\)
+
+In Criss-Cross attention, the algorithm becomes:
+\begin{equation}
+V_{l + 1} = Att(V_{l},X_{l},X_{l}) + V_{l}
+\end{equation}
+for the latent update and
+\begin{equation}
+X_{l + 1} = Att(X_{l},V_{l},V_{l}) + X_{l}
+\end{equation}
+for the main update
+
+with \(X_{l} \in \Re^{Nxd}\) the main embeddings and
+\(V_{l} \in \Re^{Mxe}\)the latent embeddings
+
+\subsubsection{XPressor model}\label{xpressor-model}
+
+The goal of the XPressor architecture, as presented in Kalfon et al., is
+to replace and generalize the class-pooling of other transformer models
+and the bottleneck learning of scPRINT. This makes the model more
+powerful at encoding cell-level features while also separating
+cell-level tokens from gene-level tokens. Finally, it enables a new mode
+of Parameter-Efficient Fine-Tuning. This bears similarities to the ideas
+presented in criss-cross attention above.
+
+The \textbf{Xpressor} block uses as input a set of learned latent tokens
+\(T\). It then performs cross-attention between the last layer of the
+gene embeddings and the latent tokens. The goal is for the
+\textbf{Xpressor} layers to be of smaller dimensions and context size
+than the main transformer layers, such that we end up with \(C_{j}\) a
+set of \(n\) tokens of dimension \(d_{t}\) generated from the encoded
+gene expression and ID matrices \(E_{j}\) , and \(G\). Where \(G\)and
+\(E_{j}\)are sets of \(m\) tokens of size \(d_{c}\) representing the
+IDs of the genes and their corresponding expression in cell \$j\$,
+respectively, where \(d_{c} < d_{t}\) and \(n << m\):
+
+
+\begin{equation}
+O_{j} = Transformer(E_{j}, G)
+\end{equation}
+\begin{equation}
+C_{j} = Xpressor(O_{j},T)
+\end{equation}
+For a cell \(j\), with the \textbf{Xpressor} being initialized with a
+learned set of input cell tokens, and \(C_{j}\) being the cell tokens
+associated with the input \(E_{j}\).
+
+The \textbf{Transformer} and \textbf{Xpressor} are both transformers
+with \(l_{1}\) and \(l_{2}\) layers, respectively. Indeed, we have
+designed both layers to contain a cross-attention architecture (see
+Figure 4A, Supplementary Figure~\ref{fig-s1-illustration-of-the-full-scprint-2s-architecture-input-and-output}) such that we can also do:
+
+\begin{equation}
+O_{j} = Transformer(C_{j},G)
+\end{equation}
+
+
+With \(O_{j}\) the output of the \textbf{Transformer} when using the
+\textbf{Xpressor} representation as input.
+
+We add an optional \gls{MLP} after cross-attention to transform the embeddings
+before the self-attention round. In our example, the decompression is
+performed using gene ID tokens as input only. These tokens remain the
+same for all cells of a given organism and thus do not depend on \(j\).
+In the context of protein language models, for example, this would be
+replaced by positional tokens.
+
+As shown in Supplementary Figure~\ref{fig-s1-illustration-of-the-full-scprint-2s-architecture-input-and-output}, the \textbf{Transformer} blocks are
+applied twice. The first application serves as an ``encoder'', using
+only self-attention, while the \textbf{Xpressor} and the second
+application of the \textbf{Transformer} blocks act as ``decoders''. We
+follow these definitions from the original "Attention is All You Need"
+paper\citep{vaswaniAttentionAllYou2023}. It should be noted that, in our case,
+cross-attention is performed before self-attention.
+
+Related ideas have also been explored in the NVEmbed paper, where the
+authors propose a cross-attention-based method to update tokens using
+"latent" tokens and some additional prompting
+tricks\citep{leeNVEmbedImprovedTechniques2025}.
+
+XPressor can be applied during pre-training or fine-tuning to replace
+mean-max-class pooling in Foundation models.
+
+\subsubsection{VAE-based compressor
+model}\label{vae-based-compressor-model}
+
+The goal of the VAE-based compressor is to reduce information sharing
+between output embeddings by penalizing the amount of information each
+embedding stores (see Figure \ref{fig:scprint2_xpressor}, Supplementary Figure~\ref{fig-s1-illustration-of-the-full-scprint-2s-architecture-input-and-output})\citep{kingmaAutoEncodingVariationalBayes2013}.
+
+Each VAE-based compressor is explicitly applied to a cell embedding,
+compressing it into a relevant latent dimension. It has a 2-layer MLP
+encoder and a 2-layer \gls{MLP} decoder. In cases where only a small set of
+possible elements exists, such as in sex embeddings or cell culture, one
+can use the Finite Scalar Quantization (FSQ)-VAE\citep{mentzerFiniteScalarQuantization2023}.
+
+FSQ-VAE discretizes each latent dimension \textbf{independently}.
+Specifically, the encoder outputs \(d\) values, each constrained to lie
+within a bounded range (e.g., {[}-1, 1{]}). Each dimension is then
+quantized into one of \(M\) discrete levels within that range (in our
+case 2). This dimension-wise quantization can be implemented as either a
+hard nearest-bin assignment or a differentiable approximation thereof.
+Because FSQ enforces scalar-level discretization, it provides a simpler
+and more fine-grained alternative to VQ' s vector-level
+codebook approach, while still offering strong regularization of the
+latent space.
+
+In our case, all \gls{VAE}s with fewer than 8 latent dimensions used the
+FSQ-VAE approach.
+
+It can be applied on top of any output embedding at pre-training or
+fine-tuning.
+
+\subsubsection{\gls{ZINB}+MSE loss}\label{zinbmse-loss}
+
+The goal of the ZINB+MSE loss is to make the model' s
+expression-level prediction as precise as possible (thanks to the MSE)
+while preserving the \gls{ZINB}' s expressivity and uncertainty
+estimation.
+
+scPRINT-2 uses a novel expression decoder for foundation models that
+outputs the parameters of a zero-inflated negative binomial (\gls{ZINB})
+distribution for each gene \emph{i} in cell \emph{j}. The \emph{\gls{ZINB}}
+distribution is defined as
+
+\begin{equation}
+X\sim \gls{ZINB}(\mu,\theta,\pi)
+\end{equation}
+
+Where the parameters \(\mu,\theta,\pi\) are obtained from a
+multi-layer perceptron (MLP) applied to the expression embeddings
+outputted by the transformer model at its last layer (e), which are the:
+
+\begin{equation}
+\mu,\theta,\pi = MLP(e||d)
+\end{equation}
+
+The \gls{MLP} is a two-layer neural network with dimensions {[}\emph{d+1, d},
+3{]}, where \textbar\textbar{} denotes the concatenation operation.
+
+Based on the work of Jiang et al.\citep{jiangStatisticsBiologyZeroinflation2022}, zero inflation is
+the best distribution for a broad range of transcriptomic measurements,
+as some measurements exhibit sufficiently high dropout rates and require
+a zero-inflation term to model them. In our case, and similarly to
+scVI\citep{lopezDeepGenerativeModeling2018}, we define our \emph{\gls{ZINB}} as
+
+\begin{equation}
+ZINB(x|\mu,\theta,\pi) = \pi\delta_{0}(x) + (1 - \pi)NB(x |\mu,\theta)
+\end{equation}
+
+Where \(\delta_{0}(x)\) is a point mass at zero, and
+\(NB(x|\mu,\theta)\) is the negative binomial distribution with mean
+\(\mu\) and dispersion \(\theta\).
+
+Compared to scVI, where the overdispersion parameter \(\theta\) is
+learned for each gene, we make scPRINT-2 output it together with
+\(\mu,\pi\) (see Supplementary Figure~\ref{fig-s13-illustration-of-scprint-2s-generative-imputation-mechanism})
+
+Effectively, the model learns that dispersion may vary across genes,
+sequencers, cell types, and sequencing depths.
+
+In addition, the loss adds an \gls{MSE} term computed from the \(\mu\) and
+\(\theta\) output of the MLP, comparing for a gene \(i\),
+
+\begin{equation}
+e_{i} = \mu_{i} \times (1 - \sigma(\pi_{i})) 
+\end{equation}
+to the
+logp1-transform of the expression using mean-squared-error.
+
+Where \(e_{i}\) is the predicted expression of gene \(i\) and \(\sigma\)
+is the sigmoid
+function:
+\begin{equation}
+L_{MSE} = \frac{1}{n} \sum_{i = 1}^{n}(e_{i} - \log_2(x_{i} + 1))^{2}
+\end{equation}
+
+The zinb+mse loss is the addition of both losses with a scale parameter,
+here:
+
+\begin{equation}
+L_{ZINB + MSE} = L_{ZINB} + 0.{5 \times L}_{MSE}
+\end{equation}
+
+This loss comes as a replacement for the classical \gls{MSE} or \gls{ZINB} in
+\gls{scRNA-seq} models.
+
+\subsubsection{\texorpdfstring{Embedding contrastive loss
+}{Embedding contrastive loss }}\label{embedding-contrastive-loss}
+
+The goal of this contrastive loss is to remove some batch effect by
+pushing cell embeddings obtained from the expression profile after
+different perturbations to be more similar to each other than they are
+from cell embeddings of other cell profiles, using the
+InfoNCE\citep{oordRepresentationLearningContrastive2019} loss:
+
+\begin{algorithm}
+\caption{Contrastive Loss (InfoNCE)}
+\label{alg:contrastive-loss}
+\begin{algorithmic}
+\Require $x$: embeddings of cells post perturbation A $[\text{batch\_size} \times \text{feature\_dim}]$
+\Require $y$: embeddings of same cells post perturbation B $[\text{batch\_size} \times \text{feature\_dim}]$
+\Require $\tau$: temperature scaling parameter = 0.3
+\Ensure contrastive loss value
+
+\State \Comment{Compute cosine similarity matrix}
+\State $S \gets \text{cosine\_similarity}(x, y) / \tau$
+\State \Comment{Where $S[i,j] = \frac{x[i] \cdot y[j]}{\|x[i]\| \|y[j]\| \tau}$}
+
+\State \Comment{Create positive pair labels}
+\State $\text{labels} \gets [0, 1, 2, \ldots, \text{batch\_size}-1]$
+
+\State \Comment{Compute cross-entropy loss}
+\State $\text{loss} \gets \text{cross\_entropy}(S, \text{labels})$
+
+\State \Comment{Which expands to:}
+\State $\text{loss} \gets -\sum_{i} \log\left(\frac{\exp(S[i,i])}{\sum_{j} \exp(S[i,j])}\right)$
+
+\State \Return $\text{loss}$
+\end{algorithmic}
+\end{algorithm}
+
+This loss can be added to any \gls{scFM}s at pre-training or fine-tuning (see
+Supplementary Figure~\ref{fig-s18-illustration-of-the-similarity-and-dissimilarity-based-contrastive-losses-used-in-scprint-2}).
+
+\subsubsection{Elastic cell similarity
+loss}\label{elastic-cell-similarity-loss}
+
+The goal of this loss is to reduce batch effects by pushing cells that
+are similar to become more similar and cells that are dissimilar to
+become more dissimilar\citep{cuiScGPTBuildingFoundation2024}.
+
+We implement the \textbf{cell similarity loss} of scGPT, where, given
+cell embeddings $e \in \mathbb{R}^{m \times d}$, where $m$ is the number of cells
+and $d$ is the embedding dimension:
+\begin{equation}
+L_{similarity} = \frac{1}{m(m - 1)}\sum_{i \neq j} 1 - (\max(0, \hat{e}_i^\top \hat{e}_j) - \tau)^2
+\end{equation}
+Where:
+
+$\hat{e}_i = e_{i}/\|e_{i}\|_2$ is the L2-normalized embedding of the cell $i$
+
+$\tau$ is the similarity threshold (default 0.3)
+
+$m(m - 1)$ is the number of off-diagonal pairs
+
+This loss can be added to any \gls{scFM}s.
+
+\subsubsection{Embedding independence
+loss}\label{embedding-independence-loss}
+
+The goal of the embedding independence loss is to push the different
+class-level embeddings of a cell to encode distinct information by
+making them orthogonal (see Supplementary Figure~\ref{fig-s18-illustration-of-the-similarity-and-dissimilarity-based-contrastive-losses-used-in-scprint-2}).
+
+Implementing a set of disentangled embeddings is not straightforward. In
+our case, we push the embeddings to be as different from one another as
+possible, with an \textbf{independence loss} defined as
+
+\begin{equation}
+L_{independence} = \frac{1}{m^{2}}\sum_{i = 1}^{m}\sum_{i'}^{m}1 - cos(e_{i},e_{i'})
+\end{equation}
+
+where \(e_{i}\) and \(e_{i'}\) are the cell embeddings, \emph{m} is the
+minibatch size, and \emph{cos} denotes the cosine similarity. This
+pushes each embedding to represent different information from the
+others.
+
+This loss can be added to any \gls{scFM}s at pre-training or fine-tuning.
+
+\subsubsection{Hierarchical classifier
+loss}\label{hierarchical-classifier-loss}
+
+The goal of the hierarchical classifier is to enable efficient label
+predictions for a set of related labels defined by a known graph.
+
+The scPRINT-1 classifier generates predictions for all possible labels
+in a hierarchical ontology, while producing logits only for the most
+fine-grained elements. To predict the other elements, it only has to
+aggregate their children' s logits. We improve this loss
+in scPRINT-2 by using the entire ontological graph: e.g., if a cell is
+an \emph{olfactory neuron}, then it is also a neuron. If the classifier
+predicts \emph{glutaminergic neuron}, it is wrong at this level but
+correct for \emph{neuron}, meaning we penalize it less overall than a
+non-neuron label, like \emph{fibroblast} (see Figure \ref{fig:scprint2_classifier}).
+
+In conjunction with our weighted sampler, this allows the model to learn
+rich gradients from a low volume of data. We also implement two
+additional classes for predictions in our hierarchical classifier
+compared to scPRINT-1: age and tissue of origin.
+
+During pre-training, we perform label prediction for different classes,
+e.g., cell type, disease, assay, age, tissue, ethnicity, sex, and
+organism. We created a specific relabeling of the age label that could
+be very fine-grained, e.g., 2 weeks, 3 weeks, 35 years old, 36 years
+old, into biologically relevant groups such as \emph{embryo,}
+\emph{fetal}, \emph{6-month-old}, \emph{1-year-old}, \emph{adolescent},
+young adult, and so on. We mapped both human and mouse data this way to
+a common age profile. These were the only two species with such labels
+available. The labels follow a hierarchy defined by ontologies: the Cell
+Ontology for cell type, MONDO for disease, EFO for assay, HANCESTRO for
+ethnicity, HSAPDV for age, UBERON for tissue, NCBITaxon for organism,
+and EFO for sex\citep{diehlCellOntology20162016,vasilevskyMondoUnifyingDiseases2022,maloneModelingSampleVariables2010}. We do not compute the loss for
+cells with the unknown label.
+
+The algorithm thus becomes:
+
+\begin{algorithm}
+\caption{Hierarchical Classification Loss}
+\label{alg:hierarchical-classification-loss}
+\begin{algorithmic}
+\Require $\text{pred}$: predicted logits $[\text{batch\_size} \times \text{n\_leaf\_labels}]$
+\Require $\text{cl}$: ground truth labels $[\text{batch\_size}]$
+\Require $\text{labels\_hierarchy}$: binary matrix $[\text{n\_parent\_labels} \times \text{n\_leaf\_labels}]$
+\Ensure hierarchical binary cross-entropy loss
+
+\State $\text{newcl} \gets \text{zeros}[\text{batch\_size} \times \text{n\_leaf\_labels}]$ \Comment{Initialize target matrix}
+\State $\text{weight} \gets \text{ones}[\text{batch\_size} \times \text{n\_leaf\_labels}]$ \Comment{Initialize weight matrix}
+
+\For{each sample $i$ where $\text{cl}[i] \in [0, \text{n\_leaf\_labels})$}
+  \State $\text{newcl}[i, \text{cl}[i]] \gets 1$ \Comment{Handle leaf labels}
+\EndFor
+
+\For{each sample $i$ where $\text{cl}[i] = -1$}
+  \State $\text{weight}[i, :] \gets 0$ \Comment{Handle unknown labels}
+\EndFor
+
+\For{each sample $i$ where $\text{cl}[i] \geq \text{n\_leaf\_labels}$}
+  \State $\text{parent\_idx} \gets \text{cl}[i] - \text{n\_leaf\_labels}$
+  \State $\text{children} \gets \text{children\_of\_parent}[\text{parent\_idx}]$
+  \State $\text{weight}[i, \text{children}] \gets 0$ \Comment{Zero out weights for unknown children}
+  \State $\text{newcl}[i, \text{children}] \gets 1$ \Comment{Set targets for all children}
+\EndFor
+
+\For{each parent $p$}
+  \State $\text{addpred}[p] \gets \text{logsumexp}(\text{pred}[:, \text{children\_of\_parent}[p]])$
+  \State $\text{addnewcl}[p] \gets \max(\text{newcl}[:, \text{children\_of\_parent}[p]])$
+  \State $\text{addweight}[p] \gets \frac{\text{addnewcl}[p]}{\sqrt{|\text{children\_of\_parent}[p]|}}$
+\EndFor
+
+\State $\text{pred} \gets \text{concat}(\text{pred}, \text{addpred})$
+\State $\text{newcl} \gets \text{concat}(\text{newcl}, \text{addnewcl})$
+\State $\text{weight} \gets \text{concat}(\text{weight}, \text{addweight})$
+
+\State \Return $\text{binary\_cross\_entropy\_with\_logits}(\text{pred}, \text{newcl}, \text{weight})$
+\end{algorithmic}
+\end{algorithm}
+
+The hierarchical loss is available as a standalone function on GitHub
+Gist\footnote{\url{https://gist.github.com/jkobject/5b36bc4807edb440b86644952a49781e}}.
+
+This loss replaces a classical pytorch classifier loss, such as
+binary\_cross\_entropy\_with\_logits.
+
+\subsubsection{Variable context length}\label{variable-context-length}
+
+The goal of the variable context length method is to decrease the
+model's bias toward a specific number of elements in context.
+
+Indeed, we noticed that at inference time, the model's performance could
+be lower in variable-context situations (e.g., on gene-panel datasets or
+when using only expressed genes). We thus introduced a
+\textbf{variable-context} training scheme in which the model's context
+sometimes drops by a random amount (see Table \ref{tab:additive_benchmark}; see \hyperref[methods]{Methods}).
+This makes the model less biased toward a specific input context during
+inference and decreases training time (see Supplementary Materials). Again, here
+we see strong consistent improvement in the model's performance across
+our additive benchmark.
+
+This can be applied to any transformer models where the number of
+elements in context can be chosen arbitrarily.
+
+\subsubsection{Adversarial classifier
+loss}\label{adversarial-classifier-loss}
+
+The goal of the Adversarial classifier is to remove batch
+effect\citep{lotfollahiScGenPredictsSinglecell2019}.
+
+The adversarial classifier is applied only to the \emph{cell\_type} cell
+embedding and is tasked to classify the organism of origin for each
+cell. It uses the same \gls{MLP} as regular classifiers (2 layers, 256 as
+inner dimension). We use the reverse\_gradient operation on top of a
+simple softmax-based binary cross-entropy classifier loss as follows:
+
+\begin{algorithm}
+\caption{Adversarial Classifier Loss}
+\label{alg:adversarial-classifier}
+\begin{algorithmic}
+\Require $e$: input cell embedding tensor $[\text{batch\_size} \times \text{feature\_dim}]$
+\Require $c$: input ground truth label $[\text{batch\_size}]$
+\Ensure cross-entropy loss
+\State $e \gets \text{grad\_reverse}(e)$ \Comment{reverse gradient for adversarial behavior}
+\State $\text{logits} \gets \text{MLP}(e)$ \Comment{compute logits from embedding}
+\State \Return $\text{cross\_entropy}(\text{logits}, c)$
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+\caption{Gradient Reversal}
+\label{alg:gradient-reversal}
+\begin{algorithmic}
+\Require $e$: input tensor $[\text{batch\_size} \times \text{feature\_dim}]$
+\Require $\lambda$: scaling factor for gradient reversal $= 1$
+\Ensure tensor with reversed gradients
+\If{\text{forward pass}}
+  \State \Return $e$ (identity function)
+\EndIf
+\If{\text{backward pass}}
+  \State $e.\text{grad\_input} \gets -\lambda \times e.\text{grad\_output}$
+  \State \Return reversed gradients
+\EndIf
+\State \Return $\text{grad\_input}$, \texttt{None}
+\end{algorithmic}
+\end{algorithm}
+
+We use it to predict both organisms and sequencers. Sequencers are
+mapped to a set of coarser labels, as we cannot use the hierarchical
+classifier in an adversarial context. Indeed, as it is sigmoid-based, it
+could easily set all label logits to -inf.
+
+This loss can be added during pre-training or finetuning of a foundation
+model, provided batch labels are available.
+
+\subsubsection{TF-masking task}\label{tf-masking-task}
+
+The goal of the Transcription Factor (TF) masking task is to push the
+model to pay more attention to \gls{TF}s than to other genes.
+
+For the Transcription Factor masking task, we reuse the classic 30\%
+masking task used in the base model (see
+\hyperref[base-model-and-training]{\underline{Base Model}}). We then list the
+ENSEMBL IDs of all 13,000 \gls{TF}s across our 16 organisms and sample our
+mask, giving increased weight to the \gls{TF}s. Here, the weight is set up to
+be 10 for \gls{TF}s and 1 for the rest.
+
+The tool can be applied to any other set of genes as a replacement for
+classical masking in \gls{scFM}s.
