@@ -16,7 +16,7 @@
 
 \raggedbottom % Allow flexible page heights to reduce underfull vbox warnings
 
-\chapter[scPRINT-2: Towards the next-generation of cell foundation models and benchmarks]{\gls{scPRINT}-2: Towards the next-generation of cell foundation models and benchmarks}
+\chapter[scPRINT-2: Towards the next-generation of cell foundation models and benchmarks]{scPRINT-2: Towards the next-generation of cell foundation models and benchmarks}
 \label{article3}
 
 \section{Summary}
@@ -25,13 +25,13 @@ Cell biology has been booming with foundation models trained on large
 single-cell \gls{RNA-seq} databases, but benchmarks and capabilities remain
 unclear. We propose an additive benchmark across a gymnasium of tasks to
 discover which features improve performance. From these findings, we
-present \gls{scPRINT}-2, a single-cell Foundation Model pre-trained across 350
-million cells and 16 organisms. Our contributions in pre-training tasks,
+present \gls{scPRINT}-2, a single-cell Foundation Model pretrained across 350
+million cells and 16 organisms. Our contributions in pretraining tasks,
 tokenization, and losses made \gls{scPRINT}-2 state-of-the-art in expression
 denoising, cell embedding, and cell type prediction. Furthermore, with
 our cell-level architecture, \gls{scPRINT}-2 becomes generative, as
 demonstrated by our expression imputation and counterfactual reasoning
-results. Finally, thanks to our pre-training database, we uncover
+results. Finally, thanks to our pretraining database, we uncover
 generalization to unseen modalities and organisms. These studies,
 together with improved abilities in gene embeddings and gene network
 inference, place \gls{scPRINT}-2 as a next-generation cell foundation model.
@@ -67,15 +67,15 @@ prediction\citep{deeperEvaluationSinglecellFoundation2024,liuEvaluatingUtilities
 feature-rich, easy-to-use \gls{scFM}s. Models that allow inference in minutes,
 along with well-crafted reproducible benchmarks that demonstrate how
 \gls{scFM}s uniquely solve essential problems in single-cell biology.
-Open-sourcing not just model weights but their pre-training tasks and
+Open-sourcing not just model weights but their pretraining tasks and
 datasets.\textbf{\hfill\break
 }
 
 On this front, scPRINT was released as part of a second batch of scFM,
 presenting contributions in terms of usability and reproducibility while
-also showcasing pre-training strategies, data encoding, and
+also showcasing pretraining strategies, data encoding, and
 decoding\citep{scprint}. scPRINT was trained on 50 million cells
-using a multitask pre-training strategy that included expression
+using a multitask pretraining strategy that included expression
 denoising, autoencoding, and cell-label prediction. It also presented an
 in-depth benchmark that examined the foundation model's zero-shot
 performance on these tasks, as well as its internal gene network
@@ -88,16 +88,16 @@ attributes. We address several key questions about the importance of
 diverse architectures, datasets, and training modalities. This additive
 benchmark aims to understand the relative importance of these different
 features in our task gymnasium, examining the choice of model
-architecture and pre-training tasks across 42 different scenarios. In
+architecture and pretraining tasks across 42 different scenarios. In
 these scenarios, we propose a breadth of novel components for \gls{scFM}s. In
 addition to those 12 distinct contributions, we also examine various
-pre-training datasets, compiling a 350-million-cell database---the
+pretraining datasets, compiling a 350-million-cell database---the
 largest to date---with over 16 organisms.
 
 As a result of the benchmark, we derive a next-generation scFM,
 	extbf{\gls{scPRINT}-2}. \gls{scPRINT}-2 improves upon the previous generation of
 models by leveraging our database, the \gls{scPRINT}-2 corpus, and multiple
-data augmentation approaches. It uses a set of updated pre-training
+data augmentation approaches. It uses a set of updated pretraining
 tasks and losses, improving its accuracy in challenging and unseen
 contexts. Finally, it is equipped with graph-based encoders and the
 XPressor architecture, enabling unprecedented expression imputation,
@@ -106,8 +106,8 @@ into these specific contributions by examining multiple use cases,
 highlighting behaviors that are often overlooked or under-assessed in
 classical benchmarks.
 
-\gls{scPRINT}-2, its dataloader, pre-training datasets, preprocessing, task
-functions, pre-trained weights, as well as the additive benchmark
+\gls{scPRINT}-2, its dataloader, pretraining datasets, preprocessing, task
+functions, pretrained weights, as well as the additive benchmark
 training traces and all 42 models'{} weights are fully
 open-sourced and available under the GPL-v3 License.
 
@@ -140,7 +140,7 @@ Contrastive Cell Embedding (\textbf{CCE}) (see
 
 To address the lack of a consistent assessment of these models, we have
 designed a benchmark to comprehensively evaluate the various components
-of \gls{scFM}s, including pre-training databases, architectures, and training
+of \gls{scFM}s, including pretraining databases, architectures, and training
 tasks. This benchmark is based on a gymnasium of tasks similar to those
 presented in Kalfon et al.\citep{scprint} (see Figure \ref{fig:scprint2_overview}; see Table
 \ref{tab:additive_benchmark}). The \gls{scFM} gymnasium assesses each model's ability to predict labels,
@@ -160,7 +160,7 @@ network from expression data alone (see
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{figures/scprint2/image4.png}
-    \caption[Presentation of the \gls{scPRINT}-2 model, pre-training dataset, and additive benchmark]{(a) The additive benchmark example table with its gymnasium scores across the \gls{scFM}'s features. (b) Our \gls{scPRINT}-2 corpus pre-training dataset, with 16 organisms across 300+ tissues. \gls{UMAP} of 15 million cells from the corpus integrated using \gls{scPRINT}-2. Colors represent species. (c) The \gls{scPRINT}-2 model, its input data, and its different outputs. Source data are provided as a Source Data file.}
+    \caption[Presentation of the \gls{scPRINT}-2 model, pretraining dataset, and additive benchmark]{(a) The additive benchmark example table with its gymnasium scores across the \gls{scFM}'s features. (b) Our \gls{scPRINT}-2 corpus pretraining dataset, with 16 organisms across 300+ tissues. \gls{UMAP} of 15 million cells from the corpus integrated using \gls{scPRINT}-2. Colors represent species. (c) The \gls{scPRINT}-2 model, its input data, and its different outputs. Source data are provided as a Source Data file.}
     \label{fig:scprint2_overview}
 \end{figure}
 
@@ -170,8 +170,8 @@ trained on the CxG database, comprising 500 carefully annotated human
 and mouse datasets. Its training lasts for a maximum of 20 epochs, each
 of 20,000 steps, with a minibatch size of 64. We encode the gene
 expression using the scPRINT-1 approach and decode it with the MSE
-method. The base model's pre-training task uses a 30\% gene expression
-mask. We pre-train the models 6 times across multiple seeds to generate
+method. The base model's pretraining task uses a 30\% gene expression
+mask. We pretrain the models 6 times across multiple seeds to generate
 error bounds. Using Flash-Attention-3, the 20M parameters model trains
 on 1 H100 \gls{GPU} for 2 days.
 
@@ -181,10 +181,10 @@ highlights several key points.
 
 Regarding the tasks, we have confirmed what Kalfon et al. and De Waele
 et al. previously showed: that denoising is superior to masking as a
-pre-training task for single-cell data in classification and embedding
+pretraining task for single-cell data in classification and embedding
 tasks\citep{scprint,deWaeleSystematicAssessment2025}. Similarly, un-normalized expression is
 better than normalizing it at the input. Classification also serves as a
-good supplement to the pre-training task, as without it, we observe a
+good supplement to the pretraining task, as without it, we observe a
 slight decrease in performance (see Table \ref{tab:additive_benchmark}).
 
 We also present, as part of our study, the \textbf{\gls{scPRINT}-2 corpus},
@@ -202,8 +202,8 @@ tissue of origin, assay, ethnicity, sex, cell culture,} and
 \emph{organism}.
 
 Thanks to this database, we demonstrated the growing importance of data
-selection in pre-training \gls{scFM}s. Indeed, when using the Tahoe-100M
-database solely for pre-training, the model's overall performance
+selection in pretraining \gls{scFM}s. Indeed, when using the Tahoe-100M
+database solely for pretraining, the model's overall performance
 plummets, as the sequencing depth and diversity are low despite the
 large number of cells.
 
@@ -231,7 +231,7 @@ section 3}). Interestingly, we observe that both methods tend to
 improve the model's performance in most metrics, even though these
 models do not examine more cells overall. This highlights the importance
 of effective data augmentation techniques for scFM
-pre-training\citep{comprehensiveSurveyDataAugmentation2024}.
+pretraining\citep{comprehensiveSurveyDataAugmentation2024}.
 
 \begin{table}[H]
     \centering
@@ -321,8 +321,8 @@ to 50 million cells, except the recently released Geneformer-v2 and
 STATE-SE models, which have been trained on roughly 300 million
 cells\citep{chenQuantizedMultitaskLearning2024,predictingCellularResponsesPerturbation2025}.
 
-\subsubsection{scPRINT-2 pre-training
-corpus}\label{scprint-2-pre-training-corpus}
+\subsubsection{scPRINT-2 pretraining
+corpus}\label{scprint-2-pretraining-corpus}
 
 In conjunction with our model's architecture, the \gls{scPRINT}-2 corpus and
 its 16 organisms enable generalization to organisms unseen during
@@ -356,10 +356,10 @@ databases\citep{alsabbaghFoundationModelsMeet2023}.
 
 Interestingly, the number of training steps required to achieve
 convergence increased only 2-fold, indicating that, as in \gls{scPRINT}-1, the
-model did not sample as many cells as actually exist in the pre-training
+model did not sample as many cells as actually exist in the pretraining
 dataset before reaching convergence. However, with data augmentation and
 nearest-neighbor sampling, the model still encountered roughly 2 billion
-distinct input cell profiles during pre-training, corresponding to 2000
+distinct input cell profiles during pretraining, corresponding to 2000
 cell profiles per step.
 
 After implementing this feature and training \gls{scPRINT}-2, its cell-type
@@ -386,7 +386,7 @@ performed slightly better than \gls{scPRINT}-2. This is most likely due to the
 smaller capacity of \gls{scPRINT}-2 (20M parameters) compared to scimilarity
 (100M parameters), as we also observed in our additive benchmark (see
 Table \ref{tab:additive_benchmark}). Another likely reason is that the model likely saw those
-datasets more often during pre-training, since it is trained only on
+datasets more often during pretraining, since it is trained only on
 CxG's human datasets.
 
 We then performed fine-tuning using our XPressor-based
@@ -432,7 +432,7 @@ organisms. Using a randomly selected tomato plant dataset and its
 corresponding ESM3 gene embeddings, unseen at training time, \gls{scPRINT}-2
 generates an organism label prediction for the two plant organisms it
 knows about 67\% of the time. This is despite the very low prevalence of
-these organisms in the pre-training dataset (see Figure \ref{fig:scprint2_overview}). For a horse
+these organisms in the pretraining dataset (see Figure \ref{fig:scprint2_overview}). For a horse
 dataset, \gls{scPRINT}-2 predicted mammalian organisms 72\% of the time.
 
 Unfortunately, these datasets lacked cell-type annotations. Using
@@ -499,7 +499,7 @@ Jorstad et al., averaging around 6000 \gls{NNZ} genes per cell (see Supplementar
 Figure~\ref{fig-s7-umap-of-the-smart-seq-dataset-used-in-the-varying-context-classification-task})\citep{jorstadTranscriptomicCytoarchitectureReveals2023}. As shown in Figure \ref{fig:scprint2_classifier}, we observed an
 overall increase in prediction accuracy across all labels as we
 increased the context from 200 to 8000 genes, even though \gls{scPRINT}-2 was
-pre-trained on only 3200 genes, demonstrating generalization to larger
+pretrained on only 3200 genes, demonstrating generalization to larger
 input contexts. Interestingly, classes such as sex and ethnicity reached
 much better predictive accuracy as we increased the number of genes.
 When using only the most expressed genes in context, we observed that
@@ -536,7 +536,7 @@ In addition to biasing sampling toward cells with more non-zero genes
 defined in expression space or via spatial transcriptomics (see Figure
 \ref{fig:scprint2_denoising}; see \hyperref[multi-cell-sampling]{Methods}). This allows users
 to create models that take into account nearest neighbor cells during
-pre-training. This can be done, for example, by creating
+pretraining. This can be done, for example, by creating
 \textbf{meta-cells}. Meta-cells average the expression over the cell and
 its neighbors to artificially create a higher-depth cell with less
 dropout. We demonstrate that this approach achieves improved results
@@ -643,7 +643,7 @@ predictions. Indeed, many cell types were labeled as \emph{basal} or
 lesion in the tissue (see Figure \ref{fig:scprint2_denoising}). This entire lesion region was
 labeled as \emph{cancer} by \gls{scPRINT}-2. This was striking as it contained
 mostly non-cancerous activated immune cells (see Figure \ref{fig:scprint2_denoising}; see Supplementary
-Figure~\ref{fig-s14-spatial-plot-of-the-xenium-melanoma-dataset-with-scprint-2-predicted-cell-labels}). It likely reflects the biases of the pre-training dataset,
+Figure~\ref{fig-s14-spatial-plot-of-the-xenium-melanoma-dataset-with-scprint-2-predicted-cell-labels}). It likely reflects the biases of the pretraining dataset,
 where disease labels are often applied at the dataset level rather than
 the cell level, making \gls{scPRINT}-2's disease predictions sometimes
 imprecise. Thankfully, many cells had the cell-type label
@@ -844,7 +844,7 @@ of \gls{ESM}3's protein embeddings, jointly trained with the model (see \hyperre
 This approach is one of the few that improve gene network inference
 without decreasing any other metrics in our additive benchmark (see
 Table \ref{tab:additive_benchmark}). It allows us to update gene representations during
-pre-training while maintaining the ability to work with unseen
+pretraining while maintaining the ability to work with unseen
 representations, e.g., from unseen species (see Figure \ref{fig:scprint2_genenetwork}).
 
 It remains unclear, however, what the right approach is for selecting
@@ -990,7 +990,7 @@ bottlenecks and limitations, issues that we solved in subsequent
 analysis. Indeed, future benchmarks will benefit from using more diverse
 datasets, tasks, and ground truths.
 
-We have also presented the largest pre-training database to date,
+We have also presented the largest pretraining database to date,
 encompassing more organisms, conditions, and data modalities. We have
 seen that, while more work is needed to obtain higher-quality,
 well-annotated datasets, our dataloader and preprocessing pipeline have
@@ -1013,7 +1013,7 @@ imputation, and counterfactual reasoning.
 
 Finally, we present tools for easily extracting labels, cell-specific
 gene embeddings, imputing gene expression, performing gene network
-inference, and working with organisms unseen during pre-training. We
+inference, and working with organisms unseen during pretraining. We
 believe our results demonstrate many domains where \gls{scFM}s might
 confidently replace approaches that rely on heuristics, atlases, and a
 variety of tools and packages. However, much work remains.
@@ -1023,7 +1023,7 @@ the complexity of cellular states by inherent clustering biases. Batch
 correction metrics are similarly biased, and top scores can be easily
 gamed; gene network ground-truths are not cell type specific and likely
 filled with false negatives. Data diversity and quality are the
-principal pre-training bottlenecks, and efforts will be needed to
+principal pretraining bottlenecks, and efforts will be needed to
 improve foundation models. Many other key modalities, such as measuring
 time and perturbation effects, remain scarce. They will become
 increasingly helpful for enriching the future comprehensive benchmarks
