@@ -66,7 +66,7 @@ Overall, even more challenges arise in tissue foundation models. Most of the dat
 
 For biological representations, previous methods have leveraged many different methods from matrix factorization, nearest neighbors, and neural networks \citep{gunawanIntroductionRepresentationLearning2023, bengioRepresentationLearningReview2014a}. Popular approaches are \gls{VAE} such as \gls{scVI} and scArches \citep{scvi, scarches}. In the domain of protein embedding, the HourGlass embedding method \citep{cheap} introduced \gls{FSQ} \citep{mentzerFiniteScalarQuantization2023} as a framework to encode both amino acid sequences and 3D structural information from a \gls{pLM} into a quantized latent space. Meanwhile, \gls{DNA} sequence model embeddings have been mostly restricted to metagenomics, with the exception of DNA-BERT-S \citep{zhouDNABERTSPioneeringSpecies2024}.
 
-Finally, it has been shown not only in biology but also in the \gls{NLP} community that for transformer models, embeddings based on {average,max,sum}-pooling of last-layer tokens are very restrictive and do not perform well \citep{schockaertEmbeddingsEpistemicStates2023, leeNVEmbedImprovedTechniques2025, ilseAttentionbasedDeepMultiple2018}. Indeed, current \gls{SOTA} methods use more complex approaches such as cross-attention mechanism and additional pre-training or fine-tuning tasks. 
+Finally, it has been shown not only in biology but also in the \gls{NLP} community that for transformer models, embeddings based on {average,max,sum}-pooling of last-layer tokens are very restrictive and do not perform well \citep{schockaertEmbeddingsEpistemicStates2023, leeNVEmbedImprovedTechniques2025, ilseAttentionbasedDeepMultiple2018}. Indeed, current \gls{SOTA} methods use more complex approaches such as cross-attention mechanism and additional pretraining or fine-tuning tasks. 
 
 In the following, we will show that we can use a similar cross-attention mechanisms to compress the output embeddings of a foundation model into a set of lower-dimensional vectors.
 
@@ -90,7 +90,7 @@ Following up on these recent advances, we propose:
 
 \subsection{Background}
 
-\gls{scPRINT} \citep{scprint} is a foundation model trained on more than 50 million unique single-cell \gls{RNA-seq} profiles, representing around 100B tokens. It learns with a multi-task pre-training loss, allowing \gls{SOTA} zero-shot abilities in denoising and label prediction. \gls{scPRINT} builds on previous foundation models, like \gls{scGPT} \citep{cuiScGPTBuildingFoundation2024} and scFoundation \citep{haoLargescaleFoundationModel2024}. It improves upon them on multiple benchmarks and is also easier to use and faster to train than many other similar models. Additionally, it comes with a gymnasium of benchmarks presented in \citet{scprint}. For these reasons, we chose to use it as our \gls{cFM} and the starting point for our work.
+\gls{scPRINT} \citep{scprint} is a foundation model trained on more than 50 million unique single-cell \gls{RNA-seq} profiles, representing around 100B tokens. It learns with a multi-task pretraining loss, allowing \gls{SOTA} zero-shot abilities in denoising and label prediction. \gls{scPRINT} builds on previous foundation models, like \gls{scGPT} \citep{cuiScGPTBuildingFoundation2024} and scFoundation \citep{haoLargescaleFoundationModel2024}. It improves upon them on multiple benchmarks and is also easier to use and faster to train than many other similar models. Additionally, it comes with a gymnasium of benchmarks presented in \citet{scprint}. For these reasons, we chose to use it as our \gls{cFM} and the starting point for our work.
 
 \begin{figure}[H]
 \begin{center}
@@ -169,7 +169,7 @@ To merge foundation models, we need a way to connect the lower-scale models to t
 
 \subsection{Approach}
 
-We propose going beyond simply reusing lower-scale models' representations and fine-tuning them during the pre-training of the upper-scale model using an adapter layer (see Figure~\ref{fig:first}B). With such layer, each output embedding $\ve$ is transformed with a differentiable function $f$ (here, an \gls{MLP}):
+We propose going beyond simply reusing lower-scale models' representations and fine-tuning them during the pretraining of the upper-scale model using an adapter layer (see Figure~\ref{fig:first}B). With such layer, each output embedding $\ve$ is transformed with a differentiable function $f$ (here, an \gls{MLP}):
 
 \begin{equation}
 \vi_{k} = f(\ve_{k})
@@ -220,7 +220,7 @@ We have proposed a framework towards building compositional hierarchical foundat
 
 We have presented one small piece in this approach, where a cell foundation model (\gls{scPRINT}) uses and fine-tunes a protein sequence foundation model (\gls{ESM}2). We have also shown how XPressor can compress the output representations of transformers into a small set of lower-dimensional vectors, bridging proteins to cells. Such an approach could be used to bridge molecules to proteins and cells to tissues by using compressed representations that are then fine-tuned. This is a promising back-bone architecture for a general model going from atoms to tissues.
 
-Future work should focus on using Xpressor's representations to power upper scale models or the ability to learn a Xpressor on top of a pre-trained foundation model. The Xpressor approach could also be extended to decoder-based language models. Finally, fine-tuning using and adaptor layer suffers from a main drawback, the non-additivity of \gls{MLP}s and therefore the limited use of such fine-tuned models in other contexts than for their compressed representations. Implementing intelligent \gls{GPU} scheduling and using \gls{LoRA}-type methods to fine-tune only XPressor blocks will allow for more complex fine-tuning in \gls{GPU}-rich settings. We will need to show that this can be applied to the other scales of biological representations and generate benchmarks that better capture the diversity of real-world biological tasks across these scales.
+Future work should focus on using Xpressor's representations to power upper scale models or the ability to learn a Xpressor on top of a pretrained foundation model. The Xpressor approach could also be extended to decoder-based language models. Finally, fine-tuning using and adaptor layer suffers from a main drawback, the non-additivity of \gls{MLP}s and therefore the limited use of such fine-tuned models in other contexts than for their compressed representations. Implementing intelligent \gls{GPU} scheduling and using \gls{LoRA}-type methods to fine-tune only XPressor blocks will allow for more complex fine-tuning in \gls{GPU}-rich settings. We will need to show that this can be applied to the other scales of biological representations and generate benchmarks that better capture the diversity of real-world biological tasks across these scales.
 
 \section*{Supplementary}
 

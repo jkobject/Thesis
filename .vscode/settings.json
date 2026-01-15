@@ -20,23 +20,6 @@
         "-outdir=build",
         "%DOC%"
       ]
-    },
-    {
-      "name": "pandoc",
-      "command": "pandoc",
-      "args": [
-        "%DOCFILE%",
-        "-f",
-        "markdown",
-        "-t",
-        "latex",
-        "--template=templates/thesis-template.tex",
-        "--pdf-engine=lualatex",
-        "--bibliography=bibliography.bib",
-        "--citeproc",
-        "-o",
-        "%DOCFILE_EXT%.tex"
-      ]
     }
   ],
   "latex-workshop.latex.recipes": [
