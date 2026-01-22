@@ -57,7 +57,7 @@ Impact of the project. This Ph.D.~project would thereby contribute to methodolog
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.9\textwidth]{./figures/gnn.png}
-  \caption{illustration of the graph neural network mechanism, update and pooling (e.g. summing) across multiple connected nodes represented as vectors}
+  \caption{Illustration of the graph neural network mechanism, update and pooling (e.g. summing) across multiple connected nodes represented as vectors}
   \label{fig:gnn}
 \end{figure}
 
@@ -78,19 +78,19 @@ The first objective was thus to review existing methods for inferring \gls{GRN}s
 
 What I quickly learnt is that \gls{GNN}s were not the best approach for this problem. Indeed, we do not have good ground truths for \gls{GRN}s, so we cannot start from a known graph. Moreover, \gls{GNN}s tend not to scale well, and benchmarks show them as almost invariably performing worse than transformer-based models \cite{hussainGlobalSelfAttentionReplacement2022,chenGraphAttentionNetwork2022}
 
-\subsection{transformers}
+\subsection{Transformers}
 
 Thus, we quickly decided to stick with transformers, which can be seen as \gls{GNN} working on fully-connected graphs \cite{dwivediGeneralizationTransformerNetworks2021,joshiTransformersAreGraph2025,nichaniHowTransformersLearn2024a,shawSelfAttentionRelativePosition2018}. The main issue with transformers is their quadratic complexity in relation to the number of input tokens. Thus, we worked on making them scale sub-quadratically with the number of input genes and cells. This is one of our contributions in this thesis.
 
 Transformer-based models can be seen as \gls{GNN}s, and examples had already been presented of using single cell foundation models (\gls{scFM})s to generate putative \gls{GRN}s directly from their non-graph input data \cite{cuiScGPTBuildingFoundation2024,theodorisTransferLearningEnables2023}. This was a feat that regular \gls{GNN}s cannot achieve.
 
-\subsection{building our own models and benchmarks}
+\subsection{Building our own models and benchmarks}
 
 Moreover, as we aimed to benchmark these methods, which had made claims about their ability, we realized there were many shortcomings, from usability to ease of use, reproducibility of pretraining. We also found that they were not very usable in standalone mode and had made many arguable decisions. This led us to create our own model. Improving \gls{scFM}s to generate better representations of cells, genes, and their networks thus became one of the main objective of this Ph.D.
 
 We also sought to create a new benchmark, better suited to the single-cell genomics field and especially to \gls{GRN} inference. The goal of the benchmarks were to be more driven by real life applicability. Indeed the current methods often tended to use artificial data and groundtruths that are not representative of the real biological systems. The tasks and scores were more reminiscent of classical machine learning benchmarks than of biological relevance. The known single-cell standardized benchmarks were also almost never used by the first generations of \gls{scFM}s papers.
 
-\subsection{collaborations}
+\subsection{Collaborations}
 
 Finally, while we managed to get some collaborations going, this is something that we did not manage to achieve successfully. I think it would surprise no-one to say that we are in a challenging environment for cross-discipline collaborations. I still realize the need for these foundation models to be made more accessible, which also became one of the objectives and contributions in this thesis. It is represented not only in the effort to release easy-to-use open source models but also in various side contributions and outreach efforts.
 

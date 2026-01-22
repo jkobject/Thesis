@@ -57,7 +57,7 @@ The objectives of cellular biologists are to understand and control, with the dr
 \subsubsection{Drug Design}
 Before developing a drug for a disease, one must understand the disease and identify a potential target gene or set of target genes. It refers to the genes in specific cell types that need to be reactivated, deactivated, or modified to address the disease's underlying mechanism.
 
-But drugs don't have to be small molecules. CAR-T cell therapies have revolutionized blood cancer treatment by modifying a patient's own immune cells to fight the cancer (see Figure ~\ref{fig:celltherapy}). Similar approaches could be developed for many other conditions \cite{zugastiCARTCellTherapy2025}. Here, the drug becomes a cell .
+But drugs don't have to be small molecules. CAR-T cell therapies have revolutionized blood cancer treatment by modifying a patient's own immune cells to fight the cancer (see Figure ~\ref{fig:celltherapy}). Similar approaches could be developed for many other conditions \cite{zugastiCARTCellTherapy2025}. Here, the drug becomes a cell.
 
 Helping creating these cellular drugs as well as more classic ones is one of the key applications of the work we will present in this thesis.
 
@@ -116,7 +116,7 @@ Gene expression is the process by which information from a gene is used to synth
 
 They also interact with other proteins, such as cohesin, which helps maintain chromatin and the specific 3D structure of the \gls{DNA}. Chromatin is the complex of \gls{DNA} and proteins that forms chromosomes within the nucleus of eukaryotic cells. The organization of chromatin is essential for regulating gene expression, as it determines the accessibility of \gls{DNA} to transcription machinery (see Figure ~\ref{fig:grn_1}).
 
-Understanding the transcriptional rules and grammar of \gls{TF} binding is helping us engineer bacteria and eukaryotic cells by having them express specific genes. But the simple view of \gls{TF} proteins to gene regulation information is too simple. Indeed, as we have seen, we now know that regulation involves co-factor proteins and different kinds of non-codings RNAs. It also happens at the RNA maturation levels and protein translation. RNA can also be reverse-transcribed into DNA. This shows that every elements actually interact with every other.
+Understanding the transcriptional rules and grammar of \gls{TF} binding is helping us engineer bacteria and eukaryotic cells by having them express specific genes. But the simple view of \gls{TF} proteins to gene regulation information is too simple. Indeed, as we have seen, we now know that regulation involves co-factor proteins and different kinds of non-coding RNAs. It also happens at the RNA maturation levels and protein translation. RNA can also be reverse-transcribed into DNA. This shows that every elements actually interact with every other.
 
 \begin{figure}[ht]
   \centering
@@ -128,12 +128,13 @@ Understanding the transcriptional rules and grammar of \gls{TF} binding is helpi
 \subsubsection{Gene Regulatory networks}
 In this context, biologists have relied on the concept of gene regulatory networks (\gls{GRN}s) to simplify the complex interactions within the cell \cite{badia-i-mompelGeneRegulatoryNetwork2023}. GRNs are networks of molecular interactions that govern gene expression levels in a cell. They consist of genes, transcription factors, and other regulatory elements that interact to control the timing and level of gene expression (see Figure ~\ref{fig:grn_2}). Although very coarse and likely incomplete, these modeled interactions allow researchers to gain insights into how cells might respond to various stimuli, differentiate into specific cell types, and maintain homeostasis. This is being used by research everyday through pathway, regulon and others ontological relationship databases. It helps us understanding diseases, their mechanismss and improve crops quality and yield. 
 
-However, inferring accurate cell-type-specific GRNs remains a major bottleneck in computational biology. Current methods face several challenges: (1) the combinatorial explosion of possible gene-gene interactions makes exhaustive testing infeasible, (2) correlation-based methods cannot distinguish direct from indirect effects, (3) perturbation data is expensive and limited in scale, and (4) ground truth networks for validation are sparse and context-specific \cite{mercatelliGeneRegulatoryNetwork2020}. These limitations motivate the development of new approaches, including the foundation model-based methods presented in this thesis. Gene networks (\gls{GN}s) are a more general concept that encompasses not only gene regulatory networks but also other types of interactions, such as protein-protein interactions and metabolic pathways. While GRNs focus specifically on the regulation of gene expression, GNs provide a broader view of the cellular processes and interactions that contribute to the overall function of the cell.
+However, inferring accurate cell-type-specific GRNs remains a major bottleneck in computational biology. Current methods face several challenges: (1) the combinatorial explosion of possible gene-gene interactions makes exhaustive testing infeasible, (2) correlation-based methods cannot distinguish direct from indirect effects, (3) perturbation data is expensive and limited in scale, and (4) ground truth networks for validation are sparse and context-specific \cite{mercatelliGeneRegulatoryNetwork2020}. These limitations motivate the development of new approaches, including the foundation model-based methods presented in this thesis.
 
+Gene networks (\gls{GN}s) are a more general concept that encompasses not only gene regulatory networks but also other types of interactions, such as protein-protein interactions and metabolic pathways. While GRNs focus specifically on the regulation of gene expression, GNs provide a broader view of the cellular processes and interactions that contribute to the overall function of the cell.
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.9\textwidth]{./figures/grn-inference_2.png}
-  \caption{\textbf{infering gene networks} using cellular measurements. In this loop we see the classical approach where multiple measurements are associated with prior knowledge and heuristics to design a network which can be used to better understand the observations and make predictions.}
+  \caption{\textbf{Infering gene networks} using cellular measurements. In this loop we see the classical approach where multiple measurements are associated with prior knowledge and heuristics to design a network which can be used to better understand the observations and make predictions.}
   \label{fig:grn_2}
 \end{figure}
 
@@ -149,7 +150,7 @@ Initially, \gls{DNA} sequencing was performed using Sanger sequencing (see Figur
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.9\textwidth]{./figures/sequencing_init.png}
-  \caption{\textbf{main method for sequencing DNA}. Sanger sequencing uses the sequencial addition of fluorescent complementary nucleotides to read the genome one nucleotide at a time. A highly parallelized version is being used in most modern sequencers}
+  \caption{\textbf{Main method for sequencing DNA}. Sanger sequencing uses the sequencial addition of fluorescent complementary nucleotides to read the genome one nucleotide at a time. A highly parallelized version is being used in most modern sequencers}
   \label{fig:sequencing}
 \end{figure}
 
@@ -181,14 +182,15 @@ In our work, we are gathering all the publicly available \gls{scRNA-seq} dataset
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.6\textwidth]{./figures/spatial.png}
-  \caption{\textbf{illustration of spatial transcriptomics} showing how it can be used to extract additional information from a tissue slide}
+  \caption{\textbf{Illustration of spatial transcriptomics} showing how it can be used to extract additional information from a tissue slide}
   \label{fig:spatial}
 \end{figure}
 
-Recently, the development of spatial transcriptomics and imaging techniques has allowed researchers to study the spatial organization of gene expression within tissues, providing a more comprehensive view of cellular function in its native context \cite{stahlVisualizationAnalysisGene2016} (see Figure ~\ref{fig:spatial}). Protein measurements are also being developed, unlocking an additional layer of information \cite{luoAdvancesProteinSequencing2025}. Current applications have been primarily focused on the understanding of diseases and drug effects within tissues. The technique allowed the identification of hundreds of new cell types and states, and improved the study of cellular development and differentiation. It had a substantial impact on cancer, neurological diseases, and immunology \cite{josephSingleCellAnalysis2021,kongLandscapeImmuneDysregulation2023}. 
+Recently, the development of spatial transcriptomics and imaging techniques has allowed researchers to study the spatial organization of gene expression within tissues, providing a more comprehensive view of cellular function in its native context \cite{stahlVisualizationAnalysisGene2016,defardRNA2segGeneralistModel2025} (see Figure ~\ref{fig:spatial}). Protein measurements are also being developed, unlocking an additional layer of information \cite{luoAdvancesProteinSequencing2025,balezoMIPHEIViTMultiplexImmunofluorescence2025}. Current applications have been primarily focused on the understanding of diseases and drug effects within tissues. The technique allowed the identification of hundreds of new cell types and states, and improved the study of cellular development and differentiation. It had a substantial impact on cancer, neurological diseases, and immunology \cite{josephSingleCellAnalysis2021,kongLandscapeImmuneDysregulation2023}. 
 
-Together with the development of perturbation techniques such as \gls{CRISPR}-cas9 \cite{dixitPerturbseqDissectingMolecular2016, adamsonMultiplexedSingleCellCRISPR2016}, we can now go beyond observations and start to understand the causal relationships between genes and their functions. Indeed, these \gls{CRISPR} screens allow researchers to systematically deactivate genes in individual cells and observe the resulting changes in gene expression, providing further insights into gene function and regulatory networks.
-%TODO: more explanation and introduction of perturbation methods
+Finally, the development of genetic perturbation techniques such as \gls{CRISPR}-cas9 \cite{dixitPerturbseqDissectingMolecular2016, adamsonMultiplexedSingleCellCRISPR2016}, combined with sequencing (\gls{perturb-seq}), we can now go beyond observations and start to understand the causal relationships between genes and their functions. 
+
+Indeed, these \gls{CRISPR} screens allow researchers to systematically deactivate genes in individual cells and observe the resulting changes in gene expression, providing further insights into gene function and regulatory networks. However these techniques are in their infancy and still limited in scale, scope and especially, quality.
 
 \subsubsection{Current Challenges}
 However, single-cell sequencing also comes with its own set of challenges that directly motivate the methods developed in this thesis. The main issues are:
@@ -266,11 +268,11 @@ We will now present an overview of these methods and some intuition for why they
 \subsubsection{Learning Paradigms and their applications to single-cell data}
 Machine learning methods can be categorized into three main paradigms, each with distinct applications in our field:
 
-\textbf{Supervised learning} involves training models on labeled data to predict outcomes. In single-cell genomics, this can include cell-type classification from expression profiles, disease-state prediction, and perturbation response modeling. These methods require curated annotations, which are often expensive and inconsistent across datasets.
+\textbf{Supervised learning} involves training models on labeled data to predict outcomes. In single-cell genomics, this can include cell-type classification from expression profiles, disease-state prediction, and perturbation response modeling. These methods require curated annotations, which are often expensive and inconsistent across datasets. This is used when classifying cell type for example.
 
-\textbf{Unsupervised learning} discovers structure in unlabeled data. Traditional applications include dimensionality reduction (PCA, UMAP) for visualization, clustering for cell type discovery, and matrix factorization for batch correction.
+\textbf{Unsupervised learning} discovers structure in unlabeled data. Traditional applications include dimensionality reduction (PCA, UMAP) for visualization, clustering for cell type discovery, and matrix factorization for batch correction. This is used to learn representations of cells for example.
 
-\textbf{Self-supervised generative learning} represents the paradigm underlying foundation models. It can be seen as an instance of un-supervised learning, where models are pretrained on large unlabeled datasets using proxy tasks---such as predicting masked genes or reconstructing corrupted inputs---that force them to learn meaningful representations. These representations can then be fine-tuned for downstream tasks or used zero-shot. This thesis develops foundation models in this paradigm, using denoising and expression reconstruction as pretraining objectives. Generative AI has led the second big AI revolution of this decade with tools to generate images, videos, music, voice and text \cite{}. %TODO
+\textbf{Self-supervised generative learning} represents the paradigm underlying foundation models. It can be seen as an instance of un-supervised learning, where models are pretrained on large unlabeled datasets using proxy tasks---such as predicting masked genes or reconstructing corrupted inputs---that force them to learn meaningful representations. These representations can then be fine-tuned for downstream tasks or used zero-shot. This thesis develops foundation models in this paradigm, using denoising and expression reconstruction as pretraining objectives. Generative AI has led the second big AI revolution of this decade with tools to generate images, videos, music, voice and text \cite{rombachHighResolutionImageSynthesis2022, shenNaturalSpeech2Latent2023, singerMakeAVideoTexttoVideoGeneration2022}.
 
 \subsubsection{Representation Learning and Embeddings}
 Most modern machine learning tools rely on representation learning, converting concepts and objects into high-dimensional vectors called embeddings \cite{Goodfellow-et-al-2016}. In deep Neural Networks (\gls{NN}), these embedding vectors are processed through layers of mathematical operations, often involving matrix multiplications and non-linear activation functions. The layers are designed to learn hierarchical representations of the input data, capturing increasingly complex features as data passes through the network. For single-cell data, this means learning representations where similar cells (by type, state, or function) cluster together in embedding space, enabling downstream tasks like classification and trajectory inference. Such tools have been heavily applied in single-cell genomics, with many methods relying on representation learning to denoise, align, and analyze data \cite{scvi}.
@@ -292,7 +294,7 @@ Taken together, these make the model even more parallelizable from its depth and
 
 \textbf{\gls{GPU}s} or Graphical Processing Units where the final enabler allowing us to reach unprecedent scales using large and very efficient parallel matrix operations.
 
-These innovations are particularly relevant for genomics: attention mechanisms can capture gene-gene interactions, parallelizations enable processing of thousands of genes, and proper tokenization of expression values is crucial for learning meaningful representations. 
+These innovations are particularly relevant for genomics: attention mechanisms can capture gene-gene interactions, parallelizations enable processing of thousands of genes, and proper tokenization of expression values is crucial for learning meaningful representations. Indeed they already impacted biology greatly in multiple front, a famous example being the recent nobel-prize winning alphafold2 model, built on modified attention architectures \cite{jumperHighlyAccurateProtein2021}.
 
 Now, the final piece of the puzzle is in how we train such models.
 
@@ -306,7 +308,7 @@ To understand this, we need to understand the loss landscape. Imagine a 3D lands
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.9\textwidth]{./figures/loss-surface.png}
-  \caption{\textbf{visualization of a loss landscape} with and without skip connections. The figure represents the loss values in z axis and color by parameters in x and y axis.}
+  \caption{\textbf{Visualization of a loss landscape} with and without skip connections. The figure represents the loss values in z axis and color by parameters in x and y axis.}
   \label{fig:loss_surface}
 \end{figure}
 
@@ -327,7 +329,14 @@ Two main transformer architectures exist, with different implications for genomi
 
 For single-cell genomics, the choice is consequential: genes have no natural ordering (unlike words in sentences), making bidirectional architectures more appropriate. Our models use encoder-style bidirectional attention, treating genes as an unordered set where each gene can attend to all others. This design choice enables learning symmetric gene-gene relationships suitable for GRN inference.
 
-%TODO: talk about improvement in attention. tokens can attend to some tokens (graph neural net)
+\textbf{Structured and sparse attention.} Standard attention allows every token to attend to every other token, with complexity $O(n^2)$. However, biological systems have inherent structure: genes interact through regulatory networks, proteins form complexes, and cells communicate through defined pathways. This has motivated attention variants that incorporate prior knowledge or learn sparse patterns. \textbf{Graph attention networks} \cite{velickovicGraphAttentionNetworks2018} restrict or bias attention to predefined edges in a graph, allowing tokens to attend only to their neighbors. This is particularly relevant for genomics, where protein-protein interaction networks or known regulatory relationships can guide attention. 
+
+Similar ideas were used in the development of Alphafold2 and Alphafold3 \cite{abramsonAccurateStructurePrediction2024a,
+jumperHighlyAccurateProtein2021}. In text similar examples abound with \textbf{Sparse attention} mechanisms like Longformer \cite{beltagyLongformerLongDocumentTransformer2020} and BigBird \cite{zaheerBigBirdTransformers2021} combining local windowed attention with global tokens, achieving linear complexity while maintaining expressiveness. 
+
+Finally, while some of these methods already decrease the computational complexity of attention, \textbf{efficient attention} methods such as hyper attention, Performer, and others \cite{choromanskiRethinkingAttentionPerformers2022, hanHyperAttentionLongcontextAttention2023, goncalvesAdaSplashAdaptiveSparse2025} approximate the attention mechanism using low-rank approximations, dropping blocks, or using kernel methods.
+
+For single-cell models processing thousands of genes, such efficiency gains are essential. In our work, we explore how attention patterns learned during pretraining, how we can bias them, and how we can decrease their computational complexity.
 
 \begin{figure}[ht]
   \centering
