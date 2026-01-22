@@ -44,6 +44,10 @@
     style=numeric,
     sorting=none
 ]{biblatex} %Imports biblatex package
+% remove visited-on dates in bibliography
+\AtEveryBibitem{\clearfield{urldate}}
+\AtEveryCitekey{\clearfield{urldate}}
+\renewbibmacro*{urldate}{} % suppress formatting hook too
 
 \addbibresource{bibliography.bib} %Import the bibliography file
 \usepackage{hyperref} % for references (\ref, \label), url
