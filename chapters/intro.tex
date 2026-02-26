@@ -2,6 +2,7 @@
 
 \chapter*{Introduction} % Main chapter title
 \addcontentsline{toc}{chapter}{Introduction} 
+\label{chap:introduction}
 
 \section{Motivation and problem setting}
 
@@ -28,7 +29,7 @@ S-cell sequencing itself comes with a set of challenges that directly motivate t
 
 These challenges define the benchmarking framework we use to evaluate our models and motivate our architectural choices.
 
-%TODO: mention more what makes the cell so complex to understand
+Beyond these data-level challenges, biological complexity itself poses fundamental obstacles. A single human cell contains approximately 20,000 protein-coding genes, but gene regulation extends far beyond simple on/off switches: it involves combinatorial control by transcription factors and cofactors, epigenetic modifications, post-transcriptional regulation by non-coding RNAs, alternative splicing, protein-protein interactions, and metabolic feedback loops (see ~\ref{chap:background}). These processes interact across multiple spatial and temporal scales---from millisecond signaling cascades to days-long differentiation programs---creating a system whose emergent behavior cannot be easily predicted from its individual components. It is this multi-layered complexity that makes purely mechanistic modeling insufficient and motivates the data-driven approaches developed in this thesis.
 
 \subsection{Gene Regulatory Networks}
 
@@ -41,11 +42,9 @@ Gene regulatory networks (\gls{GRN}s) provide a simplified yet powerful framewor
  \label{fig:lwoffjacobmonod2}
 \end{figure}
 
-%TODO: mention more issues with current methods (only a small set of cells, ie don't scale, only a small subset of genes, only looking at TFs, not using the full potential of single-cell data) 
-% + Traditional computational cell models based on chemical reaction parameters failed to generate realistic predictions of cellular behavior. 
-% + As discussed in the Background chapter, gene regulation extends well beyond transcription factors: it involves cofactor proteins, non-coding RNAs, RNA maturation, and protein translation, with interactions spanning all molecular layers. Gene regulatory networks (\gls{GRN}s) provide a simplified framework for these interactions \cite{badia-i-mompelGeneRegulatoryNetwork2023}, while gene networks (\gls{GN}s) encompass a broader set of relationships, including protein-protein interactions and metabolic pathways.
+Traditional computational cell models based on chemical reaction parameters attempted to simulate these regulatory dynamics but failed to generate realistic predictions of cellular behavior, largely because they could not capture the full combinatorial complexity of gene interactions \cite{badia-i-mompelGeneRegulatoryNetwork2023}. Moreover, as discussed in the Background chapter, gene regulation extends well beyond transcription factors: it involves cofactor proteins, non-coding RNAs, RNA maturation, and protein translation, with interactions spanning all molecular layers. Gene regulatory networks (\gls{GRN}s) provide a simplified framework for these interactions, while gene networks (\gls{GN}s) encompass a broader set of relationships, including protein-protein interactions and metabolic pathways.
 
-Despite this long history, inferring accurate cell-type-specific GRNs remains a major bottleneck in computational biology. Current methods face several challenges: (1) the combinatorial explosion of possible gene-gene interactions makes exhaustive testing infeasible, (2) correlation-based methods cannot distinguish direct from indirect effects, (3) perturbation data is expensive and limited in scale, and (4) ground truth networks for validation are sparse and context-specific \cite{mercatelliGeneRegulatoryNetwork2020}. These limitations motivate the development of new approaches, including the foundation model-based methods presented in this thesis.
+Current GRN inference methods suffer from additional practical limitations: they typically operate on only a small subset of genes (often restricted to known transcription factors), process only a limited number of cells (failing to scale to modern atlas-sized datasets), and do not fully exploit the richness of single-cell expression profiles \cite{genie3}. Despite this long history, inferring accurate cell-type-specific GRNs remains a major bottleneck in computational biology. Current methods face several challenges: (1) the combinatorial explosion of possible gene-gene interactions makes exhaustive testing infeasible, (2) correlation-based methods cannot distinguish direct from indirect effects \cite{nourisaGeneRNIBLivingBenchmark2025}, (3) perturbation data is expensive and limited in scale, and (4) ground truth networks for validation are sparse and context-specific \cite{mercatelliGeneRegulatoryNetwork2020}. These limitations motivate the development of new approaches, including the foundation model-based methods presented in this thesis.
 
 \section{Foundation Models}
 
@@ -53,7 +52,7 @@ The emergence of modern AI---particularly self-supervised transformers pretraine
 
 \subsection{LLMs}
 
-%TODO: talk briefly about them as introduction to Bio-specific models
+In Language modelling, large language models (\gls{LLM}s) have demonstrated that self-supervised pretraining on massive text corpora produces representations that generalize across a wide range of tasks. Models such as BERT \cite{devlinBERTPretrainingDeep2019} and GPT \cite{brownLanguageModelsAre2020} learn contextual relationships between tokens---words or subword units---through tasks like masked language modeling or next-token prediction. The success of these models relies on three pillars: (1) the transformer architecture, which captures long-range dependencies through attention mechanisms; (2) scale, both in data and parameters, which enables emergent capabilities; and (3) the self-supervised paradigm, which removes the need for labeled data during pretraining. These principles have inspired a wave of foundation models in scientific domains, from protein sequences (ESM2 \cite{esm2}) to molecular structures (AlphaFold \cite{jumperHighlyAccurateProtein2021}), and, as we discuss below, to single-cell transcriptomics.
 
 \subsection{Bio-Foundation Models}
 
@@ -94,8 +93,7 @@ Finally, scFoundation \cite{haoLargescaleFoundationModel2024}, despite being clo
 
 \section{Scientific aim}
 
-%TODO: relate to above and motivate more the need for mechanistic insight into these models, benchmarking and improvement.
-% also introduce the following subsection
+The limitations identified above---in both GRN inference methods and existing single-cell foundation models---point to a clear need: models that not only perform well on standard benchmarks but whose representations can be mechanistically interpreted to yield biological insight. Beyond building better architectures, we must understand \emph{what} these models learn, \emph{whether} their improvements are genuine or artifacts of evaluation choices, and \emph{how} to make them practically useful for the biological community. This requires rigorous benchmarking, reproducible training, and systematic ablation of design decisions. In what follows, we describe the initial aims that guided this Ph.D. and how they evolved into the contributions presented in the subsequent chapters.
 
 \subsection{Initial aim}
 At the start of the project, we wanted to understand how single-cell foundation models worked---or whether they worked at all---and to improve gene regulatory network (\gls{GRN}) inference using single-cell RNA sequencing (\gls{scRNA-seq}) data, sensing a possible interplay between the two. Before presenting our contributions, it is important to reflect on what we initially set out to achieve. This being a Thesis by Articles, each of the three main chapters corresponds to a specific scientific publication.
@@ -130,7 +128,7 @@ To assess predictions and any usefulness or lack of it by having biologists test
 \end{figure}
 
 \subsection{Potential Impacts}
-From these initial objectives, we envisioned several impacts. Thz Ph.D.~project will contribute to methodological breakthroughs by providing new tools and methods for applying neural networks to unstructured data such as \gls{scRNA-seq}, and to improve the state of the art in \gls{GRN} prediction.
+From these initial objectives, we envisioned several impacts. This Ph.D.~project will contribute to methodological breakthroughs by providing new tools and methods for applying neural networks to unstructured data such as \gls{scRNA-seq}, and to improve the state of the art in \gls{GRN} prediction.
 
 The proposed methodologies will impact computational (bioinformatics, machine learning) and biomedical fields. The new architectures might address challenges faced by related fields such as environmental research, industrial biotechnology, and biofuel studies. The improved \gls{GRN} predictions will enhance our understanding of cellular processes, potentially leading to new therapeutic targets and strategies for treating diseases. The open-source Python library will democratize access to these tools, enabling researchers worldwide to apply them to their data and questions.
 
@@ -140,28 +138,32 @@ The thesis contributes to these efforts by developing foundation models trained 
 
 \subsection{Limitations}
 
-%TODO: add a more professional tone to this part and better link to above
-What I quickly learned is that \gls{GNN}s were not the best approach for this problem. We do not have reliable ground truths for \gls{GRN}s, so we cannot start from a known graph. Moreover, \gls{GNN}s tend not to scale well, and benchmarks show them almost invariably performing worse than transformer-based models \cite{hussainGlobalSelfAttentionReplacement2022,chenGraphAttentionNetwork2022}.
+While the initial objectives centered on graph neural networks, early investigations revealed fundamental limitations of this approach for GRN inference. First, reliable ground-truth GRNs are largely unavailable, making it impossible to initialize a model from a known graph topology. Second, \gls{GNN}s do not scale well to the tens of thousands of genes present in a cell, and systematic benchmarks consistently show them underperforming transformer-based models on comparable tasks \cite{hussainGlobalSelfAttentionReplacement2022,chenGraphAttentionNetwork2022}.
 
-These findings led us to adopt transformers instead, which can be seen as \gls{GNN} working on fully-connected graphs \cite{dwivediGeneralizationTransformerNetworks2021,joshiTransformersAreGraph2025,nichaniHowTransformersLearn2024a,shawSelfAttentionRelativePosition2018}. The main issue with transformers is their quadratic complexity in relation to the number of input tokens. Thus, we worked on making them scale sub-quadratically with the number of input genes and cells. It is one of our contributions in this thesis.
+These findings led us to adopt transformers instead, which can be viewed as \gls{GNN}s operating on fully-connected graphs \cite{dwivediGeneralizationTransformerNetworks2021,joshiTransformersAreGraph2025,nichaniHowTransformersLearn2024a,shawSelfAttentionRelativePosition2018}. The principal challenge with transformers is their quadratic complexity with respect to the number of input tokens. Addressing this scalability bottleneck---making transformers scale sub-quadratically with the number of input genes and cells---became one of the central contributions of this thesis.
 
-Transformer-based models can be seen as \gls{GNN}s, and examples had already been presented of using single-cell foundation models (\gls{scFM})s to generate putative \gls{GRN}s directly from their non-graph input data \cite{cuiScGPTBuildingFoundation2024,theodorisTransferLearningEnables2023}, a feat that regular \gls{GNN}s cannot achieve.
+Notably, transformer-based models can also be used to infer putative \gls{GRN}s directly from non-graph input data \cite{cuiScGPTBuildingFoundation2024,theodorisTransferLearningEnables2023}, a capability that standard \gls{GNN}s cannot achieve. This observation further reinforced our decision to build upon the transformer paradigm.
 
-%TODO: mention no specific work on perturbations, temporal data, spatial data
+It is also important to note that this thesis does not specifically address perturbation response prediction, temporal dynamics, or spatial transcriptomics as primary modeling targets. While we demonstrate zero-shot generalization to spatial data and discuss perturbation prediction as a fine-tuning task, dedicated modeling of these modalities remains an important direction for future work.
 
 Finally, while we managed to initiate some collaborations, fully achieving cross-disciplinary validation proved difficult---an unsurprising reality in the current landscape. This experience reinforced the need to make foundation models more accessible, which became one of the contributions of this thesis, represented not only in the effort to release easy-to-use open-source models but also in various side contributions and outreach efforts.
 
 
 \subsection{Scope of the Thesis}
 
-%TODO: a bit better introduction
-As we aimed to benchmark these methods and their claimed abilities, we realized there were many shortcomings, ranging from usability and ease of use to the reproducibility of pretraining. 
+The limitations and opportunities described above progressively shaped the scope of this Ph.D. As we benchmarked existing single-cell foundation models and their claimed abilities, we encountered numerous shortcomings---ranging from poor usability and lack of reproducibility in pretraining to questionable architectural decisions and inconsistent evaluation practices. These observations led us to create our own model and, more broadly, to pursue a research program organized around the following axes:
 
-We also found that they were not very usable in standalone mode and had made many arguable decisions. It led us to create our own model. Improving \gls{scFM}s to generate better representations of cells, genes, and their networks has become one of the main objectives of this Ph.D.
+\begin{enumerate}
+ \item \textbf{Benchmarking and evaluation.} We developed standardized, biologically grounded benchmarking suites (BenGRN, GRnnData) for GRN inference and contributed benchmarks to the Open Problems platform, addressing the lack of rigorous and reproducible evaluation in the field.
+ \item \textbf{Reproducibility and accessibility.} We committed to fully open-source releases of all models, training code, datasets, and documentation, and deployed models on community platforms (CZ Virtual Cell Models, Superb.io) with tutorials and containerized benchmarks.
+ \item \textbf{Novel architectures.} We designed the Xpressor cross-attention compression mechanism for learning across biological scales (Chapter~\ref{article2}), criss-cross attention for sub-quadratic scaling, and GNN-based expression encoders for leveraging neighborhood information (Chapter~\ref{article3}).
+ \item \textbf{Improved training strategies.} We systematically evaluated pretraining tasks (denoising vs.\ masking), loss functions (MSE, ZINB, and hybrids), input representations (normalized vs.\ raw counts), and gene tokenization approaches through an additive benchmarking framework (Chapter~\ref{article3}).
+ \item \textbf{Zero-shot and generative capabilities.} We demonstrated zero-shot performance on denoising, cell-type classification, batch correction, and spatial transcriptomics, as well as counterfactual generation through the Xpressor architecture (Chapters~\ref{article1} and~\ref{article3}).
+ \item \textbf{Applications to biological discovery.} We applied our models to real biological systems, including prostate tissue atlases and cross-species macrophage analysis, recovering known biology and generating testable hypotheses (Chapters~\ref{article1} and~\ref{article3}).
+ \item \textbf{Understanding model limitations.} Through systematic ablations and cross-model comparisons, we characterized the conditions under which foundation models succeed or fail, informing future model development.
+\end{enumerate}
 
-We also sought to create a new benchmark better suited to the single-cell genomics field, especially for \gls{GRN} inference. The goal of the benchmarks was to be more driven by real-life applicability. Indeed, current methods often rely on artificial data and ground truths that are not representative of real biological systems. The tasks and scores were more reminiscent of classical machine learning benchmarks than of biological relevance. The known single-cell standardized benchmarks were also rarely used by the first generations of \gls{scFM}s papers.
-
-%TODO: given what is explained in the chapters overview, list more things in the scope while remaining succint. And point by point present them as scope elements (benchmarks, reproducibility, better architectures (xpressor), novel abilities, applications to real life problems, understanding of the limitations of the models, of the data and of the benchmarks
+Improving \gls{scFM}s to generate better representations of cells, genes, and their networks thus became the central objective of this Ph.D. We also sought to create benchmarks better suited to the single-cell genomics field, driven by real-life applicability rather than artificial metrics. Indeed, current methods often relied on synthetic data and ground truths unrepresentative of real biological systems, and the known single-cell standardized benchmarks were rarely used by early \gls{scFM} papers.
 
 \section{Chapters Overview \& Main Contributions}
 
