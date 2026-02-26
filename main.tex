@@ -14,7 +14,7 @@
 %----------------------------------------------------------------------------------------
 %	PREAMBULE // PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
-\documentclass[a4paper,12pt,twoside,french]{book}
+\documentclass[a4paper,12pt,twoside,english]{book}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{amssymb}
@@ -81,6 +81,7 @@
 %\usepackage[pdftex]{graphicx}
 \graphicspath{ {figures/} }
 \usepackage{caption}
+\captionsetup[figure]{font=footnotesize}
 \usepackage{subcaption}
 \usepackage{float}
 \usepackage{array, multirow, tabularx}
@@ -263,6 +264,7 @@ Someone
 %	ACKNOWLEDGEMENTS
 %----------------------------------------------------------------------------------------
 \input{auxiliaries/remerciements}
+\input{auxiliaries/background}
 
 
 %----------------------------------------------------------------------------------------
@@ -299,15 +301,17 @@ Someone
 %\chapter*{Introduction}
 \fancyhead{} % clear all header fields
 \input{chapters/long_abstract_fr} %partie introduction ou avant-propos
-\fancyhead[OL]{\textsc{Preamble}}
+\fancyhead[RO]{\textsc{Background}}
+\setcounter{section}{0}
+
+\input{chapters/background}
+\fancyhead[OL]{\textsc{Introduction}}
 \input{chapters/intro} %partie introduction ou avant-propos
 
 \fancyhead{} % clear all header fields
 
 \fancyhead[RO]{\leftmark}
 \fancyhead[LE]{\textsc{\chaptername~\thechapter}}
-
-\input{chapters/objectifs}
 
 \input{papers/scprint}
 \input{papers/scprint_methods}

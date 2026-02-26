@@ -1,383 +1,80 @@
 \raggedbottom % Allow flexible page heights to reduce underfull vbox warnings
 
-\chapter*{Preamble} % Main chapter title
-\addcontentsline{toc}{chapter}{Preamble}  
+\chapter*{Introduction} % Main chapter title
+\addcontentsline{toc}{chapter}{Introduction} 
+\label{chap:introduction}
 
-This Ph.D. started relatively late in my career. I'd like to spend some of the introduction mentioning the reasons that pushed me to do a Ph.D. now.
+\section{Motivation and problem setting}
 
-\section{My background for this thesis}
+The cell is the fundamental unit of life and is composed of various components, including proteins, nucleic acids, lipids, and carbohydrates
 
-\subsubsection{The PiPle Project}
-Many of the opportunities I had coming out of school have been very exciting. Initially, I decided to create a company called PiPle with a friend, Paul Best, who is now a Post-doctoral Researcher at the University of Vienna in Machine Learning for bio-acoustics. 
+The objectives of cellular biologists are to understand and control cells, with the dream of engineering life from plants to animals and even generating entirely new synthetic life \cite{daviesSyntheticBiologyVery2018}.
 
-Funily enough, it was completely unrelated to biology. We worked on creating novel means of communication. We had—and still have—big ideas about how to improve utterly inadequate messaging apps, emails, and similar tools using machine learning and innovative designs. Doing this, we learnt a lot about managing complex projects, selling ideas, building large codebases, teamwork, and designing interfaces.
+Achieving this vision requires a deep understanding of cellular mechanisms. Before developing a drug for a disease, for instance, one must identify the target genes in specific cell types that need to be reactivated, deactivated, or modified to address the disease's underlying mechanism. Understanding mRNA and siRNA has already enabled potent therapies, including some of the well-known COVID-19 vaccines. Unfortunately, many \gls{RNA} types remain poorly understood, and their functions are an active area of research. In eukaryotic cells, like our own, RNAs are produced through gene expression and are actively regulated by the cell.
 
-However, we did not gain enough traction from this, and we felt that after a year of hard work, the road ahead was paved with too many sacrifices. 
+But drugs are not the only application of cellular understanding. Life is everywhere, and engineering has already helped us make better crops, create synthetic meat, and design fungi that remove pollution. Yet cells are extraordinarily complex, and we remain limited by our understanding of their inner workings.
 
-\subsubsection{The Broad Institute}
-This is when I passed on Ph.D. opportunities a second time to work at the Broad Institute instead. Having visited the labs, Boston, and Kendall Square, I knew that this was the kind of experience I wanted to have, and Ph.D.s seemed long and cumbersome. At Broad, I worked on many very-high-impact research projects, and I felt I was part of something bigger than myself. I published as the first author and even started my own research projects, which would inform the thesis I am presenting here. 
+Recent advances in single-cell sequencing have begun to change this. Technologies have advanced rapidly, with studies conducted on tens of thousands of cells in the 2010s now scaling to millions \cite{regevHumanCellAtlas}, generating what have been called cell atlases. This explosion of data has driven hundreds of companies and dozens of institutes to pursue virtual cellular models \cite{bunneHowBuildVirtual2024}---computational systems that aim to simulate and predict cellular behavior, enabling \textit{in silico} experimentation before costly wet-lab validation.
 
-While I still understood that a Ph.D. was the best place to undergo such projects, I was uncertain about the specifics. I also understood the length, harshness, and sometimes arbitrary nature of U.S. Ph.D. programs. I also wanted to continue working on team-based projects and wanted to experience the start-up environment.
+\subsection{Current Challenges}
 
-\subsubsection{Whitelab Genomics}
-\begin{figure}[ht]
-  \centering
-  \includegraphics[width=0.6\textwidth]{./figures/whitelabgx.jpeg}
-  \caption{\textbf{The Whitelab Genomics team} in September 2023, in its future4care offices}
-  \label{fig:whitelabgx}
-\end{figure}
-
-Along with some other personal decisions, it led me to return to France and work as the team lead of the computational biology group at Whitelab Genomics in Paris.
-
-In Whitelab, I learned how to build a team and how to manage people. I learned a lot about what it means to grow companies from 10 to 50 people. I also learned about the biotech industry and how to build and sell such products.
-
-Whitelab had a good mix of expertise in computational biology, machine learning, structural biology, and business development (see Figure ~\ref{fig:whitelabgx}). While starting the first project there, I significantly enhanced the potential of foundation models for the biotech industry. 
-
-From \gls{DNA} language models to cell foundation models and knowledge-graph-based models, it became clear that they would be the path forward to aggregate the sparse and disparate information across many fields of biology and medicine. 
-
-\subsubsection{Starting the Ph.D.}
-I was not looking for any other positions and intended to stay at least a few years to assess how we had grown during that time.
-
-However, I was already in contact with Laura Cantini, with whom I had previously discussed Ph.D. projects. At some point, Laura came back to me with this Ph.D. proposal. I spent the good part of a month in a challenging position. Thinking about which decision would not become a regret in the future.
-
-There was no perfect time to do this, but it felt like it was now or never. I was also very impressed by the level of various Ph.D. students in the labs of Laura and Gabriel. Seeing people 4 years younger than me, already having such a high level of expertise and knowledge, was very humbling. Finally, the Ph.D. topic and group were really on point with what I wanted to do. But mostly, my work/life environment was welcoming, surrounded by family, friends, and activities. I knew what I wanted to work on and what I wanted to learn.
-
-Therefore, I decided to start this Ph.D. journey.
-
-\section{Introduction}
-
-In this Thesis, we will focus on models of the Cell.
-
-In the mid-17th century, Robert Hooke made a groundbreaking discovery while observing a piece of cork through his microscope. He observed structures that he named ``cells" and, as a result, marked the beginning of cellular biology \cite{petersCellsRobertHooke2024}. Cells have since been identified as life's fundamental structural and functional units, and biologists have endeavored to map the diverse cell types that comprise multicellular organisms. Additionally, they have sought to understand the transient cell states that occur during development, disease progression, and tissue regeneration \cite{Alberts2015CellsGenomes}.
-
-The objectives of cellular biologists are to understand and control, with the dream of engineering life from plants to animals and even generating entirely new synthetic life \cite{daviesSyntheticBiologyVery2018}. But what for?
-
-\subsection{The promises of cellular biology}
-
-\subsubsection{Drug Design}
-Before developing a drug for a disease, one must understand the disease and identify a potential target gene or set of target genes. It refers to the genes in specific cell types that need to be reactivated, deactivated, or modified to address the disease's underlying mechanism.
-
-But drugs don't have to be small molecules. CAR-T cell therapies have revolutionized blood cancer treatment by modifying a patient's own immune cells to fight the cancer (see Figure ~\ref{fig:celltherapy}). Similar approaches could be developed for many other conditions \cite{zugastiCARTCellTherapy2025}. Here, the drug becomes a cell.
-
-Helping creating these cellular drugs as well as more classic ones is one of the key applications of the work we will present in this thesis.
-
-\begin{figure}[ht]
-  \centering
-  \includegraphics[width=0.9\textwidth]{./figures/cell therapy.jpg}
-  \caption{\textbf{CAR-T cell therapy.} Illustration of the CAR-T cell therapy process. It is one example of cell therapy. Adtopted from \citet{cartllc}}
-  \label{fig:celltherapy}
-\end{figure}
-
-\subsubsection{Other Applications and Virtual Cells}
-But diseases are not the only nails one could hit with such a mighty hammer. Indeed, life is everywhere, and engineering has already helped us make better crops, create synthetic meat, and design fungi that remove pollution. When people talk about nanorobots, I urge you to think about engineered cells \cite{daviesSyntheticBiologyVery2018}. Richard Feynman famously said, "What I cannot create, I do not understand." Therefore, the modeling of the cell stands as a key milestone in cellular biology, and indeed, one cannot succeed in the aforementioned promises without a correct cellular blueprint.
-
-This realization has driven hundreds of companies, from tech to bio, and dozens of institutes to pursue efforts to create virtual cellular models \cite{bunneHowBuildVirtual2024}. These virtual cells aim to simulate and predict cellular behavior computationally, enabling \textit{in silico} experimentation before costly wet-lab validation. Achieving even limited predictive accuracy would have significant impacts across drug discovery, agriculture, and synthetic biology.
-
-This thesis contributes to these virtual cell efforts by developing foundation models trained on single-cell RNA sequencing data. Specifically, we investigate how modern machine learning architectures---transformers and attention mechanisms---can learn cellular representations that capture gene regulatory relationships. Our models aim to predict how cells respond to perturbations and to infer the underlying gene networks governing cellular behavior. We will explore how these models can be useful today for tasks like cell type annotation and batch correction, and how we might make them better in the future through improved architectures and training strategies. For that, we will need to understand some essential facts about the cell and how biologists think about it.
-
-\subsection{GRN and the Cell}
-
-\begin{figure}[ht]
-  \centering
-  \includegraphics[width=0.9\textwidth]{./figures/aivc.jpg}
-  \caption{\textbf{Image of a cell}. Artist representation of a small part of an eukaryotic cell from cryo-ET images. adopted from \citet{cellimage}}
-  \label{fig:thecell}
-\end{figure}
-
-Let's first look at the cell. The cell is the fundamental unit of life and is composed of various components, including proteins, nucleic acids, lipids, and carbohydrates (see Figure ~\ref{fig:lwoffjacobmonod}). Each of these components plays a crucial role in the cell's structure and function. Proteins are responsible for most cellular processes, while nucleic acids (\gls{DNA} and \gls{RNA}) carry genetic information. Lipids form cell membranes, and carbohydrates serve as energy sources and structural components.
-
-It is at the Institut Pasteur in the 1950s that André Lwoff, Jacques Monod and his wife Agnes Ullmann made significant discoveries in the role of messenger \gls{RNA}, gene regulations, and genetic programs to the function of the cell. Together with François Jacob (see Figure ~\ref{fig:thecell}), yet another Pasteur Institute scientist, they proposed the operon model of gene regulation in prokaryotes, which explained how genes are turned on and off in response to environmental signals. For their discoveries, François, André and Jacques were awarded the Nobel Prize in Physiology or Medicine in 1965 \cite{FrontMatter2003}. This is again at Institut Pasteur, near the Monod's and Jacob's buildings that this Ph.D. was undertaken, trying to understand further mRNA's role and the cell's regulation through AI models.
-
-\begin{figure}[ht]
-  \centering
-  \includegraphics[width=0.9\textwidth]{./figures/monod.jpg}
-  \caption{\textbf{Lwoff, Jacob, Monod} in their Pasteur Institute Office. Adopted from \citet{monod}}
-  \label{fig:lwoffjacobmonod}
-\end{figure}
-
-\subsubsection{RNA}
-Indeed, \gls{RNA} biology is a critical aspect of cellular function, encompassing processes such as transcription, translation, and regulation. Transcription is the process by which \gls{DNA} is copied into \gls{RNA}, which then serves as a template for protein synthesis during translation. Regulation of these processes is essential for maintaining cellular homeostasis and responding to environmental changes. This regulation can occur at multiple levels, including transcriptional control, RNA processing, and post-translational modifications \cite{Alberts2015CellsGenomes}.
-
-The \gls{RNA} hypothesis posits that \gls{RNA} molecules were the first self-replicating entities, leading to the evolution of life as we know it. This hypothesis suggests that early life forms relied on \gls{RNA} for both genetic information storage and catalytic functions, paving the way for the development of \gls{DNA} and proteins, showing how \gls{RNA} might be one of the most central components of the cell \cite{RNAWorld2024}.
-
-Many different types of \gls{RNA} exist, each with distinct functions. Messenger \gls{RNA} (\gls{mRNA}) carries genetic information from \gls{DNA} to ribosomes for protein synthesis, while transfer \gls{RNA} (\gls{tRNA}) and ribosomal \gls{RNA} (\gls{rRNA}) allow translation of \gls{mRNA}s into proteins. Other types of \gls{RNA}, such as small interfering \gls{RNA} (\gls{siRNA}) and microRNA (\gls{miRNA}), are involved in gene regulation and silencing. Long-non-coding \gls{RNA}s (\gls{lncRNA}s) also play crucial roles in regulating gene expression and chromatin structure \cite{chenSmallLongNoncoding2024}. 
-
-The understanding of mRNA and siRNA have already been used to design potent therapies, including some of the very well known covid vaccines. Unfortunately, many of these \gls{RNA} types are still poorly understood, and their functions are an active area of research. In eukaryotic cells, like our own, RNAs are produced through genetic expression and are actively regulated by the cell.
-
-\subsubsection{Gene Expression}
-Gene expression is the process by which information from a gene is used to synthesize a functional gene product, typically a protein. This process involves several key steps, including transcription, where \gls{DNA} is transcribed into \gls{mRNA}, and translation, where \gls{mRNA} is translated into a protein (see Figure ~\ref{fig:dogma}). Transcription factors (\gls{TF}s) are proteins that bind to specific \gls{DNA} sequences to regulate the transcription of genes. They play a crucial role in determining which genes are expressed in a cell at any given time, influencing cellular function and identity \cite{Alberts2015CellsGenomes}.
-
-\begin{figure}[ht]
-  \centering
-  \includegraphics[width=0.4\textwidth]{./figures/dogma.png}
-  \caption{\textbf{The central dogma} of biology also represents the classic view of how gene expression occurs.}
-  \label{fig:dogma}
-\end{figure}
-
-They also interact with other proteins, such as cohesin, which helps maintain chromatin and the specific 3D structure of the \gls{DNA}. Chromatin is the complex of \gls{DNA} and proteins that forms chromosomes within the nucleus of eukaryotic cells. The organization of chromatin is essential for regulating gene expression, as it determines the accessibility of \gls{DNA} to transcription machinery (see Figure ~\ref{fig:grn_1}).
-
-Understanding the transcriptional rules and grammar of \gls{TF} binding is helping us engineer bacteria and eukaryotic cells by having them express specific genes. But the simple view of \gls{TF} proteins to gene regulation information is too simple. Indeed, as we have seen, we now know that regulation involves co-factor proteins and different kinds of non-coding RNAs. It also happens at the RNA maturation levels and protein translation. RNA can also be reverse-transcribed into DNA. This shows that every elements actually interact with every other.
-
-\begin{figure}[ht]
-  \centering
-  \includegraphics[width=0.9\textwidth]{./figures/grn-inference_1.png}
-  \caption{\textbf{Gene regulation.} Image of the classical view of gene regulation whereby transcription factors and cofactors bound to cis-regulatory elements and each other recruits the transcriptional machinery at the promoter region of the transcription start site. Adopted from \citet{badia-i-mompelGeneRegulatoryNetwork2023}.}
-  \label{fig:grn_1}
-\end{figure}
-
-\subsubsection{Gene Regulatory networks}
-In this context, biologists have relied on the concept of gene regulatory networks (\gls{GRN}s) to simplify the complex interactions within the cell \cite{badia-i-mompelGeneRegulatoryNetwork2023}. GRNs are networks of molecular interactions that govern gene expression levels in a cell. They consist of genes, transcription factors, and other regulatory elements that interact to control the timing and level of gene expression (see Figure ~\ref{fig:grn_2}). Although very coarse and likely incomplete, these modeled interactions allow researchers to gain insights into how cells might respond to various stimuli, differentiate into specific cell types, and maintain homeostasis. This is being used by research everyday through pathway, regulon and others ontological relationship databases. It helps us understanding diseases, their mechanismss and improve crops quality and yield. 
-
-However, inferring accurate cell-type-specific GRNs remains a major bottleneck in computational biology. Current methods face several challenges: (1) the combinatorial explosion of possible gene-gene interactions makes exhaustive testing infeasible, (2) correlation-based methods cannot distinguish direct from indirect effects, (3) perturbation data is expensive and limited in scale, and (4) ground truth networks for validation are sparse and context-specific \cite{mercatelliGeneRegulatoryNetwork2020}. These limitations motivate the development of new approaches, including the foundation model-based methods presented in this thesis.
-
-Gene networks (\gls{GN}s) are a more general concept that encompasses not only gene regulatory networks but also other types of interactions, such as protein-protein interactions and metabolic pathways. While GRNs focus specifically on the regulation of gene expression, GNs provide a broader view of the cellular processes and interactions that contribute to the overall function of the cell.
-\begin{figure}[ht]
-  \centering
-  \includegraphics[width=0.9\textwidth]{./figures/grn-inference_2.png}
-  \caption{\textbf{Infering gene networks} using cellular measurements. In this loop we see the classical approach where multiple measurements are associated with prior knowledge and heuristics to design a network which can be used to better understand the observations and make predictions. Adopted from \citet{badia-i-mompelGeneRegulatoryNetwork2023}.}
-  \label{fig:grn_2}
-\end{figure}
-
-In this thesis, we train models of the cell using gene expression measurements, and we use gene regulatory networks both as a means to understand what these models have learned and as a direct output of our methods. Our approach leverages transformer attention patterns to infer cell-specific GRNs at genome scale, addressing some of the scalability challenges mentioned above. We will now focus further on the measurement mechanisms underpinning the gene expression data we will use in this thesis.
-
-\subsection{Single-Cell Genomics}
-
-\subsubsection{Sequencing}
-These measurements started within the field of genomics. Genomics is the study of an organism's complete set of \gls{DNA}, including all of its genes. It involves sequencing and analyzing the entire genome to understand its structure, function, and evolution. Then, the development of high-throughput sequencing technologies revolutionized genomics, allowing researchers to sequence entire genomes quickly and cost-effectively.
-
-Initially, \gls{DNA} sequencing was performed using Sanger sequencing (see Figure ~\ref{fig:sequencing}), the first method developed for this purpose. It involves selectively incorporating chain-terminating dideoxynucleotides during \gls{DNA} replication, allowing researchers to determine the sequence of nucleotides in a \gls{DNA} molecule. This method was labor-intensive and time-consuming, but it laid the foundation for modern sequencing techniques \cite{sangerDNASequencingChainterminating1977}.
-
-\begin{figure}[ht]
-  \centering
-  \includegraphics[width=0.9\textwidth]{./figures/sequencing_init.png}
-  \caption{\textbf{Main method for sequencing DNA}. Sanger sequencing uses the sequencial addition of fluorescent complementary nucleotides to read the genome one nucleotide at a time. A highly parallelized version is being used in most modern sequencers. Adopted from \citet{dnamethods}.}
-  \label{fig:sequencing}
-\end{figure}
-
-\subsubsection{Next-Generation Sequencing}
-Nowadays, we use next-generation high throughput sequencing (\gls{NGS}) technologies, which allow for massively parallel sequencing of millions of \gls{DNA} fragments—also called reads, simultaneously (see Figure ~\ref{fig:illumina}). This has significantly reduced the time and cost required for genome sequencing, enabling large-scale genomic studies and personalized medicine approaches \cite{huNextgenerationSequencingTechnologies2021}.
-
-Reads, small chunks of \gls{DNA}, often likened to tiny puzzle pieces, are multiplied and sequenced in parallel. The resulting sequences are then aligned (or mapped) to a reference genome, which serves as a template for assembling the reads into a complete genome sequence. The average number of overlapping reads that cover a specific region of the genome is referred to as sequencing depth or coverage. Higher sequencing depth generally leads to more accurate and reliable results, as it reduces the likelihood of errors and increases the confidence in variant detection.
-
-In the last decade, large-scale sequencing efforts such as the 1 million genomes project, the Human Genome Project, and the 1000 Genomes Project have provided valuable insights into human genetic variation and disease susceptibility \cite{1000genomesprojectconsortiumGlobalReferenceHuman2015,landerInitialSequencingAnalysis2001}. Genetic sequencing now allows us to define the genetic basis of many diseases, identify which drug might work for specific patients, and establish follow-ups for high-risk patients. It is driving more and more clinical decisions and is becoming a standard part of patient care.
-
-\begin{figure}[ht]
-  \centering
-  \includegraphics[width=0.6\textwidth]{./figures/illumina.jpg}
-  \caption{\textbf{Image of an Illumina next-generation sequencing chip}. Adopted from \citet{illumina}.}
-  \label{fig:illumina}
-\end{figure}
-
-\subsubsection{New Modalities in Sequencing}
-But sequencing also allowed many new applications, such as the study of gene expression using sequencing. Here we are using sequencer to read the \gls{mRNA}s present within specific tissues, a process known as \gls{RNA} sequencing (\gls{RNA-seq}) \cite{starkRNASequencingTeenage2019}. Other examples abound, such as the sequencing of \gls{DNA} states such as methylation (\gls{BS-seq}), open chromatin (\gls{ATAC-seq}), and chromatin immunoprecipitation (\gls{ChIP-seq}) provides a view of how the genome is being read at a point in time. From \gls{DNA} and its mutations to its state in different contexts and how these lead to changes in \gls{RNA}'s expression and state, we have begung to develop a holistic view of various cellular mechanisms \cite{buenrostroATACseqMethodAssaying2015}.
-
-However, these methods only provided a view of the average of sequences across the cells of a tissue, not of the individual cells. In 2014, the first single-cell RNA sequencing (\gls{scRNA-seq}) methods were developed, allowing researchers to analyze gene expression at the single-cell level \cite{macoskoHighlyParallelGenomewide2015}. This was a breakthrough in genomics, as it enabled the study of cellular heterogeneity and the identification of rare cell populations that was previously missed from bulk analyses.
-
-Since then, single-cell sequencing technologies have rapidly advanced, with new methods being developed to sequence the other omics modalities at the single-cell level. Studies conducted on tens of thousands of cells in the 2010s are now done on millions of cells \cite{regevHumanCellAtlas}, generating what has been called cell atlases.
-
-In our work, we are gathering all the publicly available \gls{scRNA-seq} datasets and atlases across tissues, diseases and species, to train foundation models.
-
-\subsubsection{Future Directions}
-
-\begin{figure}[ht]
-  \centering
-  \includegraphics[width=0.6\textwidth]{./figures/spatial.png}
-  \caption{\textbf{Illustration of spatial transcriptomics} showing how it can be used to extract additional information from a tissue slide. Adopted from \citet{tenx}}
-  \label{fig:spatial}
-\end{figure}
-
-Recently, the development of spatial transcriptomics and imaging techniques has allowed researchers to study the spatial organization of gene expression within tissues, providing a more comprehensive view of cellular function in its native context \cite{stahlVisualizationAnalysisGene2016,defardRNA2segGeneralistModel2025} (see Figure ~\ref{fig:spatial}). Protein measurements are also being developed, unlocking an additional layer of information \cite{luoAdvancesProteinSequencing2025,balezoMIPHEIViTMultiplexImmunofluorescence2025}. Current applications have been primarily focused on the understanding of diseases and drug effects within tissues. The technique allowed the identification of hundreds of new cell types and states, and improved the study of cellular development and differentiation. It had a substantial impact on cancer, neurological diseases, and immunology \cite{josephSingleCellAnalysis2021,kongLandscapeImmuneDysregulation2023}. 
-
-Finally, the development of genetic perturbation techniques such as \gls{CRISPR}-cas9 \cite{dixitPerturbseqDissectingMolecular2016, adamsonMultiplexedSingleCellCRISPR2016}, combined with sequencing (\gls{perturb-seq}), we can now go beyond observations and start to understand the causal relationships between genes and their functions. 
-
-Indeed, these \gls{CRISPR} screens allow researchers to systematically deactivate genes in individual cells and observe the resulting changes in gene expression, providing further insights into gene function and regulatory networks. However these techniques are in their infancy and still limited in scale, scope and especially, quality.
-
-\subsubsection{Current Challenges}
-However, single-cell sequencing also comes with its own set of challenges that directly motivate the methods developed in this thesis. The main issues are:
+S-cell sequencing itself comes with a set of challenges that directly motivate the methods developed in this thesis. The main issues are:
 
 \begin{enumerate}
-  \item \textbf{Sparsity and noise.} Most current single-cell sequencing methods capture only 10-20\% of transcripts, leading to many zeros ("dropouts") in the data. Our models address this through denoising pretraining tasks and learned expression tokenization.
-  \item \textbf{Batch effects.} Strong biases in data generation make cross-dataset analysis challenging. Our foundation models learn batch-invariant representations through large-scale pretraining across hundreds of datasets.
-  \item \textbf{Limited coverage.} Many tissues, rare cell types, and non-model organisms remain undersequenced. We demonstrate cross-species generalization by training on 16 organisms and testing on unseen species.
-  \item \textbf{Missing modalities.} Spatial context and protein levels are often unavailable. We show zero-shot generalization to spatial transcriptomics data without spatial-specific training.
+ \item \textbf{Sparsity and noise.} Most current single-cell sequencing methods capture only 10-20\% of transcripts, leading to many zeros ("dropouts") in the data. Our models address this through denoising pretraining tasks and learned expression tokenization.
+ \item \textbf{Batch effects.} Strong biases in data generation make cross-dataset analysis challenging. Our foundation models learn batch-invariant representations through large-scale pretraining across hundreds of datasets.
+ \item \textbf{Limited coverage.} Many tissues, rare cell types, and non-model organisms remain undersequenced. We demonstrate cross-species generalization by training on 16 organisms and testing on unseen species.
+ \item \textbf{Missing modalities.} Spatial context and protein levels are often unavailable. We show zero-shot generalization to spatial transcriptomics data without spatial-specific training.
 \end{enumerate}
 
 These challenges define the benchmarking framework we use to evaluate our models and motivate our architectural choices.
 
-\subsection{Current Single-Cell Tasks}
+Beyond these data-level challenges, biological complexity itself poses fundamental obstacles. A single human cell contains approximately 20,000 protein-coding genes, but gene regulation extends far beyond simple on/off switches: it involves combinatorial control by transcription factors and cofactors, epigenetic modifications, post-transcriptional regulation by non-coding RNAs, alternative splicing, protein-protein interactions, and metabolic feedback loops (see ~\ref{chap:background}). These processes interact across multiple spatial and temporal scales---from millisecond signaling cascades to days-long differentiation programs---creating a system whose emergent behavior cannot be easily predicted from its individual components. It is this multi-layered complexity that makes purely mechanistic modeling insufficient and motivates the data-driven approaches developed in this thesis.
+
+\subsection{Gene Regulatory Networks}
+
+Gene regulatory networks (\gls{GRN}s) provide a simplified yet powerful framework for understanding how genes interact within cells. The foundations of this field were laid at the Institut Pasteur in the 1950s, where André Lwoff, Jacques Monod, Agnes Ullmann, and François Jacob (see Figure~\ref{fig:lwoffjacobmonod2}) made seminal discoveries about messenger \gls{RNA}, gene regulation, and the operon model \cite{FrontMatter2003}. It is again at the Institut Pasteur, near Monod's and Jacob's buildings, that this Ph.D. was undertaken, aiming to understand further mRNA's role and the cell's regulation using AI models.
 
 \begin{figure}[ht]
-  \centering
-  \includegraphics[width=0.6\textwidth]{./figures/grn-inference_3.png}
-  \caption{\textbf{Single-cell data analysis pipelines} and their relationship to gene networks inference. Adopted from \citet{badia-i-mompelGeneRegulatoryNetwork2023}}
-  \label{fig:grn_3}
+ \centering
+ \includegraphics[width=0.9\textwidth]{./figures/monod.jpg}
+ \caption[Lwoff, Jacob, Monod]{Lwoff, Jacob, Monod in their Pasteur Institute Office. Adopted from \citet{monod}}
+ \label{fig:lwoffjacobmonod2}
 \end{figure}
 
-While these models could be very performant, reliable, and reproducible, benchmarks that align with real use-cases from the user's perspective remain scarce. Fortunately, the field has matured sufficiently for the creation of standardized tasks and pipelines to understand, assess and analyse the data. Understanding these tasks is crucial for this thesis, as they define both our pretraining objectives and evaluation benchmarks.
+Traditional computational cell models based on chemical reaction parameters attempted to simulate these regulatory dynamics but failed to generate realistic predictions of cellular behavior, largely because they could not capture the full combinatorial complexity of gene interactions \cite{badia-i-mompelGeneRegulatoryNetwork2023}. Moreover, as discussed in the Background chapter, gene regulation extends well beyond transcription factors: it involves cofactor proteins, non-coding RNAs, RNA maturation, and protein translation, with interactions spanning all molecular layers. Gene regulatory networks (\gls{GRN}s) provide a simplified framework for these interactions, while gene networks (\gls{GN}s) encompass a broader set of relationships, including protein-protein interactions and metabolic pathways.
 
-In single-cell \gls{RNA-seq} data, a typical pipeline is as follows and contains several possible steps (see Figure ~\ref{fig:grn_3}). We categorize them by their role in our work: \textit{preprocessing} (applied before model training), \textit{pretraining tasks} (used to train our foundation models), \textit{zero-shot tasks} (evaluated without fine-tuning), and \textit{fine-tuning tasks} (requiring task-specific training):
+Current GRN inference methods suffer from additional practical limitations: they typically operate on only a small subset of genes (often restricted to known transcription factors), process only a limited number of cells (failing to scale to modern atlas-sized datasets), and do not fully exploit the richness of single-cell expression profiles \cite{genie3}. Despite this long history, inferring accurate cell-type-specific GRNs remains a major bottleneck in computational biology. Current methods face several challenges: (1) the combinatorial explosion of possible gene-gene interactions makes exhaustive testing infeasible, (2) correlation-based methods cannot distinguish direct from indirect effects \cite{nourisaGeneRNIBLivingBenchmark2025}, (3) perturbation data is expensive and limited in scale, and (4) ground truth networks for validation are sparse and context-specific \cite{mercatelliGeneRegulatoryNetwork2020}. These limitations motivate the development of new approaches, including the foundation model-based methods presented in this thesis.
 
-\begin{enumerate}
-  \item \textbf{Alignment} [\textit{preprocessing}]. It all starts with preprocessing the raw sequencing data: detecting/imputing the cell index, aligning the sequencing reads with a reference genome's gene locations, detecting low-quality cells, reads, doublet events, cell death events, and more \cite{dobinSTARUltrafastUniversal2013}. These choices will impact the output dataset as biases. This step is performed upstream of our models.
+\section{Foundation Models}
 
-  \item \textbf{Normalization and clustering} [\textit{preprocessing}]. The data might be normalized to correct for sequencing depth and other gene-level biases, and clusters of cells would be defined based on their expression profile similarity. Finally, differential-expression analysis is performed, whereby clusters of cells are compared to identify genes that are differentially expressed between them \cite{haghverdiBatchEffectsSinglecell2018}. Our models take normalized counts as input but learn their own expression tokenization.
+The emergence of modern AI---particularly self-supervised transformers pretrained on large datasets---has opened a new avenue: foundation models for single-cell biology.
 
-  \item \textbf{Batch correction / atlas alignment} [\textit{zero-shot}]. The dataset might be aligned to a reference atlas in cases where this exists. This is done by using batch-correction methods, often built around nearest-neighbor mapping, matrix factorization, or neural networks (\gls{NN}) called variational auto-encoders (\gls{VAE}s) \cite{scvi}. Our models perform batch correction zero-shot through learned invariant representations.
+\subsection{LLMs}
 
-  \item \textbf{Annotation and labeling} [\textit{zero-shot / fine-tuning}]. Cluster-level and dataset-level labels might be inferred, such as cell type, tissue, disease, and age. These often come from prior knowledge, manual annotation based on differential expression features, automated tools, or alignment with other prelabeled datasets \cite{hwangSinglecellRNASequencing2018}. Our models achieve zero-shot cell type classification via label prediction pretraining and can be fine-tuned for specific annotation tasks.
-
-  \item \textbf{Denoising / imputation} [\textit{pretraining task / zero-shot}]. In cases where specific clusters contain a low number of cells, denoising or zero-imputation methods can be used \cite{eraslanSinglecellRNAseqDenoising2019}, but they haven't shown consistent usefulness in practice since they rely on cluster-level information. We use denoising as a core pretraining objective, and our models can denoise zero-shot \cite{dijkRecoveringGeneInteractions2018}.
-
-  \item \textbf{Multimodal integration} [\textit{not addressed}]. If users have access to datasets of the same tissue from other modalities (\gls{scATAC-seq}, \gls{BS-seq}, protein measurements, imaging, etc.), multimodal alignment methods can be applied. Such alignments help bridge genotype (\gls{DNA}/mutations) and phenotype (expression, protein levels, pathology). This thesis focuses on scRNA-seq; multimodal integration remains future work.
-
-  \item \textbf{Trajectory inference} [\textit{not addressed}]. If the dataset was measured in a non-static context, one can infer "cellular trajectories", i.e., how cells transition from one state to another based on many single-cell snapshots \cite{chenSTREAMSinglecellTrajectories2018}. We do not directly address trajectory inference in this thesis.
-
-  \item \textbf{Spatial analysis and cell-cell interactions} [\textit{zero-shot generalization}]. If the dataset contains spatial information, one can infer cell-cell interactions based on proximity and expression profiles \cite{pallaSquidpyScalableFramework2022}. We demonstrate zero-shot generalization to spatial transcriptomics data in scPRINT-2.
-
-  \item \textbf{Perturbation response prediction} [\textit{fine-tuning}]. If the dataset includes perturbation experiments, one can predict how cells respond to specific perturbations, such as drug treatments or genetic modifications \cite{lotfollahiScGenPredictsSinglecell2019}. We benchmark perturbation prediction as a fine-tuning task and develop counterfactual reasoning capabilities.
-\end{enumerate}
-
-These analysis and tools are available in a set of packages called scverse, which our work relies heavily on and has contributed to.
-
-Now that we understood more about the biology underpinning this Ph.D.'s work, let's understand the specific method we are trying to develop. A method where we are bringing artificial intelligence to the modeling of the cell.
-
-\section{The AI virtual cell}
-
-A virtual cell model has been the dream of computational and systems biologists for decades. Initially, these models were based on simplified representations of cellular processes, often focusing on specific pathways or interactions. The models examined chemical reaction parameters involving proteins, \gls{RNA}s, and \gls{DNA}. However, in addition to computational challenges, these models were not able to generate realistic predictions of cellular behavior.
-
-Nowadays, an idea has emerged that artificial intelligence techniques,  would allow us to solve some of these problems. But first, what is \gls{AI}, and what is the difference between machine learning (\gls{ML}), data science, and informatics?
-
-\subsection{AI and Neural Networks}
-
-\subsubsection{definitions}
-\textbf{Data Science} encompasses the gathering, management, and analysis of data in information systems. \textbf{Machine Learning} happens when one uses statistical methods to generate predictions from data. But while these methods can be seen in the framework of statistics, they also have an underpinning in other domains, like information systems, neuroscience (with neural networks), statistical physics, psychology, and applied mathematics (with Algebra, Topology, Analysis, and Optimization).
-
-Artificial Intelligence (\gls{AI}) is a broad term that has had multiple meanings in society and culture. For many, it mainly refers to applications of machine learning methods to human and animal-related tasks, such as understanding images, videos, speech, and text, as well as robot manipulation. For the field, it has often been a much broader term encompassing from knowledge bases to statistical methods and neural netwoks (see Figure ~\ref{fig:ffn}).
-
-Recently, Machine Learning (\gls{ML}) has made great strides in many areas, primarily due to a significant increase in data generation, along with improvements in optimization methods and neural networks. In this Ph.D. we are piggy-backing on these improvements and performing data science and machine learning on single cell data.
-
-We will now present an overview of these methods and some intuition for why they work.
-
-\begin{figure}[ht]
-  \centering
-  \includegraphics[width=0.4\textwidth]{./figures/ffn.png}
-  \caption{\textbf{Example of a feed-forward neural network architecture}, drawn in 2 different styles. Adopted from \citet{Goodfellow-et-al-2016}.}
-  \label{fig:ffn}
-\end{figure}
-
-\subsubsection{Learning Paradigms and their applications to single-cell data}
-Machine learning methods can be categorized into three main paradigms, each with distinct applications in our field:
-
-\textbf{Supervised learning} involves training models on labeled data to predict outcomes. In single-cell genomics, this can include cell-type classification from expression profiles, disease-state prediction, and perturbation response modeling. These methods require curated annotations, which are often expensive and inconsistent across datasets. This is used when classifying cell type for example.
-
-\textbf{Unsupervised learning} discovers structure in unlabeled data. Traditional applications include dimensionality reduction (PCA, UMAP) for visualization, clustering for cell type discovery, and matrix factorization for batch correction. This is used to learn representations of cells for example.
-
-\textbf{Self-supervised generative learning} represents the paradigm underlying foundation models. It can be seen as an instance of un-supervised learning, where models are pretrained on large unlabeled datasets using proxy tasks---such as predicting masked genes or reconstructing corrupted inputs---that force them to learn meaningful representations. These representations can then be fine-tuned for downstream tasks or used zero-shot. This thesis develops foundation models in this paradigm, using denoising and expression reconstruction as pretraining objectives. Generative AI has led the second big AI revolution of this decade with tools to generate images, videos, music, voice and text \cite{rombachHighResolutionImageSynthesis2022, shenNaturalSpeech2Latent2023, singerMakeAVideoTexttoVideoGeneration2022}.
-
-\subsubsection{Representation Learning and Embeddings}
-Most modern machine learning tools rely on representation learning, converting concepts and objects into high-dimensional vectors called embeddings \cite{Goodfellow-et-al-2016}. In deep Neural Networks (\gls{NN}), these embedding vectors are processed through layers of mathematical operations, often involving matrix multiplications and non-linear activation functions. The layers are designed to learn hierarchical representations of the input data, capturing increasingly complex features as data passes through the network. For single-cell data, this means learning representations where similar cells (by type, state, or function) cluster together in embedding space, enabling downstream tasks like classification and trajectory inference. Such tools have been heavily applied in single-cell genomics, with many methods relying on representation learning to denoise, align, and analyze data \cite{scvi}.
-
-Recently, specific neural network architectures with powerful scaling properties, called transformers, have become ubiquitous. Researchers have extended their capabilities to scientific domains, including weather including weather prediction \cite{lamLearningSkillfulMediumrange2023} and, as we explore in this thesis, cellular modeling. But why and how are these models so powerful? While this remains an active area of research, essential theories have been presented. 
-
-\subsubsection{Why Does It Work? Architectural Innovations}
-Contrary to previously accepted machine learning dogma, deep learning researchers showed in the 2010s that increasing the number of parameters did not necessarily lead to overfitting. Instead, thanks to regularization methods such as dropout and weight decay, models were able to learn more complex patterns in the data.
-
-Several key architectural innovations enabled modern deep learning:
-
-\textbf{Skip connections} (residual connections) prevent vanishing gradients by allowing information to flow directly across layers. This innovation led to architectures like ResNet \cite{heDeepResidualLearning2015}, enabling training of much deeper networks. This was the major component of the deep learning revolution of the 2010s. It is also used heavily in all transformer-based models.
-
-\textbf{Normalization layers} (batch normalization, layer normalization) stabilize training by normalizing intermediate activations, allowing higher learning rates and faster convergence. Layer normalization is particularly important for transformers and is used in all models.
-
-\textbf{Tokenization and attention} make the models both more parallelizable and more complex. indeed, it allows models to work on matrix inputs, where each input value becomes a vector of number (also called embedding or token). For text, this involves subword units; for single-cell data, we can let our imagination run free, it could be genes, cells, molecules, indeed we will be using both in our models.
-We then use classical neural networks to do processing per token and the attention mechanism to have the tokens interact with one another.
-Taken together, these make the model even more parallelizable from its depth and its width. 
-
-\textbf{\gls{GPU}s} or Graphical Processing Units where the final enabler allowing us to reach unprecedent scales using large and very efficient parallel matrix operations.
-
-These innovations are particularly relevant for genomics: attention mechanisms can capture gene-gene interactions, parallelizations enable processing of thousands of genes, and proper tokenization of expression values is crucial for learning meaningful representations. Indeed they already impacted biology greatly in multiple front, a famous example being the recent nobel-prize winning alphafold2 model, built on modified attention architectures \cite{jumperHighlyAccurateProtein2021}.
-
-Now, the final piece of the puzzle is in how we train such models.
-
-\subsubsection{Optimization and Loss Landscapes}
-Interestingly, whether small or large, neural network or else, almost all \gls{ML} methods are trained using variants of gradient descent optimization methods. These methods aim to minimize a loss function, which quantifies the difference between the model's predictions and the actual data. By iteratively adjusting the model's parameters in the direction that reduces the loss, these optimization algorithms help the model learn from the data.
-
-But this is through \emph{stochastic} gradient descent (\gls{SGD}) methods like Adam that we succeffully train \gls{NN}s \cite{kingmaAdamMethodStochastic2017,loshchilovDecoupledWeightDecay2019}. Indeed, using only a small subset of the data at each training step is not only much faster to minimize the loss function but it also helps escape local minima and saddle points \cite{liVisualizingLossLandscape2018}. 
-
-To understand this, we need to understand the loss landscape. Imagine a 3D landscape where the height represents the loss value, and the two other "surface" dimensions are the model's parameters (see Figure ~\ref{fig:loss_surface}). The goal of the model is to find the lowest point in this landscape, which corresponds to the best set of parameters to fit the data. However, this landscape is very complex, with many local minima and saddle  which would prevent the model from reaching a nice minima. The model wanders blindly and can only sense its immediate surroundings.
-
-\begin{figure}[ht]
-  \centering
-  \includegraphics[width=0.9\textwidth]{./figures/loss-surface.png}
-  \caption{\textbf{Visualization of a loss landscape} with and without skip connections. The figure represents the loss values in z axis and color by parameters in x and y axis. Adopted from \citet{liVisualizingLossLandscape2018}}
-  \label{fig:loss_surface}
-\end{figure}
-
-In deep neural networks, there is not just two but billions of dimensions, however. In this context, the loss landscape doesn't contain that many local minimas, there is always a possible direction to decrease the loss. Furthermore, \gls{SGD}, by being stochastic, alters the loss landscape each time, thus letting the model easily find a possible escape direction from a local minima or a saddle point (a locally flat surface).
-
-Behind this unexpected behavior is the unsettling theory of emergence. Or how small objects can combine and interact in ways that would be unexpected and difficult to predict based on their individual properties. This theory tries to explain phenomena in dunes, snowflakes, ant colonies, and life itself, which might explain how large neural networks achieve such complex behaviors \cite{weiEmergentAbilitiesLarge2022}.
+In Language modelling, large language models (\gls{LLM}s) have demonstrated that self-supervised pretraining on massive text corpora produces representations that generalize across a wide range of tasks. Models such as BERT \cite{devlinBERTPretrainingDeep2019} and GPT \cite{brownLanguageModelsAre2020} learn contextual relationships between tokens---words or subword units---through tasks like masked language modeling or next-token prediction. The success of these models relies on three pillars: (1) the transformer architecture, which captures long-range dependencies through attention mechanisms; (2) scale, both in data and parameters, which enables emergent capabilities; and (3) the self-supervised paradigm, which removes the need for labeled data during pretraining. These principles have inspired a wave of foundation models in scientific domains, from protein sequences (ESM2 \cite{esm2}) to molecular structures (AlphaFold \cite{jumperHighlyAccurateProtein2021}), and, as we discuss below, to single-cell transcriptomics.
 
 \subsection{Bio-Foundation Models}
 
-\subsubsection{Transformer Architectures: Encoder vs. Decoder}
-For text, images, videos, and audio, large language models (\gls{LLM}s) are now ubiquitous. In scientific domains, we call similar models---trained on all available data in a modality---foundation models. These models represent a paradigm shift from small, task-specific neural architectures to larger, transformers-based architectures (see Figure ~\ref{fig:transformer}), trained across entire data domains, with the goal of generalizing to unseen datasets and novel tasks \cite{bommasaniOpportunitiesRisksFoundation2022}.
-
-Two main transformer architectures exist, with different implications for genomics:
-
-\textbf{Encoder-only models} (e.g., BERT \cite{devlinBERTPretrainingDeep2019}) use \textbf{bidirectional} attention, where each token can attend to all other tokens. This is well-suited for understanding and classification tasks. For single-cell data, bidirectional attention allows each gene to see all other genes, naturally modeling gene-gene interactions.
-
-\textbf{Decoder-only models} (e.g., GPT \cite{brownLanguageModelsAre2020}) use \textbf{causal/unidirectional} attention, where each token can only attend to previous tokens. They are trained with \textbf{autoregressive} prediction: predicting the next token given previous ones.
-
-For single-cell genomics, the choice is consequential: genes have no natural ordering (unlike words in sentences), making bidirectional architectures more appropriate. Our models use encoder-style bidirectional attention, treating genes as an unordered set where each gene can attend to all others. This design choice enables learning symmetric gene-gene relationships suitable for GRN inference.
-
-\textbf{Structured and sparse attention.} Standard attention allows every token to attend to every other token, with complexity $O(n^2)$. However, biological systems have inherent structure: genes interact through regulatory networks, proteins form complexes, and cells communicate through defined pathways. This has motivated attention variants that incorporate prior knowledge or learn sparse patterns. \textbf{Graph attention networks} \cite{velickovicGraphAttentionNetworks2018} restrict or bias attention to predefined edges in a graph, allowing tokens to attend only to their neighbors. This is particularly relevant for genomics, where protein-protein interaction networks or known regulatory relationships can guide attention. 
-
-Similar ideas were used in the development of Alphafold2 and Alphafold3 \cite{abramsonAccurateStructurePrediction2024a,
-jumperHighlyAccurateProtein2021}. In text similar examples abound with \textbf{Sparse attention} mechanisms like Longformer \cite{beltagyLongformerLongDocumentTransformer2020} and BigBird \cite{zaheerBigBirdTransformers2021} combining local windowed attention with global tokens, achieving linear complexity while maintaining expressiveness. 
-
-Finally, while some of these methods already decrease the computational complexity of attention, \textbf{efficient attention} methods such as hyper attention, Performer, and others \cite{choromanskiRethinkingAttentionPerformers2022, hanHyperAttentionLongcontextAttention2023, goncalvesAdaSplashAdaptiveSparse2025} approximate the attention mechanism using low-rank approximations, dropping blocks, or using kernel methods.
-
-For single-cell models processing thousands of genes, such efficiency gains are essential. In our work, we explore how attention patterns learned during pretraining, how we can bias them, and how we can decrease their computational complexity.
+The first practical example of a single-cell (\gls{RNA-seq}) foundation model was scBERT, released in 2021. However, it was only used and benchmarked for cell type classification and pretrained on 1 million single cells \cite{yangScBERTLargescalePretrained2022a}. The first foundational model with broader claims, Geneformer, was released a year later \cite{theodorisTransferLearningEnables2023} (see Figure ~\ref{fig:geneformer}). The authors demonstrated the model's ability to perform various single-cell tasks, including cell-type classification, gene regulatory network inference, and perturbation prediction. Geneformer was trained on a much larger dataset of 33 million single cells.
 
 \begin{figure}[ht]
-  \centering
-  \includegraphics[width=0.9\textwidth]{./figures/transformer.png}
-  \caption{\textbf{Transformer architecture overview}. From Attention is all you need. the leftmost block is an encoder transformer, the longer block to its right is a decoder transformers. Nowadays most methods are either one or the other but many combination, such as the one presented here can be created. Adopted from \citet{vaswaniAttentionAllYou2023}.}
-  \label{fig:transformer}
+ \centering
+ \includegraphics[width=0.9\textwidth]{./figures/geneformer.png}
+ \caption[The Geneformer model]{The Geneformer model, where genes are represented as words and cells as sentences, where genes are ordered by their expression level. Adopted from \citet{theodorisTransferLearningEnables2023}.}
+ \label{fig:geneformer}
 \end{figure}
 
-\subsubsection{The Pretraining-Fine-tuning-Zero-shot Pipeline}
-The foundation model paradigm involves three phases that we leverage extensively in this thesis:
+However, Geneformer, like scBERT, was essentially an LLM (\gls{BERT}) applied directly to single-cell data. In this context, words are gene names, listed in order of expression level in the cell to form a sentence. This design choice raises questions about whether such direct adaptations from NLP are optimal for biological data.
 
-\textbf{Pretraining} uses self-supervised tasks on large unlabeled datasets. For language, this is next-token prediction; for single-cell data, we use expression denoising (reconstructing original counts from corrupted inputs), bottleneck learning (compressing and reconstructing cell representations), and hierarchical label prediction. Pretraining teaches the model general patterns: for our models, this includes gene co-expression patterns, cell type signatures, and regulatory relationships.
-
-\textbf{Fine-tuning} adapts pretrained models to specific tasks using smaller labeled datasets. The pretrained weights provide a strong initialization, enabling faster convergence and better performance than training from scratch. We fine-tune for tasks like perturbation prediction, where limited experimental data is available.
-
-\textbf{Zero-shot inference} applies pretrained models directly to new tasks without any task-specific training. This tests whether pretraining has learned genuinely transferable representations.
-
-During this thesis we will understand pretrained foundation models in both their zero-shot and fine-tuned abilities but we are most interested in the representation they learn during pretraining. 
-
-This pipeline is particularly valuable for biology, where labeled data is expensive and inconsistent. By pretraining on millions of cells, single cell foundation models might learn robust representations that transfer across tissues, diseases, and even species.
-
-\subsubsection{Initial Single-Cell Foundation Models}
-The first practical example of a single-cell (\gls{RNA-seq}) foundation model could have been scBERT, released in 2021. However, it was only used and benchmarked for cell type classification and pretrained on 1 million single cells \cite{yangScBERTLargescalePretrained2022a}. The first foundational model with broader claims, Geneformer, was released a year later \cite{theodorisTransferLearningEnables2023} (see Figure ~\ref{fig:geneformer}). The authors demonstrated the model's ability to perform various single-cell tasks, such as cell type classification, gene regulatory network inference, and perturbation prediction. Geneformer was trained on a much larger dataset of 33 million single cells.
-
-\begin{figure}[ht]
-  \centering
-  \includegraphics[width=0.9\textwidth]{./figures/geneformer.png}
-  \caption{\textbf{The Geneformer model}, where genes are represented as words and cells as sentences where genes are ordered by their expression level. Adopted from \citet{theodorisTransferLearningEnables2023}.}
-  \label{fig:geneformer}
-\end{figure}
-
-However, Geneformer, like scBERT, was essentially an LLM (\gls{BERT}) applied directly to single-cell data. In this context, words are gene names and they are listed in order of expression level in the cell to make up a sentence. This design choice raises questions about whether such direct adaptations from NLP are optimal for biological data.
-
-\subsubsection{Current Single-Cell Foundation Models and Their Limitations}
+\subsection{Current Single-Cell Foundation Models and Their Limitations}
 In 2023, a year after Geneformer, several additional foundation models were released. scGPT \cite{cuiScGPTBuildingFoundation2024} showcased a GPT-style architecture and presented various losses for fine-tuning. It was the first example of systematic fine-tuning in single-cell and a more in-depth benchmark across four abilities: cell type prediction, gene network inference, perturbation prediction, and batch correction. However, it did not outperform state-of-the-art methods \cite{boiarskyDeepDiveSingleCell2023, alsabbaghFoundationModelsMeet2023}. At the same time, Universal Cell Embedding (UCE) \cite{rosenUniversalCellEmbeddings2023} demonstrated cross-species training to achieve state-of-the-art cross-species cell embeddings, introducing a contrastive loss function for cell representation learning (see Figure ~\ref{fig:UCE}).
 
 \begin{figure}[ht]
-  \centering
-  \includegraphics[width=0.9\textwidth]{./figures/uce.png}
-  \caption{\textbf{Low-dimensional visualization of universal cell embeddings across species}. Each point is a cell positioned near similar cells according to this foundation model. Adopted from \citet{rosenUniversalCellEmbeddings2023}.}
-  \label{fig:UCE}
+ \centering
+ \includegraphics[width=0.9\textwidth]{./figures/uce.png}
+ \caption[Low-dimensional visualization of universal cell embeddings across species]{Low-dimensional visualization of universal cell embeddings across species. Each point is a cell positioned near similar cells according to this foundation model. Adopted from \citet{rosenUniversalCellEmbeddings2023}.}
+ \label{fig:UCE}
 \end{figure}
 
 Finally, scFoundation \cite{haoLargescaleFoundationModel2024}, despite being closed-source, showcased a truly novel architecture specifically built for single-cell data and a novel training method based on the noise-to-sequencing-depth relationship.
@@ -385,13 +82,156 @@ Finally, scFoundation \cite{haoLargescaleFoundationModel2024}, despite being clo
 \textbf{Key bottlenecks in single-cell foundation models.} At the start of this Ph.D., we identified several limitations in existing approaches that motivated our contributions:
 
 \begin{enumerate}
-  \item \textbf{Expression tokenization.} Existing models used hand-crafted binning or rank-ordering of expression values. We hypothesized that learned tokenization could better capture biological signal.
-  \item \textbf{Gene representation.} Most models learned gene embeddings from scratch, ignoring rich prior knowledge from protein sequences. We introduced protein-based gene encoding using ESM2 embeddings.
-  \item \textbf{Genomic context.} Gene position on chromosomes affects co-regulation, but this was ignored. We added genomic positional encoding.
-  \item \textbf{GRN inference.} Claims about GRN inference were not rigorously benchmarked. We developed BenGRN, a comprehensive benchmarking suite.
-  \item \textbf{Scalability.} Transformer quadratic complexity limited genome-wide analysis. We developed efficient attention mechanisms for large-scale inference.
-  \item \textbf{Reproducibility.} Many models were not open-source or reproducible. We committed to releasing all code, models, and benchmarks.
-  \item \textbf{Cross-species generalization.} Training was limited to human/mouse. We scaled to 16 organisms.
+ \item \textbf{Expression tokenization.} Existing models used hand-crafted binning or rank-ordering of expression values. We hypothesized that learned tokenization could better capture the biological signal.
+ \item \textbf{Gene representation.} Most models learned gene embeddings from scratch, ignoring rich prior knowledge from protein sequences. We introduced protein-based gene encoding using ESM2 embeddings.
+ \item \textbf{Genomic context.} Gene position on chromosomes affects co-regulation, but this was ignored. We added genomic positional encoding.
+ \item \textbf{GRN inference.} Claims about GRN inference were not rigorously benchmarked. We developed BenGRN, a comprehensive benchmarking suite.
+ \item \textbf{Scalability.} Transformer quadratic complexity limited genome-wide analysis. We developed efficient attention mechanisms for large-scale inference.
+ \item \textbf{Reproducibility.} Many models were not open-source or reproducible. We committed to releasing all code, models, and benchmarks.
+ \item \textbf{Cross-species generalization.} Training was limited to human/mouse. We scaled to 16 organisms.
 \end{enumerate}
 
-It is right after the release of scGPT and UCE that this Ph.D. started. The field of single-cell foundation models had just begun. In the next chapter, we will present the specific scientific questions and objectives of this thesis and how we decided to tackle them.
+\section{Scientific aim}
+
+The limitations identified above---in both GRN inference methods and existing single-cell foundation models---point to a clear need: models that not only perform well on standard benchmarks but whose representations can be mechanistically interpreted to yield biological insight. Beyond building better architectures, we must understand \emph{what} these models learn, \emph{whether} their improvements are genuine or artifacts of evaluation choices, and \emph{how} to make them practically useful for the biological community. This requires rigorous benchmarking, reproducible training, and systematic ablation of design decisions. In what follows, we describe the initial aims that guided this Ph.D. and how they evolved into the contributions presented in the subsequent chapters.
+
+\subsection{Initial aim}
+At the start of the project, we wanted to understand how single-cell foundation models worked---or whether they worked at all---and to improve gene regulatory network (\gls{GRN}) inference using single-cell RNA sequencing (\gls{scRNA-seq}) data, sensing a possible interplay between the two. Before presenting our contributions, it is important to reflect on what we initially set out to achieve. This being a Thesis by Articles, each of the three main chapters corresponds to a specific scientific publication.
+
+This Ph.D. project initially aimed to develop new deep learning approaches, possibly using graph neural network architectures on large \gls{scRNA-seq} datasets, to assess their predictive performance on high-quality benchmarks and package them as an open-source Python library. Our principal idea was to use Graph Neural Networks (\gls{GNN})s. \gls{GNN}s are a class of deep learning layers designed to operate on graph-structured data. They are specifically tailored to handle modalities where edges connect the different input elements (nodes or vertices) \cite{batznerE3equivariantGraphNeural2022,decaoMolGANImplicitGenerative2018,ganInferringGeneRegulatory2024} (see Figure ~\ref{fig:gnn}).
+
+Traditional neural networks are primarily designed to process grid-like data, such as images, or sequential data, such as text. However, \gls{GNN}s extend this capability to graph-structured data by incorporating a pooling operation across connected nodes.
+
+\textbf{Objectives}. We wished to improve \gls{GRN} predictions from \gls{scRNA-seq} data. Our approach was:
+
+\begin{enumerate}
+\tightlist
+\item
+To use larger neural network models that scale linearly with the dataset size, taking advantage of the tens of millions of data points now becoming available.
+\item
+To use novel \gls{GNN} layers that can reduce the model's ``search space'' by constraining the set of possible topologies it learns.
+\item
+To improve the pretraining and fine-tuning of these models to the predictive task they have to perform, and the constraints of the system they are predicting.
+\item
+To formulate better layers that correspond to the sparse interactions between genes and our current knowledge about their functions.
+\item
+To create formal and rational benchmarks that best capture the ability of a \gls{GRN} methodology.
+\item
+To assess predictions and any usefulness or lack of it by having biologists test hypotheses using the model.
+\end{enumerate}
+
+\begin{figure}[ht]
+ \centering
+ \includegraphics[width=0.9\textwidth]{./figures/gnn.png}
+ \caption[Illustration of the graph neural network mechanism]{Illustration of the graph neural network mechanism, update and pooling (e.g., summing) across multiple connected nodes represented as vectors. Adopted from \citet{corsoGraphNeuralNetworks2024}.}
+ \label{fig:gnn}
+\end{figure}
+
+\subsection{Potential Impacts}
+From these initial objectives, we envisioned several impacts. This Ph.D.~project will contribute to methodological breakthroughs by providing new tools and methods for applying neural networks to unstructured data such as \gls{scRNA-seq}, and to improve the state of the art in \gls{GRN} prediction.
+
+The proposed methodologies will impact computational (bioinformatics, machine learning) and biomedical fields. The new architectures might address challenges faced by related fields such as environmental research, industrial biotechnology, and biofuel studies. The improved \gls{GRN} predictions will enhance our understanding of cellular processes, potentially leading to new therapeutic targets and strategies for treating diseases. The open-source Python library will democratize access to these tools, enabling researchers worldwide to apply them to their data and questions.
+
+\section{Thesis scope \& contributions}
+
+The thesis contributes to these efforts by developing foundation models trained on single-cell RNA sequencing data. Specifically, we investigate how and if modern machine learning architectures---transformers and attention mechanisms---can learn cellular representations that capture gene regulatory relationships. We explore how these models can be useful today for tasks such as denoising, imputation, cell type annotation and batch correction. Through this lens we design improvements through better architectures and training strategies.
+
+\subsection{Limitations}
+
+While the initial objectives centered on graph neural networks, early investigations revealed fundamental limitations of this approach for GRN inference. First, reliable ground-truth GRNs are largely unavailable, making it impossible to initialize a model from a known graph topology. Second, \gls{GNN}s do not scale well to the tens of thousands of genes present in a cell, and systematic benchmarks consistently show them underperforming transformer-based models on comparable tasks \cite{hussainGlobalSelfAttentionReplacement2022,chenGraphAttentionNetwork2022}.
+
+These findings led us to adopt transformers instead, which can be viewed as \gls{GNN}s operating on fully-connected graphs \cite{dwivediGeneralizationTransformerNetworks2021,joshiTransformersAreGraph2025,nichaniHowTransformersLearn2024a,shawSelfAttentionRelativePosition2018}. The principal challenge with transformers is their quadratic complexity with respect to the number of input tokens. Addressing this scalability bottleneck---making transformers scale sub-quadratically with the number of input genes and cells---became one of the central contributions of this thesis.
+
+Notably, transformer-based models can also be used to infer putative \gls{GRN}s directly from non-graph input data \cite{cuiScGPTBuildingFoundation2024,theodorisTransferLearningEnables2023}, a capability that standard \gls{GNN}s cannot achieve. This observation further reinforced our decision to build upon the transformer paradigm.
+
+It is also important to note that this thesis does not specifically address perturbation response prediction, temporal dynamics, or spatial transcriptomics as primary modeling targets. While we demonstrate zero-shot generalization to spatial data and discuss perturbation prediction as a fine-tuning task, dedicated modeling of these modalities remains an important direction for future work.
+
+Finally, while we managed to initiate some collaborations, fully achieving cross-disciplinary validation proved difficult---an unsurprising reality in the current landscape. This experience reinforced the need to make foundation models more accessible, which became one of the contributions of this thesis, represented not only in the effort to release easy-to-use open-source models but also in various side contributions and outreach efforts.
+
+
+\subsection{Scope of the Thesis}
+
+The limitations and opportunities described above progressively shaped the scope of this Ph.D. As we benchmarked existing single-cell foundation models and their claimed abilities, we encountered numerous shortcomings---ranging from poor usability and lack of reproducibility in pretraining to questionable architectural decisions and inconsistent evaluation practices. These observations led us to create our own model and, more broadly, to pursue a research program organized around the following axes:
+
+\begin{enumerate}
+ \item \textbf{Benchmarking and evaluation.} We developed standardized, biologically grounded benchmarking suites (BenGRN, GRnnData) for GRN inference and contributed benchmarks to the Open Problems platform, addressing the lack of rigorous and reproducible evaluation in the field.
+ \item \textbf{Reproducibility and accessibility.} We committed to fully open-source releases of all models, training code, datasets, and documentation, and deployed models on community platforms (CZ Virtual Cell Models, Superb.io) with tutorials and containerized benchmarks.
+ \item \textbf{Novel architectures.} We designed the Xpressor cross-attention compression mechanism for learning across biological scales (Chapter~\ref{article2}), criss-cross attention for sub-quadratic scaling, and GNN-based expression encoders for leveraging neighborhood information (Chapter~\ref{article3}).
+ \item \textbf{Improved training strategies.} We systematically evaluated pretraining tasks (denoising vs.\ masking), loss functions (MSE, ZINB, and hybrids), input representations (normalized vs.\ raw counts), and gene tokenization approaches through an additive benchmarking framework (Chapter~\ref{article3}).
+ \item \textbf{Zero-shot and generative capabilities.} We demonstrated zero-shot performance on denoising, cell-type classification, batch correction, and spatial transcriptomics, as well as counterfactual generation through the Xpressor architecture (Chapters~\ref{article1} and~\ref{article3}).
+ \item \textbf{Applications to biological discovery.} We applied our models to real biological systems, including prostate tissue atlases and cross-species macrophage analysis, recovering known biology and generating testable hypotheses (Chapters~\ref{article1} and~\ref{article3}).
+ \item \textbf{Understanding model limitations.} Through systematic ablations and cross-model comparisons, we characterized the conditions under which foundation models succeed or fail, informing future model development.
+\end{enumerate}
+
+Improving \gls{scFM}s to generate better representations of cells, genes, and their networks thus became the central objective of this Ph.D. We also sought to create benchmarks better suited to the single-cell genomics field, driven by real-life applicability rather than artificial metrics. Indeed, current methods often relied on synthetic data and ground truths unrepresentative of real biological systems, and the known single-cell standardized benchmarks were rarely used by early \gls{scFM} papers.
+
+\section{Chapters Overview \& Main Contributions}
+
+This thesis is structured around three main publications, each presented as a chapter. Below, we provide detailed summaries of our contributions and results.
+
+\subsection{Chapter \ref{article1}: scPRINT: pretraining on 50 million cells allows robust gene network predictions}
+
+In this chapter, we present \gls{scPRINT} (single-cell PRetrained Inference of Networks with Transformers), a large cell model designed for cell-specific gene network inference at the genome scale. This work addresses a fundamental challenge in cellular biology: inferring the network of molecular interactions that governs cell behavior.
+
+\textbf{Model architecture and training innovations.} We trained \gls{scPRINT} on more than 50 million cells from the \gls{CxG} database, representing approximately 80 billion tokens across multiple species, diseases, and ethnicities. Our model introduces several architectural innovations: (1) a protein-based gene encoding using \gls{ESM}2 embeddings, which reduces parameters while enabling cross-species generalization; (2) a learned expression tokenization via \gls{MLP} rather than hand-crafted binning; and (3) positional encoding of genomic location to capture co-regulation patterns. We designed three complementary pretraining tasks: a denoising task (transcript upsampling), a bottleneck learning task (embedding compression and reconstruction), and a label-prediction task with hierarchical classification for disentangled cell embeddings that represent different phenotypic facets.
+
+\textbf{Gene network inference methodology.} A critical contribution is our method for extracting cell-specific gene networks from the transformer's attention matrices, inspired by similar approaches in \gls{ESM}2 for protein contact prediction. We made this approach scalable to compute genome-wide networks for thousands of cells on commodity hardware. We also introduced an attention head selection mechanism that selects a subset of heads based on their correlation with known ground-truth networks, significantly improving network quality in larger models.
+
+\textbf{Comprehensive benchmarking framework.} We created BenGRN and GRnnData, novel benchmarking suites for \gls{GRN} inference that address the lack of standardized evaluation in the field. We benchmarked \gls{scPRINT} against \gls{scGPT}, Geneformer v2, Deep\gls{SEM}, and GENIE3 using multiple ground truth types: literature-based networks (Omnipath), cell-type-specific \gls{ChIP-seq}/perturb-seq intersections (MCalla et al.), and genome-wide perturb-seq data. Our results demonstrate that \gls{scPRINT} outperforms all other methods on most benchmarks. On the Omnipath benchmark across 26 cell types, \gls{scPRINT} recovered 67\% more connections than GENIE3 and showed superior enrichment for \gls{TF}s and their \gls{ENCODE}-validated targets (20\% of \gls{TF}s with significant enrichment, compared to 0\% for \gls{scGPT}). On the MCalla et al. cell-type-specific ground truth, \gls{scPRINT} consistently outperformed all methods on both \gls{AUPRC} and \gls{EPR} metrics.
+
+\textbf{Zero-shot capabilities on orthogonal tasks.} Beyond gene network inference, we demonstrated that \gls{scPRINT}'s learned cell model enables competitive zero-shot performance on denoising, cell type prediction, and batch effect correction---without fine-tuning. For denoising, \gls{scPRINT} matches \gls{SOTA} methods (MAGIC, KNNsmoothing2) on bulk populations and outperforms them on rare cell types where neighborhood-based methods fail. For cell type classification, \gls{scPRINT} achieves 62\% accuracy as a zero-shot predictor across 200+ cell types, outperforming marker-based methods like CellTypist. For batch effect correction, \gls{scPRINT} achieves competitive \gls{scIB} scores without using batch labels, outperforming all methods that similarly do not require batch annotation.
+
+\textbf{Biological application and discovery.} We applied \gls{scPRINT} to an atlas of 83,000 cells from normal and \gls{BPH} prostate tissues. In rare switched memory B cells, we identified early \gls{TME} markers, including BAG5, a known B-cell-associated prostate cancer marker. In fibroblasts, our gene networks revealed differential hub genes between normal and \gls{BPH}-associated cells, recovering known biology around PAGE4 and uncovering interconnected pathways linking ion exchange, \gls{ECM} remodeling, oxidative stress, and chronic inflammation---hallmarks of premalignant states.
+
+\subsection{Chapter \ref{article2}: Xpressor: Towards foundation models that learn across biological scales}
+
+In this chapter, we present Xpressor, a framework and architecture enabling cross-scale learning between biological foundation models. This work addresses a fundamental challenge: while foundation models exist at multiple biological scales (molecules, sequences, cells, tissues), they operate in isolation, unable to leverage the rich interconnections between scales.
+
+\textbf{Motivation and conceptual framework.} We begin with a comprehensive review of foundation models across four biological scales: \glspl{mFM} for atomistic molecular representations, \glspl{nFM} for nucleotide and amino acid sequences (\gls{DNA}, \gls{RNA}, proteins), \glspl{cFM} for cellular abundance profiles, and \glspl{tFM} for tissue-level spatial organization. We argue that information flows between scales: lower-scale models (e.g., protein sequences) can improve input representations for higher-scale models (e.g., cells), while relationships learned at higher scales can inform lower-scale representations. Each scale's vocabulary can be seen as built from the compressed representations of the scale below---amino acids from atoms, genes from proteins, cells from genes, tissues from cells.
+
+\textbf{The Xpressor architecture.} Our first contribution is a cross-attention-based compression mechanism called Xpressor that transforms high-dimensional gene-level representations into lower-dimensional cell-state vectors. The architecture introduces additional transformer blocks that perform cross-attention between the output embeddings of a foundation model and a set of learned latent tokens. It creates a bottleneck that compresses $m$ gene tokens of dimension $d_c$ into $n$ cell tokens of dimension $d_t$, where $n \ll m$ and $d_t < d_c$. Critically, the same transformer can then decompress these cell representations back to gene-level predictions using cross-attention with gene ID tokens. This compression/decompression framework is grounded in the information bottleneck theory of Tishby et al., where the goal is to retain maximal information about relevant variables while achieving compression. We further regularize the latent space using contrastive losses between embedding dimensions and dimension-specific classifiers, ensuring each cell embedding dimension captures distinct biological information.
+
+\textbf{Multi-scale fine-tuning approach.} Our second contribution is a method for fine-tuning lower-scale models using upper-scale tasks via adapter layers. We demonstrate this using \gls{ESM}2 (a protein language model) as the lower-scale model and \gls{scPRINT} as the upper-scale model. Rather than simply using frozen \gls{ESM}2 embeddings as gene tokens, we add a trainable \gls{MLP} adapter that transforms each protein embedding during \gls{scPRINT}'s pretraining. We provide a formal proof that such an \gls{MLP} has sufficient capacity to learn any arbitrary mapping---including acting as a lookup table that assigns each of $D$ proteins to a unique learned output. This allows the adapter to enrich \gls{ESM}2's representations (which encode protein sequence, evolutionary constraints, and structure) with co-expression information learned from millions of single-cell profiles.
+
+\textbf{Empirical results on the scPRINT benchmark gymnasium.} We evaluate both contributions on three tasks from the \gls{scPRINT} benchmark: cell-type prediction, embedding quality (\gls{scIB} score for batch correction and biological consistency), and gene network inference (\gls{EPR} on genome-wide perturb-seq and Omnipath ground truths). For the Xpressor architecture versus standard class-pooling (as used in \gls{scGPT}), we observe substantial improvements: cell-type prediction accuracy increases from 0.60 to 0.72 (+20\%), and embedding quality improves from 0.48 to 0.52 (+8\%), while gene network inference remains comparable. For multi-scale fine-tuning, comparing frozen \gls{ESM}2 embeddings versus fine-tuned ones, we see cell-type prediction improve from 0.60 to 0.70 (+17\%), embedding quality from 0.48 to 0.49, and gene network inference improves on the Omnipath benchmark from 2.0 to 2.4 \gls{EPR} (+20\%). Notably, fine-tuned \gls{ESM}2 embeddings outperform both frozen \gls{ESM}2 and randomly initialized embeddings across nearly all metrics.
+
+\subsection{Chapter \ref{article3}: scPRINT-2: Towards the next-generation of cell foundation models and benchmarks}
+
+In this chapter, we present \gls{scPRINT}-2, a next-generation single-cell foundation model whose design decisions were systematically validated through an unprecedented additive benchmarking framework. This work addresses the critical gap in the field: while many \gls{scFM}s have been proposed, the relative importance of their architectural choices, training strategies, and data modalities has never been rigorously assessed in isolation.
+
+\textbf{The additive benchmark: a systematic evaluation framework.} We designed a comprehensive benchmark to evaluate 42 different configurations of \gls{scFM} components, including pretraining databases, architectures, and training tasks. Each model variant was trained 6 times across multiple seeds to generate statistical error bounds, and evaluated on a gymnasium of tasks: cell-type classification, batch correction (\gls{scIB} scores), expression denoising, and gene network inference. Our benchmark revealed several key findings: (1) denoising is superior to masking as a pretraining task for classification and embedding quality; (2) un-normalized expression outperforms normalized input; (3) \gls{ESM}-based gene tokens significantly outperform learned embeddings from scratch; (4) genomic location encoding improves model convergence; (5) \gls{MSE} loss outperforms \gls{ZINB} on average, but a hybrid \gls{ZINB}+MSE loss provides the best balance between accuracy and expressivity; and (6) model size correlates with improved gene network inference and cell-type prediction.
+
+\textbf{The \gls{scPRINT}-2 corpus: the largest single-cell database to date.} We assembled a pretraining database of over 350 million cells from 16 eukaryotic organisms spanning more than one billion years of evolution. This corpus integrates data from \gls{CxG}, the Tahoe-100M dataset, and the scBasecount database (20,000 reprocessed \gls{GEO} datasets), totaling 25 TB of unique data with approximately 400,000 distinct genes and 4,764 different cell labels across 140,000 cell groups. We demonstrated that cell-state diversity and data quality are more important than sheer cell count — reducing to 200 human datasets caused only a minimal performance decrease, whereas using low-diversity datasets alone caused performance to plummet. We introduced cluster-weighted sampling and \gls{NNZ}-weighted sampling to address dataset imbalances, enabling effective training on this heterogeneous corpus.
+
+\textbf{Architectural innovations.} \gls{scPRINT}-2 incorporates 12 distinct contributions validated through our benchmark. Key innovations include: (1) the XPressor architecture, a cross-attention-based compression mechanism that transforms gene-level representations into cell-level tokens and back, enabling the model to be generative; (2) a \gls{GNN}-based expression encoder that leverages neighborhood information from similar cells or spatial neighbors; (3) criss-cross attention, a sub-quadratic attention mechanism inspired by Recurrent Interface Networks that dramatically improves training speed while retaining model capabilities; (4) \gls{VAE}-based compression with dissimilarity losses between cell tokens, improving batch correction; and (5) an updated hierarchical classification loss that penalizes predictions based on ontological distance rather than binary correctness.
+
+\textbf{State-of-the-art performance across benchmarks.} On the Open Problems benchmark (November 2025), \gls{scPRINT}-2 achieved 75\% zero-shot cell-type classification accuracy, outperforming \gls{scPRINT}-1 (47\%) and all other zero-shot \gls{scFM}s (40-60\%). With our \gls{XPEFT}, \gls{scPRINT}-2 surpassed every existing supervised and unsupervised method on the platform. For expression denoising, \gls{scPRINT}-2 became state-of-the-art, outperforming MAGIC across all tested contexts, with particularly strong improvements on low- and mid-quality datasets where the \gls{GNN} encoder can leverage neighbor information. For batch integration, \gls{scPRINT}-2's zero-shot performance exceeded all other methods, and fine-tuned performance achieved the best overall \gls{scIB} scores.
+
+\textbf{Generalization to unseen modalities and organisms.} We demonstrated \gls{scPRINT}-2's ability to generalize beyond its training distribution. On Xenium spatial transcriptomics data (a modality absent from training), \gls{scPRINT}-2 successfully denoised expression, imputed 5,000 unseen genes with correlation scores matching denoised genes, and produced biologically meaningful cell-type and disease predictions. On cat and tiger lung tissues (organisms not seen during training), \gls{scPRINT}-2 achieved 42\% cell-type classification accuracy across 500 possible labels, with differential expression analysis confirming that \gls{scPRINT}-2 sometimes corrected expert annotations. With cluster-based logits averaging and \gls{XPEFT} fine-tuning, accuracy improved to 95\%.
+
+\textbf{Counterfactual reasoning and generative capabilities.} The XPressor architecture enables \gls{scPRINT}-2 to perform counterfactual generation. We demonstrated this by replacing organism-specific cell embeddings from mouse cells with human embeddings to generate ``humanized'' mouse expression profiles. The Wasserstein-2 distance between these counterfactual profiles and real human cells decreased significantly, and over-representation analysis showed 58\% enrichment in correctly predicted differentially expressed genes. Pathway analysis revealed biologically meaningful differences in immune function, membrane-\gls{ECM} interactions, and tissue elasticity.
+
+\textbf{Gene embeddings and network inference.} We showed that the XPressor architecture produces output gene embeddings with meaningful biological clustering (enriched for known pathways), whereas standard transformers without XPressor produce embeddings that merely encode expression values. For gene network inference, we introduced a computationally intensive extraction method biased toward co-expressed genes. Benchmarking against six ground-truth networks (including the cellmap \gls{AP-MS} data, human interactome, and \gls{gwps}), \gls{scPRINT}-2 showed improved performance on odds-ratio metrics. We demonstrated cross-species gene network analysis in macrophages, identifying conserved hub genes involved in feroptosis, pathogen phagocytosis, and \gls{MHC} pathways. We also showed how \gls{scPRINT}-2's predictions can cross-validate \gls{PPI} ground truths, identifying connections (HLA-DRA/CD74, B2M/B2M) that RoseTTAFold2-\gls{PPI} missed but AlphaFold-Multimer confirmed.
+
+\subsection{Impacts Beyond Publications}
+
+Beyond the three main publications, this thesis produced several additional contributions:
+
+\begin{itemize}
+\item The first ones are six open source Python packages named:
+  \subitem \emph{\gls{scPRINT}}: where the model is made available, together with training scripts and notebooks to use the model, functions to download and preprocess data, and more. \url{https://github.com/cantinilab/scPRINT}
+  \subitem \emph{scPRINT-2}: where the second model is made available, together with training scripts and notebooks to use the model, functions to download and preprocess data, and more. \url{https://github.com/cantinilab/scPRINT-2}
+  \subitem \emph{scDataloader}: a package to load thousands of large single-cell datasets efficiently, with preprocessing, filtering, and loading options. It also allows a first-of-its-kind efficient weighted random sampling over billions of elements. \url{https://github.com/jkobject/scDataLoader}
+  \subitem \emph{Bengrn}: a package to benchmark \gls{GRN} inference methods on single-cell data, using multiple types of metrics and ground truth networks. \url{https://github.com/jkobject/Bengrn}
+  \subitem \emph{GRNNdata}: a package to work with gene regulatory networks and single-cell data jointly, using the Anndata format. \url{https://github.com/cantinilab/GRNNdata}
+  \subitem \emph{Xpressor}: a package to reproduce the second paper's experiments and create an Xpressor model from scratch. \url{https://github.com/cantinilab/XPressor}
+  \subitem \emph{Simpler Flash}: Initially a package to facilitate the use of flash attention before it became part of the pytorch implementation itself. It now includes multiple types of efficient attention mechanisms, such as softpick-flash and our flash criss-cross attention mechanism. \url{https://github.com/jkobject/simpler_flash}
+  \subitem \emph{Hierarchical Classifier}: a package to implement hierarchical classification for single-cell data. \url{https://gist.github.com/jkobject/5b36bc4807edb440b86644952a49781e}
+\item Another contribution, as previously mentioned, is around accessibility. Not only did I release model weights and inference code, but I also provided easy-to-use inference tools, pretraining methods, and datasets, training traces, and documentation. Moreover, tutorials were implemented in Google Colab, and versions of the models got released on the Chan–Zuckerberg model hub (\url{https://virtualcellmodels.cziscience.com/}) and Superb.io's platform (\url{https://superbio.ai}).
+\item Finally, I implemented Docker containers for \gls{scPRINT}, \gls{scGPT}, and Geneformer for benchmarking on the open problems platform, and participated in creating and improving two benchmarks on the platform.
+\item In addition to publication, I wrote a \href{https://blog.lamin.ai/arrayloader-benchmarks}{blog post} with \href{https://lamin.ai}{Lamin.ai} on training on large datasets. I also wrote with multiple \href{https://x.com/jkobject}{x-plainers} on X, LinkedIn, Bluesky, and Threads, as well as my \href{https://www.jkobject.com}{personal website}, to share some of our findings with a possibly wider audience. Similarly, I wrote vulgarisation articles for the \href{https://www.pasteur.fr/fr/journal-recherche/videos/langage-cellules}{Pasteur Institute}'s and \href{https://www.insb.cnrs.fr/fr/cnrsinfo/scprint-le-premier-modele-dia-francais-pour-dechiffrer-les-reseaux-genetiques}{\gls{CNRS}}'s websites and created one of the most viewed videos on the \href{https://www.youtube.com/watch?v=bgtcDs5EXY8}{Pasteur Institute's YouTube} and Instagram accounts, presenting my work. I was also highlighted on Whitelab's blog posts and released four \href{https://www.youtube.com/@jkobject}{YouTube} videos featuring diverse presentations of my work.
+\item Other outreach efforts were done through conference presentations and invited talks with:
+  \subitem A participation in three international \gls{ML} conferences
+  \subitem Over 25 invited talks and five poster presentations.
+\item Finally, I also contributed to the European start-up ecosystem by translating work from Academia to Industry. I joined a worldwide organization called Nucleate to help master's students, PhDs, and Post-docs translate their research into start-ups. I also worked as a consultant for four start-ups: \href{https://whitelabgx.com/}{Whitelab Genomics}, \href{https://graphica.bio/}{Biographica}, Blossom, and \href{https://www.dotomics.bio/}{dot-omics}, assisting them in developing strategies for foundation models in single-cell \gls{RNA-seq} and \gls{DNA} sequencing.
+\end{itemize}

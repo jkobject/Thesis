@@ -1,4 +1,5 @@
-\chapter{Conclusion} % Main chapter title
+\chapter*{Conclusion} % Main chapter title
+\addcontentsline{toc}{chapter}{Conclusion} 
 %\addcontentsline{toc}{chapter}{Conclusion générale}  
 %\startcontents[chapters]
 %\pagestyle{plain} % remove headers/footers from the chapt\markboth{Left}{Right}
@@ -7,20 +8,20 @@
 %\renewcommand{\chaptermark}[1]{\markboth{Chapter \thechapter. #1}{}}
 %\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
 
-Single-cell Foundation Models while in their infancy, have the power to change the way we do biology and medicine.
+Single-cell Foundation Models, while in their infancy, have the power to change the way we do biology and medicine.
 
 \vspace{13pt}
 
 During this Thesis, we have shown that:
 
 \begin{itemize}[label=\textbullet]%[label=$\ast$]
-        \item We can use the internal workings of scFMs to predict meaningful gene interactions.
-        \item We can update their training tasks, data, losses, as well as their architectures to better capture the underlying biology of the cell.
-        \item We can use them to perform a variety of single cell tasks in a zero-shot of few-shot manner, from cell annotations, denoising, imputation, embeddings generation, batch correction, cross-species integration and counterfactual reasoning
-        \item We can use multiple techniques at inference and fine-tuning time to improve their performance.
-        \item We can leverage the other foundation models pretrained on other modalities to improve their performance.
+       \item We can use the internal workings of scFMs to predict meaningful gene interactions.
+       \item We can update their training tasks, data, and losses, as well as their architectures, to better capture the cell's underlying biology.
+       \item We can use them to perform a variety of single-cell tasks in a zero-shot or few-shot manner, from cell annotations, denoising, imputation, embeddings generation, batch correction, cross-species integration, and counterfactual reasoning
+       \item We can use multiple techniques at inference and fine-tuning time to improve their performance.
+       \item We can leverage the other foundation models pretrained on other modalities to improve their performance.
 \end{itemize}
 
 \vspace{13pt}
 
-In conclusion, the follow-up of these studies should allow to multiply the use-cases of single-cell transcriptomics in clinical applications, creating better benchmarks of models and in turn better models. It would be to integrate other modalities like sequences, epigenetics, proteomics, spatial, and imaging via multi-scale architecture and fine-tuning. But also allow these models to reason by integrating them to LLMs. Finally one will need to gather more data from novel species, patient contexts and across perturbations. To the later point especially we will want to use active learning to guide the experiments and eventually reach the grand goal of cellular modeling.
+In conclusion, the follow-up of these studies should enable broader adoption of single-cell transcriptomics in clinical applications, creating better benchmarks for models and, in turn, better models. It would be to integrate other modalities, such as sequences, epigenetics, proteomics, spatial, and imaging, via a multi-scale architecture and fine-tuning. But also allow these models to reason by integrating them into LLMs. Finally, one will need to gather more data from different species, patient contexts, and across perturbations. We aim to use active learning to guide the experiments and ultimately achieve the grand goal of cellular modeling.

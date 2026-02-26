@@ -40,7 +40,7 @@ Bio-foundation models exist at four biological scales (see Supplementary Materia
 \begin{center}
 \includegraphics[width=0.5\linewidth] {figures/xpressor/scales}
 \end{center}
-\caption{Biological scales and how foundation model representations at each scale can inform adjacent scales. In red, we apply our proposed Xpressor approach.}
+\caption[Biological scales]{Biological scales and how foundation model representations at each scale can inform adjacent scales. In red, we apply our proposed Xpressor approach.}
 \label{fig:scales}
 \end{figure}
 
@@ -68,7 +68,7 @@ We use \gls{scPRINT} \citep{scprint} as our \gls{cFM} and \gls{ESM}2 \citep{esm2
 \begin{center}
 \includegraphics[width=0.9\linewidth]{figures/xpressor/scprint}
 \end{center}
-\caption{Overview of \gls{scPRINT}'s architecture: gene embeddings are formed by summing gene ID, expression, and positional embeddings. The transformer processes these along with cell and label tokens. The decoder outputs parameters of a zero-inflated negative binomial distribution for each gene. Inspired by the original Figure 1.A in \citet{scprint}.}
+\caption[Overview of \gls{scPRINT}'s architecture]{Overview of \gls{scPRINT}'s architecture: gene embeddings are formed by summing gene ID, expression, and positional embeddings. The transformer processes these along with cell and label tokens. The decoder outputs parameters of a zero-inflated negative binomial distribution for each gene. Inspired by the original Figure 1.A in \citet{scprint}.}
 \label{fig:scprint}
 \end{figure}
 
@@ -89,7 +89,7 @@ Our first contribution is the compression of output embeddings of foundation mod
 \begin{center}
 \includegraphics[width=0.9\linewidth] {figures/xpressor/first}
 \end{center}
-\caption{Overview of the Xpressor architecture and multi-scale fine-tuning approach applied to a cell foundation model. A. The Xpressor architecture, composed of M layers, shows how gene-level representations are compressed into cell-state vectors through cross-attention over the output embeddings of a transformer, composed of N layers. These compressed representations are then decompressed back using the same initial transformer model with cross-attention, given the initial gene-level tokens. B. Example of the multi-scale fine-tuning setup illustrating how the adapter layer enables joint training of gene-level representations that are then used by a \gls{cFM}. C. Detailed structure of the transformer and Xpressor blocks showing the cross-attention and self-attention sub-blocks. Blue blocks are our contributions. Shaded blocks indicate inputs and outputs.}
+\caption[Overview of the Xpressor architecture and multi-scale fine-tuning approach]{Overview of the Xpressor architecture and multi-scale fine-tuning approach applied to a cell foundation model. A. The Xpressor architecture, composed of M layers, shows how gene-level representations are compressed into cell-state vectors through cross-attention over the output embeddings of a transformer, composed of N layers. These compressed representations are then decompressed back using the same initial transformer model with cross-attention, given the initial gene-level tokens. B. Example of the multi-scale fine-tuning setup illustrating how the adapter layer enables joint training of gene-level representations that are then used by a \gls{cFM}. C. Detailed structure of the transformer and Xpressor blocks showing the cross-attention and self-attention sub-blocks. Blue blocks are our contributions. Shaded blocks indicate inputs and outputs.}
 \label{fig:first}
 \end{figure}
 
@@ -207,9 +207,9 @@ We also show the difference in cell embeddings obtained between the regular tran
 
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width=0.9\linewidth] {figures/xpressor/second}
+\includegraphics[width=\textwidth] {figures/xpressor/second}
 \end{center}
-\caption{Comparison of cell embeddings between the regular transformer with class-pooling (left), \gls{scIB}: 0.43, and the Xpressor (right), \gls{scIB}: 0.48. The Xpressor embeddings exhibit greater structure and better resolve different cell types.}
+\caption[Comparison of cell embeddings between the regular transformer with class-pooling]{Comparison of cell embeddings between the regular transformer with class-pooling (left), \gls{scIB}: 0.43, and the Xpressor (right), \gls{scIB}: 0.48. The Xpressor embeddings exhibit greater structure and better resolve different cell types.}
 \label{fig:second}
 \end{figure}
 
@@ -323,7 +323,7 @@ Here $\mu$ is the mean and $\theta$ is the inverse dispersion. Unlike \gls{scVI}
 \begin{center}
 \includegraphics[width=0.8\linewidth]{figures/xpressor/scprint_1}
 \end{center}
-\caption{Overview of scPRINT's pretraining tasks. Three pretraining objectives are jointly optimized: denoising (reconstructing from downsampled profiles), bottleneck learning (compression through cell embeddings), and label prediction (hierarchical classification of cell annotations). Inspired by the original Figure 1.B in \citet{scprint}.}
+\caption[Overview of scPRINT's pretraining tasks]{Overview of scPRINT's pretraining tasks. Three pretraining objectives are jointly optimized: denoising (reconstructing from downsampled profiles), bottleneck learning (compression through cell embeddings), and label prediction (hierarchical classification of cell annotations). Inspired by the original Figure 1.B in \citet{scprint}.}
 \label{fig:scprint_1}
 \end{figure}
 

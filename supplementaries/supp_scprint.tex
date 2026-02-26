@@ -1,14 +1,16 @@
+\raggedbottom
+
 \subsection{List of novelties in scPRINT and comparison to
 scGPT and
 scFoundation}\label{table-s1-list-of-novelties-in-scprint-and-comparison-to-scgpt-and-scfoundation}
 
-\begin{longtable}[]{@{}
+\begin{longtable}[H]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.3884}}
   >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1429}}
   >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.0938}}
   >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1942}}
   >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1808}}@{}}
-\caption[List of novelties in scPRINT and comparison to scGPT and scFoundation.]{Comparison of the features and novelties from scPRINT compared to 2 similar published state-of-the-art methods: scGPT and scFoundation.}\label{tab:s1-novelties}\\
+\caption[List of novelties in scPRINT and comparison to scGPT and scFoundation]{Comparison of the features and novelties from scPRINT compared to 2 similar published state-of-the-art methods: scGPT and scFoundation.}\label{tab:s1-novelties}\\
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\centering
 \textbf{features}
@@ -290,36 +292,36 @@ x
 \bottomrule\noalign{}
 \endlastfoot
 \end{longtable}
-
+\newpage
 \subsection{Model comparison}
 
-\begin{figure}[htbp]
+\begin{table}[H]
 \centering
 \includegraphics[width=\linewidth]{./supplementaries/scprint_media/table2.png}
-\caption[Model comparison.]{Comparing different model sizes and architectures. Comparing scPRINT to other state-of-the-art methods, as well as GPT2-small and GPT3-large models.}
+\caption[Model comparison]{Comparing different model sizes and architectures. Comparing scPRINT to other state-of-the-art methods, as well as GPT2-small and GPT3-large models.}
 \label{table-s2-model-comparison}
-\end{figure}
+\end{table}
 
 \subsection{Ablation study and impact on performance across
 tasks}
 
-\begin{figure}[htbp]
+\begin{table}[H]
 \centering
 \includegraphics[width=\linewidth]{./supplementaries/scprint_media/table3.png}
-\caption[Ablation study and impact on performance across tasks.]{The table shows the results of the ablation study on denoising, embedding with batch correction, and cell-type classification tasks. Results are displayed for the medium-size scPRINT model. Top to bottom: \emph{small, medium, large:} regular models of various sizes. \emph{medium-nofreeze:} a model trained without freezing gene embedding during pre-training. \emph{medium-2-heads:} a model trained with only two heads per layer instead of 4. \emph{medium-MSE}: a model with Mean Squared Error instead of the ZINB loss. \emph{medium-MVC:} a model trained with scGPT's MVC methodology for the creation of the cell embedding. medium-noPE: a model trained without positional encoding for the gene's location. medium-no-random-weighted: a model trained without weighted random sampling. \emph{medium-MLM}: a model trained with masked language modeling instead of denoising.}
+\caption[Ablation study and impact on performance across tasks]{The table shows the results of the ablation study on denoising, embedding with batch correction, and cell-type classification tasks. Results are displayed for the medium-size scPRINT model. Top to bottom: \emph{small, medium, large:} regular models of various sizes. \emph{medium-nofreeze:} a model trained without freezing gene embedding during pre-training. \emph{medium-2-heads:} a model trained with only two heads per layer instead of 4. \emph{medium-MSE}: a model with Mean Squared Error instead of the ZINB loss. \emph{medium-MVC:} a model trained with scGPT's MVC methodology for the creation of the cell embedding. medium-noPE: a model trained without positional encoding for the gene's location. medium-no-random-weighted: a model trained without weighted random sampling. \emph{medium-MLM}: a model trained with masked language modeling instead of denoising.}
 \label{table-s3-ablation-study-and-impact-on-performance-across-tasks}
-\end{figure}
+\end{table}
 
 \subsection{Computational speed of various GN
 inference methods}\label{table-s4-computational-speed-of-various-gn-inference-methods}
 
-\begin{longtable}[]{@{}
+\begin{longtable}[H]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2019}}
   >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1951}}
   >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.3173}}
   >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1415}}
   >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1442}}@{}}
-\caption[Computational speed of various GN inference methods.]{The computational speed of running various gene network inference methods on a set of 4000 genes and 1000 cells. It is showing that transformer-based models are far faster than previous methods, owing to their clever use of the GPU and pre-training.}\label{tab:s4-computational-speed}\\
+\caption[Computational speed of various GN inference methods]{The computational speed of running various gene network inference methods on a set of 4000 genes and 1000 cells. It is showing that transformer-based models are far faster than previous methods, owing to their clever use of the GPU and pre-training.}\label{tab:s4-computational-speed}\\
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\centering
 \textbf{model}
@@ -408,13 +410,13 @@ linear
 simulated scRNAseq
 dataset}\label{table-s5-performance-of-gn-inference-methods-on-the-sergio-simulated-scrnaseq-dataset}
 
-\begin{longtable}[]{@{}
+\begin{longtable}[H]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2438}}
   >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1867}}
   >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1981}}
   >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1848}}
   >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1867}}@{}}
-\caption[Performance of GN inference methods on the Sergio simulated scRNAseq dataset.]{We generate a Sergio simulated scRNAseq dataset of 1000 cells for 800 genes from the RegNetwork ground truth network. We here showcase the ability of each model to recover the RegNetwork ground truth from this dataset. It shows how only scPRINT can recover some of RegNetwork's connections.}\label{tab:s5-sergio}\\
+\caption[Performance of GN inference methods on the Sergio simulated scRNAseq dataset]{We generate a Sergio simulated scRNAseq dataset of 1000 cells for 800 genes from the RegNetwork ground truth network. We here showcase the ability of each model to recover the RegNetwork ground truth from this dataset. It shows how only scPRINT can recover some of RegNetwork's connections.}\label{tab:s5-sergio}\\
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\centering
 \textbf{model}
@@ -493,22 +495,27 @@ across tasks and GN inference abilities}
 \label{table-s6-comparison-scprint-model-size-on-performance
 -across-tasks-and-gn-inference-abilities}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
-\includegraphics[width=\linewidth]{./supplementaries/scprint_media/table6.png}
-\caption[Comparison scPRINT model size on performance across tasks and GN inference abilities.]{Comparison of scPRINT model sizes on performance across tasks and GN inference abilities.}
+\includegraphics[width=\linewidth]{./supplementaries/scprint_media/table6-1.png}
+\caption[Comparison scPRINT model size on performance across tasks and GN inference abilities]{Comparison of scPRINT model sizes on performance across tasks and GN inference abilities.}
 \label{fig:s6-model-size}
+\end{figure}
+
+\includegraphics[width=\linewidth]{./supplementaries/scprint_media/table6-2.png}
+\caption[Comparison scPRINT model size on performance across tasks and GN inference abilities. (part2)]{Comparison of scPRINT model sizes on performance across tasks and GN inference abilities.}
+\label{fig:s6-model-size-2}
 \end{figure}
 
 \subsection{Overlap of different GN ground
 truths}\label{table-s7-overlap-of-different-gn-ground-truths}
 
-\begin{longtable}[]{@{}
+\begin{longtable}[H]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.4622}}
   >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1471}}
   >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1176}}
   >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2731}}@{}}
-\caption[Overlap of different GN ground truths.]{Comparison of the overlap, expressed as precision and recall, of the three different ground truth networks used: MCalla, Omnipath, and gwps.}\label{tab:s7-overlap}\\
+\caption[Overlap of different GN ground truths]{Comparison of the overlap, expressed as precision and recall, of the three different ground truth networks used: MCalla, Omnipath, and gwps.}\label{tab:s7-overlap}\\
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 \textbf{comparison}
@@ -565,7 +572,7 @@ gwps -T vs Omnipath
 perturb-seq
 dataset}\label{table-s8-omnipath-benchmark-results-on-the-genome-wide-perturb-seq-dataset}
 
-\begin{longtable}[]{@{}
+\begin{longtable}[H]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.2593}}
   >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.0727}}
   >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.0947}}
@@ -574,7 +581,7 @@ dataset}\label{table-s8-omnipath-benchmark-results-on-the-genome-wide-perturb-se
   >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1111}}
   >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.0809}}
   >{\raggedright\arraybackslash}p{(\linewidth - 14\tabcolsep) * \real{0.1550}}@{}}
-\caption[Omnipath benchmark results on the genome-wide perturb-seq dataset.]{Omnipath network overlap (EPR, AUPRC), as well as transcription factor enrichment, TF target enrichment, and cell type marker enrichment for gene networks generated by the different tools on the genome-wide perturb seq K562 cells at steady state (no perturbations).}\label{tab:s8-omnipath-gwps}\\
+\caption[Omnipath benchmark results on the genome-wide perturb-seq dataset]{Omnipath network overlap (EPR, AUPRC), as well as transcription factor enrichment, TF target enrichment, and cell type marker enrichment for gene networks generated by the different tools on the genome-wide perturb seq K562 cells at steady state (no perturbations).}\label{tab:s8-omnipath-gwps}\\
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\centering
 \textbf{tool}
@@ -726,7 +733,7 @@ perturb seq K562 cells at steady state (no perturbations)
 \subsection{Omnipath benchmark results on the MCalla et al.
 datasets}\label{table-s9-omnipath-benchmark-results-on-the-mcalla-et-al.-datasets}
 
-\begin{longtable}[]{@{}
+\begin{longtable}[H]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.2418}}
   >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1195}}
   >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1016}}
@@ -985,7 +992,7 @@ performance of an untrained scPRINT model.
 \subsection{Highlighted B-cell cluster genes in the BPH
 study}\label{table-s11-highlighted-b-cell-cluster-genes-in-the-bph-study}
 
-\begin{longtable}[]{@{}
+\begin{longtable}[H]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1072}}
   >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.3953}}
   >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1809}}
@@ -1154,7 +1161,7 @@ relation to cancer and to b-cells, with sources.
 GN of the BPH
 study}\label{table-s12-hub-and-differential-hub-genes-in-the-fibroblast-gn-of-the-bph-study}
 
-\begin{longtable}[]{@{}
+\begin{longtable}[H]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2064}}
   >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2420}}
   >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2651}}
@@ -1317,10 +1324,10 @@ compared to the 3rd columns.
 
 \subsection{Number of elements predicted per class}\label{table-s13-number-of-elements-predicted-per-class}
 
-\begin{longtable}[]{@{}
+\begin{longtable}[H]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5749}}
   >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4251}}@{}}
-\caption[Number of labels predicted by the model for each class.]{We use hierarchical classification for cell type, disease, assay, and ethnicity.}\label{tab:s13-predictions}\\
+\caption[Number of labels predicted by the model for each class]{Number of labels predicted by the model for each class. We use hierarchical classification for cell type, disease, assay, and ethnicity.}\label{tab:s13-predictions}\\
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\centering
 ethnicity
@@ -1363,30 +1370,30 @@ assay
 \subsection{visualization of human gene embedding from
 ESM2}\label{fig-s1-visualization-of-human-gene-embedding-from-esm2}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=5.37707in,height=3.67585in]{./supplementaries/scprint_media/image5.png}
-\caption[Visualization of human gene embedding from ESM2.]{Umap of the ESM2 protein embeddings for the most common protein of all protein-coding genes in Ensembl. The PCA variance ratio is 0.856 for the top 50 principal components. We color it using the Louvain clustering of the embedding.}
+\caption[Visualization of human gene embedding from ESM2]{Umap of the ESM2 protein embeddings for the most common protein of all protein-coding genes in Ensembl. The PCA variance ratio is 0.856 for the top 50 principal components. We color it using the Louvain clustering of the embedding.}
 \label{fig:s1-esm2-embedding}
 \end{figure}
 
 \subsection{Gene network inference comparison with Omnipath per
 datasets}\label{fig-s2-gene-network-inference-comparison-with-omnipath-per-datasets}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{./supplementaries/scprint_media/image16.png}
-\caption[Gene network inference comparison with Omnipath per datasets.]{The same plots as in Figures 2B, C, and D, showing the Omnipath and enrichment results per dataset for each of the 3 datasets used. Source data are provided as a Source Data file.}
+\caption[Gene network inference comparison with Omnipath per datasets]{The same plots as in Figures 2B, C, and D, showing the Omnipath and enrichment results per dataset for each of the 3 datasets used. Source data are provided as a Source Data file.}
 \label{fig:s2-omnipath-per-dataset}
 \end{figure}
 
 \subsection{Distribution of connection amongst the three ground
 truths}\label{fig-s3-distribution-of-connection-amongst-the-three-ground-truths}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{./supplementaries/scprint_media/image9.png}
-\caption[Distribution of connection amongst the three ground truths.]{(a) Barplot of the distribution of the number of connections per edge in the MCalla human ground truth network. Most connections are 0, and there is a roughly uniform distribution of connections otherwise. This means most connections belong to the half a dozen most connected edges. (b) Barplot of the distribution of the number of connections per edge in the Omnipath ground truth network. We can see an almost linear relationship on the log-log scale, suggesting a power law distribution. (c) Barplot of the distribution of the number of connections per edge in the genome-wide perturb-seq ground truth network. We can see a very different distribution where only a few genes have little differentially expressed genes post-knock-out, and this trend increases until reaching around 200 connections. Then, it diminishes in what might be a power law. However, some of it is likely caused by the differential expression method and noise in the scRNAseq methodology.}
+\caption[Distribution of connection amongst the three ground truths]{Distribution of connection amongst the three ground truths. (a) Barplot of the distribution of the number of connections per edge in the MCalla human ground truth network. Most connections are 0, and there is a roughly uniform distribution of connections otherwise. This means most connections belong to the half a dozen most connected edges. (b) Barplot of the distribution of the number of connections per edge in the Omnipath ground truth network. We can see an almost linear relationship on the log-log scale, suggesting a power law distribution. (c) Barplot of the distribution of the number of connections per edge in the genome-wide perturb-seq ground truth network. We can see a very different distribution where only a few genes have little differentially expressed genes post-knock-out, and this trend increases until reaching around 200 connections. Then, it diminishes in what might be a power law. However, some of it is likely caused by the differential expression method and noise in the scRNAseq methodology.}
 \label{fig:s3-connection-distribution}
 \end{figure}
 
@@ -1395,49 +1402,49 @@ method on predicting the TF-gene only subset of the GWPS ground truth
 network
 }\label{fig-s4-performance-of-each-gn-inference-method-on-predicting-the-tf-gene-only-subset-of-the-gwps-ground-truth-network}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=6.5in,height=5.54167in]{./supplementaries/scprint_media/image7.png}
-\caption[Performance of each GN inference method on predicting the TF-gene only subset of the GWPS ground truth network.]{Performances of each model's networks on its overlap with the TF-gene-only subset of the genome-wide perturb seq ground truth. It shows that on this task, most foundation models do not perform well. This could be due to the way their attention matrix is normalized. Source data are provided as a Source Data file.}
+\caption[Performance of each GN inference method on predicting the TF-gene only subset of the GWPS ground truth network]{Performances of each model's networks on its overlap with the TF-gene-only subset of the genome-wide perturb seq ground truth. It shows that on this task, most foundation models do not perform well. This could be due to the way their attention matrix is normalized. Source data are provided as a Source Data file.}
 \label{fig:s4-tf-gene-performance}
 \end{figure}
 
 \subsection{Full denoising
 results}\label{fig-s5-full-denoising-results}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{./supplementaries/scprint_media/image1.png}
-\caption[Full denoising results.]{Denoising scores, similar to Figure 4A, but over more tools. ``Random model'' means a scPRINT model without pre-training. ``Random expr'' means that scPRINT was using a set of 3000 genes in a similar way as done in pre-training: Taking random expressed genes completed with random unexpressed genes if less than 3000 genes are expressed in the cell. ``low cell dataset'' means that MAGIC was only using the rare cell population for the dataset as presented in the methods. Source data are provided as a Source Data file.}
+\caption[Full denoising results]{Denoising scores, similar to Figure 4A, but over more tools. ``Random model'' means a scPRINT model without pre-training. ``Random expr'' means that scPRINT was using a set of 3000 genes in a similar way as done in pre-training: Taking random expressed genes completed with random unexpressed genes if less than 3000 genes are expressed in the cell. ``low cell dataset'' means that MAGIC was only using the rare cell population for the dataset as presented in the methods. Source data are provided as a Source Data file.}
 \label{fig:s5-full-denoising}
 \end{figure}
 
 \subsection{Cell type classification metrics with per-batch
 split}\label{fig-s6-cell-type-classification-metrics-with-per-batch-split}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{./supplementaries/scprint_media/image3.png}
-\caption[Cell type classification metrics with per-batch split.]{Cell type classification scores over the kidney test dataset of openproblems. Same as Figure 4B, but now the trained methods are trained on a subset of the batches representing roughly 70\% of the dataset. The performance is lower in this context, and scPRINT, majority voting, and Celltypist's performance are not changing. Source data are provided as a Source Data file.}
+\caption[Cell type classification metrics with per-batch split]{Cell type classification scores over the kidney test dataset of openproblems. Same as Figure 4B, but now the trained methods are trained on a subset of the batches representing roughly 70\% of the dataset. The performance is lower in this context, and scPRINT, majority voting, and Celltypist's performance are not changing. Source data are provided as a Source Data file.}
 \label{fig:s6-celltype-per-batch}
 \end{figure}
 
 \subsection{Full scIB batch correction
 scores}\label{fig-s7-full-scib-batch-correction-scores}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{./supplementaries/scprint_media/image11.png}
-\caption[Full scIB batch correction scores.]{scIB benchmarking scores, averaged for the kidney and lung openproblems test datasets. Same as Figure 4C but over more tools. Cell type logits mean that the logits of the cell type classifier have been used as cell embeddings instead of the cell type embedding itself. Source data are provided as a Source Data file.}
+\caption[Full scIB batch correction scores]{scIB benchmarking scores, averaged for the kidney and lung openproblems test datasets. Same as Figure 4C but over more tools. Cell type logits mean that the logits of the cell type classifier have been used as cell embeddings instead of the cell type embedding itself. Source data are provided as a Source Data file.}
 \label{fig:s7-scib-full}
 \end{figure}
 
 \subsection{Full avgBio scores}\label{fig-s8-full-avgbio-scores}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{./supplementaries/scprint_media/image6.png}
-\caption[Full avgBio scores.]{The average Biological score of the scIB benchmark averaged over the kidney and lung openproblems test datasets. Same as Figure 4D but over more tools. Cell type logits mean that the logits of the cell type classifier have been used as cell embeddings instead of the cell type embedding itself. Source data are provided as a Source Data file.}
+\caption[Full avgBio scores]{The average Biological score of the scIB benchmark averaged over the kidney and lung openproblems test datasets. Same as Figure 4D but over more tools. Cell type logits mean that the logits of the cell type classifier have been used as cell embeddings instead of the cell type embedding itself. Source data are provided as a Source Data file.}
 \label{fig:s8-avgbio}
 \end{figure}
 
@@ -1445,10 +1452,10 @@ scores}\label{fig-s7-full-scib-batch-correction-scores}
 scPRINT-predicted
 annotations}\label{fig-s9-in-depth-view-of-the-bph-dataset-and-its-scprint-predicted-annotations}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{./supplementaries/scprint_media/image14.png}
-\caption[In-depth view of the BPH dataset and its scPRINT-predicted annotations.]{Detailed view of the assay, development stage, scPRINT-predicted diseases, and scPRINT-predicted cell types. Predicted diseases and cell types have been ``cleaned'' following the strategy presented in Figure 5. We also add pie charts of the relative abundance of each predicted label.}
+\caption[In-depth view of the BPH dataset and its scPRINT-predicted annotations]{Detailed view of the assay, development stage, scPRINT-predicted diseases, and scPRINT-predicted cell types. Predicted diseases and cell types have been ``cleaned'' following the strategy presented in Figure 5. We also add pie charts of the relative abundance of each predicted label.}
 \label{fig:s9-bph-annotations}
 \end{figure}
 
@@ -1456,68 +1463,68 @@ annotations}\label{fig-s9-in-depth-view-of-the-bph-dataset-and-its-scprint-predi
 cluster vs the rest of the cells in the BPH
 dataset}\label{fig-s10-differential-expression-analysis-of-the-b-cell-cluster-vs-the-rest-of-the-cells-in-the-bph-dataset}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{./supplementaries/scprint_media/image8.png}
-\caption[Differential expression analysis of the B-cell cluster vs the rest of the cells in the BPH dataset.]{Top genes of the differential expression analysis of the scPRINT inferred B-cell cluster in vs the rest of the cells in the BPH dataset.}
+\caption[Differential expression analysis of the B-cell cluster vs the rest of the cells in the BPH dataset]{Top genes of the differential expression analysis of the scPRINT inferred B-cell cluster in vs the rest of the cells in the BPH dataset.}
 \label{fig:s10-bcell-diff-expr}
 \end{figure}
 
 \subsection{Gene enrichment comparison in the PAGE4
 GN}\label{fig-s11-gene-enrichment-comparison-in-the-page4-gn}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{./supplementaries/scprint_media/image13.png}
-\caption[Gene enrichment comparison in the PAGE4 GN.]{Comparison of the top 20 most enriched terms in Wikipathways, GO molecular function, and Reactome for the 40 most connected genes to PAGE4 in both BPH-associated and normal fibroblast GNs inferred by scPRINT.}
+\caption[Gene enrichment comparison in the PAGE4 GN]{Comparison of the top 20 most enriched terms in Wikipathways, GO molecular function, and Reactome for the 40 most connected genes to PAGE4 in both BPH-associated and normal fibroblast GNs inferred by scPRINT.}
 \label{fig:s11-page4-enrichment}
 \end{figure}
 
 \subsection{Gene Network enrichment comparison between the BPH
 and normal fibroblast on their Louvain communities}\label{fig-s12-gene-network-enrichment-comparison-between-the-bph-and-normal-fibroblast-on-their-louvain-communities}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{./supplementaries/scprint_media/image15.png}
-\caption[Gene Network enrichment comparison between the BPH and normal fibroblast on their Louvain communities.]{Dotplot of the top 20 GO Molecular function gene sets enriched in the Louvain communities of the BPH and normal fibroblast's Gene Networks.}
+\caption[Gene Network enrichment comparison between the BPH and normal fibroblast on their Louvain communities]{Dotplot of the top 20 GO Molecular function gene sets enriched in the Louvain communities of the BPH and normal fibroblast's Gene Networks.}
 \label{fig:s12-gn-enrichment}
 \end{figure}
 
 \subsection{Graphical Model}\label{fig-s13-graphical-model}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=2.60923in,height=4.53746in]{./supplementaries/scprint_media/image12.png}
-\caption[Graphical Model.]{Schematic representation of the zero-inflated negative binomial graphical model of the expression decoder. We generate three values $\mu,\ \theta,\ \pi$ which are used to model a distribution. We also multiply the $\mu$ with the depth (or total count) over the cell.}
+\caption[Graphical Model]{Schematic representation of the zero-inflated negative binomial graphical model of the expression decoder. We generate three values $\mu,\ \theta,\ \pi$ which are used to model a distribution. We also multiply the $\mu$ with the depth (or total count) over the cell.}
 \label{fig:s13-graphical-model}
 \end{figure}
 
 \subsection{Hierarchical
 classifier}\label{fig-s14-hierarchical-classifier}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=3.73438in,height=3.59421in]{./supplementaries/scprint_media/image10.png}
-\caption[Hierarchical classifier.]{Schematic representation of the hierarchical classifier and its behavior during training. We can train on labels not predicted by the classifier as long as they are parent to one of the predicted labels in the ontological tree.}
+\caption[Hierarchical classifier]{Schematic representation of the hierarchical classifier and its behavior during training. We can train on labels not predicted by the classifier as long as they are parent to one of the predicted labels in the ontological tree.}
 \label{fig:s14-hierarchical-classifier}
 \end{figure}
 
 \subsection{Detailed representation of the bottleneck learning
 procedure}\label{fig-s15-detailed-representation-of-the-bottleneck-learning-procedure}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=3.24724in,height=4.85837in]{./supplementaries/scprint_media/image4.png}
-\caption[Detailed representation of the bottleneck learning procedure.]{Schematic representation of the bottleneck learning procedure where scPRINT's Bidirectional Transformer Encoder is used both as the ``Encoder'' and ``Decoder'' of an auto-encoding (AE) bottleneck learning scheme.}
+\caption[Detailed representation of the bottleneck learning procedure]{Schematic representation of the bottleneck learning procedure where scPRINT's Bidirectional Transformer Encoder is used both as the ``Encoder'' and ``Decoder'' of an auto-encoding (AE) bottleneck learning scheme.}
 \label{fig:s15-bottleneck}
 \end{figure}
 
 \subsection{Schematic representation of our
 dataloader}\label{fig-s16-schematic-representation-of-our-dataloader}
 
-\begin{figure}[htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth]{./supplementaries/scprint_media/image2.png}
-\caption[Schematic representation of our dataloader.]{Using Lamin.ai, we download and preprocess all cellxgene datasets as AnnDatas. We can also add and validate other expression datasets using lamin.ai. Based on lightning's datamodule framework, torch's dataloaders, our weighted random sampler, and lamin.ai's mapped collection, we can then sample minibatches for pre-training across thousands of datasets and millions of cells with weighted random sampling.}
+\caption[Schematic representation of our dataloader]{Using Lamin.ai, we download and preprocess all cellxgene datasets as AnnDatas. We can also add and validate other expression datasets using lamin.ai. Based on lightning's datamodule framework, torch's dataloaders, our weighted random sampler, and lamin.ai's mapped collection, we can then sample minibatches for pre-training across thousands of datasets and millions of cells with weighted random sampling.}
 \label{fig:s16-dataloader}
 \end{figure}
