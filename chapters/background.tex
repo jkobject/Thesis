@@ -27,7 +27,7 @@ Helping create these cellular drugs, as well as more classic ones, is one of the
 \end{figure}
 
 \subsection{Other Applications}
-But life is everywhere, and cellular engineering has already helped us make better crops, create synthetic meat, and design fungi that remove pollution. When people talk about nanorobots, I urge you to think about engineered cells \cite{daviesSyntheticBiologyVery2018}. Richard Feynman famously said, "What I cannot create, I do not understand." Therefore, the modeling of the cell stands as a key milestone in cellular biology, and, indeed, one cannot fulfill the aforementioned promises without a correct cellular blueprint.
+But life is everywhere, and cellular engineering has already helped us make better crops, create synthetic meat, and design fungi that remove pollution. When people think about nanorobots, they should think about engineered cells instead \cite{daviesSyntheticBiologyVery2018}. Finally, Richard Feynman famously said, "What I cannot create, I do not understand." Therefore, the modeling of the cell stands as a key milestone in cellular biology, and, indeed, one cannot fulfill the aforementioned promises without a correct cellular blueprint.
 
 This realization has driven hundreds of companies, from tech to bio, and dozens of institutes to pursue efforts to create virtual cellular models \cite{bunneHowBuildVirtual2024}. These virtual cells aim to simulate and predict cellular behavior computationally, enabling \textit{in silico} experimentation before costly wet-lab validation.
 
@@ -38,13 +38,13 @@ To build such a cell model, we must first understand the biological machinery th
 \begin{figure}[ht]
  \centering
  \includegraphics[width=0.9\textwidth]{./figures/aivc.jpg}
- \caption[Image of a cell]{Image of a cell. Artist representation of a small part of an eukaryotic cell from cryo-ET images. Adopted from \citet{cellimage}}
+ \caption[Image of a cell]{Image of a cell. Artist representation of a small part of a eukaryotic cell from cryo-ET images. Adopted from \citet{cellimage}}
  \label{fig:thecell}
 \end{figure}
 
 The cell is the fundamental unit of life and is composed of various components, including proteins, nucleic acids, lipids, and carbohydrates (see Figure ~\ref{fig:thecell}). Each of these components plays a crucial role in the cell's structure and function. Proteins are responsible for most cellular processes, while nucleic acids (\gls{DNA} and \gls{RNA}) carry genetic information. Lipids form cell membranes, and carbohydrates serve as energy sources and structural components.
 
-It is at the Institut Pasteur in the 1950s that André Lwoff, Jacques Monod, and his wife Agnes Ullmann made significant discoveries about the role of messenger \gls{RNA}, gene regulation, and genetic programs in cellular function. Together with François Jacob (see Figure ~\ref{fig:lwoffjacobmonod}), yet another Pasteur Institute scientist, they proposed the operon model of gene regulation in prokaryotes, which explained how genes are turned on and off in response to environmental signals. For their discoveries, François, André, and Jacques were awarded the Nobel Prize in Physiology or Medicine in 1965 \cite{FrontMatter2003}. It is again at the Institut Pasteur, near Monod's and Jacob's buildings, that this Ph.D. was undertaken, aiming to understand further mRNA's role and the cell's regulation using AI models.
+It is at the Institut Pasteur in the 1950s that André Lwoff, Jacques Monod, and Agnes Ullmann made significant discoveries about the role of messenger \gls{RNA}, gene regulation, and genetic programs in cellular function. Together with François Jacob (see Figure ~\ref{fig:lwoffjacobmonod}), yet another Pasteur Institute scientist, they proposed the operon model of gene regulation in prokaryotes, which explained how genes are turned on and off in response to environmental signals. For their discoveries, François, André, and Jacques were awarded the Nobel Prize in Physiology or Medicine in 1965 \cite{FrontMatter2003}. It is again at the Institut Pasteur, near Monod's and Jacob's buildings, that this Ph.D. was undertaken, aiming to understand further mRNA's role and the cell's regulation using AI models.
 
 \begin{figure}[ht]
  \centering
@@ -82,12 +82,12 @@ Understanding the transcriptional rules and grammar of \gls{TF} binding is helpi
 \end{figure}
 
 \subsection{Gene Regulatory Networks}
-Given this complexity, biologists have relied on the concept of gene regulatory networks (\gls{GRN}s) to simplify the complex interactions within the cell \cite{badia-i-mompelGeneRegulatoryNetwork2023}. GRNs are networks of molecular interactions that govern gene expression levels in a cell. They consist of genes, transcription factors, and other regulatory elements that interact to control the timing and level of gene expression (see Figure ~\ref{fig:grn_2}). Although very coarse and likely incomplete, these modeled interactions provide insights into how cells might respond to various stimuli, differentiate into specific cell types, and maintain homeostasis. It is used by researchers every day through pathway, regulon, and other ontological relationship databases. It helps us understand diseases, their mechanisms, and improve crop quality and yield.
+Given this complexity, biologists have relied on the concept of gene regulatory networks (\gls{GRN}s) to simplify the complex interactions within the cell \cite{badia-i-mompelGeneRegulatoryNetwork2023}. GRNs are networks of molecular interactions that govern gene expression levels in a cell. They consist of genes, transcription factors, and other regulatory elements that interact to control the timing and level of gene expression (see Figure ~\ref{fig:grn_2}). Although very coarse and likely incomplete, These modeled interactions provide insights into how cells might respond to various stimuli, differentiate into specific cell types, and maintain homeostasis. They are used by researchers every day through pathway, regulon, and other ontological relationship databases. They help us understand diseases, their mechanisms, and improve crop quality and yield.
 
 \begin{figure}[ht]
  \centering
  \includegraphics[width=0.9\textwidth]{./figures/grn-inference_2.png}
- \caption[Infering gene networks]{Infering gene networks using cellular measurements. In this loop, we see the classical approach, where multiple measurements are combined with prior knowledge and heuristics to design a network that better understands the observations and makes predictions. Adopted from \citet{badia-i-mompelGeneRegulatoryNetwork2023}.}
+ \caption[Inferring gene networks]{Inferring gene networks using cellular measurements. In this loop, we see the classical approach, where multiple measurements are combined with prior knowledge and heuristics to design a network that better understands the observations and makes predictions. Adopted from \citet{badia-i-mompelGeneRegulatoryNetwork2023}.}
  \label{fig:grn_2}
 \end{figure}
 
@@ -108,7 +108,7 @@ Initially, \gls{DNA} sequencing was performed using Sanger sequencing (see Figur
 \end{figure}
 
 \subsection{Next-Generation Sequencing}
-Sanger sequencing paved the way for a revolution in throughput. Nowadays, we use next-generation high-throughput sequencing (\gls{NGS}) technologies, which allow for the massively parallel sequencing of millions of \gls{DNA} fragments—also called reads —simultaneously (see Figure ~\ref{fig:illumina}). It has significantly reduced the time and cost required for genome sequencing, enabling large-scale genomic studies and personalized medicine approaches \cite{huNextgenerationSequencingTechnologies2021}.
+Sanger sequencing paved the way for a revolution in throughput. Nowadays, we use next-generation high-throughput sequencing (\gls{NGS}) technologies, which allow for the massively parallel sequencing of millions of \gls{DNA} fragments---also called reads---simultaneously (see Figure ~\ref{fig:illumina}). It has significantly reduced the time and cost required for genome sequencing, enabling large-scale genomic studies and personalized medicine approaches \cite{huNextgenerationSequencingTechnologies2021}.
 
 Reads, small chunks of \gls{DNA}, often likened to tiny puzzle pieces, are multiplied and sequenced in parallel. The resulting sequences are then aligned (or mapped) to a reference genome, which serves as a template for assembling the reads into a complete genome sequence. The average number of overlapping reads that cover a specific region of the genome is called sequencing depth or coverage. Higher sequencing depth generally leads to more accurate and reliable results, as it reduces the likelihood of errors and increases the confidence in variant detection.
 
@@ -269,8 +269,8 @@ In single-cell genomics, the choice is consequential: genes lack a natural order
 
 \textbf{Structured and sparse attention.} Standard attention allows every token to attend to every other token, with complexity $O(n^2)$. However, biological systems have inherent structure: genes interact through regulatory networks, proteins form complexes, and cells communicate through defined pathways, motivating variants of the attention mechanism that incorporate prior knowledge or learn sparse patterns. \textbf{Graph attention networks} \cite{velickovicGraphAttentionNetworks2018} restrict or bias attention to predefined edges in a graph, allowing tokens to attend only to their neighbors. It is particularly relevant for genomics, where protein-protein interaction networks or known regulatory relationships can guide attention.
 
-Similar ideas were used in the development of Alphafold2 and Alphafold3 \cite{abramsonAccurateStructurePrediction2024a,
-jumperHighlyAccurateProtein2021}. In-text, similar examples abound of \textbf{Sparse attention} mechanisms like Longformer \cite{beltagyLongformerLongDocumentTransformer2020} and BigBird \cite{zaheerBigBirdTransformers2021}, which combine local windowed attention with global tokens, achieving linear complexity while maintaining expressiveness.
+Similar ideas were used in the development of AlphaFold2 and AlphaFold3 \cite{abramsonAccurateStructurePrediction2024a,
+jumperHighlyAccurateProtein2021}. In text processing, similar examples abound of \textbf{Sparse attention} mechanisms like Longformer \cite{beltagyLongformerLongDocumentTransformer2020} and BigBird \cite{zaheerBigBirdTransformers2021}, which combine local windowed attention with global tokens, achieving linear complexity while maintaining expressiveness.
 
 Finally, while some of these methods already decrease the computational complexity of attention, \textbf{efficient attention} methods such as hyper attention, Performer, and others \cite{choromanskiRethinkingAttentionPerformers2022, hanHyperAttentionLongcontextAttention2023, goncalvesAdaSplashAdaptiveSparse2025} approximate the attention mechanism using low-rank approximations, dropping blocks, or using kernel methods.
 

@@ -6,7 +6,7 @@
 
 \section{Motivation and problem setting}
 
-The cell is the fundamental unit of life and is composed of various components, including proteins, nucleic acids, lipids, and carbohydrates
+The cell is the fundamental unit of life, composed of various components including proteins, nucleic acids, lipids, and carbohydrates. Despite decades of research, we still lack the ability to accurately predict how a cell will respond to a given stimulus, design targeted therapies with high confidence, or engineer cellular behavior from first principles. The central problem this thesis addresses is: \emph{can we build computational models that learn meaningful representations of cellular state from large-scale transcriptomic data, and can these representations be used to infer gene regulatory relationships and generalize to unseen biological contexts?}
 
 The objectives of cellular biologists are to understand and control cells, with the dream of engineering life from plants to animals and even generating entirely new synthetic life \cite{daviesSyntheticBiologyVery2018}.
 
@@ -18,7 +18,7 @@ Recent advances in single-cell sequencing have begun to change this. Technologie
 
 \subsection{Current Challenges}
 
-S-cell sequencing itself comes with a set of challenges that directly motivate the methods developed in this thesis. The main issues are:
+Single-cell sequencing itself comes with a set of challenges that directly motivate the methods developed in this thesis. The main issues are:
 
 \begin{enumerate}
  \item \textbf{Sparsity and noise.} Most current single-cell sequencing methods capture only 10-20\% of transcripts, leading to many zeros ("dropouts") in the data. Our models address this through denoising pretraining tasks and learned expression tokenization.
@@ -48,7 +48,7 @@ Current GRN inference methods suffer from additional practical limitations: they
 
 \section{Foundation Models}
 
-The emergence of modern AI---particularly self-supervised transformers pretrained on large datasets---has opened a new avenue: foundation models for single-cell biology.
+The challenges outlined above---noisy, sparse, and heterogeneous single-cell data combined with the combinatorial complexity of gene regulation---demand models that can learn from massive datasets without requiring exhaustive manual annotation. Traditional approaches, whether statistical (correlation-based GRN inference) or mechanistic (chemical kinetics simulations), have not scaled to the complexity of the problem. The emergence of modern AI---particularly self-supervised transformers pretrained on large datasets---has opened a new avenue: foundation models for single-cell biology. The key question is whether the paradigm that transformed natural language processing can be adapted to biological data, where tokens lack a natural ordering, expression values are continuous, and the underlying generative process is fundamentally different from language.
 
 \subsection{LLMs}
 
@@ -134,7 +134,7 @@ The proposed methodologies will impact computational (bioinformatics, machine le
 
 \section{Thesis scope \& contributions}
 
-The thesis contributes to these efforts by developing foundation models trained on single-cell RNA sequencing data. Specifically, we investigate how and if modern machine learning architectures---transformers and attention mechanisms---can learn cellular representations that capture gene regulatory relationships. We explore how these models can be useful today for tasks such as denoising, imputation, cell type annotation and batch correction. Through this lens we design improvements through better architectures and training strategies.
+Given the limitations of existing approaches---graph neural networks that do not scale, foundation models with unverified claims, and a lack of rigorous benchmarks---this thesis addresses the problem of building single-cell foundation models that are simultaneously scalable, biologically meaningful, and rigorously evaluated. We investigate whether modern transformer architectures can learn cellular representations that capture gene regulatory relationships from single-cell RNA sequencing data. We explore their utility for tasks such as denoising, imputation, cell type annotation, and batch correction, and through this lens we design improvements via better architectures and training strategies.
 
 \subsection{Limitations}
 
