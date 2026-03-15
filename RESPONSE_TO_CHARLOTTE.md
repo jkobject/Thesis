@@ -78,7 +78,7 @@ Models now covered in technical depth: scBERT, Geneformer, scGPT, UCE, scFoundat
 
 ## Note on versioning
 
-The substantial structural revisions described above were implemented in commits `07ff110`, `35bb09e`, `cd52704`, `d72e822`, and `0a30b9c` (February 26 – March 11, 2026). We note that your email of March 14 indicated the revisions had not been addressed — it is possible you were viewing a cached copy of the PDF, as the updated version was committed and pushed on March 11. The current branch `charlotte-response` contains all revisions described in this letter.
+The substantial structural revisions described above are reflected in the thesis manuscript version dated March 11, 2026, which corresponds to the version submitted via the standard thesis submission portal and shared with you alongside this response.
 
 Best regards,  
 Jérémie Kalfon
