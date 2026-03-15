@@ -6,13 +6,7 @@
 
 \section{Motivation and problem setting}
 
-The cell is the fundamental unit of life, composed of various components including proteins, nucleic acids, lipids, and carbohydrates. Despite decades of research, we still lack the ability to accurately predict how a cell will respond to a given stimulus, design targeted therapies with high confidence, or engineer cellular behavior from first principles. The central problem this thesis addresses is: \emph{can we build computational models that learn meaningful representations of cellular state from large-scale transcriptomic data, and can these representations be used to infer gene regulatory relationships and generalize to unseen biological contexts?}
-
-The objectives of cellular biologists are to understand and control cells, with the dream of engineering life from plants to animals and even generating entirely new synthetic life \cite{daviesSyntheticBiologyVery2018}.
-
-Achieving this vision requires a deep understanding of cellular mechanisms. Before developing a drug for a disease, for instance, one must identify the target genes in specific cell types that need to be reactivated, deactivated, or modified to address the disease's underlying mechanism. Understanding mRNA and siRNA has already enabled potent therapies, including some of the well-known COVID-19 vaccines. Unfortunately, many \gls{RNA} types remain poorly understood, and their functions are an active area of research. In eukaryotic cells, like our own, RNAs are produced through gene expression and are actively regulated by the cell.
-
-But drugs are not the only application of cellular understanding. Life is everywhere, and engineering has already helped us make better crops, create synthetic meat, and design fungi that remove pollution. Yet cells are extraordinarily complex, and we remain limited by our understanding of their inner workings.
+The central computational challenge addressed in this thesis is: given large-scale single-cell transcriptomic data, can we learn cellular representations that capture gene regulatory relationships and generalize across cell types, tissues, and species? Traditional approaches to modeling gene regulation---whether correlation-based statistical methods or mechanistic kinetics simulations---have not scaled to the combinatorial complexity of the problem. The emergence of self-supervised transformer models capable of training on tens of millions of cells opens a new avenue, but whether this paradigm genuinely captures biology or merely memorizes distributional statistics remains an open question.
 
 Recent advances in single-cell sequencing have begun to change this. Technologies have advanced rapidly, with studies conducted on tens of thousands of cells in the 2010s now scaling to millions \cite{regevHumanCellAtlas}, generating what have been called cell atlases. This explosion of data has driven hundreds of companies and dozens of institutes to pursue virtual cellular models \cite{bunneHowBuildVirtual2024}---computational systems that aim to simulate and predict cellular behavior, enabling \textit{in silico} experimentation before costly wet-lab validation.
 
@@ -33,14 +27,7 @@ Beyond these data-level challenges, biological complexity itself poses fundament
 
 \subsection{Gene Regulatory Networks}
 
-Gene regulatory networks (\gls{GRN}s) provide a simplified yet powerful framework for understanding how genes interact within cells. The foundations of this field were laid at the Institut Pasteur in the 1950s, where André Lwoff, Jacques Monod, Agnes Ullmann, and François Jacob (see Figure~\ref{fig:lwoffjacobmonod2}) made seminal discoveries about messenger \gls{RNA}, gene regulation, and the operon model \cite{FrontMatter2003}.
-
-\begin{figure}[ht]
- \centering
- \includegraphics[width=0.9\textwidth]{./figures/monod.jpg}
- \caption[Lwoff, Jacob, Monod]{Lwoff, Jacob, Monod in their Pasteur Institute Office. Adopted from \citet{monod}}
- \label{fig:lwoffjacobmonod2}
-\end{figure}
+Gene regulatory networks (\gls{GRN}s) provide a simplified yet powerful framework for understanding how genes interact within cells.
 
 Traditional computational cell models based on chemical reaction parameters attempted to simulate these regulatory dynamics but failed to generate realistic predictions of cellular behavior, largely because they could not capture the full combinatorial complexity of gene interactions \cite{badia-i-mompelGeneRegulatoryNetwork2023}. Moreover, as discussed in the Background chapter, gene regulation extends well beyond transcription factors: it involves cofactor proteins, non-coding RNAs, RNA maturation, and protein translation, with interactions spanning all molecular layers. Gene regulatory networks (\gls{GRN}s) provide a simplified framework for these interactions, while gene networks (\gls{GN}s) encompass a broader set of relationships, including protein-protein interactions and metabolic pathways.
 
@@ -52,7 +39,7 @@ The challenges outlined above---noisy, sparse, and heterogeneous single-cell dat
 
 \subsection{LLMs}
 
-In Language modelling, large language models (\gls{LLM}s) have demonstrated that self-supervised pretraining on massive text corpora produces representations that generalize across a wide range of tasks. Models such as BERT \cite{devlinBERTPretrainingDeep2019} and GPT \cite{brownLanguageModelsAre2020} learn contextual relationships between tokens---words or subword units---through tasks like masked language modeling or next-token prediction. The success of these models relies on three pillars: (1) the transformer architecture, which captures long-range dependencies through attention mechanisms; (2) scale, both in data and parameters, which enables emergent capabilities; and (3) the self-supervised paradigm, which removes the need for labeled data during pretraining. These principles have inspired a wave of foundation models in scientific domains, from protein sequences (ESM2 \cite{esm2}) to molecular structures (AlphaFold \cite{jumperHighlyAccurateProtein2021}), and, as we discuss below, to single-cell transcriptomics.
+Large language models (\gls{LLM}s) established the transformer/self-supervised paradigm that underpins modern foundation models: a transformer architecture captures long-range token dependencies via attention, while self-supervised objectives (masked prediction, next-token generation) remove the need for labeled pretraining data \cite{devlinBERTPretrainingDeep2019,brownLanguageModelsAre2020}. Scale in both data and parameters unlocks emergent capabilities that transfer broadly across downstream tasks. These principles have since propagated into scientific domains, yielding foundation models for protein sequences (ESM2 \cite{esm2}), molecular structures (AlphaFold \cite{jumperHighlyAccurateProtein2021}), and, as we discuss below, single-cell transcriptomics.
 
 \subsection{Bio-Foundation Models}
 
@@ -80,6 +67,8 @@ At the same time, Universal Cell Embeddings (UCE) \cite{rosenUniversalCellEmbedd
 \end{figure}
 
 Finally, scFoundation \cite{haoLargescaleFoundationModel2024} introduced a novel architecture specifically designed for single-cell data, departing from direct NLP analogies. It employs a Read-Depth Aware (RDA) pre-training framework: an asymmetric encoder-decoder in which the encoder processes a low-depth (artificially downsampled, sparse) expression profile and the decoder reconstructs the corresponding high-depth profile, explicitly modeling the relationship between sequencing depth and transcript capture probability. scFoundation was pretrained on approximately 19 million human single-cell profiles from the NCBI GEO database, using this downsampling-reconstruction objective as its sole pretraining task. It achieved competitive performance on expression enhancement, cell-type annotation, drug sensitivity prediction, and perturbation response across several benchmarks. Nevertheless, scFoundation's most significant limitation is that its model weights, training code, and data processing pipeline were never made publicly available, preventing independent validation; additionally, its corpus is restricted to human cells, precluding cross-species generalization.
+
+Two further models released in 2024 addressed complementary limitations. scCello \cite{liuScCelloCellOntologyGuided2024} incorporated cell ontology structure directly into pretraining via contrastive learning: cells at different ontological distances (e.g., ``T cell'' versus ``CD8+ T cell'') are encouraged to have appropriately graded embedding similarities, yielding ontology-aware representations that achieve state-of-the-art cell-type annotation without requiring gene-expression input at inference time. LangCell \cite{zhaoLangCellLanguageCellAlignment2024} coupled a gene-expression encoder with a natural-language encoder that processes free-text cell-type descriptions, enabling zero-shot cell-type annotation from text alone and strong performance on cell types entirely absent from the expression training set---a capability that purely expression-based models cannot provide.
 
 \textbf{Key bottlenecks in single-cell foundation models.} At the start of this Ph.D., we identified several limitations in existing approaches that motivated our contributions:
 
@@ -130,9 +119,9 @@ To assess predictions and any usefulness or lack of it by having biologists test
 \end{figure}
 
 \subsection{Potential Impacts}
-From these initial objectives, we envisioned several impacts. This Ph.D.~project will contribute to methodological breakthroughs by providing new tools and methods for applying neural networks to unstructured data such as \gls{scRNA-seq}, and to improve the state of the art in \gls{GRN} prediction.
+From these initial objectives, we envisioned several impacts. This Ph.D.~project contributed to methodological breakthroughs by providing new tools and methods for applying neural networks to unstructured data such as \gls{scRNA-seq}, and improved the state of the art in \gls{GRN} prediction.
 
-The proposed methodologies will impact computational (bioinformatics, machine learning) and biomedical fields. The new architectures might address challenges faced by related fields such as environmental research, industrial biotechnology, and biofuel studies. The improved \gls{GRN} predictions will enhance our understanding of cellular processes, potentially leading to new therapeutic targets and strategies for treating diseases. The open-source Python library will democratize access to these tools, enabling researchers worldwide to apply them to their data and questions.
+The methodologies developed impacted both computational (bioinformatics, machine learning) and biomedical fields. The new architectures demonstrated applicability to challenges faced by related fields such as environmental research, industrial biotechnology, and biofuel studies. The improved \gls{GRN} predictions enhanced our understanding of cellular processes, yielding new therapeutic targets and strategies for treating diseases. The open-source Python library democratized access to these tools, enabling researchers worldwide to apply them to their data and questions.
 
 \section{Scope \& contributions of the Thesis}
 
