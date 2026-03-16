@@ -163,7 +163,7 @@ Artificial Intelligence (\gls{AI}) is a broad term that has had multiple meaning
  \label{fig:ffn}
 \end{figure}
 
-Recently, Machine Learning (\gls{ML}) has made great strides in many areas, primarily due to a significant increase in data generation, along with improvements in optimization methods and neural networks. In this Ph.D., we are piggybacking on these improvements and performing data science and machine learning on single-cell data.
+Recent advances in Machine Learning (\gls{ML}) across many domains have been driven by a significant increase in data availability, alongside improvements in optimization methods and neural network architectures. This thesis applies these advances to single-cell transcriptomic data.
 
 We now present an overview of these methods and provide intuition for why they work.
 
@@ -190,7 +190,7 @@ Several key architectural innovations enabled modern deep learning:
 
 \textbf{Normalization layers} (batch normalization, layer normalization) stabilize training by normalizing intermediate activations, allowing higher learning rates and faster convergence. Layer normalization is particularly important for transformers and is used in all models.
 
-\textbf{Tokenization and attention} make the models both more parallelizable and more complex. Indeed, it allows models to work on matrix inputs, where each input value becomes a vector of numbers (also called an embedding or token). For text, this involves subword units; for single-cell data, we can let our imagination run free; it could be genes, cells, molecules, indeed, we will be using both in our models.
+\textbf{Tokenization and attention} make the models both more parallelizable and more complex. Indeed, it allows models to work on matrix inputs, where each input value becomes a vector of numbers (also called an embedding or token). For text, this involves subword units; for single-cell data, tokens can represent genes, cells, or molecules---this thesis uses both.
 We then use classical neural networks for per-token processing and the attention mechanism to enable tokens to interact with one another.
 Taken together, these make the model even more parallelizable in both depth and width.
 
@@ -205,7 +205,7 @@ Interestingly, whether small or large, neural network or otherwise, almost all \
 
 But this is through \emph{stochastic} gradient descent (\gls{SGD}) methods like Adam that we successfully train \gls{NN}s \cite{kingmaAdamMethodStochastic2017,loshchilovDecoupledWeightDecay2019}. Indeed, using only a small subset of the data at each training step is not only much faster to minimize the loss function, but it also helps escape local minima and saddle points \cite{liVisualizingLossLandscape2018}.
 
-To understand this, we need to understand the loss landscape. Imagine a 3D landscape where the height represents the loss value, and the two other "surface" dimensions are the model's parameters (see Figure ~\ref{fig:loss_surface}). The goal of the model is to find the lowest point in this landscape, which corresponds to the best set of parameters to fit the data. However, this landscape is very complex, with many local minima and saddles, which would prevent the model from reaching a nice minimum; it wanders blindly and can only sense its immediate surroundings.
+To understand this, we need to understand the loss landscape. Imagine a 3D landscape where the height represents the loss value, and the two other "surface" dimensions are the model's parameters (see Figure ~\ref{fig:loss_surface}). The goal of the model is to find the lowest point in this landscape, which corresponds to the best set of parameters to fit the data. However, this landscape is highly complex, with many local minima and saddle points that can trap naive optimization procedures.
 
 \begin{figure}[ht]
  \centering

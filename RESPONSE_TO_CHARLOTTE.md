@@ -72,7 +72,7 @@ The "Promises of cellular biology" framing and the Feynman figure reference have
 - **Key benchmark results** and demonstrated capabilities
 - **Limitations** identified by independent evaluations
 
-Models now covered in technical depth: scBERT, Geneformer, scGPT, UCE, scFoundation.
+Models now covered in technical depth: scBERT, Geneformer, scGPT, UCE, scFoundation, scCello (Yuan et al., NeurIPS 2024), and LangCell (Zhao et al., 2024).
 
 ---
 
