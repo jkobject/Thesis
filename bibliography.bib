@@ -7422,6 +7422,24 @@
   file         = {/Users/jeremie/Documents/science/computational neuro/Panzeri et al. - 2017 - Cracking the Neural Code for Sensory Perception by.pdf}
 }
 
+@article{matsumotoSCODEEfficientRegulatory2017,
+  title = {{{SCODE}}: An Efficient Regulatory Network Inference Algorithm from Single-Cell {{RNA-Seq}} during Differentiation},
+  shorttitle = {{{SCODE}}},
+  author = {Matsumoto, Hirotaka and Kiryu, Hisanori and Furusawa, Chikara and Ko, Minoru S H and Ko, Shigeru B H and Gouda, Norio and Hayashi, Tetsutaro and Nikaido, Itoshi},
+  year = 2017,
+  month = aug,
+  journal = {Bioinformatics},
+  volume = {33},
+  number = {15},
+  pages = {2314--2321},
+  issn = {1367-4803},
+  doi = {10.1093/bioinformatics/btx194},
+  urldate = {2026-03-18},
+  abstract = {The analysis of RNA-Seq data from individual differentiating cells enables us to reconstruct the differentiation process and the degree of differentiation (in pseudo-time) of each cell. Such analyses can reveal detailed expression dynamics and functional relationships for differentiation. To further elucidate differentiation processes, more insight into gene regulatory networks is required. The pseudo-time can be regarded as time information and, therefore, single-cell RNA-Seq data are time-course data with high time resolution. Although time-course data are useful for inferring networks, conventional inference algorithms for such data suffer from high time complexity when the number of samples and genes is large. Therefore, a novel algorithm is necessary to infer networks from single-cell RNA-Seq during differentiation.In this study, we developed the novel and efficient algorithm SCODE to infer regulatory networks, based on ordinary differential equations. We applied SCODE to three single-cell RNA-Seq datasets and confirmed that SCODE can reconstruct observed expression dynamics. We evaluated SCODE by comparing its inferred networks with use of a DNaseI-footprint based network. The performance of SCODE was best for two of the datasets and nearly best for the remaining dataset. We also compared the runtimes and showed that the runtimes for SCODE are significantly shorter than for alternatives. Thus, our algorithm provides a promising approach for further single-cell differentiation analyses.The R source code of SCODE is available at https://github.com/hmatsu1226/SCODESupplementary data are available at Bioinformatics online.},
+  file = {/Users/jkobject/Zotero/storage/9AJA99WH/Matsumoto et al. - 2017 - SCODE an efficient regulatory network inference algorithm from single-cell RNA-Seq during different.pdf}
+}
+
+
 @misc{PapersCodeDeep,
   title = {Deep {{Networks}} with {{Stochastic Depth}}},
   author = {Huang, Gao and Sun, Yu and Liu, Zhuang and Sedra, Daniel and Weinberger, Kilian},
@@ -7510,6 +7528,46 @@
   keywords    = {⛔ No DOI found,Computer Science - Artificial Intelligence,Computer Science - Computer Vision and Pattern Recognition,Computer Science - Machine Learning,Computer Science - Robotics,Statistics - Machine Learning},
   annotation  = {00000}
 }
+
+@misc{hauryTIGRESSTrustfulInference2012,
+  title = {{{TIGRESS}}: {{Trustful Inference}} of {{Gene REgulation}} Using {{Stability Selection}}},
+  shorttitle = {{{TIGRESS}}},
+  author = {Haury, Anne-Claire and Mordelet, Fantine and {Vera-Licona}, Paola and Vert, Jean-Philippe},
+  year = 2012,
+  month = may,
+  number = {arXiv:1205.1181},
+  eprint = {1205.1181},
+  primaryclass = {stat},
+  publisher = {arXiv},
+  doi = {10.48550/arXiv.1205.1181},
+  urldate = {2026-03-18},
+  abstract = {Inferring the structure of gene regulatory networks (GRN) from gene expression data has many applications, from the elucidation of complex biological processes to the identification of potential drug targets. It is however a notoriously difficult problem, for which the many existing methods reach limited accuracy. In this paper, we formulate GRN inference as a sparse regression problem and investigate the performance of a popular feature selection method, least angle regression (LARS) combined with stability selection. We introduce a novel, robust and accurate scoring technique for stability selection, which improves the performance of feature selection with LARS. The resulting method, which we call TIGRESS (Trustful Inference of Gene REgulation using Stability Selection), was ranked among the top methods in the DREAM5 gene network reconstruction challenge. We investigate in depth the influence of the various parameters of the method and show that a fine parameter tuning can lead to significant improvements and state-of-the-art performance for GRN inference. TIGRESS reaches state-of-the-art performance on benchmark data. This study confirms the potential of feature selection techniques for GRN inference. Code and data are available on http://cbio.ensmp.fr/\textasciitilde ahaury. Running TIGRESS online is possible on GenePattern: http://www.broadinstitute.org/cancer/software/genepattern/.},
+  archiveprefix = {arXiv},
+  keywords = {Quantitative Biology - Quantitative Methods,Statistics - Machine Learning},
+  file = {/Users/jkobject/Zotero/storage/IRDN7Z3X/Haury et al. - 2012 - TIGRESS Trustful Inference of Gene REgulation using Stability Selection.pdf;/Users/jkobject/Zotero/storage/39HZYHPU/1205.html}
+}
+
+@article{thuDynGENIE3DynamicalGENIE32018,
+  title = {{{dynGENIE3}}: Dynamical {{GENIE3}} for the Inference of Gene Networks from Time Series Expression Data},
+  shorttitle = {{{dynGENIE3}}},
+  author = {{Huynh-Thu}, V{\^a}n Anh and Geurts, Pierre},
+  year = 2018,
+  month = feb,
+  journal = {Scientific Reports},
+  volume = {8},
+  number = {1},
+  pages = {3384},
+  publisher = {Nature Publishing Group},
+  issn = {2045-2322},
+  doi = {10.1038/s41598-018-21715-0},
+  urldate = {2026-03-18},
+  abstract = {The elucidation of gene regulatory networks is one of the major challenges of systems biology. Measurements about genes that are exploited by network inference methods are typically available either in the form of steady-state expression vectors or time series expression data. In our previous work, we proposed the GENIE3 method that exploits variable importance scores derived from Random forests to identify the regulators of each target gene. This method provided state-of-the-art performance on several benchmark datasets, but it could however not specifically be applied to time series expression data. We propose here an adaptation of the GENIE3 method, called dynamical GENIE3 (dynGENIE3), for handling both time series and steady-state expression data. The proposed method is evaluated extensively on the artificial DREAM4 benchmarks and on three real time series expression datasets. Although dynGENIE3 does not systematically yield the best performance on each and every network, it is competitive with diverse methods from the literature, while preserving the main advantages of GENIE3 in terms of scalability.},
+  copyright = {2018 The Author(s)},
+  langid = {english},
+  keywords = {Gene regulatory networks,Machine learning,Network topology,Regulatory networks,Time series},
+  file = {/Users/jkobject/Zotero/storage/RGARW3TY/Huynh-Thu and Geurts - 2018 - dynGENIE3 dynamical GENIE3 for the inference of gene networks from time series expression data.pdf}
+}
+
 
 @inproceedings{pathakCuriosityDrivenExplorationSelfSupervised2017a,
   title      = {Curiosity-{{Driven Exploration}} by {{Self-Supervised Prediction}}},

@@ -9,8 +9,12 @@
 The central computational challenge addressed in this thesis is: given large-scale single-cell
 transcriptomic data, can we learn cellular representations that capture gene regulatory
 relationships and generalize across cell types, tissues, and species? Traditional approaches to
-modeling gene regulation---whether correlation-based statistical methods or mechanistic kinetics
-simulations---have not scaled to the combinatorial complexity of the problem. The emergence of
+modeling gene regulation, whether correlation-based statistical methods or mechanistic kinetics
+simulations, have not scaled to the combinatorial complexity of the problem. But technologies have advanced rapidly, with studies conducted on tens of thousands of cells in the 2010s now scaling to millions
+\cite{regevHumanCellAtlas}, generating what have been called cell atlases. This explosion of data
+has driven hundreds of companies and dozens of institutes to pursue virtual cellular models
+\cite{bunneHowBuildVirtual2024}: computational systems that aim to simulate and predict cellular
+behavior, enabling \textit{in silico} experimentation before costly wet-lab validation. The emergence of
 self-supervised transformer models capable of training on tens of millions of cells opens a new
 avenue, but whether this paradigm genuinely captures biology or merely memorizes distributional
 statistics remains an open question.
@@ -24,13 +28,6 @@ contribution of each architectural and training choice. Alongside these models, 
 introduces BenGRN, a rigorous benchmarking suite for \gls{GRN} inference, and the Xpressor
 cross-scale architecture enabling cross-attention compression between biological scales.
 
-Recent advances in single-cell sequencing have begun to change this. Technologies have advanced
-rapidly, with studies conducted on tens of thousands of cells in the 2010s now scaling to millions
-\cite{regevHumanCellAtlas}, generating what have been called cell atlases. This explosion of data
-has driven hundreds of companies and dozens of institutes to pursue virtual cellular models
-\cite{bunneHowBuildVirtual2024}---computational systems that aim to simulate and predict cellular
-behavior, enabling \textit{in silico} experimentation before costly wet-lab validation.
-
 \subsection{Current data-level challenges}
 
 Single-cell \gls{RNA-seq} itself comes with a set of challenges that directly motivate the methods
@@ -39,13 +36,13 @@ developed in this thesis:
 \begin{enumerate}
   \item \textbf{Sparsity and noise.} Most current single-cell sequencing methods capture only
     10--20\% of transcripts, leading to many zeros (``dropouts'') in the data. Our models address
-    this through denoising pretraining tasks and learned expression tokenization.
+    this through denoising pretraining tasks and learned expression tokenization \cite{eraslanSinglecellRNAseqDenoising2019}.
   \item \textbf{Batch effects.} Strong biases introduced during data generation make cross-dataset
     analysis challenging. Our foundation models learn batch-invariant representations through
-    large-scale pretraining across hundreds of datasets.
+    large-scale pretraining across hundreds of datasets \cite{haghverdiBatchEffectsSinglecell2018}.
   \item \textbf{Limited coverage.} Many tissues, rare cell types, and non-model organisms remain
     undersequenced. We demonstrate cross-species generalization by training on 16 organisms and
-    testing on unseen species.
+    testing on unseen species \cite{alsabbaghFoundationModelsMeet2023}.
   \item \textbf{Missing modalities.} Spatial context and protein levels are often unavailable. We
     show zero-shot generalization to spatial transcriptomics data without spatial-specific training.
 \end{enumerate}
@@ -54,9 +51,9 @@ Beyond these data-level challenges, biological complexity itself poses fundament
 single human cell contains approximately 20,000 protein-coding genes, but gene regulation extends
 far beyond simple on/off switches: it involves combinatorial control by transcription factors and
 cofactors, epigenetic modifications, post-transcriptional regulation by non-coding RNAs, alternative
-splicing, protein-protein interactions, and metabolic feedback loops. These processes interact across
-multiple spatial and temporal scales---from millisecond signaling cascades to days-long
-differentiation programs---creating a system whose emergent behavior cannot be easily predicted from
+splicing, protein-protein interactions, and metabolic feedback loops \cite{badia-i-mompelGeneRegulatoryNetwork2023, desaiImprovingGeneRegulatory2017, oksuzTranscriptionFactorsInteract2023}. These processes interact across
+multiple spatial and temporal scales, from millisecond signaling cascades to days-long
+differentiation programs, creating a system whose emergent behavior cannot be easily predicted from
 its individual components. This multi-layered complexity makes purely mechanistic modeling
 insufficient and motivates the data-driven approaches developed in this thesis.
 
@@ -73,13 +70,16 @@ describes the scope, limitations, and contributions of this thesis chapter by ch
 \label{sec:grn}
 % ===================================
 
+Understanding how genes regulate one another is a central problem in systems biology. Gene regulatory network inference aims to reconstruct the causal wiring diagram that governs cellular behavior from high-throughput molecular measurements, enabling predictions about how perturbations propagate through the cell \cite{badia-i-mompelGeneRegulatoryNetwork2023, huynh-thuInferringRegulatoryNetworks2010}.
+
 \subsection{Formal problem statement}
 
 Let \(\mathbf{X} \in \mathbb{R}^{n \times g}\) denote a single-cell expression matrix, where \(n\)
 is the number of cells and \(g\) is the number of genes. Each row \(\mathbf{x}_i \in
 \mathbb{R}^{g}\) is the expression profile of cell \(i\), with entry \(x_{ij}\) proportional to
 the transcript count of gene \(j\) in cell \(i\) (after normalization). The goal of \gls{GRN}
-inference is to identify, from \(\mathbf{X}\), a directed weighted graph
+inference is to learn a mapping \(\mathcal{F}: \mathbf{X} \mapsto G\) that extracts, from the
+statistical dependencies observed in \(\mathbf{X}\), a directed weighted graph
 \begin{equation}
   G = (V,\, E,\, W), \quad V = \{1,\ldots,g\},\quad
   E \subseteq V \times V,\quad W: E \to \mathbb{R},
@@ -87,7 +87,9 @@ inference is to identify, from \(\mathbf{X}\), a directed weighted graph
 where \(V\) is the set of genes, \(E\) is the set of directed regulatory edges, and \(W\) assigns
 a signed weight to each edge. An edge \((j \to i) \in E\) with weight \(w_{ji} > 0\) encodes a
 putative activating regulatory influence of gene \(j\) on gene \(i\); a negative weight encodes
-repression. In the transcription-factor-centric formulation that dominates the literature, we
+repression. A useful \gls{GRN} should capture causal regulatory relationships: meaning that
+perturbing gene \(j\) should predictably alter the expression of gene \(i\), rather than mere
+statistical correlations \cite{pearlTheoreticalImpedimentsMachine2018}. In the transcription-factor-centric formulation that dominates the literature, we
 distinguish a set of \glspl{TF} \(T \subset V\) from their target genes \(V \setminus T\), and
 restrict \(E \subseteq T \times (V \setminus T)\), yielding a bipartite directed structure.
 
@@ -103,7 +105,7 @@ aims of this thesis.
 \textbf{Why this is hard.} With \(|V| \approx 20{,}000\) protein-coding genes, the space of
 possible directed edges is \(|V|^2 \approx 4 \times 10^8\). Even restricting to
 \gls{TF}-to-target interactions (with \(|T| \approx 1{,}600\) human \glspl{TF}), there are
-\(\sim\! 3 \times 10^7\) candidate edges---vastly exceeding the information content of any
+\(\sim\! 3 \times 10^7\) candidate edges, vastly exceeding the information content of any
 feasible experiment. Compounding this, ground-truth networks are sparse (on the order of
 \(10^3\)--\(10^4\) validated edges), inherently incomplete, cell-type-specific, and subject to
 experimental noise \cite{mercatelliGeneRegulatoryNetwork2020}.
@@ -160,6 +162,10 @@ out-of-bag loss. Both methods produce directed graphs by construction (since \(f
 
 \subsubsection{Motif-based regulon approach: pySCENIC}
 
+A key limitation of purely expression-based methods like GENIE3 is their inability to distinguish
+direct transcriptional regulation from indirect co-expression. pySCENIC addresses this by
+integrating orthogonal regulatory evidence, using \gls{TF} binding motifs to filter spurious edges.
+
 pySCENIC \cite{aibarSCENICSinglecellRegulatory2017} and its multi-omic successor SCENIC+
 \cite{bravogonzalez-blasSCENICSinglecellMultiomic2023} combine co-expression with regulatory motif
 evidence in a two-step pipeline. In the first step, GENIE3 (or GRNBoost2) identifies candidate
@@ -186,29 +192,32 @@ effects problem; (5) SCENIC+ is computationally expensive, requiring joint scRNA
 \subsubsection{Information-theoretic: PIDC}
 
 PIDC \cite{pratapaBenchmarkingAlgorithmsGene2020} applies \emph{partial information decomposition}
-(PID) to identify direct gene--gene relationships. For a triplet of genes \((X_i, X_j, X_k)\), the
-mutual information \(I(X_i; X_j)\) is decomposed into unique, redundant, and synergistic
-contributions, using the Williams and Beer PID framework. The edge weight between genes \(i\) and
-\(j\) is set to the unique information that \(X_j\) provides about \(X_i\) not mediated by any
-third gene \(X_k\):
+(PID) to identify direct gene--gene relationships. Let \(x_i, x_j, x_k\) denote the expression
+values of genes \(i, j, k\) treated as random variables across cells. For a triplet of genes
+\((x_i, x_j, x_k)\), the mutual information \(I(x_i; x_j)\) is decomposed into unique, redundant,
+and synergistic contributions, using the Williams and Beer PID framework. The edge weight between genes \(i\) and
+\(j\) is set to the unique information that \(x_j\) provides about \(x_i\) not mediated by any
+third gene \(x_k\):
 \begin{equation}
-  w_{ji} = U(X_i; X_j \setminus X_k), \qquad \forall k \neq i,j.
+  w_{ji} = U(x_i; x_j \setminus x_k), \qquad \forall k \neq i,j.
 \end{equation}
-The advantage over pairwise mutual information---which inflates edge weights for highly connected
-hub genes---is that PIDC penalizes information shared with a common regulator. Limitations include
+The advantage over pairwise mutual information, which inflates edge weights for highly connected
+hub genes, is that PIDC penalizes information shared with a common regulator. Limitations include
 (1) cubic computational cost \(\mathcal{O}(g^3)\) prohibiting genome-wide analysis beyond
 \(\sim\!5{,}000\) genes; (2) assumption of a specific noise model (typically Dirichlet) for
 expression count data; and (3) inability to produce directed edges without additional assumptions.
 
 \subsubsection{ODE-based: SCODE}
 
-\glspl{ODE}-based approaches model gene expression dynamics directly. SCODE assumes a linear ODE
+\glspl{ODE}-based approaches model gene expression dynamics directly \cite{matsumotoSCODEEfficientRegulatory2017}. 
+Related methods include TIGRESS \cite{hauryTIGRESSTrustfulInference2012} and dynGENIE3 \cite{thuDynGENIE3DynamicalGENIE32018}, 
+which extend regression approaches to time-series data.
 \begin{equation}
   \frac{d\mathbf{x}}{dt} = \mathbf{A}\,\mathbf{x}(t) + \mathbf{b},
 \end{equation}
 where \(\mathbf{A} \in \mathbb{R}^{g \times g}\) is the regulatory matrix to be inferred and
-\(\mathbf{b}\) is a basal expression offset. Pseudotime ordering of cells---computed from a
-trajectory inference method---provides a proxy for the temporal variable \(t\). The system is solved
+\(\mathbf{b}\) is a basal expression offset. Pseudotime ordering of cells computed from a
+trajectory inference method provides a proxy for the temporal variable \(t\). The system is solved
 for \(\mathbf{A}\) by minimizing the residual \(\|\dot{\mathbf{x}} - \mathbf{A}\mathbf{x} -
 \mathbf{b}\|_F^2\) over the pseudotime-ordered cell sequence. The resulting matrix \(\mathbf{A}\)
 directly encodes the signed regulatory graph.
@@ -220,7 +229,12 @@ than steady-state profiles; and (4) it does not scale to genome-wide analysis.
 
 \subsubsection{Comparative summary}
 
-Table~\ref{tab:grn_methods} summarizes the key properties of these methods.
+Table~\ref{tab:grn_methods} summarizes the key properties of these methods. None of the existing
+approaches simultaneously achieves directed inference, cell-type specificity, and genome-wide
+scalability without requiring perturbation data or pseudotime trajectories. scPRINT, introduced
+in this thesis, addresses this gap by leveraging self-attention to jointly model all genes in a
+single forward pass, extracting directed cell-specific networks from the attention weights without
+requiring external priors or interventional data.
 
 \begin{table}[ht]
 \centering
@@ -331,8 +345,8 @@ While simulated data enable controlled evaluation, they do not fully capture the
 noise of real biological systems.
 
 \bigskip
-The limitations of all ground truths---incompleteness, experimental noise, cell-type specificity,
-and scale constraints---are central to the difficulty of \gls{GRN} benchmarking and motivate our
+The limitations of all ground truths: incompleteness, experimental noise, cell-type specificity,
+and scale constraints are central to the difficulty of \gls{GRN} benchmarking and motivate our
 design choices in BenGRN. In particular, the absence of complete genome-wide causal networks means
 that the evaluation problem is inherently partial, and metrics must be interpreted relative to the
 coverage of the chosen ground truth.
@@ -342,8 +356,8 @@ coverage of the chosen ground truth.
 \label{sec:foundations}
 % ===================================
 
-The challenges outlined above---noisy, sparse, and heterogeneous single-cell data combined with
-the combinatorial complexity of gene regulation---demand models that can learn from massive datasets
+The challenges outlined above: noisy, sparse, and heterogeneous single-cell data combined with
+the combinatorial complexity of gene regulation, demand models that can learn from massive datasets
 without requiring exhaustive manual annotation. The emergence of modern self-supervised
 transformers pretrained on large datasets has opened a new avenue: foundation models for
 single-cell biology. The key question is whether the paradigm that transformed natural language
@@ -372,7 +386,7 @@ learning without manual annotation.
 The core operation of all transformer models is multi-head self-attention
 \cite{devlinBERTPretrainingDeep2019}. Given an input matrix
 \(\mathbf{X} \in \mathbb{R}^{n \times d}\) (here \(n\) is the number of input tokens and \(d\)
-is the embedding dimension), the scaled dot-product attention is:
+is the embedding dimension), the scaled dot-product attention \cite{vaswaniAttentionAllYou2023} is:
 \begin{equation}
   \mathbf{Q} = \mathbf{X}\mathbf{W}_Q, \quad
   \mathbf{K} = \mathbf{X}\mathbf{W}_K, \quad
@@ -387,7 +401,7 @@ where \(\mathbf{W}_Q, \mathbf{W}_K \in \mathbb{R}^{d \times d_k}\) and
 context, the tokens are \emph{genes}: \(n = g\) is the number of expressed genes and each token
 \(\mathbf{x}_j \in \mathbb{R}^d\) encodes the identity and expression of gene \(j\). The attention
 matrix \(\mathbf{A} = \text{softmax}(\mathbf{Q}\mathbf{K}^\top/\sqrt{d_k}) \in [0,1]^{g \times g}\)
-defines a learned weighted interaction graph between all pairs of genes---making self-attention a
+defines a learned weighted interaction graph between all pairs of genes, making self-attention a
 natural candidate for \gls{GRN} extraction.
 
 Multi-head attention runs \(H\) parallel attention heads with independent weight matrices, each
@@ -397,7 +411,7 @@ projected: \(\text{MHA}(\mathbf{X}) = [\text{head}_1;\ldots;\text{head}_H]\mathb
 \subsubsection{Masked gene modeling}
 
 Self-supervised pretraining in \gls{BERT}-style models uses a masked token prediction objective.
-In the single-cell context, this becomes \emph{masked gene modeling}: a random 15\% of gene tokens
+In the single-cell context, this becomes \emph{masked gene modeling}\cite{yangScBERTLargescalePretrained2022a}: a random 15\% of gene tokens
 are replaced by a special \texttt{[MASK]} token, and the model is trained to predict the original
 expression values from the unmasked context:
 \begin{equation}
@@ -406,8 +420,12 @@ expression values from the unmasked context:
 \end{equation}
 where \(\mathcal{M}\) is the set of masked gene indices, \(f_\theta\) is the transformer encoder,
 and \(\ell\) is a loss function (cross-entropy on expression bins, or MSE on continuous values).
-This objective forces the model to capture gene co-expression dependencies---which genes tend to
-co-vary---making it a proxy for learning regulatory relationships.
+This objective forces the model to capture gene co-expression dependencies, i.e. which genes tend to
+co-vary, making it a proxy for learning regulatory relationships.
+
+In scPRINT and scPRINT-2, we combine masked gene prediction with denoising and bottleneck losses to jointly optimize for
+expression reconstruction and representation quality. Detailed examples of these multi-objective
+training strategies are provided below in the reviews of state-of-the-art models.
 
 \subsubsection{Encoding single-cell expression data}
 
@@ -415,25 +433,8 @@ Adapting transformers to \gls{scRNA-seq} data requires solving three non-trivial
 problems:
 
 \textbf{Sequence length.} With \(g \approx 20{,}000\) genes, standard softmax attention has
-quadratic complexity \(\mathcal{O}(g^2)\), exceeding GPU memory for full-genome analysis. Efficient
-attention variants are necessary.
-
-\textbf{Expression value tokenization.} Unlike text tokens (discrete integers), expression values
-are continuous non-negative counts. Existing approaches include: (i) \emph{binning}---discretize
-each value into one of \(k\) expression bins (e.g., 51 bins in scGPT \cite{cuiScGPTBuildingFoundation2024}),
-losing quantitative precision; (ii) \emph{rank-ordering}---sort genes by expression, encoding
-position rather than value (Geneformer \cite{theodorisTransferLearningEnables2023}), losing
-expression magnitude; (iii) \emph{learned \gls{MLP} encoder}---a small neural network maps the
-raw count to an embedding, preserving full quantitative information (our approach in scPRINT).
-
-\textbf{Batch effects.} Systematic measurement biases across laboratories, protocols, and
-sequencing platforms corrupt the expression values. Foundation models must either model these
-explicitly (e.g., through batch-conditioned layers) or learn representations invariant to them
-through large-scale exposure to diverse datasets.
-
-\subsubsection{Efficient attention for genome-scale analysis}
-
-Three families of efficient attention mechanisms are relevant to this thesis. \textbf{Flash
+quadratic complexity \(\mathcal{O}(g^2)\), exceeding GPU memory for full-genome analysis. To solve this problem, 
+three families of efficient attention mechanisms are relevant to this thesis. \textbf{Flash
 Attention} \cite{daoFlashAttention2FasterAttention2023} computes exact softmax attention with
 IO-aware tiling, reducing memory bandwidth cost from \(\mathcal{O}(n^2)\) to
 \(\mathcal{O}(n)\) SRAM reads/writes while maintaining mathematical equivalence to standard
@@ -441,9 +442,22 @@ attention. \textbf{Performer} \cite{choromanskiRethinkingAttentionPerformers2022
 the attention kernel using random Fourier features:
 \(\text{softmax}(\mathbf{Q}\mathbf{K}^\top/\sqrt{d}) \approx \phi(\mathbf{Q})\phi(\mathbf{K})^\top\),
 reducing complexity to \(\mathcal{O}(n)\) but with approximation error.
-\textbf{Criss-cross attention}---developed in this thesis---introduces a sub-quadratic
+\textbf{Criss-cross attention}, developed in this thesis, introduces a sub-quadratic
 attention pattern biased toward structurally related tokens, achieving \(\mathcal{O}(n \sqrt{n})\)
 complexity while preserving long-range expressivity.
+
+\textbf{Expression value tokenization.} Unlike text tokens (discrete integers), expression values
+are continuous non-negative counts. Existing approaches include: (i) \emph{binning}, discretizing
+each value into one of \(k\) expression bins (e.g., 51 bins in scGPT \cite{cuiScGPTBuildingFoundation2024}),
+losing quantitative precision; (ii) \emph{rank-ordering}, sorting genes by expression, encoding
+position rather than value (Geneformer \cite{theodorisTransferLearningEnables2023}), losing
+expression magnitude; (iii) \emph{learned \gls{MLP} encoder}: using a small neural network maps the
+raw count to an embedding, preserving full quantitative information (our approach in scPRINT).
+
+\textbf{Batch effects.} Systematic measurement biases across laboratories, protocols, and
+sequencing platforms corrupt the expression values. Foundation models must either model these
+explicitly (e.g., through batch-conditioned layers) or learn representations invariant to them
+through large-scale exposure to diverse datasets, as we will be presenting in Chapter~\ref{article1} and Chapter~\ref{article3}.
 
 \subsection{Foundation models in biology}
 
@@ -468,7 +482,7 @@ protein complexes and nucleic acids.
 Nucleotide Transformer applies a \gls{GPT}-style architecture to genomic sequences across 850
 species, using 6-nucleotide k-mer tokens. It demonstrates transfer learning from DNA sequence to
 functional genomics tasks including regulatory element prediction and chromatin accessibility.
-These models operate at the DNA level and capture sequence-level gene regulation---complementary
+These models operate at the DNA level and capture sequence-level gene regulation, complementary
 to, but distinct from, the expression-level modeling of this thesis.
 
 \textbf{Cross-scale integration.} Protein sequence models and cell-level models operate in
@@ -530,13 +544,11 @@ the model is trained to predict their \emph{gene identities} (not expression val
 This is analogous to standard \gls{BERT} masked language modeling, with gene names as the
 vocabulary.
 
-\textbf{Applications and results.} Geneformer demonstrated competitive performance on cell-type
+\textbf{Results and limitations.} Geneformer demonstrated competitive performance on cell-type
 classification, chromatin dynamics prediction (\gls{TF} dosage sensitivity), and \textit{in
 silico} perturbation response via gene silencing or activation in the latent space. A notable
 application identified the NODAL pathway in cardiomyopathy as a therapeutic target. These claims
-positioned Geneformer as the first \gls{scFM} with broad multi-task reach.
-
-\textbf{Limitations.} Rank-ordering irreversibly discards expression magnitude: two cells with
+positioned Geneformer as the first \gls{scFM} with broad multi-task reach. However, rank-ordering irreversibly discards expression magnitude: two cells with
 the same gene ordering but different absolute expression levels are represented identically. This
 collapses the quantitative co-expression signal essential for denoising and continuous regression
 tasks. The fixed 25,000-gene human vocabulary prevents cross-species use. Furthermore, independent
@@ -556,9 +568,9 @@ genes in the sequence. This ordering is arbitrary with no biological motivation,
 expression is simultaneous rather than sequential.
 
 \textbf{Pretraining.} scGPT was pretrained on approximately 33 million human cells from the
-CellxGene corpus using three objectives: (1) autoregressive gene expression generation---predict
+CellxGene corpus using three objectives: (1) autoregressive gene expression generation, predict
 the expression of the next gene in the sequence from all preceding genes; (2) masked value
-prediction---mask 15\% of expression values and predict them from context; (3) cell-level
+prediction, mask 15\% of expression values and predict them from context; (3) cell-level
 generation from a \texttt{[CLS]} token that aggregates cell-level information.
 
 \textbf{Fine-tuning protocol.} scGPT introduced the first systematic fine-tuning \gls{API} and
@@ -597,11 +609,9 @@ are pushed together in embedding space, while cells of different types are separ
 value prediction objective is used; the model is trained solely to align cell-type identities
 across species.
 
-\textbf{Results.} UCE achieved \gls{SOTA} cross-species cell embeddings, clustering
+\textbf{Results and limitations.} UCE achieved \gls{SOTA} cross-species cell embeddings, clustering
 evolutionarily related cell types together without species-specific adaptation. Its learned
-embeddings provide a universal coordinate system for multi-species single-cell atlases.
-
-\textbf{Limitations.} UCE is restricted to a zero-shot embedding paradigm with no demonstrated
+embeddings provide a universal coordinate system for multi-species single-cell atlases. However, UCE is restricted to a zero-shot embedding paradigm with no demonstrated
 fine-tuning protocol, limiting its utility for supervised downstream tasks. Its evaluation is largely
 confined to embedding quality (clustering metrics) rather than biologically actionable tasks such
 as \gls{GRN} inference or perturbation prediction.
@@ -619,45 +629,35 @@ probability, making the model sensitive to the quantitative properties of single
 profiles from the NCBI \gls{GEO} database using the downsampling-reconstruction objective as its
 sole pretraining task.
 
-\textbf{Performance.} scFoundation reported competitive performance on expression enhancement,
+\textbf{Results and limitations.} scFoundation reported competitive performance on expression enhancement,
 cell-type annotation, drug sensitivity prediction, and perturbation response across several
-benchmarks.
-
-\textbf{Critical limitation.} scFoundation's most significant limitation is that its model weights,
+benchmarks. However, its most significant limitation is that its model weights,
 training code, and data processing pipeline were never publicly released, preventing independent
 validation or replication. Its corpus is restricted to human cells, precluding cross-species
 generalization.
-
-
 
 % ===================================
 \section{Scope \& contributions of the Thesis}
 \label{sec:scope}
 % ===================================
 
-Given the limitations of existing approaches---graph neural networks that do not scale, foundation
-models with unverified claims, and a lack of rigorous benchmarks---this thesis addresses the
+This thesis addresses the
 problem of building single-cell foundation models that are simultaneously scalable, biologically
 meaningful, and rigorously evaluated. We investigate whether modern transformer architectures can
 learn cellular representations that capture gene regulatory relationships from single-cell
 \gls{RNA-seq} data. We explore their utility for tasks such as denoising, imputation, cell type
 annotation, and batch correction, and through this lens we design improvements via better
-architectures and training strategies.
+architectures and training strategies. 
 
-\subsection{Limitations}
+\subsection{Scope of the Thesis}
 
-While the initial objectives centered on graph neural networks, early investigations revealed
-fundamental limitations of this approach for \gls{GRN} inference. First, reliable ground-truth
-\glspl{GRN} are largely unavailable, making it impossible to initialize a model from a known graph
-topology. Second, \glspl{GNN} do not scale well to the tens of thousands of genes present in a
-cell, and systematic benchmarks consistently show them underperforming transformer-based models on
-comparable tasks \cite{hussainGlobalSelfAttentionReplacement2022,chenGraphAttentionNetwork2022}.
+While specialized architectures called \glspl{GNN}s have been proposed as a natural for network learning and modelling,
+systematic benchmarks consistently show them underperforming transformer-based models on
+comparable tasks \cite{hussainGlobalSelfAttentionReplacement2022,chenGraphAttentionNetwork2022}. We thus adopt transformers instead, which can be viewed as \glspl{GNN} operating on fully-connected graphs \cite{dwivediGeneralizationTransformerNetworks2021,joshiTransformersAreGraph2025,nichaniHowTransformersLearn2024a,shawSelfAttentionRelativePosition2018}.
 
-These findings led us to adopt transformers instead, which can be viewed as \glspl{GNN} operating
-on fully-connected graphs \cite{dwivediGeneralizationTransformerNetworks2021,joshiTransformersAreGraph2025,nichaniHowTransformersLearn2024a,shawSelfAttentionRelativePosition2018}.
 The principal challenge with transformers is their quadratic complexity with respect to the number
-of input tokens. Addressing this scalability bottleneck---making transformers scale sub-quadratically
-with the number of input genes and cells---became one of the central contributions of this thesis.
+of input tokens. Addressing this scalability bottleneck, making transformers scale sub-quadratically
+with the number of input genes and cells, became one of the central contributions of this thesis.
 
 Notably, transformer-based models can also be used to infer putative \glspl{GRN} directly from
 non-graph input data \cite{cuiScGPTBuildingFoundation2024,theodorisTransferLearningEnables2023},
@@ -676,11 +676,9 @@ importance of accessibility, which became one of the contributions of this thesi
 easy-to-use open-source models alongside various outreach efforts to lower the barrier for domain
 scientists.
 
-\subsection{Scope of the Thesis}
-
 The limitations and opportunities described above progressively shaped the scope of this Ph.D. As
 we benchmarked existing single-cell foundation models and their claimed abilities, we encountered
-numerous shortcomings---ranging from poor usability and lack of reproducibility in pretraining to
+numerous shortcomings, ranging from poor usability and lack of reproducibility in pretraining to
 questionable architectural decisions and inconsistent evaluation practices. These observations led
 us to create our own model and, more broadly, to pursue a research program organized around the
 following axes:
@@ -764,7 +762,7 @@ cell-type-specific ground truth, \gls{scPRINT} consistently outperformed all met
 
 \textbf{Zero-shot capabilities on orthogonal tasks.} Beyond gene network inference, we
 demonstrated that \gls{scPRINT}'s learned cell model enables competitive zero-shot performance on
-denoising, cell type prediction, and batch effect correction---without fine-tuning. For denoising,
+denoising, cell type prediction, and batch effect correction, without fine-tuning. For denoising,
 \gls{scPRINT} matches \gls{SOTA} methods (MAGIC, KNNsmoothing2) on bulk populations and
 outperforms them on rare cell types where neighborhood-based methods fail. For cell type
 classification, \gls{scPRINT} achieves 62\% accuracy as a zero-shot predictor across 200+ cell
@@ -778,7 +776,7 @@ early \gls{TME} markers, including BAG5, a known B-cell-associated prostate canc
 fibroblasts, our gene networks revealed differential hub genes between normal and
 \gls{BPH}-associated cells, recovering known biology around PAGE4 and uncovering interconnected
 pathways linking ion exchange, \gls{ECM} remodeling, oxidative stress, and chronic
-inflammation---hallmarks of premalignant states.
+inflammation: hallmarks of premalignant states.
 
 \subsection{Chapter \ref{article2}: Xpressor: Towards foundation models that learn across biological scales}
 
@@ -794,7 +792,7 @@ for cellular abundance profiles, and \glspl{tFM} for tissue-level spatial organi
 that information flows between scales: lower-scale models (e.g., protein sequences) can improve
 input representations for higher-scale models (e.g., cells), while relationships learned at higher
 scales can inform lower-scale representations. Each scale's vocabulary can be seen as built from
-the compressed representations of the scale below---amino acids from atoms, genes from proteins,
+the compressed representations of the scale below: amino acids from atoms, genes from proteins,
 cells from genes, tissues from cells.
 
 \textbf{The Xpressor architecture.} Our first contribution is a cross-attention-based compression
@@ -816,7 +814,7 @@ lower-scale models using upper-scale tasks via adapter layers. We demonstrate th
 Rather than simply using frozen \gls{ESM}2 embeddings as gene tokens, we add a trainable \gls{MLP}
 adapter that transforms each protein embedding during \gls{scPRINT}'s pretraining. We provide a
 formal proof that such an \gls{MLP} has sufficient capacity to learn any arbitrary
-mapping---including acting as a lookup table that assigns each of \(D\) proteins to a unique
+mapping, including acting as a lookup table that assigns each of \(D\) proteins to a unique
 learned output. This allows the adapter to enrich \gls{ESM}2's representations (which encode
 protein sequence, evolutionary constraints, and structure) with co-expression information learned
 from millions of single-cell profiles.
@@ -860,7 +858,7 @@ billion years of evolution. This corpus integrates data from \gls{CxG}, the Taho
 and the scBasecount database (20,000 reprocessed \gls{GEO} datasets), totaling 25 TB of unique
 data with approximately 400,000 distinct genes and 4,764 different cell labels across 140,000 cell
 groups. We demonstrated that cell-state diversity and data quality are more important than sheer
-cell count---reducing to 200 human datasets caused only a minimal performance decrease, whereas
+cell count. Reducing to 200 human datasets caused only a minimal performance decrease, whereas
 using low-diversity datasets alone caused performance to plummet. We introduced cluster-weighted
 sampling and \gls{NNZ}-weighted sampling to address dataset imbalances, enabling effective
 training on this heterogeneous corpus.
@@ -974,7 +972,7 @@ and five poster presentations.
 \paragraph{Industry translation and entrepreneurship.} Contributions to the European start-up
 ecosystem included joining Nucleate, a worldwide organisation supporting master's students, PhDs,
 and post-docs in translating research into companies. Consulting work was performed for four
-start-ups---\href{https://whitelabgx.com/}{Whitelab Genomics},
+start-ups: \href{https://whitelabgx.com/}{Whitelab Genomics},
 \href{https://graphica.bio/}{Biographica}, Blossom, and
-\href{https://www.dotomics.bio/}{dot-omics}---advising on foundation model strategies for
+\href{https://www.dotomics.bio/}{dot-omics}, advising on foundation model strategies for
 single-cell \gls{RNA-seq} and \gls{DNA} sequencing.
