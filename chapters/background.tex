@@ -4,59 +4,21 @@
 \label{chap:background}
 \addcontentsline{toc}{chapter}{Background} 
 
-This chapter provides the background needed to understand the contributions of this thesis. We begin with the motivations for modeling the cell, then introduce the molecular biology of gene regulation, the sequencing technologies that made large-scale cellular measurements possible, the computational tasks that have emerged from these data, and finally the artificial intelligence methods we build upon.
+This chapter provides the biological and computational background needed to understand the contributions of this thesis. We introduce the molecular biology of gene regulation, the sequencing technologies that made large-scale cellular measurements possible, the computational tasks that have emerged from these data, and the artificial intelligence methods we build upon.
 
-In the mid-17th century, Robert Hooke made a groundbreaking discovery while observing a piece of cork through his microscope. He observed structures that he named ``cells" and, as a result, marked the beginning of cellular biology \cite{petersCellsRobertHooke2024}. Cells have since been identified as life's fundamental structural and functional units, and biologists have endeavored to map the diverse cell types that comprise multicellular organisms. Additionally, they have sought to understand the transient cell states that occur during development, disease progression, and tissue regeneration \cite{Alberts2015CellsGenomes}.
+\section{Molecular Biology of the Cell}
 
-\section{The promises of cellular biology}
-
-Understanding cells at a fundamental level opens the door to transformative applications.
-
-\subsection{Drug Design}
-Before developing a drug for a disease, one must understand the disease and identify a potential target gene or set of target genes. It refers to the genes in specific cell types that need to be reactivated, deactivated, or modified to address the disease's underlying mechanism.
-
-But drugs don't have to be small molecules. CAR-T cell therapies have revolutionized blood cancer treatment by modifying a patient's own immune cells to fight the cancer (see Figure ~\ref{fig:celltherapy}). Similar approaches could be developed for many other conditions \cite{zugastiCARTCellTherapy2025}. Here, the drug becomes a cell.
-
-Helping create these cellular drugs, as well as more classic ones, is one of the possible applications of the work we will present in this thesis.
-
-\begin{figure}[ht]
- \centering
- \includegraphics[width=0.9\textwidth]{./figures/cell therapy.jpg}
- \caption[CAR-T cell therapy]{CAR-T cell therapy. Illustration of the CAR-T cell therapy process. It is one example of cell therapy. Adopted from \citet{cartllc}}
- \label{fig:celltherapy}
-\end{figure}
-
-\subsection{Other Applications}
-But life is everywhere, and cellular engineering has already helped us make better crops, create synthetic meat, and design fungi that remove pollution. When people think about nanorobots, they should think about engineered cells instead \cite{daviesSyntheticBiologyVery2018}. Finally, Richard Feynman famously said, "What I cannot create, I do not understand." Therefore, the modeling of the cell stands as a key milestone in cellular biology, and, indeed, one cannot fulfill the aforementioned promises without a correct cellular blueprint.
-
-This realization has driven hundreds of companies, from tech to bio, and dozens of institutes to pursue efforts to create virtual cellular models \cite{bunneHowBuildVirtual2024}. These virtual cells aim to simulate and predict cellular behavior computationally, enabling \textit{in silico} experimentation before costly wet-lab validation.
-
-\section{GRN and the Cell}
-
-To build such a cell model, we must first understand the biological machinery they aim to represent. In this section, we review the key molecular components of the cell, focusing on the regulatory mechanisms that govern gene expression.
+The cell is life's fundamental structural and functional unit. Its behavior is governed by gene expression: the process by which the information encoded in DNA is used to synthesize RNA and proteins, which in turn execute essentially all cellular functions. Understanding and modeling gene expression at scale is the central challenge this thesis addresses.
 
 \begin{figure}[ht]
  \centering
  \includegraphics[width=0.9\textwidth]{./figures/aivc.jpg}
- \caption[Image of a cell]{Image of a cell. Artist representation of a small part of a eukaryotic cell from cryo-ET images. Adopted from \citet{cellimage}}
+ \caption[Image of a cell]{Artist representation of a small part of a eukaryotic cell from cryo-ET images. Adopted from \citet{cellimage}}
  \label{fig:thecell}
-\end{figure}
-
-The cell is the fundamental unit of life and is composed of various components, including proteins, nucleic acids, lipids, and carbohydrates (see Figure ~\ref{fig:thecell}). Each of these components plays a crucial role in the cell's structure and function. Proteins are responsible for most cellular processes, while nucleic acids (\gls{DNA} and \gls{RNA}) carry genetic information. Lipids form cell membranes, and carbohydrates serve as energy sources and structural components.
-
-It is at the Institut Pasteur in the 1950s that André Lwoff, Jacques Monod, and Agnes Ullmann made significant discoveries about the role of messenger \gls{RNA}, gene regulation, and genetic programs in cellular function. Together with François Jacob (see Figure ~\ref{fig:lwoffjacobmonod}), yet another Pasteur Institute scientist, they proposed the operon model of gene regulation in prokaryotes, which explained how genes are turned on and off in response to environmental signals. For their discoveries, François, André, and Jacques were awarded the Nobel Prize in Physiology or Medicine in 1965 \cite{FrontMatter2003}. It is again at the Institut Pasteur, near Monod's and Jacob's buildings, that this Ph.D. was undertaken, aiming to understand further mRNA's role and the cell's regulation using AI models.
-
-\begin{figure}[ht]
- \centering
- \includegraphics[width=0.9\textwidth]{./figures/monod.jpg}
- \caption[Lwoff, Jacob, Monod]{Lwoff, Jacob, Monod in their Pasteur Institute Office. Adopted from \citet{monod}}
- \label{fig:lwoffjacobmonod}
 \end{figure}
 
 \subsection{RNA}
 Among the cell's molecular components, \gls{RNA} plays a particularly central role. \gls{RNA} biology is a critical aspect of cellular function, encompassing processes such as transcription, translation, and regulation. Transcription is the process by which \gls{DNA} is copied into \gls{RNA}, which then serves as a template for protein synthesis during translation. Regulation of these processes is essential for maintaining cellular homeostasis and responding to environmental changes. This regulation can occur at multiple levels, including transcriptional control, RNA processing, and post-translational modifications \cite{Alberts2015CellsGenomes}.
-
-The \gls{RNA} hypothesis posits that \gls{RNA} molecules were the first self-replicating entities, leading to the evolution of life as we know it. This hypothesis suggests that early life forms relied on \gls{RNA} for both genetic information storage and catalytic functions, paving the way for the development of \gls{DNA} and proteins, showing how \gls{RNA} might be one of the most central components of the cell \cite{RNAWorld2024}.
 
 Many different types of \gls{RNA} exist, each with distinct functions. Messenger \gls{RNA} (\gls{mRNA}) carries genetic information from \gls{DNA} to ribosomes for protein synthesis, while transfer \gls{RNA} (\gls{tRNA}) and ribosomal \gls{RNA} (\gls{rRNA}) allow translation of \gls{mRNA}s into proteins. Other types of \gls{RNA}, such as small interfering \gls{RNA} (\gls{siRNA}) and microRNA (\gls{miRNA}), are involved in gene regulation and silencing. Long-non-coding \gls{RNA}s (\gls{lncRNA}s) also play crucial roles in regulating gene expression and chromatin structure \cite{chenSmallLongNoncoding2024}.
 
@@ -72,7 +34,7 @@ The various types of \gls{RNA} described above participate in a tightly regulate
 
 Transcription factors also interact with other proteins, such as cohesin, which helps maintain chromatin and the specific 3D structure of the \gls{DNA}. Chromatin is the complex of \gls{DNA} and proteins that forms chromosomes within the nucleus of eukaryotic cells. The organization of chromatin is essential for regulating gene expression, as it determines the accessibility of \gls{DNA} to transcription machinery (see Figure ~\ref{fig:grn_1}).
 
-Understanding the transcriptional rules and grammar of \gls{TF} binding is helping us engineer bacteria and eukaryotic cells to express specific genes.
+Understanding the transcriptional rules governing \gls{TF} binding is central to predicting gene expression programs from genomic sequence.
 
 \begin{figure}[ht]
  \centering
@@ -82,7 +44,7 @@ Understanding the transcriptional rules and grammar of \gls{TF} binding is helpi
 \end{figure}
 
 \subsection{Gene Regulatory Networks}
-Given this complexity, biologists have relied on the concept of gene regulatory networks (\gls{GRN}s) to simplify the complex interactions within the cell \cite{badia-i-mompelGeneRegulatoryNetwork2023}. GRNs are networks of molecular interactions that govern gene expression levels in a cell. They consist of genes, transcription factors, and other regulatory elements that interact to control the timing and level of gene expression (see Figure ~\ref{fig:grn_2}). Although very coarse and likely incomplete, These modeled interactions provide insights into how cells might respond to various stimuli, differentiate into specific cell types, and maintain homeostasis. They are used by researchers every day through pathway, regulon, and other ontological relationship databases. They help us understand diseases, their mechanisms, and improve crop quality and yield.
+Given this complexity, biologists have relied on the concept of gene regulatory networks (\gls{GRN}s) to simplify the complex interactions within the cell \cite{badia-i-mompelGeneRegulatoryNetwork2023}. GRNs are networks of molecular interactions that govern gene expression levels in a cell. They consist of genes, transcription factors, and other regulatory elements that interact to control the timing and level of gene expression (see Figure ~\ref{fig:grn_2}). Although coarse and incomplete, these modeled interactions provide insights into how cells respond to stimuli, differentiate, and maintain homeostasis. GRNs are used operationally through pathway, regulon, and ontological relationship databases, and serve as a reference for interpreting transcriptomic data.
 
 \begin{figure}[ht]
  \centering
@@ -201,7 +163,7 @@ Artificial Intelligence (\gls{AI}) is a broad term that has had multiple meaning
  \label{fig:ffn}
 \end{figure}
 
-Recently, Machine Learning (\gls{ML}) has made great strides in many areas, primarily due to a significant increase in data generation, along with improvements in optimization methods and neural networks. In this Ph.D., we are piggybacking on these improvements and performing data science and machine learning on single-cell data.
+Recent advances in Machine Learning (\gls{ML}) across many domains have been driven by a significant increase in data availability, alongside improvements in optimization methods and neural network architectures. This thesis applies these advances to single-cell transcriptomic data.
 
 We now present an overview of these methods and provide intuition for why they work.
 
@@ -228,7 +190,7 @@ Several key architectural innovations enabled modern deep learning:
 
 \textbf{Normalization layers} (batch normalization, layer normalization) stabilize training by normalizing intermediate activations, allowing higher learning rates and faster convergence. Layer normalization is particularly important for transformers and is used in all models.
 
-\textbf{Tokenization and attention} make the models both more parallelizable and more complex. Indeed, it allows models to work on matrix inputs, where each input value becomes a vector of numbers (also called an embedding or token). For text, this involves subword units; for single-cell data, we can let our imagination run free; it could be genes, cells, molecules, indeed, we will be using both in our models.
+\textbf{Tokenization and attention} make the models both more parallelizable and more complex. Indeed, it allows models to work on matrix inputs, where each input value becomes a vector of numbers (also called an embedding or token). For text, this involves subword units; for single-cell data, tokens can represent genes, cells, or molecules---this thesis uses both.
 We then use classical neural networks for per-token processing and the attention mechanism to enable tokens to interact with one another.
 Taken together, these make the model even more parallelizable in both depth and width.
 
@@ -243,7 +205,7 @@ Interestingly, whether small or large, neural network or otherwise, almost all \
 
 But this is through \emph{stochastic} gradient descent (\gls{SGD}) methods like Adam that we successfully train \gls{NN}s \cite{kingmaAdamMethodStochastic2017,loshchilovDecoupledWeightDecay2019}. Indeed, using only a small subset of the data at each training step is not only much faster to minimize the loss function, but it also helps escape local minima and saddle points \cite{liVisualizingLossLandscape2018}.
 
-To understand this, we need to understand the loss landscape. Imagine a 3D landscape where the height represents the loss value, and the two other "surface" dimensions are the model's parameters (see Figure ~\ref{fig:loss_surface}). The goal of the model is to find the lowest point in this landscape, which corresponds to the best set of parameters to fit the data. However, this landscape is very complex, with many local minima and saddles, which would prevent the model from reaching a nice minimum; it wanders blindly and can only sense its immediate surroundings.
+To understand this, we need to understand the loss landscape. Imagine a 3D landscape where the height represents the loss value, and the two other "surface" dimensions are the model's parameters (see Figure ~\ref{fig:loss_surface}). The goal of the model is to find the lowest point in this landscape, which corresponds to the best set of parameters to fit the data. However, this landscape is highly complex, with many local minima and saddle points that can trap naive optimization procedures.
 
 \begin{figure}[ht]
  \centering
