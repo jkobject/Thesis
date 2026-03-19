@@ -126,7 +126,6 @@ and single-cell expression data. We describe the most widely used approaches in 
 on their mathematical formulation and limitations.
 
 \subsubsection{Regression-based: GENIE3 and GRNBoost2}
-
 GENIE3 \cite{genie3} decomposes the network inference problem into \(g\) independent regression
 problems. For each target gene \(i \in V\), a random forest regressor \(f_i\) is trained to predict
 the expression of gene \(i\) from the expressions of all other genes:
@@ -146,22 +145,13 @@ approximately 50-fold speedup through stochastic gradient boosting with early st
 out-of-bag loss. Both methods produce directed graphs by construction (since \(f_i\) only captures
 \(j \to i\)), but with several limitations:
 
-\begin{enumerate}
-  \item \textbf{Symmetry bias.} If gene \(j\) drives gene \(i\), feature importance of \(j\) in
-    \(f_i\) is high; but if the true direction is \(i \to j\), the model has no mechanism to
-    distinguish this from \(j \to i\). Causal directionality is not encoded.
-  \item \textbf{Indirect effects.} A chain \(j \to k \to i\) inflates the feature importance of
-    \(j\) in \(f_i\), conflating indirect with direct regulation. Post-hoc conditioning cannot
-    fully remove this.
-  \item \textbf{No cell-type specificity.} The method is applied to an aggregated expression
-    matrix; cell-type-specific networks require external stratification.
-  \item \textbf{Pseudo-bulk input.} In practice, GENIE3 is run on pseudo-bulk (cluster-averaged)
-    data rather than individual cells, discarding the single-cell resolution and reintroducing
-    averaging artifacts.
-\end{enumerate}
+\textbf{Symmetry bias.} If gene \(j\) drives gene \(i\), feature importance of \(j\) in \(f_i\) is high; but if the true direction is \(i \to j\), the model has no mechanism to distinguish this from \(j \to i\). Causal directionality is not encoded.
+
+\textbf{Indirect effects.} A chain \(j \to k \to i\) inflates the feature importance of \(j\) in \(f_i\), conflating indirect with direct regulation. Post-hoc conditioning cannot fully remove this.
+
+\textbf{No cell-type specificity.} The method is applied to an aggregated expression matrix; cell-type-specific networks require external stratification.
 
 \subsubsection{Motif-based regulon approach: pySCENIC}
-
 A key limitation of purely expression-based methods like GENIE3 is their inability to distinguish
 direct transcriptional regulation from indirect co-expression. pySCENIC addresses this by
 integrating orthogonal regulatory evidence, using \gls{TF} binding motifs to filter spurious edges.
@@ -190,7 +180,6 @@ effects problem; (5) SCENIC+ is computationally expensive, requiring joint scRNA
 \gls{scATAC-seq} data.
 
 \subsubsection{Information-theoretic: PIDC}
-
 PIDC \cite{pratapaBenchmarkingAlgorithmsGene2020} applies \emph{partial information decomposition}
 (PID) to identify direct gene--gene relationships. Let \(x_i, x_j, x_k\) denote the expression
 values of genes \(i, j, k\) treated as random variables across cells. For a triplet of genes
@@ -208,7 +197,6 @@ hub genes, is that PIDC penalizes information shared with a common regulator. Li
 expression count data; and (3) inability to produce directed edges without additional assumptions.
 
 \subsubsection{ODE-based: SCODE}
-
 \glspl{ODE}-based approaches model gene expression dynamics directly \cite{matsumotoSCODEEfficientRegulatory2017}. 
 Related methods include TIGRESS \cite{hauryTIGRESSTrustfulInference2012} and dynGENIE3 \cite{thuDynGENIE3DynamicalGENIE32018}, 
 which extend regression approaches to time-series data.
@@ -228,7 +216,6 @@ heavily on pseudotime quality; (3) the approach requires developmental or time-s
 than steady-state profiles; and (4) it does not scale to genome-wide analysis.
 
 \subsubsection{Comparative summary}
-
 Table~\ref{tab:grn_methods} summarizes the key properties of these methods. None of the existing
 approaches simultaneously achieves directed inference, cell-type specificity, and genome-wide
 scalability without requiring perturbation data or pseudotime trajectories. scPRINT, introduced
@@ -263,7 +250,6 @@ comparison unreliable. We review the main benchmarking efforts and discuss their
 implications.
 
 \subsubsection{Existing benchmarks}
-
 \textbf{BEELINE (Pratapa et al., 2020) \cite{pratapaBenchmarkingAlgorithmsGene2020}} is the
 reference systematic benchmarking effort for single-cell \gls{GRN} inference. It evaluates 12 methods
 on simulated data and on curated \textit{in vivo} datasets. Simulated expression data are generated
@@ -280,7 +266,6 @@ for single-cell-resolution \gls{GRN} inference, with a focus on the three ground
 described below and metrics calibrated to the sparsity of real biological networks.
 
 \subsubsection{Metrics}
-
 Choosing appropriate metrics is non-trivial given the extreme sparsity of \gls{GRN} ground truths
 (less than 0.01\% of edges are positive).
 
@@ -309,7 +294,6 @@ edges for downstream validation, not the full ranked list. EPR values greater th
 above-random performance.
 
 \subsubsection{Ground truths}
-
 \textbf{Literature-curated networks: OmniPath.} OmniPath \cite{tureiOmniPathGuidelinesGateway2016}
 aggregates manually curated \gls{TF}-to-target interactions from 14 species across dozens of
 databases, yielding a comprehensive directed interaction network. Its main limitations are
@@ -368,7 +352,6 @@ language.
 \subsection{Key methodological elements for foundation models}
 
 \subsubsection{Transformers and self-supervised learning}
-
 Foundation models in machine learning are trained on large unlabeled datasets using self-supervised
 objectives, then adapted to downstream tasks via fine-tuning or zero-shot inference. In computer
 vision, models such as Vision Transformers (ViT) \cite{dosovitskiyImageWorth16x162021} learn from
@@ -382,7 +365,6 @@ pretraining datasets capturing diverse contexts, and (3) self-supervised objecti
 learning without manual annotation.
 
 \subsubsection{Self-attention mechanism}
-
 The core operation of all transformer models is multi-head self-attention
 \cite{devlinBERTPretrainingDeep2019}. Given an input matrix
 \(\mathbf{X} \in \mathbb{R}^{n \times d}\) (here \(n\) is the number of input tokens and \(d\)
@@ -409,7 +391,6 @@ capturing a different type of gene-gene relationship. The outputs of all heads a
 projected: \(\text{MHA}(\mathbf{X}) = [\text{head}_1;\ldots;\text{head}_H]\mathbf{W}_O\).
 
 \subsubsection{Masked gene modeling}
-
 Self-supervised pretraining in \gls{BERT}-style models uses a masked token prediction objective.
 In the single-cell context, this becomes \emph{masked gene modeling}\cite{yangScBERTLargescalePretrained2022a}: a random 15\% of gene tokens
 are replaced by a special \texttt{[MASK]} token, and the model is trained to predict the original
@@ -428,7 +409,6 @@ expression reconstruction and representation quality. Detailed examples of these
 training strategies are provided below in the reviews of state-of-the-art models.
 
 \subsubsection{Encoding single-cell expression data}
-
 Adapting transformers to \gls{scRNA-seq} data requires solving three non-trivial encoding
 problems:
 
@@ -499,7 +479,6 @@ architectural choices, pretraining objectives, and data regimes. We provide deta
 the most significant models, followed by brief summaries of recent additions.
 
 \subsubsection{scBERT (Yang et al., 2022)}
-
 \textbf{Architecture.} scBERT \cite{yangScBERTLargescalePretrained2022a} was the first
 practically deployed \gls{scFM}. It adapts the \gls{BERT} encoder with \textbf{Performer}
 attention \cite{choromanskiRethinkingAttentionPerformers2022} to handle approximately 16,000 human
@@ -521,7 +500,6 @@ denoising or \gls{GRN} inference. The model has not been demonstrated to general
 or to gene network tasks.
 
 \subsubsection{Geneformer (Theodoris et al., 2023)}
-
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.9\textwidth]{./figures/geneformer.png}
@@ -558,7 +536,6 @@ cell-type annotation and highly variable gene selection for clustering, with the
 objective failing to generalize effectively to the evaluation datasets tested.
 
 \subsubsection{scGPT (Cui et al., 2024)}
-
 \textbf{Architecture.} scGPT \cite{cuiScGPTBuildingFoundation2024} was the first \gls{scFM} to
 apply a \gls{GPT}-style decoder with causal (unidirectional) self-attention. Genes are treated as
 tokens in a sequence of up to 3,000 expressed genes per cell. Each token is the sum of a gene
@@ -587,7 +564,6 @@ dependencies. The model is restricted to human data only, and its large paramete
 training computationally expensive.
 
 \subsubsection{UCE (Rosen et al., 2023)}
-
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.9\textwidth]{./figures/uce.png}
@@ -617,7 +593,6 @@ confined to embedding quality (clustering metrics) rather than biologically acti
 as \gls{GRN} inference or perturbation prediction.
 
 \subsubsection{scFoundation (Hao et al., 2024)}
-
 \textbf{Architecture.} scFoundation \cite{haoLargescaleFoundationModel2024} departed from direct
 NLP analogies with a novel \emph{Read-Depth Aware} (RDA) asymmetric encoder-decoder architecture.
 The encoder processes a low-depth (artificially downsampled, sparse) expression profile; the
